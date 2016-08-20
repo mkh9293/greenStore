@@ -35,7 +35,7 @@ public class DbController {
 	public void storeMenuDataInsert() throws IOException, DocumentException {
 		List<Node> nodes;
 		
-		nodes = selectMenuNode(0,0); // default로 1, 1개만 가져와도 total count를 알 수 있음.
+		nodes = selectMenuNode(0,1); // default로 1, 1개만 가져와도 total count를 알 수 있음.
 		int num = 0;
 		for (Node node : nodes) {
 			num = Integer.parseInt(node.selectSingleNode("list_total_count").getText());
