@@ -4,4 +4,5 @@ import com.store.greenStore.dto.Store;
 
 public interface DbMapper {
 	void insert(Store data);
+	
 }
