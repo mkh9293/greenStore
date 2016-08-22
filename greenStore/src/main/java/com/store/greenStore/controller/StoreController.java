@@ -28,6 +28,7 @@ public class StoreController {
 	@RequestMapping(value="/detail/play", method=RequestMethod.GET)
 	public String play(int id, Model model){
 		
+		
 		return "store/play";
 	}
 	
