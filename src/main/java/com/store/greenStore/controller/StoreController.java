@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.store.greenStore.dto.Store;
-import com.store.greenStore.mapper.StoreDbMapper;
+import com.store.greenStore.mapper.StoreMenuMapper;
 
 @Controller
 @RequestMapping(value="/store/*")
 public class StoreController {
 	
 	@Autowired
-	StoreDbMapper storeDbMapper;
+	StoreMenuMapper storeDbMapper;
 	
 	@RequestMapping(value="/detail", method=RequestMethod.GET)
 	public String detail(int id,Model model){
