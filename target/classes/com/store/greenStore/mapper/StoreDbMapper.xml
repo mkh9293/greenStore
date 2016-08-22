@@ -7,7 +7,4 @@
         VALUES (#{sh_id}, #{menu}, #{price})
     </insert>
 	
-	<select id="detail" resultType="com.store.greenStore.dto.Store">
-		SELECT * FROM STORE WHERE SH_ID = #{sh_id}
-	</select> 
 </mapper>

@@ -39,6 +39,7 @@ public class DbController {
 		int num = 0;
 		for (Node node : nodes) {
 			num = Integer.parseInt(node.selectSingleNode("list_total_count").getText());
+			System.out.println(num + " /num??");
 		}
 		System.out.println("Tttttttttttttt");
 		for(int i=0;i<2;i++){
@@ -55,7 +56,7 @@ public class DbController {
 				System.out.println(node.selectSingleNode("SH_ID").getText());
 				System.out.println(node.selectSingleNode("IM_PRICE").getText());
 				System.out.println("==================================");
-				if(node.selectSingleNode("IM_PRICE").getText()==null || node.selectSingleNode("IM_PRICE").getText().equals(""))
+				if(node.selectSingleNode("IM_PRICE").getText().equals(""))
 					db.setPrice(0);
 				else
 					db.setPrice(Integer.parseInt(node.selectSingleNode("IM_PRICE").getText()));
@@ -139,6 +140,7 @@ public class DbController {
 		Document document = saxReader.read(new StringReader(ins));
 		List<Node> nodes;
 		if(start == 0){
+			System.out.println("start~~"+"  /"+start);
 			nodes = document.selectNodes("/ListPriceModelStoreProductService");
 		}else{
 			nodes = document.selectNodes("/ListPriceModelStoreProductService/row");
