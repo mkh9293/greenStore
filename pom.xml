@@ -50,7 +50,18 @@
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>
+<<<<<<< HEAD
 
+=======
+			
+		<!-- jstl -->
+		<dependency>
+   		 	<groupId>jstl</groupId>
+    		<artifactId>jstl</artifactId>
+    		<version>1.2</version>
+		</dependency>		
+		
+>>>>>>> b8dccf091df0e9b03135a6dc5795868d8c9758e8
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>

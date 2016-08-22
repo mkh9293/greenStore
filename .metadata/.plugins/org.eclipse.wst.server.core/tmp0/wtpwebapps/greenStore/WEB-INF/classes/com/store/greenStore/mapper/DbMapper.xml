@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.store.greenStore.mapper.DbMapper">
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="sh_id">
+        INSERT store(SH_ID,SH_NAME,SH_ADDR,INDUTY_CODE_SE,SH_PHONE,SH_WAY,SH_INFO,SH_PRIDE,SH_RCMN,SH_PHOTO,SH_LIKE,BASE_YM,induty_code_se_name)
+        VALUES (#{sh_id}, #{sh_name}, #{sh_addr}, #{induty_code_se},#{sh_phone},#{sh_way},#{sh_info},#{sh_pride},#{sh_rcmn},#{sh_photo},#{sh_like},NOW(),#{induty_code_se_name})
+    </insert>
+	
+</mapper>

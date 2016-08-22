@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.store.greenStore.mapper.StoreDbMapper">
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="sm_id">
+        INSERT store_menu(SH_ID,MENU,PRICE)
+        VALUES (#{sh_id}, #{menu}, #{price})
+    </insert>
+	
+	<select id="detail" resultType="com.store.greenStore.dto.Store">
+		SELECT * FROM STORE WHERE SH_ID = #{sh_id}
+	</select> 
+<<<<<<< Updated upstream:greenStore/target/classes/com/store/greenStore/mapper/StoreDbMapper.xml
+=======
+	
+	
+>>>>>>> Stashed changes:target/classes/com/store/greenStore/mapper/StoreDbMapper.xml
+</mapper>
