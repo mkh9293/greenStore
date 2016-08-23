@@ -10,9 +10,4 @@
 	<select id="detail" resultType="com.store.greenStore.dto.Store">
 		SELECT * FROM STORE WHERE SH_ID = #{sh_id}
 	</select> 
-<<<<<<< Updated upstream:greenStore/target/classes/com/store/greenStore/mapper/StoreDbMapper.xml
-=======
-	
-	
->>>>>>> Stashed changes:target/classes/com/store/greenStore/mapper/StoreDbMapper.xml
 </mapper>
