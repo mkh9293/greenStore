@@ -33,7 +33,7 @@ public class TestMain {
 //	
 	@Test
 	public void TestSelectById(){
-		List<Store> store = storeMapper.selectById("다방");
+		List<Store> store = storeMapper.selectById("커피");
 		int i = 1;
 		for(Store st : store){
 			System.out.println(st.getSh_name() + (i++));	
