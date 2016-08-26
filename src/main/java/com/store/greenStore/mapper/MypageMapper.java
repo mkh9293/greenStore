@@ -9,7 +9,6 @@ public interface MypageMapper {
 	
 	List<StoreLike> selectStoreLike();
 	List<ReviewLike> selectReviewLike();
-	List<ReviewLike> selectRvLocal();
-	List<ReviewLike> selectRvCate();
+	List<ReviewLike> sort();
 
 }
