@@ -20,14 +20,14 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
+
 	<context:component-scan base-package="com.store.greenStore" />
 	
 	<beans:bean id="myDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
         <beans:property name="driverClass" value="com.mysql.jdbc.Driver" />
         <beans:property name="url" value="jdbc:mysql://127.0.0.1:3306/greenStore" />
         <beans:property name="username" value="root" />
-        <beans:property name="password" value="apmsetup" />
+        <beans:property name="password" value="wldnrdld335" />
     </beans:bean>
 
     <beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

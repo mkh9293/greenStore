@@ -13,9 +13,29 @@
 		ORDER BY sh_rcmn DESC LIMIT 6
 	</select>
 	
-	<select id="selectById" resultType="com.store.greenStore.dto.Store">
-		select * 
-		from store join store_menu on store.sh_id = store_menu.sh_id  
-		where replace(store.sh_name," ","") = replace(concat('%',#{searchText},'%')," ", "");
+	<!-- 이름,주소,찾아오는길,자랑거리,메뉴에서 찾는 단어가 존재하는 행들을 뿌려준다. mysql에서 제공하는 full text search를 이용하기 위해서는 match, against 구문이 필요하다
+		 concat을 사용한 이유는 *#{searchText}* 와 같이 * 특수문자를 붙이기 위해서 사용했고,
+		  업소 이름을 기준으로 그룹을 만들었다.  -->
+	<select id="search" resultType="com.store.greenStore.dto.Store">
+			select distinct * 
+			from store join store_menu on store.sh_id = store_menu.sh_id  
+			where match(store.sh_name,store.sh_addr,store.sh_way,store.sh_pride,store_menu.menu) against(concat('*',#{searchText},'*') IN BOOLEAN MODE)
+			group by sh_name
+			order by store_menu.menu desc;
+	</select>
+	
+	<select id="cateSearch" resultType="com.store.greenStore.dto.Store">
+		select distinct *
+		from store 
+		<where>
+			sh_addr like concat('%',#{area},'%') and
+			<if test="cate == 1">
+				induty_code_se in (1,2,3,4,5)
+			</if>
+			<if test="cate != 1">
+				induty_code_se = #{cate}
+			</if>
+		</where>
+		
 	</select>
 </mapper>

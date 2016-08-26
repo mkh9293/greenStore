@@ -941,7 +941,6 @@ function eval(s){return new Object();};
   * Property debugger
   * @description Debugger keyword
  */
-var debugger=null;
 
 /**
  * Property undefined
@@ -1453,6 +1452,3 @@ TypeError.prototype=new Error("");
  */
 function URIError(){};
 URIError.prototype=new Error("");
-
-//support for debugger keyword
-var debugger = null;
