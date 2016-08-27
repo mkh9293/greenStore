@@ -30,12 +30,6 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	// 안드로이드용
-//	@RequestMapping(value = "/", method = RequestMethod.GET)
-//	public @ResponseBody List<Stoe> home(Model model) {
-//		return storeMapper.selectAll();
-//	}
-	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
 		return "home";
