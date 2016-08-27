@@ -3,7 +3,7 @@ package com.store.greenStore.dto;
 public class Member {
 	
 	private int mkey;
-	private byte[] mphoto;
+	private String mphoto;
 	private String mid;
 	private String mname;
 	
@@ -13,10 +13,10 @@ public class Member {
 	public void setMkey(int mkey) {
 		this.mkey = mkey;
 	}
-	public byte[] getMphoto() {
+	public String getMphoto() {
 		return mphoto;
 	}
-	public void setMphoto(byte[] mphoto) {
+	public void setMphoto(String mphoto) {
 		this.mphoto = mphoto;
 	}
 	public String getMid() {
