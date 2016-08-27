@@ -35,7 +35,16 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public void login(Model model) {
 	
+	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public void logout(Model model) {
+		
+	}
+		
 	@RequestMapping(value="/search/{searchText}",method = RequestMethod.GET)
 	public @ResponseBody List<Store> search(@PathVariable("searchText")String searchText){
 		List<Store> storeList = storeMapper.search(searchText);
@@ -47,6 +56,7 @@ public class HomeController {
 		//cate 가 음식으로 오면 한식,중식,일식
 		List<Store> storeList = storeMapper.cateSearch(area,cate);
 		return storeList;
+
 	}
 	
 }

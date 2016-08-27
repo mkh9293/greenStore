@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.store.greenStore.mapper.NoticeMapper">
+
+    <insert id="write" useGeneratedKeys="true" keyProperty="nkey">
+        insert into notice(ntitle, ncontent, ndate)
+        values(#{ntitle}, #{ncontent}, sysdate)
+    </insert>
+
+	<update id="update">
+		update notice
+		set ntitle=#{ntitle}, ncontent=#{ncontent}
+		where nkey = #{nkey}
+	</update>
+	
+	<delete id="remove">
+		delete from notice where nkey=#{nkey}
+	</delete>
+	
+	<select id="listOne" resultType="com.store.greenStore.dto.Notice">
+		select nkey, ntitle, ncontent
+		from notice
+		where nkey = #{nkey}
+	</select>
+
+	<select id="selectCount" resultType="int">
+		select count(*)
+		from notice
+	</select>
+	
+	<select id="selectPage" resultType="com.store.greenStore.dto.Notice">
+		SELECT *
+		FROM notice
+		LIMIT #{currentItem}, #{itemPerPage}
+	</select>
+	
+	<select id="listAll" resultType="com.store.greenStore.dto.Notice">
+		<![CDATA[
+			select nkey, ntitle, ncontent, ndate
+			from notice
+			order by idx desc
+		]]>
+	</select>
+	
+	
+	<select id="searchById" resultType="com.store.greenStore.dto.Notice">
+		select nkey, ntitle, ncontent
+		from notice
+		where nkey = #{nkey}
+	</select>
+	
+</mapper>
