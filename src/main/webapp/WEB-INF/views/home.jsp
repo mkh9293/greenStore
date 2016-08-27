@@ -25,9 +25,17 @@
    				Kakao.API.request({
    					url: '/v1/user/me',
    					success: function(res){
-   						document.getElementById('status2').innerHTML =
-   					        'Thanks for logging in, ' + res.properties.nickname+ '/' + res.properties.created;
-   						/* alert(res.properties.nickname); */
+   						 document.getElementById('status2').innerHTML = 
+   					         'Thanks for logging in, ' + res.properties.nickname+ '/' + res.id + '/' + res.properties.thumbnail_image;
+   						 //* alert(res.properties.nickname); */
+   						 $.ajax({
+   							url:'/greenStore/join',
+   							type:'post',
+   							data:{"mname":res.properties.nickname,"mid":res.id,"mphoto":res.properties.thumbnail_image},
+   							success:function(data){
+   								alert(data);
+   							}   						 
+   						 });
    					},
    					fail: function(error){
    						document.getElementById('status2').innerHTML =
@@ -135,7 +143,7 @@
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
+        'Thanks for logging in, ' + response.name + '/' +response.id;
     });
   }
   
@@ -153,6 +161,7 @@
 <!-- 	<a href="#" onclick="FB.logout();">[logout]</a><br> -->
 	<div id="status">
 	</div>
+	
  
 </body>
 </html> 

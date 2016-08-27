@@ -8,5 +8,6 @@
 </head>
 <body>
  test입니다......
+ 	<% request.getParameter("test"); %>
 </body>
 </html>
