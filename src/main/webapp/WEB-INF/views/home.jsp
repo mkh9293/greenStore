@@ -34,7 +34,7 @@
    							data:{"mname":res.properties.nickname,"mid":res.id,"mphoto":res.properties.thumbnail_image},
    							success:function(data){
    								alert(data);
-   							}   						 
+   							}
    						 });
    					},
    					fail: function(error){
