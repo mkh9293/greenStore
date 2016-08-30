@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.store.greenStore.dto.Notice;
-import com.store.greenStore.dto.Pagination;
 import com.store.greenStore.mapper.NoticeMapper;
 
 @Controller
@@ -19,45 +18,44 @@ public class NoticeController {
 	@Autowired NoticeMapper noticeMapper;
 	
 	@RequestMapping(value="/list")
-	public String list(Model model, Pagination pagination) {
-		pagination.setRecordCount(noticeMapper.selectCount(pagination));
-		model.addAttribute("list", noticeMapper.selectPage(pagination));
+	public String list(Model model) {
+
 		return "notice/list";
 	}
-	
+
 	@RequestMapping(value="/write", method = RequestMethod.GET)
-	public String write(Model model, Pagination pagination) {
+	public String write(Model model) {
 		return "notice/write";
 	}
 	
 	@RequestMapping(value="/write", method = RequestMethod.POST)
-	public String write(HttpServletRequest request, Model model, Pagination pagination) {
+	public String write(HttpServletRequest request, Model model) {
 		
-		return "rediret:/notice/list?" + pagination.getQueryString();
+		return "rediret:/notice/list";
 	}
 	
 	@RequestMapping(value = "/listOne", method = RequestMethod.GET)
-	public String listOne(Model model, @RequestParam("nkey") int nkey, Pagination pagination) throws Exception {
+	public String listOne(Model model, @RequestParam("nkey") int nkey) throws Exception {
 		model.addAttribute("notice", noticeMapper.listOne(nkey));
 		return "notice/listOne";
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public String update(Model model, @RequestParam("nkey") int nkey, Pagination pagination) {
+	public String update(Model model, @RequestParam("nkey") int nkey) {
 		model.addAttribute("notice",noticeMapper.listOne(nkey));
 		return "notice/update";
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String update(Model model, Pagination pagination, Notice board) {
+	public String update(Model model, Notice board) {
 		noticeMapper.update(board);
-		return "redirect:/notice/listOne?nkey=" + board.getNkey() + "&" + pagination.getQueryString();
+		return "redirect:/notice/listOne?nkey=" + board.getNkey();
 	}
 
 	@RequestMapping("/delete")
-	public String delete(Model model, @RequestParam("nkey") int nkey, Pagination pagination) {
+	public String delete(Model model, @RequestParam("nkey") int nkey) {
 		noticeMapper.remove(nkey);
-		return "redirect:/notice/list?" + pagination.getQueryString();
+		return "redirect:/notice/list?";
 	}
 
 }

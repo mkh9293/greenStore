@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="review/listAll" method="get" id="storeInfo">
+	<form action="review/listAll" method="get" >
 
 	</form>
 
