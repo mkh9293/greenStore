@@ -32,20 +32,17 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-<<<<<<< HEAD
+
 	// 안드로이드용
 //	@RequestMapping(value = "/", method = RequestMethod.GET)
 //	public @ResponseBody List<Stoe> home(Model model) {
 //		return storeMapper.selectAll();
 //	}
-	
-	
-=======
->>>>>>> origin/master
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
 		List<Store> store = new ArrayList<Store>();
-		store = storeMapper.selectAll();
+		store = storeMapper.webSelectAll();
 		String[] areaList= {"강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구"
 				,"노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구"
 				,"송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"};
@@ -70,7 +67,6 @@ public class HomeController {
 		return "home";
 	}
 	
-<<<<<<< HEAD
 	@RequestMapping(value="/search2/{searchText}",method = RequestMethod.GET)
 	public String search2(@PathVariable("searchText")String searchText, Model model){
 		List<Store> storeList = storeMapper.search(searchText);
@@ -79,11 +75,11 @@ public class HomeController {
 		model.addAttribute("storeList", storeList);
 		
 		return "store/searchResult";
-=======
+	}
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public void login(Model model) {
 	
->>>>>>> origin/master
 	}
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)

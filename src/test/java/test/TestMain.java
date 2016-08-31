@@ -34,14 +34,15 @@ public class TestMain {
 //	
 	
 	// 검색했을 때.
-<<<<<<< HEAD
+
 	@Test
 	public void TestSearch(){
 		List<Store> store = storeMapper.search("커피");
 		int i = 1;
 		for(Store st : store){
 			System.out.println(st.getSh_name() + (i++));	
-=======
+		}
+	}
 //	@Test
 //	public void TestSearch(){
 //		List<Store> store = storeMapper.search("커피");
@@ -66,7 +67,7 @@ public class TestMain {
 	public void appSelectAll(){
 		for(Store s : storeMapper.appSelectAll()){
 			System.out.println(s.getSh_name() +" / "+s.getSh_rcmn());
->>>>>>> origin/master
+
 		}
 	}
 	
