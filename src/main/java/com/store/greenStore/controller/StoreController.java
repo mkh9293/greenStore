@@ -3,20 +3,12 @@ package com.store.greenStore.controller;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.StringReader;
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.dom4j.Node;
-import org.dom4j.io.SAXReader;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -33,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.store.greenStore.dto.Play;
 import com.store.greenStore.dto.Store;
 import com.store.greenStore.mapper.StoreDbMapper;
+import com.store.greenStore.mapper.StoreMapper;
 
 @Controller
 @RequestMapping(value="/store/*")
@@ -40,6 +33,9 @@ public class StoreController {
 	
 	@Autowired
 	StoreDbMapper storeDbMapper;
+	
+	@Autowired
+	StoreMapper storeMapper;
 	
 	private final String appkey = "76d0dfe96fd493ccedbee52792d36e32";
 	
@@ -107,7 +103,7 @@ public class StoreController {
 			Play play = new Play();
 			
 			play.setAddr1((String)jsonTemp.get("addr1"));
-			play.setAddr2((String)jsonTemp.get("addr2"));
+			play.setAddr2(jsonTemp.get("addr2"));
 			play.setFirstimage((String)jsonTemp.get("firstimage"));
 			
 			play.setMapx(jsonTemp.get("mapx"));
@@ -153,4 +149,39 @@ public class StoreController {
 		
 		return "store/daumNavi";
 	}
+	
+	@RequestMapping(value="/search",method = RequestMethod.GET)
+	public String searchAll(Model model) throws IOException, ParseException{
+		List<Store> store = new ArrayList<Store>();
+		store = storeMapper.selectAll();
+		
+		model.addAttribute("store", store);
+		
+		return "store/searchResult";
+	}
+	
+	@RequestMapping(value="/searchJson",method = RequestMethod.GET)
+	public @ResponseBody HashMap<Integer, Store> searchAllJson() throws IOException, ParseException{
+		List<Store> store = new ArrayList<Store>();
+		store = storeMapper.selectAll();
+		
+		HashMap<Integer, Store> mapList = new HashMap<Integer, Store>();
+		Store storeOb = null;
+		
+		for(int i=0;i<store.size();i++){
+			storeOb = new Store();
+			storeOb = store.get(i);
+			
+			HashMap<String, Double> map = new HashMap<String, Double>();
+			map = getGps(store.get(i).getSh_addr());
+			
+			storeOb.setPointX(map.get("pointX"));
+			storeOb.setPointY(map.get("pointY"));
+			
+			mapList.put(i, storeOb);
+		}
+		
+		return mapList;
+	}
+	
 }

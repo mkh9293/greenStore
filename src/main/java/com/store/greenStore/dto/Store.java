@@ -23,6 +23,21 @@ public class Store {
 	private int price;
 	private String menu;
 	
+	private Object pointX;
+	private Object pointY;
+	
+	public Object getPointX() {
+		return pointX;
+	}
+	public void setPointX(Object pointX) {
+		this.pointX = pointX;
+	}
+	public Object getPointY() {
+		return pointY;
+	}
+	public void setPointY(Object pointY) {
+		this.pointY = pointY;
+	}
 	public int getSm_id() {
 		return sm_id;
 	}
