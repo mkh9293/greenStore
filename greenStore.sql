@@ -30,5 +30,5 @@ group by store.sh_name
 order by store_menu.menu desc;
 
 select distinct *
-from store where sh_addr like '%도봉구%' and induty_code_se_name = '한식';
+from store where sh_addr like '%도봉구%' and induty_code_se = 2;
  	

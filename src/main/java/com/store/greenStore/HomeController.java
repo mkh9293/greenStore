@@ -32,6 +32,7 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
+<<<<<<< HEAD
 	// 안드로이드용
 //	@RequestMapping(value = "/", method = RequestMethod.GET)
 //	public @ResponseBody List<Stoe> home(Model model) {
@@ -39,6 +40,8 @@ public class HomeController {
 //	}
 	
 	
+=======
+>>>>>>> origin/master
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
 		List<Store> store = new ArrayList<Store>();
@@ -67,6 +70,7 @@ public class HomeController {
 		return "home";
 	}
 	
+<<<<<<< HEAD
 	@RequestMapping(value="/search2/{searchText}",method = RequestMethod.GET)
 	public String search2(@PathVariable("searchText")String searchText, Model model){
 		List<Store> storeList = storeMapper.search(searchText);
@@ -75,8 +79,18 @@ public class HomeController {
 		model.addAttribute("storeList", storeList);
 		
 		return "store/searchResult";
+=======
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public void login(Model model) {
+	
+>>>>>>> origin/master
 	}
 	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public void logout(Model model) {
+		
+	}
+		
 	@RequestMapping(value="/search/{searchText}",method = RequestMethod.GET)
 	public @ResponseBody List<Store> search(@PathVariable("searchText")String searchText){
 		List<Store> storeList = storeMapper.search(searchText);
@@ -103,5 +117,6 @@ public class HomeController {
 		List<Store> storeList = storeMapper.cateSearch(area,cate);
 		
 		return storeList;
+
 	}
 }

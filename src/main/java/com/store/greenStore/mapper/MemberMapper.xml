@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.store.greenStore.mapper.MemberMapper">
+
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="mkey">
+        insert into member(mid, mname, mphoto)
+        values(#{mid}, #{mnaem}, #{mphoto})
+    </insert>
+
+	
+</mapper>
