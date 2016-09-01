@@ -4,7 +4,7 @@ public class Play {
 
 	private long readcount;
 	private String addr1;
-	private String addr2;
+	private Object addr2;
 	private String firstimage;
 	private String title;
 	
@@ -24,10 +24,10 @@ public class Play {
 	public void setAddr1(String addr1) {
 		this.addr1 = addr1;
 	}
-	public String getAddr2() {
+	public Object getAddr2() {
 		return addr2;
 	}
-	public void setAddr2(String addr2) {
+	public void setAddr2(Object addr2) {
 		this.addr2 = addr2;
 	}
 	public String getFirstimage() {

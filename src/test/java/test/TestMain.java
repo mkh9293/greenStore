@@ -34,6 +34,15 @@ public class TestMain {
 //	
 	
 	// 검색했을 때.
+
+	@Test
+	public void TestSearch(){
+		List<Store> store = storeMapper.search("커피");
+		int i = 1;
+		for(Store st : store){
+			System.out.println(st.getSh_name() + (i++));	
+		}
+	}
 //	@Test
 //	public void TestSearch(){
 //		List<Store> store = storeMapper.search("커피");
@@ -58,7 +67,19 @@ public class TestMain {
 	public void appSelectAll(){
 		for(Store s : storeMapper.appSelectAll()){
 			System.out.println(s.getSh_name() +" / "+s.getSh_rcmn());
+
 		}
 	}
+	
+	// 카테고리 지역 검색했을 때
+//	//@Test
+//	//public void cateSearch(){
+//		String area = "도봉구";
+//		String cate = "2";
+//		List<Store> cateList = storeMapper.cateSearch(area,cate);
+//		for(Store s : cateList){
+//			System.out.println(s.getSh_name()+ " / "+s.getInduty_code_se_name());
+//		}
+//	}
 	
 }
