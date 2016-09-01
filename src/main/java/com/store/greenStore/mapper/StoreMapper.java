@@ -8,8 +8,7 @@ import com.store.greenStore.dto.Store;
 
 public interface StoreMapper {
 	void insert(Store data);
-	List<Store> webSelectAll();
-	List<Store> appSelectAll();
+	List<Store> selectAll();
 	List<Store> search(String searchText);
 	List<Store> cateSearch(@Param("area")String area,@Param("cate")String cate);
 }

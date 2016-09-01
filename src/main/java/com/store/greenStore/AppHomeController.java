@@ -1,5 +1,6 @@
 package com.store.greenStore;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import com.store.greenStore.dto.Store;
 import com.store.greenStore.mapper.StoreMapper;
 
 @Controller
-@RequestMapping("/android")
+@RequestMapping("/app")
 public class AppHomeController {
 	
 	@Autowired
@@ -21,7 +22,14 @@ public class AppHomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public @ResponseBody List<Store> home(Model model) {
-		return storeMapper.appSelectAll();
+		return storeMapper.selectAll();
 	}
+	
+//	@RequestMapping(value = "/", method = RequestMethod.GET)
+//	public @ResponseBody String home(Model model) {
+//		System.out.println("sssss");
+//		return "success1111";	
+//	}
+	
 	
 }
