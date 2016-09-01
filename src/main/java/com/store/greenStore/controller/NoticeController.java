@@ -34,12 +34,6 @@ public class NoticeController {
 		return "rediret:/notice/list";
 	}
 	
-	@RequestMapping(value = "/listOne", method = RequestMethod.GET)
-	public String listOne(Model model, @RequestParam("nkey") int nkey) throws Exception {
-		model.addAttribute("notice", noticeMapper.listOne(nkey));
-		return "notice/listOne";
-	}
-
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public String update(Model model, @RequestParam("nkey") int nkey) {
 		model.addAttribute("notice",noticeMapper.listOne(nkey));
