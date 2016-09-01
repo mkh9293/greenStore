@@ -3,9 +3,9 @@
 <mapper namespace="com.store.greenStore.mapper.MemberMapper">
 
     <insert id="insertUser" useGeneratedKeys="true" keyProperty="mkey">
-        insert into member(mid, mname, mphoto)
-        values(#{mid}, #{mnaem}, #{mphoto})
+
+        insert into member(mphoto, mid, mname)
+        values(#{mphoto}, #{mid}, #{mname})
     </insert>
 
-	
 </mapper>

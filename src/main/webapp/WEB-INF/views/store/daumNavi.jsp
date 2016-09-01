@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>지도 </title>
 
-<link rel="stylesheet" href="<c:url value="/resources/daumMap.css"/>" type="text/css">
+<link rel="stylesheet" href="<c:url value="/resources/css/daumMap.css"/>" type="text/css">
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 
 <script type="text/javascript"
