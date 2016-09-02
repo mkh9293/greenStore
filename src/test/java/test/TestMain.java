@@ -34,32 +34,24 @@ public class TestMain {
 //	
 	
 	// 검색했을 때.
-<<<<<<< HEAD
-	@Test
-	public void TestSearch(){
-		List<Store> store = storeMapper.search("도봉구 커피");
-=======
 
 	@Test
 	public void TestSearch(){
 		List<Store> store = storeMapper.search("커피");
->>>>>>> e6508342298c704aa8ec00e8a54e75deaae2a22c
 		int i = 1;
 		for(Store st : store){
 			System.out.println(st.getSh_name() + (i++));	
 		}
 	}
-<<<<<<< HEAD
-=======
+
 //	@Test
 //	public void TestSearch(){
 //		List<Store> store = storeMapper.search("커피");
 //		int i = 1;
 //		for(Store st : store){
-//			System.out.println(st.getSh_name() + (i++));	
+//			System.out.println(st.getSh_name() + (i++));	  
 //		}
 //	}
->>>>>>> e6508342298c704aa8ec00e8a54e75deaae2a22c
 	
 	// 카테고리 지역 검색했을 때
 //	@Test
@@ -72,22 +64,14 @@ public class TestMain {
 //		}
 //	}
 	
-<<<<<<< HEAD
-//	@Test
-//	public void appSelectAll(){
-//		for(Store s : storeMapper.appSelectAll()){
-//			System.out.println(s.getSh_name() +" / "+s.getSh_rcmn());
-//		}
-//	}
-=======
+
 	@Test
 	public void appSelectAll(){
-		for(Store s : storeMapper.appSelectAll()){
+		for(Store s : storeMapper.selectAll()){
 			System.out.println(s.getSh_name() +" / "+s.getSh_rcmn());
 
 		}
 	}
->>>>>>> e6508342298c704aa8ec00e8a54e75deaae2a22c
 	
 	// 카테고리 지역 검색했을 때
 //	//@Test

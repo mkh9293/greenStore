@@ -42,6 +42,6 @@
 				induty_code_se = #{cate}
 			</if>
 		</where>
-		
 	</select>
+	
 </mapper>
