@@ -153,7 +153,7 @@ public class StoreController {
 	@RequestMapping(value="/search",method = RequestMethod.GET)
 	public String searchAll(Model model) throws IOException, ParseException{
 		List<Store> store = new ArrayList<Store>();
-		store = storeMapper.webSelectAll();
+		store = storeMapper.selectAll();
 		
 		model.addAttribute("store", store);
 		
@@ -163,7 +163,7 @@ public class StoreController {
 	@RequestMapping(value="/searchJson",method = RequestMethod.GET)
 	public @ResponseBody HashMap<Integer, Store> searchAllJson() throws IOException, ParseException{
 		List<Store> store = new ArrayList<Store>();
-		store = storeMapper.webSelectAll();
+		store = storeMapper.selectAll();
 		
 		HashMap<Integer, Store> mapList = new HashMap<Integer, Store>();
 		Store storeOb = null;
