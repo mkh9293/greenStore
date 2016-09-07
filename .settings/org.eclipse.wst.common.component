@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+<<<<<<< HEAD
+    <wb-module deploy-name="greenStore-1.0.0-BUILD-SNAPSHOT">
+=======
+<<<<<<< HEAD
+    <wb-module deploy-name="greenStore-1.0.0-BUILD-SNAPSHOT">
+=======
     <wb-module deploy-name="greenStore">
+>>>>>>> 455ebf2dfea125d7dd9526f48cabee613412e447
+>>>>>>> 6170c6733bca6d1dfddea5e42037702f7cac0420
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
