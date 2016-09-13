@@ -67,7 +67,7 @@ public class JsonController {
 	
 	@RequestMapping(value="/searchJson",method = RequestMethod.GET)
 	public @ResponseBody HashMap<Integer, Store> searchAllJson() throws IOException, ParseException{
-		List<Store> store = storeMapper.webSelectAll();
+		List<Store> store = storeMapper.selectAll();
 		
 		HashMap<Integer, Store> mapList = new HashMap<Integer, Store>();
 		Store storeOb = null;
