@@ -56,6 +56,7 @@ public class TestMain {
 	
 	// 검색했을 때.
 
+<<<<<<< HEAD
 //	@Test
 //	public void TestSearch(){
 //		List<Store> store = storeMapper.search("커피");
@@ -64,12 +65,23 @@ public class TestMain {
 //			System.out.println(st.getSh_name() + (i++));	
 //		}
 //	}
+=======
+	@Test
+	public void TestSearch(){
+		List<Store> store = storeMapper.search("커피");
+		int i = 1;
+		for(Store st : store){
+			System.out.println(st.getSh_name() + (i++));	
+		}
+	}
+
+>>>>>>> origin/master
 //	@Test
 //	public void TestSearch(){
 //		List<Store> store = storeMapper.search("커피");
 //		int i = 1;
 //		for(Store st : store){
-//			System.out.println(st.getSh_name() + (i++));	
+//			System.out.println(st.getSh_name() + (i++));	  
 //		}
 //	}
 	
@@ -84,6 +96,7 @@ public class TestMain {
 //		}
 //	}
 	
+<<<<<<< HEAD
 //	@Test
 //	public void appSelectAll(){
 //		for(Store s : storeMapper.appSelectAll()){
@@ -92,6 +105,17 @@ public class TestMain {
 //		}
 //	}
 //	
+=======
+
+	@Test
+	public void appSelectAll(){
+		for(Store s : storeMapper.selectAll()){
+			System.out.println(s.getSh_name() +" / "+s.getSh_rcmn());
+
+		}
+	}
+	
+>>>>>>> origin/master
 	// 카테고리 지역 검색했을 때
 //	//@Test
 //	//public void cateSearch(){

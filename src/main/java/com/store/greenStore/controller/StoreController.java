@@ -360,12 +360,18 @@ public class StoreController {
 	@RequestMapping(value="/search",method = RequestMethod.GET)
 	public String searchAll(Model model) throws IOException, ParseException{
 		List<Store> store = new ArrayList<Store>();
+<<<<<<< HEAD
 		store = storeMapper.webSelectAll();
 
+=======
+		store = storeMapper.selectAll();
+		
+>>>>>>> origin/master
 		model.addAttribute("store", store);
 
 		return "search/moreResult";
 	}
+<<<<<<< HEAD
 
 	@RequestMapping(value="/search/{searchText}",method = RequestMethod.GET)
 	public String search(@PathVariable("searchText")String searchText, Model model){
@@ -384,6 +390,13 @@ public class StoreController {
 		List<Store> storeList = new ArrayList<Store>();
 		storeList = storeMapper.cateSearch(area,cate);
 		String indutyName ="";
+=======
+	
+	@RequestMapping(value="/searchJson",method = RequestMethod.GET)
+	public @ResponseBody HashMap<Integer, Store> searchAllJson() throws IOException, ParseException{
+		List<Store> store = new ArrayList<Store>();
+		store = storeMapper.selectAll();
+>>>>>>> origin/master
 		
 		System.out.println("storeList: ");
 		System.out.println(storeList);

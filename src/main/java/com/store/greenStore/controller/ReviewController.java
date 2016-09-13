@@ -11,6 +11,7 @@ import com.store.greenStore.dto.Review;
 import com.store.greenStore.mapper.RvMapper;
 
 @Controller
+@RequestMapping(value="/review/*")
 public class ReviewController {
 	@Autowired
 	RvMapper rvMapper;
