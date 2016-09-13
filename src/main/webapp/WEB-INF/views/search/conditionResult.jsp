@@ -24,6 +24,25 @@
 			background-color:#f6f6f6;
 			font-family : 'NanumBarunGothic';
 		}
+		.storeItem :hover{
+			cursor:pointer;
+		}
+		.storeItem #storeImg{
+			overflow: hidden;
+		}
+		.storeItem img{ 
+			-webkit-transition: all .3s ease-out;
+			-moz-transition: all .3s ease-out;
+			-o-transition: all .3s ease-out;
+			transition: all .3s ease-out;
+		} 
+		.storeItem img:hover {
+			-moz-transform: scale(1.1);
+			-webkit-transform: scale(1.1);
+			-o-transform: scale(1.1);
+			-ms-transform: scale(1.1);
+			transform: scale(1.1);
+		} 
 	</style>
 	
 	<script type="text/javascript">
@@ -31,13 +50,17 @@
 	var map;
 	var overlay;
 	
+	var cate = ${cateJson};
+	var area= "<c:out value="${area}"/>";
+	
 	$(document).ready(function(){
 		// 지도에 표시된 마커 객체를 가지고 있을 배열입니다
 		var markList = [];
 		
 		$.ajax({
-			url:"http://localhost:8080/greenStore/store/searchJson",
+			url:"http://localhost:8080/greenStore/json/searchConditionJson",
 			dataType:"json",
+			data:{"area": area, "cate": cate},
 			success:function(data){
 				$.each(data, function(key, value){
 					markList.push(value);
@@ -46,7 +69,7 @@
 				var mapContainer = document.getElementById('map'), // 지도의 중심좌표
 			    mapOption = { 
 					center:new daum.maps.LatLng(markList[0].pointY, markList[0].pointX),
-			        level: 5 // 지도의 확대 레벨
+			        level: 9 // 지도의 확대 레벨
 			    }; 
 			
 			    map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
@@ -101,27 +124,74 @@
 			    });
 			}
 		});	
+		//스토어 상세페이지로 이동
+		$(".storeItem").click(function(){
+			var detailId = $(this).attr("data-id");
+			$(location).attr("href","http://localhost:8080/greenStore/store/detail?id="+detailId);
+		});
 	});
 	</script>
 </head>
 <body>
-	<div id="searchResultMap" style="height:400px;">
-       	 <div id="map" style="height:400px;"></div><hr/>
-    </div> 
-	   	
+	<nav class="navbar navbar-default navbar-fixed-top" style="background-color:#16a085;">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					
+				</button>
+				<a class="navbar-brand" href="#" style="color:#ffffff;">GreenStore</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse in" aria-expanded="true">
+				<ul class="nav navbar-nav">
+					<li><a href="#" style="color:#ffffff;">home</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#" style="color:#ffffff;">right</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div style="height:50px;"></div>
+	<c:if test="${storeListSize != 0 }">
+		<div id="searchResultMap" style="height:400px; margin-bottom:1px;">
+	       	 <div id="map" style="height:400px;"></div><hr/>
+	    </div>
+    </c:if>
+	<div class="container" style="width:100%; height:150px; background-color:#ffffff; box-shadow: 0px 0px 1px 0px #ccc;">
+			<h3 style="margin-top:3%;margin-left:7%;"><strong style="color:#6d3afb;">${area }</strong>에서 </h3>
+			<h3 style="margin-top:1%;margin-left:10%;"><strong style="color:#6d3afb;">${cate }</strong>유형 검색 결과입니다.</h3>   	
+	</div>
 	<div class="container">
+		
 	    <!-- Store Row -->
          <div class="row">
-            <c:forEach items="${store }" var="storeList" varStatus="i">
-                  	<div class="storeItem" data-id="${storeList.sh_id }" style="display:inline-block; margin:2%; background-color:#ffffff; box-shadow: 1px 1px 2px 3px #ccc;">
-	    				<img src="${storeList.sh_photo }" alt="storeImage" width="300px" height="200px"/>
+           <c:if test="${storeListSize == 0 }">
+	            <div style="display:table;width:100%;height:200px;">
+		            
+		            	<div style="display:table-cell;text-align:center; vertical-align: middle;">
+		            		<h3>검색 결과가 없습니다.</h3>
+		            	</div>
+		        </div><hr/>
+	       </c:if>
+            
+            <c:if test="${storeListSize != 0 }">
+	            <div class="row">
+		           <c:forEach items="${store }" var="storeList" varStatus="i">
+                  	<div class="storeItem" data-id="${storeList.sh_id }" style="display:inline-block; margin:15px; background-color:#ffffff; box-shadow: 1px 1px 2px 2px #ccc;">
+	    				<div id="storeImg">
+	    					<img src="${storeList.sh_photo }" onerror="this.src='<c:url value="/resources/img/iseoul.jpg"/>'" alt="storeImage" width="340px" height="200px"/>
+	    				</div>
 	    				<div style="margin-left:10px;">
 	    					<h3 style="font-size:21px;">${storeList.sh_name }</h3>
 	    					<p style="font-size:15px;">${storeList.sh_addr }</p>
-	    					<p>${storeList.price }</p>
+	    					<p>${storeList.sh_rcmn }</p>
 	    				</div>
 	    			</div>
-	    	</c:forEach><br/>
+	    			</c:forEach><br/>
+		    	</div>
+	    	</c:if>
+	    	<br/>
         </div>
      </div>	
 </body>

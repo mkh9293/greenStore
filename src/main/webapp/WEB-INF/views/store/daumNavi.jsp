@@ -1,15 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>지도 </title>
 
+<!-- bootstrap css import -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+
+<!-- Daum Map css import -->
 <link rel="stylesheet" href="<c:url value="/resources/css/daumMap.css"/>" type="text/css">
+
+<!-- jQuery import -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 
+<!-- bootstrap js import -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- Daum Map js import -->
 <script type="text/javascript"
 	src="//apis.daum.net/maps/maps3.js?apikey=76d0dfe96fd493ccedbee52792d36e32"></script>
 <script type="text/javascript">
@@ -75,16 +85,57 @@ $(document).ready(function(){
 		 overlay.setMap(null);   
 	});
 	
+	$("#findRoad").on("click",function(){
+		$(location).attr("href","http://map.daum.net/link/to/"+sh_name+","+pointY+","+pointX);
+	});
 });
 </script>
+<style type="text/css">
+	#callStore, #findRoad :hover{
+		cursor:pointer;
+	}
+</style>
 </head>
 <body>
-	<div id="map" style="width:100%;height:350px;"></div>
-	<div>
-		<h2>Store정보 </h2>
-		<p>${store.sh_name }</p>
-		<p>${store.sh_photo }</p>
+	<!-- store image, name, addr -->
+	<div style="display:inline-block; margin:1px 10px 2px 40px;">
+		<img src="${store.sh_photo }" alt="storeImage" class="img-circle" width=120px; height=120px;/>
 	</div>
-	<a href="http://map.daum.net/link/to/${store.sh_name },${pointY },${pointX }">길찾기 </a>
+	<div style="display:inline-block; margin-top:5px;">
+		<h2>${store.sh_name }</h2>
+		<p>${store.sh_addr }</p>
+	</div>	
+	<hr/>
+	<!-- end store image, name, addr -->
+	
+	<!-- 전화 걸기, 길찾기  -->
+	<div id="callStore" data-toggle="modal" data-target="#myModal" style="margin:5px 20px 20px 20px;text-align:center;display:inline-block;border:2px solid #2F9D27;border-radius:20px;width:300px; height:45px;">
+		<h4 style="color:#2F9D27"><span class="glyphicon glyphicon-earphone"></span>전화걸기</h4>
+	</div>
+	<div id="findRoad" style="margin:5px 20px 20px 20px; text-align:center;display:inline-block;border:2px solid #2F9D27;border-radius:20px;width:300px; height:45px;">
+		<h4 style="color:#2F9D27"><span class="glyphicon glyphicon-share-alt"></span>길찾기</h4>
+	</div>
+	<!-- end 전화 걸기, 길찾기  -->
+	
+	<div id="map" style="width:100%;height:400px;"></div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="top:100px;">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	      </div>
+	      <div class="modal-body" style="text-align:center">
+	       	<h2>${store.sh_name }</h2>
+	       	<h3 style="color:#2F9D27">${store.sh_phone}</h3>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-primary btn-lg btn-block" data-dismiss="modal">확인</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- end Modal -->
 </body>
 </html>

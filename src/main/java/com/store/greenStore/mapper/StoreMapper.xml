@@ -8,9 +8,12 @@
     </insert>
 	
 	<select id="webSelectAll" resultType="com.store.greenStore.dto.Store">
-		SELECT *
-		FROM store
-		ORDER BY sh_rcmn DESC LIMIT 6
+		SELECT s.SH_ID, SH_NAME, SH_ADDR, MENU, induty_code_se_name, SH_RCMN, SH_LIKE, SH_PHOTO, MIN(PRICE) AS PRICE
+		FROM store s join store_menu m
+        on s.SH_ID = m.SH_ID
+        group by s.SH_ID
+        ORDER BY sh_rcmn
+        DESC LIMIT 6;
 	</select>
 	
 	<select id="appSelectAll" resultType="com.store.greenStore.dto.Store">

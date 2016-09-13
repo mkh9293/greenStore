@@ -59,22 +59,21 @@ public class HomeController {
 		cateMap.put(8, "숙박업");
 		cateMap.put(13, "기타");
 		
+		ArrayList<String> localList = new ArrayList<String>();
+		
+		for(int i=0;i<store.size();i++){
+			String[] tempList = store.get(i).getSh_addr().split(" ");
+			localList.add(tempList[1]);
+		}
+		
+		
 		model.addAttribute("store",store);
 		model.addAttribute("areaList",areaList);
 		//model.addAttribute("cateList",cateList);
 		model.addAttribute("cateMap",cateMap);
+		model.addAttribute("localList", localList);
 		
 		return "home";
-	}
-	
-	@RequestMapping(value="/search2/{searchText}",method = RequestMethod.GET)
-	public String search2(@PathVariable("searchText")String searchText, Model model){
-		List<Store> storeList = storeMapper.search(searchText);
-		
-		model.addAttribute("searchText", searchText);
-		model.addAttribute("storeList", storeList);
-		
-		return "store/searchResult";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -93,18 +92,6 @@ public class HomeController {
 		
 		
 		return storeList;
-	}
-	
-	@RequestMapping(value="/search2/{area}/{cate}",method = RequestMethod.GET)
-	public String cateSearch2(@PathVariable("area")String area,@PathVariable("cate")String cate, Model model){
-		//cate 가 음식으로 오면 한식,중식,일식
-		List<Store> storeList = storeMapper.cateSearch(area,cate);
-		
-		model.addAttribute("area",area);
-		model.addAttribute("cate",cate);
-		model.addAttribute("storeList",storeList);
-		
-		return "store/searchResult";
 	}
 	
 	@RequestMapping(value="/search/{area}/{cate}",method = RequestMethod.GET)
