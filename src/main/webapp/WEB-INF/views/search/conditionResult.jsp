@@ -1,16 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>상세페이지 </title>
-	<!-- bootstrap css import -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	
-	<!-- jQuery js import -->
-	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	<!-- condition css import -->   
+	<link rel="stylesheet" href="<c:url value="/resources/css/condition.css"/>" type="text/css">
 	
 	<!-- DaumMap css import -->   
 	<link rel="stylesheet" href="<c:url value="/resources/css/daumMap.css"/>" type="text/css">
@@ -18,32 +11,6 @@
 	<!-- DaumMap js import  -->
 	<script type="text/javascript"
 	src="//apis.daum.net/maps/maps3.js?apikey=76d0dfe96fd493ccedbee52792d36e32"></script>
-	
-	<style type="text/css">
-		html, body{
-			background-color:#f6f6f6;
-			font-family : 'NanumBarunGothic';
-		}
-		.storeItem :hover{
-			cursor:pointer;
-		}
-		.storeItem #storeImg{
-			overflow: hidden;
-		}
-		.storeItem img{ 
-			-webkit-transition: all .3s ease-out;
-			-moz-transition: all .3s ease-out;
-			-o-transition: all .3s ease-out;
-			transition: all .3s ease-out;
-		} 
-		.storeItem img:hover {
-			-moz-transform: scale(1.1);
-			-webkit-transform: scale(1.1);
-			-o-transform: scale(1.1);
-			-ms-transform: scale(1.1);
-			transform: scale(1.1);
-		} 
-	</style>
 	
 	<script type="text/javascript">
 	
@@ -129,29 +96,63 @@
 			var detailId = $(this).attr("data-id");
 			$(location).attr("href","http://localhost:8080/greenStore/store/detail?id="+detailId);
 		});
+		
+		$(".openbtn").on("click",function(){
+			$(this).css("display","none");
+			
+			var maskHeight = $(document).height();  
+	        var maskWidth = $(window).width();  
+	        
+	        //마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채운다.
+	        $('#mask').css({'width':maskWidth,'height':maskHeight,'display':'block','z-index':'980','opacity':'.6','filter':'alpha(opacity=80)'});  
+	        
+			$("#mySidenav").css("width","360px");
+		});
+		$(".closebtn").on("click",function(){
+			$("#mySidenav").css("width","0px");
+			
+			$('#mask').css('display','none');
+			setTimeout(function(){
+				$(".openbtn").css("display","");
+			},400);
+		});
+		$("#mask").on("click",function(){
+			$("#mySidenav").css("width","0px");
+			
+			$('#mask').css('display','none');
+			setTimeout(function(){
+				$(".openbtn").css("display","");
+			},400);
+		});
 	});
 	</script>
-</head>
-<body>
-	<nav class="navbar navbar-default navbar-fixed-top" style="background-color:#16a085;">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span>
-					
-				</button>
-				<a class="navbar-brand" href="#" style="color:#ffffff;">GreenStore</a>
-			</div>
-			<div id="navbar" class="navbar-collapse collapse in" aria-expanded="true">
-				<ul class="nav navbar-nav">
-					<li><a href="#" style="color:#ffffff;">home</a></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#" style="color:#ffffff;">right</a></li>
-				</ul>
-			</div>
+	
+	<div id="mask"></div>
+	<div id="mySidenav" class="sidenav">
+		<a href="javascript:void(0)" class="closebtn"
+			style="position: absolute; z-index: 2;">&times;</a>
+		<div
+			style="width: 100%; height: 200px; top: 0; position: absolute; z-index: 1; background-color: #7ac143;"></div>
+		<a href="#">About</a> <a href="#">Services</a> <a href="#">Clients</a>
+		<a href="#">Contact</a>
+	</div>
+	
+	<nav id="header2" class="navbar navbar-default navbar-fixed-top"
+		style="background-color: #7ac143; z-index: 990;">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#" style="color: #ffffff;">GreenStore</a>
+			<form class="navbar-form navbar-left" action="" role="search">
+				<div class="form-group">
+					<input type="text" name="searchText" class="form-control"
+						placeholder="Search">
+				</div>
+			</form>
+			<span
+				style="font-size: 30px; cursor: pointer; color: #ffffff; float: right; margin-right: 5%;"
+				class="openbtn">&#9776;</span>
 		</div>
 	</nav>
+	
 	<div style="height:50px;"></div>
 	<c:if test="${storeListSize != 0 }">
 		<div id="searchResultMap" style="height:400px; margin-bottom:1px;">
@@ -194,5 +195,3 @@
 	    	<br/>
         </div>
      </div>	
-</body>
-</html>

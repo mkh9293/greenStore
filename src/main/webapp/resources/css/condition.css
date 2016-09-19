@@ -1,0 +1,93 @@
+html, body{
+			background-color:#f6f6f6;
+			font-family : 'NanumBarunGothic';
+		}
+		.storeItem :hover{
+			cursor:pointer;
+		}
+		.storeItem #storeImg{
+			overflow: hidden;
+		}
+		.storeItem img{ 
+			-webkit-transition: all .3s ease-out;
+			-moz-transition: all .3s ease-out;
+			-o-transition: all .3s ease-out;
+			transition: all .3s ease-out;
+		} 
+		.storeItem img:hover {
+			-moz-transform: scale(1.1);
+			-webkit-transform: scale(1.1);
+			-o-transform: scale(1.1);
+			-ms-transform: scale(1.1);
+			transform: scale(1.1);
+		}
+
+/* 사이드바 메뉴  css */
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    right: 0;
+    background-color: #F6F6F6;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a :not(1) {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    background-color:#fff;
+    color: #000;
+    display: block;
+    transition: 0.3s
+}
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin: 0;
+    padding:0;
+    background-color: none;
+}
+/* End 사이드바 메뉴  css */
+
+/* 상단 메뉴바 bootstrap적용 없애기 css */
+.navbar-header {
+  float: none;
+}
+.navbar-toggle {
+  display: none;
+}
+.navbar-collapse.collapse {
+  display: none!important;
+}
+.navbar-nav {
+  float: none!important;
+}
+.navbar-nav>li {
+  float: none;
+}
+.navbar-collapse.collapse.in{
+  display:none !important;
+}
+/* End 상단 메뉴바 bootstrap적용 없애기 css */
+
+/* 사이드바 메뉴 선택시 배경을 어둡게 하기 위한 css */
+#mask {  
+  position:absolute;  
+  left:0;
+  top:0;
+  z-index:9000;  
+  background-color:#000;  
+  display:none;  
+}
+/* End 사이드바 메뉴 선택시 배경을 어둡게 하기 위한 css */

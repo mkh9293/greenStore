@@ -1,0 +1,275 @@
+html, body {
+	background-color: #f6f6f6;
+	font-family: NanumBarunGothic,'나눔바른고딕',NanumGothic,'돋움',Dotum,Helvetica,'Aspple SD Gothic Neo',Sans-serif!important;
+}
+
+#location, #category, #searchStore, .storeItem :hover {
+	cursor: pointer;
+}
+
+/* 스토어 이미지 css */
+.storeItem{
+	display: inline-block; 
+	margin: 15px; 
+	background-color: #ffffff; 
+	box-shadow: 0px 0px 1px 0px #ccc;
+}
+
+.storeItem #storeImg {
+	overflow: hidden;
+}
+
+.storeItem #storeImg img {
+	-webkit-transition: all .3s ease-out;
+	-moz-transition: all .3s ease-out;
+	-o-transition: all .3s ease-out;
+	transition: all .3s ease-out;
+	width: 340px;
+	height: 200px;
+}
+
+.storeItem img:hover {
+	-moz-transform: scale(1.1);
+	-webkit-transform: scale(1.1);
+	-o-transform: scale(1.1);
+	-ms-transform: scale(1.1);
+	transform: scale(1.1);
+}
+
+.storeItem #storeContent {
+	margin-left: 20px; 
+	height: 90px;
+}
+
+.storeItem #storeContent h4{
+	font-size: 21px;
+	margin: 15px 0 3px 0;
+}
+
+.storeItem #storeContent p{
+	font-size: 13px; 
+	color: #9b9b9b; 
+	margin: 0 0 9px 0;
+}
+/* end 스토어 이미지 css */
+
+/* 지역,카테고리 선택 css */
+#locationDiv, #locationDiv div, #categoryDiv, #categoryDiv div {
+	clear: both;
+	display: inline-block;
+	height: 30px;
+	margin-bottom: 10px;
+}
+
+#locationDiv label, #categoryDiv label {
+	width: 200px;
+	border-radius: 3px;
+	border: 1px solid #D1D3D4
+}
+
+#locationDiv #locationBtn,#categoryDiv #categoryBtn{
+	background-color: #f47721;
+}
+/* hide input */
+#locationDiv input.radio:empty, #categoryDiv input.cateradio:empty {
+	margin-left: -999px;
+}
+
+/* style label */
+#locationDiv input.radio:empty ~ label, #categoryDiv input.cateradio:empty 
+	~ label {
+	position: relative;
+	float: left;
+	line-height: 2.5em;
+	text-indent: 3.25em;
+	margin-top: 2em;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+
+#locationDiv input.radio:empty ~ label:before, #categoryDiv input.cateradio:empty 
+	~ label:before {
+	position: absolute;
+	display: block;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	content: '';
+	width: 2.5em;
+	background: #D1D3D4;
+	border-radius: 3px 0 0 3px;
+}
+/* End 지역,카테고리 선택 css*/
+
+/* 지역, 카테고리 dialog css */
+#locationDiv input.radio:hover:not (:checked ) ~ label:before,
+	#categoryDiv input.cateradio:hover:not (:checked ) ~ label:before {
+	content: '\2714';
+	text-indent: .9em;
+	color: #C2C2C2;
+}
+
+#locationDiv input.radio:hover:not (:checked ) ~ label, #categoryDiv input.cateradio:hover:not
+	(:checked ) ~ label {
+	color: #888;
+}
+
+/* toggle on */
+#locationDiv input.radio:checked ~ label:before, #categoryDiv input.cateradio:checked 
+	~ label:before {
+	content: '\2714';
+	text-indent: .9em;
+	color: #9CE2AE;
+	background-color: #4DCB6D;
+}
+
+#locationDiv input.radio:checked ~ label, #categoryDiv input.cateradio:checked 
+	~ label {
+	color: #777;
+}
+/* End 지역,카테고리 dialog css */
+
+/* 사이드바 메뉴  css */
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    right: 0;
+    background-color: #F6F6F6;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+.sidenav :nth-child(1) {
+	position : absolute;
+	z-index:2;
+}
+.sidenav div{
+	width: 100%;
+	height: 200px;
+	top : 0;
+	position: absolute;
+	z-index: 1;
+  	background-color: #7ac143;
+}
+.sidenav a :not(1) {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    background-color:#fff;
+    color: #000;
+    display: block;
+    transition: 0.3s
+}
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin: 0;
+    padding:0;
+    background-color: none;
+}
+/* End 사이드바 메뉴  css */
+
+/* 상단 메뉴바 bootstrap적용 없애기 css */
+.navbar-header {
+  float: none;
+}
+.navbar-toggle {
+  display: none;
+}
+.navbar-collapse.collapse {
+  display: none!important;
+}
+.navbar-nav {
+  float: none!important;
+}
+.navbar-nav>li {
+  float: none;
+}
+.navbar-collapse.collapse.in{
+  display:none !important;
+}
+/* End 상단 메뉴바 bootstrap적용 없애기 css */
+
+/* 사이드바 메뉴 선택시 배경을 어둡게 하기 위한 css */
+#mask {  
+  position:absolute;  
+  left:0;
+  top:0;
+  z-index:9000;  
+  background-color:#000;  
+  display:none;  
+}
+/* End 사이드바 메뉴 선택시 배경을 어둡게 하기 위한 css */
+
+#header nav{
+	background: transparent none;
+}
+#header nav span{
+	font-size: 30px; 
+	cursor: pointer; 
+	color: #ffffff; 
+	float: right; 
+	margin-right: 5%;
+}
+
+/* 헤더(메뉴바) css */
+#header2 nav{
+	background-color: #7ac143; 
+	z-index: 990;
+}
+#header2 nav span{
+	font-size: 30px; 
+	cursor: pointer; 
+	color: #ffffff; 
+	float: right; 
+	margin-right: 5%;
+}
+/* End 헤더(메뉴바) css */
+
+/* 메인 이미지, 조건 검색에 대한 css */
+#mainImage div {
+	z-index: 20; 
+	position: absolute; 
+	margin: 10%;
+}
+
+#mainImage #searchKeyward{
+	position:relative;
+	font-size: 35px;
+	width:600px;
+	margin:0;
+}
+#mainImage #searchKeyward span{
+	color:#ffffff;
+}
+#mainImage #searchKeyward a{
+	text-decoration: underline;
+}
+
+#mainImage #searchStore {
+	position:relative;
+	color: #FFD014; 
+	width: 200px;
+	margin:0;
+}
+
+#mainImage #searchStore span{
+	margin-left: 1%;
+}
+#mainImage img{
+	width: 100%; 
+	height: 500px; 
+	background-image: url(https://scloud.pstatic.net/20160405_149/1459823688590GWVfp_JPEG/01_main_top_1920x630_02.jpg);
+}
+/* End 메인 이미지, 조건 검색에 대한 css */

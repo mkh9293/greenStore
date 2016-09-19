@@ -1,17 +1,35 @@
-<!DOCTYPE tiles-definitions PUBLIC 
-    "-//ApacheSoftwareFoundation//DTDTiles Configuration 2.1//EN" 
-    "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
-<tiles-definitions>
-    <definition name="layout" template="/WEB-INF/views/layout.jsp">
-        <put-attribute name="title" value="LAYOUT" />
-        <put-attribute name="top" value="/WEB-INF/views/include/header.jsp" />
-        <put-attribute name="body" value="/WEB-INF/views/include/body.jsp" />
-        <put-attribute name="bottom" value="/WEB-INF/views/include/footer.jsp" />
-    </definition>
-    
-    <definition name="detail" extends="layout">
-    	<put-attribute name="title" value="detail" />
-    	<put-attribute name="body" value="/WEB-INF/views/store/detail.jsp"/>
-    </definition>
-    
-</tiles-definitions>
+<?xml version="1.0" encoding="utf-8" ?> 
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd"> 
+<tiles-definitions> 
+	<definition name="commonLayout" template="/WEB-INF/views/template.jsp"> 
+		<put-attribute name="head" value="/WEB-INF/views/include/header.jsp" /> 
+		<put-attribute name="content" value="" /> 
+		<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" /> 
+	</definition> 
+	
+	<!-- home -->
+	<definition name="home" extends="commonLayout"> 
+		<put-attribute name="content" value="/WEB-INF/views/home.jsp" /> 
+	</definition> 
+	
+	<!-- Condition Search -->
+	<!-- 조건 검색 -->
+	<definition name="search/conditionResult" extends="commonLayout"> 
+		<put-attribute name="content" value="/WEB-INF/views/search/conditionResult.jsp" /> 
+	</definition>
+	
+	<!-- more Search -->
+	<!-- 더보기 -->
+	<definition name="search/moreResult" extends="commonLayout"> 
+		<put-attribute name="content" value="/WEB-INF/views/search/moreResult.jsp" /> 
+	</definition>
+	
+	<!-- text Search -->
+	<!-- 검색어 검색 -->
+	<definition name="search/textResult" extends="commonLayout"> 
+		<put-attribute name="content" value="/WEB-INF/views/search/textResult.jsp" /> 
+	</definition>
+	
+	
+</tiles-definitions>	
+	
