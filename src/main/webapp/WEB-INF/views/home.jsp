@@ -35,8 +35,7 @@
 			<a class="navbar-brand" href="#" style="color: #ffffff;">GreenStore</a>
 			<form class="navbar-form navbar-left" action="" role="search">
 				<div class="form-group">
-					<input type="text" name="searchText" class="form-control"
-						placeholder="Search">
+					<input type="text" name="searchText" class="form-control" placeholder="Search">
 				</div>
 			</form>
 			<span class="openbtn">&#9776;</span>

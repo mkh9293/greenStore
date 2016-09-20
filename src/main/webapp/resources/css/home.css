@@ -235,6 +235,9 @@ html, body {
 	float: right; 
 	margin-right: 5%;
 }
+#header2 input{
+	width:500px;
+}
 /* End 헤더(메뉴바) css */
 
 /* 메인 이미지, 조건 검색에 대한 css */
