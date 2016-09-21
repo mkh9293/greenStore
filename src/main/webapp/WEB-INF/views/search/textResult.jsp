@@ -1,16 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>상세페이지 </title>
-	<!-- bootstrap css import -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
 	
-	<!-- jQuery js import -->
-	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	<link rel="stylesheet" href="<c:url value="/resources/css/normalize.css"/>" type="text/css">
+	<link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" type="text/css">
+	
+	<!-- common css import -->   
+	<link rel="stylesheet" href="<c:url value="/resources/css/common.css"/>" type="text/css">
 	
 	<!-- DaumMap css import -->   
 	<link rel="stylesheet" href="<c:url value="/resources/css/daumMap.css"/>" type="text/css">
@@ -18,32 +14,6 @@
 	<!-- DaumMap js import  -->
 	<script type="text/javascript"
 	src="//apis.daum.net/maps/maps3.js?apikey=76d0dfe96fd493ccedbee52792d36e32"></script>
-	
-	<style type="text/css">
-		html, body{
-			background-color:#f6f6f6;
-			font-family : 'NanumBarunGothic';
-		}
-		.storeItem : hover{
-			cursor: pointer;
-		}
-		.storeItem #storeImg{
-			overflow: hidden;
-		}
-		.storeItem img{ 
-			-webkit-transition: all .3s ease-out;
-			-moz-transition: all .3s ease-out;
-			-o-transition: all .3s ease-out;
-			transition: all .3s ease-out;
-		} 
-		.storeItem img:hover {
-			-moz-transform: scale(1.1);
-			-webkit-transform: scale(1.1);
-			-o-transform: scale(1.1);
-			-ms-transform: scale(1.1);
-			transform: scale(1.1);
-		} 
-	</style>
 	
 	<script type="text/javascript">
 	
@@ -130,13 +100,12 @@
 		});
 	});
 	</script>
-</head>
-<body>
-	<div id="searchResultMap" style="height:400px; margin-bottom:1px;">
-       	 <div id="map" style="height:400px;"></div><hr/>
+
+	<div id="searchResultMap" style="height:300px; margin-bottom:1px;">
+       	 <div id="map" style="height:300px;"></div><hr/>
     </div>
-	<div class="container" style="width:100%; height:100px; background-color:#ffffff;">
-			<h3 style="margin-top:3%;margin-left:7%;"><strong style="color:#6d3afb;">${searchText }</strong>검색 결과입니다. </h3>   	
+	<div class="container" style="width:100%; height:110px; background-color:#ffffff;">
+			<h3 style="margin-top:3%;margin-left:7%;font-size:30px;"><strong style="color:#6d3afb;">${searchText }</strong>검색 결과입니다. </h3>   	
 	</div>
 	<div class="container">
 		
@@ -144,27 +113,42 @@
          <div class="row">
             <c:if test="${storeListSize == 0 }">
             	<div>
-            		<h3>검색 결과가 없습니다.</h3>	
+            		<h3 style="font-size:30px;">검색 결과가 없습니다.</h3>	
             	</div>
             </c:if>
             <c:if test="${storeListSize != 0 }">
-	            <div class="row">
-		           <c:forEach items="${store }" var="storeList" varStatus="i">
-                  	<div class="storeItem" data-id="${storeList.sh_id }" style="display:inline-block; margin:15px; background-color:#ffffff; box-shadow: 1px 1px 2px 2px #ccc;">
-	    				<div id="storeImg">
-	    					<img src="${storeList.sh_photo }" onerror="this.src='<c:url value="/resources/img/iseoul.jpg"/>'" alt="storeImage" width="340px" height="200px"/>
-	    				</div>
-	    				<div style="margin-left:10px;">
-	    					<h3 style="font-size:21px;">${storeList.sh_name }</h3>
-	    					<p style="font-size:15px;">${storeList.sh_addr }</p>
-	    					<p>${storeList.sh_rcmn }</p>
-	    				</div>
-	    			</div>
-	    			</c:forEach><br/>
-		    	</div>
+	            <!-- Store Row -->
+				<div class="row">
+					<c:forEach items="${store }" var="storeList" varStatus="i">
+						<div class="storeItem" data-id="${storeList.sh_id }">
+							<div id="storeImg">
+								<img src="${storeList.sh_photo }"
+									onerror="this.src='<c:url value="/resources/img/iseoul.jpg"/>'"
+									alt="storeImage"/>
+							</div>
+							<div id="storeContent">
+								<h4>${storeList.sh_name }</h4>
+								<p>
+									<b>${localList[i.index] }</b> - ${storeList.induty_code_se_name }
+								</p>
+								<span style="color: #16a085;">${storeList.price }~ </span><span
+									style="font-size: 13px;">원</span> <span
+									style="font-size: 13px; color: #9b9b9b;">/${storeList.menu }
+								</span>
+			
+								<div id="likeShowDiv"
+									style="float: right; margin-right: 15px; bottom: 0; font-size: 15px;">
+									<span class="glyphicon glyphicon-thumbs-up" style="margin: 0;" /><span
+										style="color: #16a085; margin-left: 4px;">${storeList.sh_rcmn }</span>
+									<span class="glyphicon glyphicon-heart-empty" style="margin: 0;" /><span
+										style="color: #16a085; margin-left: 4px;">${storeList.sh_like }</span>
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+					<br />
+				</div>
 	    	</c:if>
 	    	<br/>
         </div>
      </div>	
-</body>
-</html>

@@ -5,12 +5,14 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/normalize.css"/>" type="text/css">
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" type="text/css">
 
+<!-- Common css import -->
+<link rel="stylesheet" href="<c:url value="/resources/css/common.css"/>">
+
 <!-- Home css import -->
 <link rel="stylesheet" href="<c:url value="/resources/css/home.css"/>">
 
 <!-- Home js import -->
 <script src="<c:url value="/resources/js/home.js"/>"></script>
-
 
 <div id="mask"></div>
 <div id="mySidenav" class="sidenav">
@@ -32,10 +34,10 @@
 <header id="header2" style="display:none;">	
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="#" style="color: #ffffff;">GreenStore</a>
-			<form class="navbar-form navbar-left" action="" role="search">
+			<a class="navbar-brand" href="" style="color: #ffffff;">GreenStore</a>
+			<form id="searchFrm" class="navbar-form navbar-left" action="" method="post">
 				<div class="form-group">
-					<input type="text" name="searchText" class="form-control" placeholder="Search">
+					<input type="text" id="searchText" name="searchText" class="form-control" placeholder="Search">
 				</div>
 			</form>
 			<span class="openbtn">&#9776;</span>
@@ -114,4 +116,4 @@
 		</c:forEach>
 		<br />
 	</div>
-</div>
+</div><br/>
