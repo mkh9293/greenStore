@@ -2,7 +2,8 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd"> 
 <tiles-definitions> 
 	<definition name="commonLayout" template="/WEB-INF/views/template.jsp"> 
-		<put-attribute name="head" value="/WEB-INF/views/include/header.jsp" /> 
+		<put-attribute name="head" value="/WEB-INF/views/include/header.jsp" />
+		<put-attribute name="menu" value="" /> 
 		<put-attribute name="content" value="" /> 
 		<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" /> 
 	</definition> 
@@ -14,22 +15,26 @@
 	
 	<!-- Condition Search -->
 	<!-- 조건 검색 -->
-	<definition name="search/conditionResult" extends="commonLayout"> 
+	<definition name="search/conditionResult" extends="commonLayout">
+		<put-attribute name="menu" value="/WEB-INF/views/include/menu.jsp" /> 
 		<put-attribute name="content" value="/WEB-INF/views/search/conditionResult.jsp" /> 
 	</definition>
 	
 	<!-- more Search -->
 	<!-- 더보기 -->
 	<definition name="search/moreResult" extends="commonLayout"> 
+		<put-attribute name="menu" value="/WEB-INF/views/include/menu.jsp" /> 
 		<put-attribute name="content" value="/WEB-INF/views/search/moreResult.jsp" /> 
 	</definition>
 	
 	<!-- text Search -->
 	<!-- 검색어 검색 -->
 	<definition name="search/textResult" extends="commonLayout"> 
+		<put-attribute name="menu" value="/WEB-INF/views/include/menu.jsp" /> 
 		<put-attribute name="content" value="/WEB-INF/views/search/textResult.jsp" /> 
 	</definition>
 	
+<<<<<<< HEAD
 
 
 
@@ -43,6 +48,13 @@
 	
 	<definition name="review/listAll" extends="commonLayout"> 
 		<put-attribute name="content" value="/WEB-INF/views/review/listAll.jsp" /> 
+=======
+	<!-- detail page -->
+	<!-- 상세페이지 -->
+	<definition name="store/detail" extends="commonLayout"> 
+		<put-attribute name="menu" value="/WEB-INF/views/include/menu.jsp" /> 
+		<put-attribute name="content" value="/WEB-INF/views/store/detail.jsp" /> 
+>>>>>>> 2d5f2a8c59fead34a689731aeed23f1ba18a46ae
 	</definition>
 	
 	

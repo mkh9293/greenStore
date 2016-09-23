@@ -2,25 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>상세페이지 </title>
-
-<!-- bootstrap css import -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
-
 <!-- sidebar menu css -->  
 <link rel="stylesheet" href="<c:url value="/resources/css/normalize.css"/>" type="text/css">
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" type="text/css">
 
-
-<!-- jquery import -->
-<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-
-<!-- sidebar menu js -->
-<script src="<c:url value="/resources/js/index.js"/>"></script>
+<!-- common css import -->   
+<link rel="stylesheet" href="<c:url value="/resources/css/common.css"/>" type="text/css">
 
 <!-- DaumMap css import -->   
 <link rel="stylesheet" href="<c:url value="/resources/daumMap.css"/>" type="text/css">
@@ -30,65 +17,65 @@
 	src="//apis.daum.net/maps/maps3.js?apikey=76d0dfe96fd493ccedbee52792d36e32"></script>
 		
 <script type="text/javascript">
-var sh_photo = "<c:out value="${store.sh_photo}"/>";
-var sh_name = "<c:out value="${store.sh_name}"/>";
-var sh_addr = "<c:out value="${store.sh_addr}"/>";
-var sh_way = "<c:out value="${store.sh_way}"/>";
-
-var pointX = ${pointX};
-var pointY = ${pointY};
-
-var map;
-var overlay;
-
-$(document).ready(function(){
-	var mapContainer = document.getElementById('map'), // 지도의 중심좌표
-    mapOption = { 
-        center: new daum.maps.LatLng(pointY, pointX), // 지도의 중심좌표
-        level: 3, // 지도의 확대 레벨
-        draggable: false,
-        scrollwheel: false,
-        disableDoubleClick: false,
-        disableDoubleClickZoom: false,
-        keyboardShortcuts: false
-    }; 
-
-    map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-	map.setZoomable(false);
-    
-	// 지도에 마커를 표시합니다 
-	var marker = new daum.maps.Marker({
-    	map: map, 
-    	position: new daum.maps.LatLng(pointY, pointX)
-	});
-    
-	$("#map").click(function(){
-		window.open('', 'map', 'width=900, height=700,top=200,left=200');
-		$("#storeInfo").attr("target","map");
-		$("#storeInfo").submit();
-	});
+	var sh_photo = "<c:out value="${store.sh_photo}"/>";
+	var sh_name = "<c:out value="${store.sh_name}"/>";
+	var sh_addr = "<c:out value="${store.sh_addr}"/>";
+	var sh_way = "<c:out value="${store.sh_way}"/>";
 	
-	$(".playItem").on("click",function(){
-		var contentId = $(this).attr("data-id");
-		window.open("http://localhost:8080/greenStore/store/detail/play?contentId="+contentId,"_blank","toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=200,width=800,height=600");
-		//$(location).attr("href","http://localhost:8080/greenStore/store/detail/play?contentId="+contentId);
-	});
+	var pointX = ${pointX};
+	var pointY = ${pointY};
 	
+	var map;
+	var overlay;
 	
-	var likeBtn = false;//나중에 디비에서 받아야된다.
-	$("#likeBtn").on("click",function(){
-        if(likeBtn == false){
-            $("#likeBtn").css("color","#F361A6");
-            likeBtn = true;
-            alert("좋아요를 눌렀습니다.");
-        }
-        else{
-            $("#likeBtn").css("color","");
-            likeBtn = false;
-            alert("좋아요를 취소헸습니다.");
-        }
+	$(document).ready(function(){
+		var mapContainer = document.getElementById('map'), // 지도의 중심좌표
+	    mapOption = { 
+	        center: new daum.maps.LatLng(pointY, pointX), // 지도의 중심좌표
+	        level: 3, // 지도의 확대 레벨
+	        draggable: false,
+	        scrollwheel: false,
+	        disableDoubleClick: false,
+	        disableDoubleClickZoom: false,
+	        keyboardShortcuts: false
+	    }; 
+	
+	    map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+		map.setZoomable(false);
+	    
+		// 지도에 마커를 표시합니다 
+		var marker = new daum.maps.Marker({
+	    	map: map, 
+	    	position: new daum.maps.LatLng(pointY, pointX)
+		});
+	    
+		$("#map").click(function(){
+			window.open('', 'map', 'width=900, height=700,top=200,left=200');
+			$("#storeInfo").attr("target","map");
+			$("#storeInfo").submit();
+		});
+		
+		$(".playItem").on("click",function(){
+			var contentId = $(this).attr("data-id");
+			window.open("http://localhost:8080/greenStore/store/detail/play?contentId="+contentId,"_blank","toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=200,width=800,height=600");
+			//$(location).attr("href","http://localhost:8080/greenStore/store/detail/play?contentId="+contentId);
+		});
+		
+		
+		var likeBtn = false;//나중에 디비에서 받아야된다.
+		$("#likeBtn").on("click",function(){
+	        if(likeBtn == false){
+	            $("#likeBtn").css("color","#F361A6");
+	            likeBtn = true;
+	            alert("좋아요를 눌렀습니다.");
+	        }
+	        else{
+	            $("#likeBtn").css("color","");
+	            likeBtn = false;
+	            alert("좋아요를 취소헸습니다.");
+	        }
+		});
 	});
-});
 </script>
 
 <style>
@@ -100,55 +87,14 @@ $(document).ready(function(){
 	}
 	
 </style>
-</head>
-<body>
-		<div id="wrapper">
-    
-        <!-- Sidebar -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
-            <ul class="nav sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="#">
-                      	GreenStore
-                    </a>
-                </li>
-                <li>
-                	<div style="text-align:center;background-color:yellow;">
-                    	<img class="img-circle" src="${store.sh_photo }" alt="" width=60px; height=60px;/>
-                    	<span>로그인이 필요합니다.</span>
-                    </div>
-                </li>
-                <li>
-                    <a href="#">로그인</a>
-                </li>
-                <li>
-                    <a href="#">공지사항 </a>
-                </li>
-                <li>
-                    <a href="#">서비스 소개 </a>
-                </li>
-             </ul>
-        </nav>
-        <!-- /#sidebar-wrapper -->
-        <!-- Page Content -->
-        <div>
-          <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
-            <span class="hamb-top"></span>
-            <span class="hamb-middle"></span>
-            <span class="hamb-bottom"></span>
-          </button>
-          </div>
-          </div>
-          
+		
 		<img alt="detailImage" src="${store.sh_photo }" style="width:100%;height:400px;"/><br/>
 	    <div class="container">
 	    	<div class="row">
                 <div class="col-md-8" id="mainContent">
                     <div>
                         <h3>${store.sh_name }<small>${store.sh_rcmn }</small>
-                        <span id="likeBtn" style="float:right; font-size:30px;" class="glyphicon glyphicon-heart">
-                        	   <span class="inside glyphicon glyphicon-heart" style="position:absolute;font-size:15px;left:8px;top:6px;color:white;"></span>
-                        </span>
+                        <span id="likeBtn" style="float:right; font-size:30px;" class="glyphicon glyphicon-heart"></span>
         			  </h3>
                     </div>
                     <!-- <img alt="storeDetailImg" src="${store.sh_photo }" style="width:400px;height:500px"/>  -->
@@ -237,5 +183,3 @@ $(document).ready(function(){
                 </div>
             </div>
         </div>   
-</body>
-</html>

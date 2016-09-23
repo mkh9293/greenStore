@@ -1,10 +1,4 @@
 $(document).ready(function(){
-			$("#searchBtn").click(function(){
-				var searchText = $("#searchText").val();
-				$(location).attr("href","http://localhost:8080/greenStore/store/search/"+searchText);
-				
-			});
-			
 			//지역 선택 dialog
 			$("#locationDiv").dialog({
 			    autoOpen: false,
@@ -42,10 +36,12 @@ $(document).ready(function(){
 			        duration: 1000
 			    }
 			});
+			
 			$("#category").click(function(){
 				$("#locationDiv").dialog("close");
 				$("#categoryDiv").dialog("open");
 			});
+			
 			$("#categoryBtn").click(function(){
 				var choiceLoc = $("input:radio[name='cateradio']:checked").parent().children("label").text();
 				
@@ -65,6 +61,12 @@ $(document).ready(function(){
 			$(".storeItem").click(function(){
 				var detailId = $(this).attr("data-id");
 				$(location).attr("href","http://localhost:8080/greenStore/store/detail?id="+detailId);
+			});
+			
+			//검색어로 검색
+			$(".navbar-form").on("submit",function(e){
+				e.preventDefault();
+				$(location).attr("href","http://localhost:8080/greenStore/store/search/"+$("#searchText").val());
 			});
 			
 			//조건으로 검색 
@@ -91,7 +93,7 @@ $(document).ready(function(){
 		        var maskWidth = $(window).width();  
 		        
 		        //마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채운다.
-			    $('#mask').css({'width':maskWidth,'height':maskHeight,'display':'block','z-index':'980','opacity':'.6','filter':'alpha(opacity=80)'});  
+			    $('#mask').css({'width':maskWidth,'height':maskHeight,'display':'block','z-index':'999','opacity':'.6','filter':'alpha(opacity=80)'});  
 			    $("#mySidenav").css("width","360px");
 			});
 			

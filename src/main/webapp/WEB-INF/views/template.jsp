@@ -6,6 +6,8 @@
 	<tiles:insertAttribute name="head" />
 </head>
 <body>
+	<tiles:insertAttribute name="menu" />
+	
     <tiles:insertAttribute name="content" />
     
     <tiles:insertAttribute name="footer" />

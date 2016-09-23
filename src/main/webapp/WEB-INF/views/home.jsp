@@ -5,19 +5,61 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/normalize.css"/>" type="text/css">
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" type="text/css">
 
+<!-- Common css import -->
+<link rel="stylesheet" href="<c:url value="/resources/css/common.css"/>">
+
 <!-- Home css import -->
 <link rel="stylesheet" href="<c:url value="/resources/css/home.css"/>">
 
 <!-- Home js import -->
 <script src="<c:url value="/resources/js/home.js"/>"></script>
 
-
 <div id="mask"></div>
 <div id="mySidenav" class="sidenav">
-	<a href="javascript:void(0)" class="closebtn">&times;</a>
-	<div></div>
-	<a href="#">About</a> <a href="#">Services</a> <a href="#">Clients</a>
-	<a href="#">Contact</a>
+	<a href="javascript:void(0)" class="closebtn" style="color:#fff;">&times;</a>
+	<div id="profile">
+		<div style="position:absolute; width:340px;height:200px; top:40px; left:25px;">
+			<img src="<c:url value="/resources/img/iseoul.jpg"/>" alt="..." class="img-circle" style="display:inline-block;width:105px;height:110px;"/>
+			<strong style="margin-left:10px;line-height:6em;color:#000">로그인 필요합니다.</strong>
+			
+		</div>
+	</div>
+	<div style="height:180px;"></div>
+	<nav>
+		<ul style="list-style: none; margin: 0;padding: 0; position: absolute; width: 360px;">
+			<li style="display: inline-block; line-height: 20px; position: relative; width: 100%;">
+				<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+					<a href="#" style="color: #f47721;text-decoration: none; margin-left:2%;">그린스토어 홈</a> 
+					<span class="css-arrow"></span>
+				</div>
+				<div style="display:block;position: relative; width:100%; height:60px; border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+					<a href="#" style="color: #0d2474;text-decoration: none; margin-left:2%;">로그인/로그아웃</a> 
+					<span class="css-arrow"></span>
+				</div>
+				<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+					<a href="#" style="color: #0d2474;text-decoration: none; margin-left:2%; ">공지사항</a> 
+					<span class="css-arrow"></span>
+				</div>
+				<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+					<a href="#" style="color: #0d2474;text-decoration: none; margin-left:2%;">서비스 소개</a> 
+					<span class="css-arrow"></span>
+				</div>
+				<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+					<a href="#" style="color: #0d2474;text-decoration: none; margin-left:2%;">마이페이지</a> 
+					<span class="css-arrow"></span>
+				</div>
+				<!-- <div style="display:block;position: relative; width:100%; height:100px; line-height:5em; text-align:center;">
+					<span>GreenStore</span>
+				</div> -->
+			<br/><br/>
+				<div style="display:block;position: relative; width:100%; height:60px; text-align:center; line-height:3em;padding-left:10px; background-color:#f47721;">
+					<a style="color:#fff;">
+						그린스토어로 이동
+					</a>
+				</div>
+			</li>
+		</ul>
+	</nav>
 </div>
 
 <header id="header">
@@ -32,10 +74,10 @@
 <header id="header2" style="display:none;">	
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="#" style="color: #ffffff;">GreenStore</a>
-			<form class="navbar-form navbar-left" action="" role="search">
+			<a class="navbar-brand" href="" style="color: #ffffff;">GreenStore</a>
+			<form id="searchFrm" class="navbar-form navbar-left" action="" method="post">
 				<div class="form-group">
-					<input type="text" name="searchText" class="form-control" placeholder="Search">
+					<input type="text" id="searchText" name="searchText" class="form-control" placeholder="Search">
 				</div>
 			</form>
 			<span class="openbtn">&#9776;</span>
@@ -114,4 +156,4 @@
 		</c:forEach>
 		<br />
 	</div>
-</div>
+</div><br/>
