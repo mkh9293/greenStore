@@ -6,7 +6,7 @@
 	   			<a href="" style="font-size:30px; padding:0;"><span>Green</span><span>Store</span></a>
 	   		</div>
 	   		<div style="position:absolute; right:0; top:10px;">
-		   		<div class="gs_appStore" style="display:inline-block;">
+<!-- 		   		<div class="gs_appStore" style="display:inline-block;">
 		   			<div class="gs_ios" style="display:inline-block; text-align:center;background-color:#ffffff; border-radius:20px;width:80px; height:35px; text-align:center;vertical-align: middle;">
 			   			<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160720/img/main/main_install_iOS.png" style="width:20px;height:20px;"/>
 			   			<span style="font-size:15px;color:#000;">iOS</span>
@@ -16,7 +16,7 @@
 			   			<span style="font-size:15px;color:#000">Android</span>
 		   			</div>
 		   		</div>
-		   		
+		   		 -->
 		   		<div class="gs_social" style="display:inline-block;">
 		   			<a href="" style="margin-left:23px;">
 		   				<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160720/img/main/main_sns_facebook.png" style="width:20px;heigth:20px;"/>
@@ -30,7 +30,7 @@
 		   		</div>
 	   		</div>
 	   		<div class="gs_copyright" style="display:relative;width:97%;">
-	   			<hr align="center" style="width:97%;border:solid 1px #f6f6f6;"/>
+	   		<!-- 	<hr align="center" style="width:97%;border:solid 1px #f6f6f6;"/> -->
 			   	<span>© 2016 GreenStore, Inc. All rights reserved.</span>
 		   	</div>
 	   	</div>

@@ -30,6 +30,21 @@
 		<put-attribute name="content" value="/WEB-INF/views/search/textResult.jsp" /> 
 	</definition>
 	
+
+
+
+	<definition name="notice/listAll" extends="commonLayout"> 
+		<put-attribute name="content" value="/WEB-INF/views/notice/listAll.jsp" /> 
+	</definition>
+	
+	<definition name="notice/write" extends="commonLayout"> 
+		<put-attribute name="content" value="/WEB-INF/views/notice/write.jsp" /> 
+	</definition>
+	
+	<definition name="review/listAll" extends="commonLayout"> 
+		<put-attribute name="content" value="/WEB-INF/views/review/listAll.jsp" /> 
+	</definition>
+	
 	
 </tiles-definitions>	
 	
