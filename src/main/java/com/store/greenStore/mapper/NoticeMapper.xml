@@ -29,19 +29,6 @@
 		order by ndate asc
 	</select>
 
-<!-- 	<select id="selectCount" resultType="int">
-		select count(*)
-		from notice
-	</select>
-	
-	<select id="selectPage" resultType="com.store.greenStore.dto.Notice">
-		SELECT *
-		FROM notice
-		LIMIT #{currentItem}, #{itemPerPage}
-<<<<<<< HEAD
-	</select> -->
-=======
-	</select>
 	
 	<select id="listAll" resultType="com.store.greenStore.dto.Notice">
 		<![CDATA[
@@ -50,9 +37,8 @@
 			order by nkey desc
 		]]>
 	</select>
->>>>>>> 4a00fbb0d5d25ba8156070da9718311aeadb7da7
-	
 
+	
 	
 <!-- 	
 	<select id="searchById" resultType="com.store.greenStore.dto.Notice">

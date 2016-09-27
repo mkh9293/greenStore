@@ -18,7 +18,7 @@
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" /> 
 	</definition>
 	
-<<<<<<< HEAD
+
 	<!-- more Search -->
 	<!-- 더보기 -->
 	<definition name="search/moreResult" extends="commonLayout"> 
@@ -52,8 +52,6 @@
 		<put-attribute name="content" value="/WEB-INF/views/review/listAll.jsp" /> 
 	</definition>
 
-	
-=======
->>>>>>> 4a00fbb0d5d25ba8156070da9718311aeadb7da7
+
 </tiles-definitions>	
 	
