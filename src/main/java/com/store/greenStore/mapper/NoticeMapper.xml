@@ -36,9 +36,9 @@
 	
 	<select id="listAll" resultType="com.store.greenStore.dto.Notice">
 		<![CDATA[
-			select nkey, ntitle, ncontent, ndate
+			select *
 			from notice
-			order by idx desc
+			order by nkey desc
 		]]>
 	</select>
 	
