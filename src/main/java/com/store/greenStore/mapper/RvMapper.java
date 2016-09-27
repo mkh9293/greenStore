@@ -9,6 +9,7 @@ public interface RvMapper {
 		public void update(Review rv);
 		public void delete(int rkey);
 		
-		public void select(int sh_id);
+		public List<Review> select(int sh_id);
 		public List<Review> listAll();
+		public List<Review> highReview();
 }
