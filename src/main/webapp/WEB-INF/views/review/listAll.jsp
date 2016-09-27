@@ -87,60 +87,29 @@
             </ul>
             <div class="tab-content">
               <div class="active tab-pane" id="activity">
-                <!-- Post -->
-                <div class="post">
-                  <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="../resources/dist/img/user1-128x128.jpg" alt="user image">
-                        <span class="username">
-                          <a href="#">Jonathan Burke Jr.</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                    <span class="description">Shared publicly - 7:30 PM today</span>
-                  </div>
-                  <!-- /.user-block -->
-                  <p>
-                    Lorem ipsum represents a long-held tradition for designers,
-                    typographers and the like. Some people hate it and argue for
-                    its demise, but others ignore the hate as they create awesome
-                    tools to help create filler text for everyone from bacon lovers
-                    to Charlie Sheen fans.
-                  </p>     
-                  <ul class="list-inline">
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                    </li>
-                    <li class="pull-right">
-                      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                        (5)</a></li>
-                  </ul>
-
-               
-                </div>
-                <!-- /.post -->
-
-                <!-- Post -->
+			    <!-- Post -->
                 <div class="post clearfix">
                   <div class="user-block">
                     <img class="img-circle img-bordered-sm" src="../resources/dist/img/user7-128x128.jpg" alt="User Image">
                         <span class="username">
-                          <a href="#">Sarah Ross</a>
+                          <a href="#">글쓴이</a>
                           <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
                         </span>
-                    <span class="description">Sent you a message - 3 days ago</span>
+                    <span class="description">날짜</span>
                   </div>
                   <!-- /.user-block -->
                   <p>
-                    Lorem ipsum represents a long-held tradition for designers,
-                    typographers and the like. Some people hate it and argue for
-                    its demise, but others ignore the hate as they create awesome
-                    tools to help create filler text for everyone from bacon lovers
-                    to Charlie Sheen fans.
+                    	리뷰내용
                   </p>
-
+                  <ul class="list-inline">
+                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+                    </li>
+                  </ul>
                 </div>
                 <!-- /.post -->
 
-                <!-- Post -->
+
+<!--                 Post
                 <div class="post">
                   <div class="user-block">
                     <img class="img-circle img-bordered-sm" src="../resources/dist/img/user6-128x128.jpg" alt="User Image">
@@ -150,12 +119,10 @@
                         </span>
                     <span class="description">Posted 5 photos - 5 days ago</span>
                   </div>
-                  <!-- /.user-block -->
+                  /.user-block
                   <div class="row margin-bottom">
-                    <div class="col-sm-6">
-                      <img class="img-responsive" src="../resources/dist/img/photo1.png" alt="Photo">
-                    </div>
-                    <!-- /.col -->
+ 
+                    /.col
                     <div class="col-sm-6">
                       <div class="row">
                         <div class="col-sm-6">
@@ -163,19 +130,19 @@
                           <br>
                           <img class="img-responsive" src="../resources/dist/img/photo3.jpg" alt="Photo">
                         </div>
-                        <!-- /.col -->
+                        /.col
                         <div class="col-sm-6">
                           <img class="img-responsive" src="../resources/dist/img/photo4.jpg" alt="Photo">
                           <br>
                           <img class="img-responsive" src="../resources/dist/img/photo1.png" alt="Photo">
                         </div>
-                        <!-- /.col -->
+                        /.col
                       </div>
-                      <!-- /.row -->
+                      /.row
                     </div>
-                    <!-- /.col -->
+                    /.col
                   </div>
-                  <!-- /.row -->
+                  /.row
 
                   <ul class="list-inline">
                     <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
@@ -187,18 +154,18 @@
                   </ul>
 
    
-                </div>
+                </div> -->
                 <!-- /.post -->
               </div>
               <!-- /.tab-pane -->
               <div class="tab-pane" id="timeline">
                
-                         <div class="box box-widget">
+           <div class="box box-widget">
             <div class="box-header with-border">
               <div class="user-block">
                 <img class="img-circle" src="../resources/dist/img/user1-128x128.jpg" alt="User Image">
-                <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
-                <span class="description">Shared publiFcly - 7:30 PM Today</span>
+                <span class="username"><a href="#">글쓴이</a></span>
+                <span class="description">날짜</span>
               </div>
              
               <div class="box-tools">
@@ -213,10 +180,10 @@
             <div class="box-body">
               <img class="img-responsive pad" src="../resources/dist/img/photo2.png" alt="Photo">
 
-              <p>I took this photo this morning. What do you guys think?</p>
-              <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
+              <p>스토어정보</p>
+
               <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
-              <span class="pull-right text-muted">127 likes - 3 comments</span>
+              <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> 리뷰가기</button>
             </div>
             </div>
                
