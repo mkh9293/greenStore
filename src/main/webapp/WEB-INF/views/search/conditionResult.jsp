@@ -5,7 +5,7 @@
 	<link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" type="text/css">
 	
 	<!-- Condition css import -->   
-	<link rel="stylesheet" href="<c:url value="/resources/css/condition.css"/>" type="text/css">
+	<link rel="stylesheet" href="<c:url value="/resources/css/searchResult.css"/>" type="text/css">
 	
 	<!-- Common css import -->   
 	<link rel="stylesheet" href="<c:url value="/resources/css/common.css"/>" type="text/css">
@@ -132,22 +132,24 @@
 							<div id="storeImg">
 								<img src="${storeList.sh_photo }"
 									onerror="this.src='<c:url value="/resources/img/iseoul.jpg"/>'"
-									alt="storeImage"/>
+									alt="storeImage" />
 							</div>
 							<div id="storeContent">
 								<h4>${storeList.sh_name }</h4>
 								<p>
 									<b>${localList[i.index] }</b> - ${storeList.induty_code_se_name }
 								</p>
-								<span id="minPrice">${storeList.price }~ </span>
-								<span>원</span> 
-								<span>/${storeList.menu }</span>
-			
-								<div id="likeShowDiv" style="float: right; margin-right: 15px; bottom: 0; font-size: 15px;">
-									<span class="glyphicon glyphicon-thumbs-up"></span>
-									<span>${storeList.sh_rcmn }</span>
-									<span class="glyphicon glyphicon-heart-empty"></span>
-									<span>${storeList.sh_like }</span>
+								<span style="color: #16a085;">${storeList.price }~ </span><span
+									style="font-size: 13px;">원</span> <span
+									style="font-size: 13px; color: #9b9b9b;">/${storeList.menu }
+								</span>
+	
+								<div id="likeShowDiv"
+									style="float: right; margin-right: 15px; bottom: 0; font-size: 15px;">
+									<span class="glyphicon glyphicon-thumbs-up" style="margin: 0;"></span>
+									<span style="color: #16a085; margin-left: 4px;">${storeList.sh_rcmn }</span>
+									<span class="glyphicon glyphicon-heart-empty" style="margin: 0;"></span>
+									<span style="color: #16a085; margin-left: 4px;">${storeList.sh_like }</span>
 								</div>
 							</div>
 						</div>
