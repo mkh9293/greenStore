@@ -13,13 +13,12 @@
 		<put-attribute name="content" value="/WEB-INF/views/home.jsp" /> 
 	</definition> 
 	
-	<!-- Condition Search -->
-	<!-- 조건 검색 -->
-	<definition name="search/conditionResult" extends="commonLayout">
+	<definition name="*/*" extends="commonLayout">
 		<put-attribute name="menu" value="/WEB-INF/views/include/menu.jsp" /> 
-		<put-attribute name="content" value="/WEB-INF/views/search/conditionResult.jsp" /> 
+		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" /> 
 	</definition>
 	
+<<<<<<< HEAD
 	<!-- more Search -->
 	<!-- 더보기 -->
 	<definition name="search/moreResult" extends="commonLayout"> 
@@ -54,5 +53,7 @@
 	</definition>
 
 	
+=======
+>>>>>>> 4a00fbb0d5d25ba8156070da9718311aeadb7da7
 </tiles-definitions>	
 	
