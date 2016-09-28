@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.store.greenStore.dto.Notice;
 import com.store.greenStore.mapper.NoticeMapper;
@@ -17,21 +18,22 @@ import com.store.greenStore.mapper.NoticeMapper;
 public class NoticeController {
 	@Autowired NoticeMapper noticeMapper;
 	
-	@RequestMapping(value="/list")
+	@RequestMapping(value="/listAll")
 	public String list(Model model) {
-
-		return "notice/list";
+		model.addAttribute("list", noticeMapper.listAll());
+		return "notice/listAll";
 	}
 
 	@RequestMapping(value="/write", method = RequestMethod.GET)
-	public String write(Model model) {
+	public String write(Model model, Notice board) {
+		
 		return "notice/write";
 	}
 	
 	@RequestMapping(value="/write", method = RequestMethod.POST)
-	public String write(HttpServletRequest request, Model model) {
-		
-		return "rediret:/notice/list";
+	public String write(HttpServletRequest request, Model model, Notice board, RedirectAttributes rttr) {
+		noticeMapper.write(board);
+    	return "redirect:/listAll";
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
@@ -43,7 +45,7 @@ public class NoticeController {
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(Model model, Notice board) {
 		noticeMapper.update(board);
-		return "redirect:/notice/listOne?nkey=" + board.getNkey();
+		return "redirect:/notice/list?nkey=" + board.getNkey();
 	}
 
 	@RequestMapping("/delete")

@@ -18,5 +18,40 @@
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" /> 
 	</definition>
 	
+
+	<!-- more Search -->
+	<!-- 더보기 -->
+	<definition name="search/moreResult" extends="commonLayout"> 
+		<put-attribute name="menu" value="/WEB-INF/views/include/menu.jsp" /> 
+		<put-attribute name="content" value="/WEB-INF/views/search/moreResult.jsp" /> 
+	</definition>
+	
+	<!-- text Search -->
+	<!-- 검색어 검색 -->
+	<definition name="search/textResult" extends="commonLayout"> 
+		<put-attribute name="menu" value="/WEB-INF/views/include/menu.jsp" /> 
+		<put-attribute name="content" value="/WEB-INF/views/search/textResult.jsp" /> 
+	</definition>
+	
+	<definition name="store/detail" extends="commonLayout"> 
+		<put-attribute name="menu" value="/WEB-INF/views/include/menu.jsp" /> 
+		<put-attribute name="content" value="/WEB-INF/views/store/detail.jsp" /> 
+	</definition>
+
+	
+	
+	<definition name="notice/listAll" extends="commonLayout"> 
+		<put-attribute name="content" value="/WEB-INF/views/notice/listAll.jsp" /> 
+	</definition>
+	
+	<definition name="notice/write" extends="commonLayout"> 
+		<put-attribute name="content" value="/WEB-INF/views/notice/write.jsp" /> 
+	</definition>
+	
+	<definition name="review/listAll" extends="commonLayout"> 
+		<put-attribute name="content" value="/WEB-INF/views/review/listAll.jsp" /> 
+	</definition>
+
+
 </tiles-definitions>	
 	
