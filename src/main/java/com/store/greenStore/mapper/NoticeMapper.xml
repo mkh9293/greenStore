@@ -22,31 +22,29 @@
 		from notice
 		where nkey = #{nkey}
 	</select>
-
-	<select id="selectCount" resultType="int">
-		select count(*)
-		from notice
-	</select>
-	
-	<select id="selectPage" resultType="com.store.greenStore.dto.Notice">
-		SELECT *
-		FROM notice
-		LIMIT #{currentItem}, #{itemPerPage}
-	</select>
 	
 	<select id="listAll" resultType="com.store.greenStore.dto.Notice">
-		<![CDATA[
-			select nkey, ntitle, ncontent, ndate
-			from notice
-			order by idx desc
-		]]>
+		select nkey, ntitle, ncontent, ndate
+		from notice
+		order by ndate asc
 	</select>
+
+	
+<!-- 	<select id="listAll" resultType="com.store.greenStore.dto.Notice">
+		<![CDATA[
+			select *
+			from notice
+			order by nkey desc
+		]]>
+	</select> -->
+
 	
 	
+<!-- 	
 	<select id="searchById" resultType="com.store.greenStore.dto.Notice">
 		select nkey, ntitle, ncontent
 		from notice
 		where nkey = #{nkey}
-	</select>
+	</select> -->
 	
 </mapper>

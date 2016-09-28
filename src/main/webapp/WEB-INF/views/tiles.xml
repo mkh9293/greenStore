@@ -13,13 +13,12 @@
 		<put-attribute name="content" value="/WEB-INF/views/home.jsp" /> 
 	</definition> 
 	
-	<!-- Condition Search -->
-	<!-- 조건 검색 -->
-	<definition name="search/conditionResult" extends="commonLayout">
+	<definition name="*/*" extends="commonLayout">
 		<put-attribute name="menu" value="/WEB-INF/views/include/menu.jsp" /> 
-		<put-attribute name="content" value="/WEB-INF/views/search/conditionResult.jsp" /> 
+		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" /> 
 	</definition>
 	
+
 	<!-- more Search -->
 	<!-- 더보기 -->
 	<definition name="search/moreResult" extends="commonLayout"> 
@@ -34,13 +33,25 @@
 		<put-attribute name="content" value="/WEB-INF/views/search/textResult.jsp" /> 
 	</definition>
 	
-	<!-- detail page -->
-	<!-- 상세페이지 -->
 	<definition name="store/detail" extends="commonLayout"> 
 		<put-attribute name="menu" value="/WEB-INF/views/include/menu.jsp" /> 
 		<put-attribute name="content" value="/WEB-INF/views/store/detail.jsp" /> 
 	</definition>
+
 	
 	
+	<definition name="notice/listAll" extends="commonLayout"> 
+		<put-attribute name="content" value="/WEB-INF/views/notice/listAll.jsp" /> 
+	</definition>
+	
+	<definition name="notice/write" extends="commonLayout"> 
+		<put-attribute name="content" value="/WEB-INF/views/notice/write.jsp" /> 
+	</definition>
+	
+	<definition name="review/listAll" extends="commonLayout"> 
+		<put-attribute name="content" value="/WEB-INF/views/review/listAll.jsp" /> 
+	</definition>
+
+
 </tiles-definitions>	
 	

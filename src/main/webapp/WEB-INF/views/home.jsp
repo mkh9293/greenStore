@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" type="text/css">
 
 <!-- Common css import -->
-<link rel="stylesheet" href="<c:url value="/resources/css/common.css"/>">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/common.css"/>">
 
 <!-- Home css import -->
 <link rel="stylesheet" href="<c:url value="/resources/css/home.css"/>">
@@ -146,10 +146,10 @@
 
 					<div id="likeShowDiv"
 						style="float: right; margin-right: 15px; bottom: 0; font-size: 15px;">
-						<span class="glyphicon glyphicon-thumbs-up" style="margin: 0;" /><span
-							style="color: #16a085; margin-left: 4px;">${storeList.sh_rcmn }</span>
-						<span class="glyphicon glyphicon-heart-empty" style="margin: 0;" /><span
-							style="color: #16a085; margin-left: 4px;">${storeList.sh_like }</span>
+						<span class="glyphicon glyphicon-thumbs-up" style="margin: 0;" ></span>
+						<span style="color: #16a085; margin-left: 4px;">${storeList.sh_rcmn }</span>
+						<span class="glyphicon glyphicon-heart-empty" style="margin: 0;"></span>
+						<span style="color: #16a085; margin-left: 4px;">${storeList.sh_like }</span>
 					</div>
 				</div>
 			</div>
