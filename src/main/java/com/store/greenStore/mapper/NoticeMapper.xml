@@ -36,7 +36,11 @@
 			from notice
 			order by nkey desc
 		]]>
+<<<<<<< HEAD
 	</select> -->
+=======
+	</select>
+>>>>>>> 9d6c26db25efff9109cdc348e047e7913df302ad
 
 	
 	
