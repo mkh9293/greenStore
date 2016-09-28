@@ -28,27 +28,4 @@
 		from notice
 		order by ndate asc
 	</select>
-
-	
-<!-- 	<select id="listAll" resultType="com.store.greenStore.dto.Notice">
-		<![CDATA[
-			select *
-			from notice
-			order by nkey desc
-		]]>
-<<<<<<< HEAD
-	</select> -->
-=======
-	</select>
->>>>>>> 9d6c26db25efff9109cdc348e047e7913df302ad
-
-	
-	
-<!-- 	
-	<select id="searchById" resultType="com.store.greenStore.dto.Notice">
-		select nkey, ntitle, ncontent
-		from notice
-		where nkey = #{nkey}
-	</select> -->
-	
 </mapper>
