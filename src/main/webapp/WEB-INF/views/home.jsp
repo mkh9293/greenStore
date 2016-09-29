@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/home.css"/>">
 
 <!-- Home js import -->
-<script src="<c:url value="/resources/js/home.js"/>"></script>
+<script src="<c:url value="/resources/js/home.js"/>"></script> 
 
 <div id="mask"></div>
 <div id="mySidenav" class="sidenav">
@@ -33,11 +33,11 @@
 					<span class="css-arrow"></span>
 				</div>
 				<div style="display:block;position: relative; width:100%; height:60px; border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
-					<a href="#" style="color: #0d2474;text-decoration: none; margin-left:2%;">로그인/로그아웃</a> 
+					<a href="member/login" style="color: #0d2474;text-decoration: none; margin-left:2%;">로그인/로그아웃</a> 
 					<span class="css-arrow"></span>
 				</div>
 				<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
-					<a href="#" style="color: #0d2474;text-decoration: none; margin-left:2%; ">공지사항</a> 
+					<a href="notice/listAll" style="color: #0d2474;text-decoration: none; margin-left:2%; ">공지사항</a> 
 					<span class="css-arrow"></span>
 				</div>
 				<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
@@ -45,7 +45,7 @@
 					<span class="css-arrow"></span>
 				</div>
 				<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
-					<a href="#" style="color: #0d2474;text-decoration: none; margin-left:2%;">마이페이지</a> 
+					<a href="review/listAll" style="color: #0d2474;text-decoration: none; margin-left:2%;">마이페이지</a> 
 					<span class="css-arrow"></span>
 				</div>
 				<!-- <div style="display:block;position: relative; width:100%; height:100px; line-height:5em; text-align:center;">

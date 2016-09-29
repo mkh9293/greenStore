@@ -24,6 +24,7 @@
 <style>
 	.navbar-header{
 		background-color: #1ABC9c;
+		width: 100%;
 	}
 	.navbar-brand {
 		font-family : SpoquHanSans-Reqular, sans-serif;

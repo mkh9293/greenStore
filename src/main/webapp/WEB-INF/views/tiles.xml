@@ -51,6 +51,11 @@
 	<definition name="review/listAll" extends="commonLayout"> 
 		<put-attribute name="content" value="/WEB-INF/views/review/listAll.jsp" /> 
 	</definition>
+	
+	<definition name="member/login" extends="commonLayout"> 
+		<put-attribute name="content" value="/WEB-INF/views/member/login.jsp" /> 
+	</definition>
+	
 
 
 </tiles-definitions>	

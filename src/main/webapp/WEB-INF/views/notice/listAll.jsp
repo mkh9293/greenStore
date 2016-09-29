@@ -32,6 +32,7 @@
 <style>
 	.navbar-header{
 		background-color: #1ABC9c;
+		width: 100%;
 	}
 	.navbar-brand {
 		font-family : SpoquHanSans-Reqular, sans-serif;
@@ -61,7 +62,7 @@
 <header id="header">
 	<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#" style="color: #ffffff;">GreenStore</a>
+				<a class="navbar-brand" href="/greenStore" style="color: #ffffff;">GreenStore</a>
 				<span class="openbtn">&#9776;</span>
 		</div>
 	</nav>
