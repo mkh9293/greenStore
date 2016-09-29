@@ -28,6 +28,7 @@
 		from notice
 		order by ndate asc
 	</select>
+<<<<<<< HEAD
 
 	
 <!-- 	<select id="listAll" resultType="com.store.greenStore.dto.Notice">
@@ -46,4 +47,6 @@
 		where nkey = #{nkey}
 	</select> -->
 	
+=======
+>>>>>>> 36eac4b52d290f5226f5c1606b142fdc59ea583a
 </mapper>

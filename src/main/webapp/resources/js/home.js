@@ -94,9 +94,11 @@ $(document).ready(function(){
 		        
 		        //마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채운다.
 			    $('#mask').css({'width':maskWidth,'height':maskHeight,'display':'block','z-index':'999','opacity':'.6','filter':'alpha(opacity=80)'});  
+			   
 			    $("#mySidenav").css("width","360px");
 			});
 			
+				
 			$(".closebtn").on("click",function(){
 				$("#mySidenav").css("width","0px");
 				

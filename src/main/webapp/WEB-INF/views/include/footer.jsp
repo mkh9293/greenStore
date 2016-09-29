@@ -45,7 +45,7 @@
 	.gs_appStore{
 		display:inline-block;
 	}
-	.gs_ios, .gs_android{
+	.gs_ios{
 		display:inline-block; 
 		text-align:center;
 		background-color:#ffffff;
@@ -53,6 +53,18 @@
 		height:35px; 
 		text-align:center;
 		vertical-align: middle;
+	}
+	.gs_android{
+		display:inline-block; 
+		text-align:center;
+		background-color:#ffffff;
+		border-radius:20px;width:100px; 
+		height:35px; 
+		text-align:center;
+		vertical-align: middle;
+	}
+	.gs_ios,.gs_android{
+		line-height:2.4em;
 	}
 	.gs_ios img, .gs_android img{
 		width:20px;

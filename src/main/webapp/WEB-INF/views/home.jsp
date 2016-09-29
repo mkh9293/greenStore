@@ -29,23 +29,35 @@
 		<ul style="list-style: none; margin: 0;padding: 0; position: absolute; width: 360px;">
 			<li style="display: inline-block; line-height: 20px; position: relative; width: 100%;">
 				<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
-					<a href="#" style="color: #f47721;text-decoration: none; margin-left:2%;">그린스토어 홈</a> 
-					<span class="css-arrow"></span>
+					<a href="" style="color: #f47721;text-decoration: none; margin-left:2%;">그린스토어 홈</a> 
+					<span class="css-arrow" ></span>
 				</div>
 				<div style="display:block;position: relative; width:100%; height:60px; border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+<<<<<<< HEAD
 					<a href="member/login" style="color: #0d2474;text-decoration: none; margin-left:2%;">로그인/로그아웃</a> 
 					<span class="css-arrow"></span>
 				</div>
 				<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
 					<a href="notice/listAll" style="color: #0d2474;text-decoration: none; margin-left:2%; ">공지사항</a> 
+=======
+					<a href="/login" style="color: #0d2474;text-decoration: none; margin-left:2%;">로그인/로그아웃</a> 
 					<span class="css-arrow"></span>
 				</div>
 				<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
-					<a href="#" style="color: #0d2474;text-decoration: none; margin-left:2%;">서비스 소개</a> 
+					<a href="/notice" style="color: #0d2474;text-decoration: none; margin-left:2%; ">공지사항</a> 
+>>>>>>> 36eac4b52d290f5226f5c1606b142fdc59ea583a
 					<span class="css-arrow"></span>
 				</div>
 				<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+					<a href="/service" style="color: #0d2474;text-decoration: none; margin-left:2%;">서비스 소개</a> 
+					<span class="css-arrow"></span>
+				</div>
+				<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+<<<<<<< HEAD
 					<a href="review/listAll" style="color: #0d2474;text-decoration: none; margin-left:2%;">마이페이지</a> 
+=======
+					<a href="/mypage" style="color: #0d2474;text-decoration: none; margin-left:2%;">마이페이지</a> 
+>>>>>>> 36eac4b52d290f5226f5c1606b142fdc59ea583a
 					<span class="css-arrow"></span>
 				</div>
 				<!-- <div style="display:block;position: relative; width:100%; height:100px; line-height:5em; text-align:center;">
@@ -53,7 +65,7 @@
 				</div> -->
 			<br/><br/>
 				<div style="display:block;position: relative; width:100%; height:60px; text-align:center; line-height:3em;padding-left:10px; background-color:#f47721;">
-					<a style="color:#fff;">
+					<a href="/" style="color:#fff;">
 						그린스토어로 이동
 					</a>
 				</div>
