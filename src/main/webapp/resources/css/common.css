@@ -48,6 +48,26 @@ html, body {
 }
 /* end 스토어 이미지 css */
 
+/* 상단 메뉴바 bootstrap적용 없애기 css */
+.navbar-header {
+  float: none;
+}
+.navbar-toggle {
+  display: none;
+}
+.navbar-collapse.collapse {
+  display: none!important;
+}
+.navbar-nav {
+  float: none!important;
+}
+.navbar-nav>li {
+  float: none;
+}
+.navbar-collapse.collapse.in{
+  display:none !important;
+}
+/* End 상단 메뉴바 bootstrap적용 없애기 css */
 /* 사이드바 메뉴  css */
 .sidenav {
     height: 100%;
@@ -95,40 +115,6 @@ html, body {
     background-color: none;
 }
 /* End 사이드바 메뉴  css */
-
-/* 상단 메뉴바 bootstrap적용 없애기 css */
-.navbar-header {
-  float: none;
-}
-.navbar-toggle {
-  display: none;
-}
-.navbar-collapse.collapse {
-  display: none!important;
-}
-.navbar-nav {
-  float: none!important;
-}
-.navbar-nav>li {
-  float: none;
-}
-.navbar-collapse.collapse.in{
-  display:none !important;
-}
-/* End 상단 메뉴바 bootstrap적용 없애기 css */
-
-/* 사이드바 메뉴 선택시 배경을 어둡게 하기 위한 css */
-#mask {  
-  position:absolute;  
-  left:0;
-  top:0;
-  z-index:999;  
-  background-color:#000;  
-  display:none;  
-}
-/* End 사이드바 메뉴 선택시 배경을 어둡게 하기 위한 css */
-
-
 li .css-arrow{
  position: absolute;
  right:0;
@@ -149,3 +135,13 @@ li .css-arrow::after{
  top:50%;
  margin-top:-7px;
 }
+/* 사이드바 메뉴 선택시 배경을 어둡게 하기 위한 css */
+#mask {  
+  position:absolute;  
+  left:0;
+  top:0;
+  z-index:999;  
+  background-color:#000;  
+  display:none;  
+}
+/* End 사이드바 메뉴 선택시 배경을 어둡게 하기 위한 css */

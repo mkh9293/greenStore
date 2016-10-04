@@ -33,16 +33,16 @@
 		 concat을 사용한 이유는 *#{searchText}* 와 같이 * 특수문자를 붙이기 위해서 사용했고,
 		  업소 이름을 기준으로 그룹을 만들었다.  -->
 	<select id="search" resultType="com.store.greenStore.dto.Store">
-			select distinct * 
-			from store join store_menu on store.sh_id = store_menu.sh_id  
-			where match(store.sh_name,store.sh_addr,store.sh_way,store.sh_pride,store_menu.menu) against(concat('*',#{searchText},'*') IN BOOLEAN MODE)
-			group by sh_name
-			order by store_menu.menu desc;
+			select  s.SH_ID, SH_NAME, SH_ADDR, MENU, induty_code_se_name, SH_RCMN, SH_LIKE, SH_PHOTO, MIN(PRICE) AS PRICE 
+			from store s join store_menu m on s.sh_id = m.sh_id  
+			where match(s.sh_name,s.sh_addr,s.sh_way,s.sh_pride,m.menu) against(concat('*',#{searchText},'*') IN BOOLEAN MODE)
+			group by sh_id
+			order by sh_rcmn desc;
 	</select>
 	
 	<select id="cateSearch" resultType="com.store.greenStore.dto.Store">
-		select distinct *
-		from store 
+		select  s.SH_ID, SH_NAME, SH_ADDR, MENU, induty_code_se_name, SH_RCMN, SH_LIKE, SH_PHOTO, MIN(PRICE) AS PRICE 
+		from store s join store_menu m on s.sh_id = m.sh_id  
 		<where>
 			sh_addr like concat('%',#{area},'%') and
 			<if test="cate == 1">
@@ -52,6 +52,8 @@
 				induty_code_se = #{cate}
 			</if>
 		</where>
+		group by sh_id
+		order by sh_rcmn desc;
 	</select>
 	
 </mapper>

@@ -13,15 +13,16 @@ import com.store.greenStore.dto.Review;
 import com.store.greenStore.mapper.RvMapper;
 
 @Controller
-@RequestMapping("/app/Review")
+@RequestMapping("/app/review")
 public class AppReviewController {
 
 	@Autowired
 	RvMapper rvmapper;
 	
-	@RequestMapping(value="/", method=RequestMethod.GET)
+	@RequestMapping(value="/one", method=RequestMethod.GET)
 	public @ResponseBody List<Review> review(Model model){
-		return rvmapper.listAll();
+//		rvmapper.select(sh_id);
+		return rvmapper.select(9018);
 	}
 	
 	

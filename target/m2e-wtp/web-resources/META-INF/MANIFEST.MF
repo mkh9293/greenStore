@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: user
 Build-Jdk: 1.8.0_101
+=======
+Built-By: wook
+Build-Jdk: 1.8.0_60
+>>>>>>> 36eac4b52d290f5226f5c1606b142fdc59ea583a
 Created-By: Maven Integration for Eclipse
 

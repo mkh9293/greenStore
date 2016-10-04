@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" type="text/css">
 
 <!-- Common css import -->
-<link rel="stylesheet" href="<c:url value="/resources/css/common.css"/>">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/common.css"/>">
 
 <!-- Home css import -->
 <link rel="stylesheet" href="<c:url value="/resources/css/home.css"/>">
@@ -29,23 +29,23 @@
 		<ul style="list-style: none; margin: 0;padding: 0; position: absolute; width: 360px;">
 			<li style="display: inline-block; line-height: 20px; position: relative; width: 100%;">
 				<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
-					<a href="#" style="color: #f47721;text-decoration: none; margin-left:2%;">그린스토어 홈</a> 
-					<span class="css-arrow"></span>
+					<a href="" style="color: #f47721;text-decoration: none; margin-left:2%;">그린스토어 홈</a> 
+					<span class="css-arrow" ></span>
 				</div>
 				<div style="display:block;position: relative; width:100%; height:60px; border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
-					<a href="#" style="color: #0d2474;text-decoration: none; margin-left:2%;">로그인/로그아웃</a> 
+					<a href="/login" style="color: #0d2474;text-decoration: none; margin-left:2%;">로그인/로그아웃</a> 
 					<span class="css-arrow"></span>
 				</div>
 				<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
-					<a href="#" style="color: #0d2474;text-decoration: none; margin-left:2%; ">공지사항</a> 
+					<a href="/notice" style="color: #0d2474;text-decoration: none; margin-left:2%; ">공지사항</a> 
 					<span class="css-arrow"></span>
 				</div>
 				<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
-					<a href="#" style="color: #0d2474;text-decoration: none; margin-left:2%;">서비스 소개</a> 
+					<a href="/service" style="color: #0d2474;text-decoration: none; margin-left:2%;">서비스 소개</a> 
 					<span class="css-arrow"></span>
 				</div>
 				<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
-					<a href="#" style="color: #0d2474;text-decoration: none; margin-left:2%;">마이페이지</a> 
+					<a href="/mypage" style="color: #0d2474;text-decoration: none; margin-left:2%;">마이페이지</a> 
 					<span class="css-arrow"></span>
 				</div>
 				<!-- <div style="display:block;position: relative; width:100%; height:100px; line-height:5em; text-align:center;">
@@ -53,7 +53,7 @@
 				</div> -->
 			<br/><br/>
 				<div style="display:block;position: relative; width:100%; height:60px; text-align:center; line-height:3em;padding-left:10px; background-color:#f47721;">
-					<a style="color:#fff;">
+					<a href="/" style="color:#fff;">
 						그린스토어로 이동
 					</a>
 				</div>
@@ -146,10 +146,10 @@
 
 					<div id="likeShowDiv"
 						style="float: right; margin-right: 15px; bottom: 0; font-size: 15px;">
-						<span class="glyphicon glyphicon-thumbs-up" style="margin: 0;" /><span
-							style="color: #16a085; margin-left: 4px;">${storeList.sh_rcmn }</span>
-						<span class="glyphicon glyphicon-heart-empty" style="margin: 0;" /><span
-							style="color: #16a085; margin-left: 4px;">${storeList.sh_like }</span>
+						<span class="glyphicon glyphicon-thumbs-up" style="margin: 0;" ></span>
+						<span style="color: #16a085; margin-left: 4px;">${storeList.sh_rcmn }</span>
+						<span class="glyphicon glyphicon-heart-empty" style="margin: 0;"></span>
+						<span style="color: #16a085; margin-left: 4px;">${storeList.sh_like }</span>
 					</div>
 				</div>
 			</div>

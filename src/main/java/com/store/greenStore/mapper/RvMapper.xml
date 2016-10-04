@@ -25,6 +25,9 @@
 		SELECT * FROM review
 	</select>
 	
+	<select id="highReview" resultType="com.store.greenStore.dto.Review">
+		SELECT * FROM review WHERE relike = (select MAX(relike) from review)
+	</select>
 	
 	
 	

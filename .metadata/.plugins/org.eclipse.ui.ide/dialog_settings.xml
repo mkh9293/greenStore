@@ -5,7 +5,11 @@
 		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
 		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+<<<<<<< HEAD
 			<item value="C:\projectWeb"/>
+=======
+			<item value="C:\Users\X\Documents\bit\greenStore"/>
+>>>>>>> 36eac4b52d290f5226f5c1606b142fdc59ea583a
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
 			<item value=""/>

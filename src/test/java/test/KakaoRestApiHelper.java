@@ -94,7 +94,7 @@ public class KakaoRestApiHelper {
     }
 
     public String updatProfile(final Map<String, String> params) throws JsonProcessingException {
-        return request(HttpMethodType.POST, USER_UPDATE_PROFILE_PATH, PROPERTIES_PARAM_NAME + "=" + mapToJsonStr(params));
+    	return request(HttpMethodType.POST, USER_UPDATE_PROFILE_PATH, "properties=" + mapToJsonStr(params));
     }
 
     public String getUserIds() {
@@ -353,6 +353,7 @@ public class KakaoRestApiHelper {
             throw new UnsupportedOperationException(e);
         }
     }
+
 
     public String mapToParams(Map<String, String > map) {
         StringBuilder paramBuilder = new StringBuilder();
