@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD
+org.eclipse.rse.preferences.order.connections=DESKTOP-JVTKQJ3.Local
+=======
 org.eclipse.rse.preferences.order.connections=JINSPIRATION.Local
+>>>>>>> 36eac4b52d290f5226f5c1606b142fdc59ea583a

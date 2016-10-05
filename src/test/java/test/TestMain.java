@@ -1,37 +1,32 @@
 package test;
 
-import java.io.IOException;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.dom4j.DocumentException;
-import org.json.simple.parser.ParseException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.store.greenStore.controller.JsonController;
-import com.store.greenStore.controller.StoreController;
 import com.store.greenStore.dto.Store;
 import com.store.greenStore.mapper.StoreMapper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
+@WebAppConfiguration
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"})
 public class TestMain {
 	
-	private Log log = LogFactory.getLog(getClass());
+//	private Log log = LogFactory.getLog(getClass());
 	
 	@Autowired 
 	StoreMapper storeMapper;
 	
-	@Autowired
-	JsonController controll;
-	
-	@Autowired
-	StoreController storeCon;
+//	@Autowired
+//	JsonControllers controll;
+//	
+//	@Autowired
+//	StoreController storeCon;
 	
 	
 //	@Test	
@@ -66,7 +61,7 @@ public class TestMain {
 //	}
 	@Test
 	public void TestSearch(){
-		List<Store> store = storeMapper.search("커피");
+		List<Store> store = storeMapper.search("se");
 		int i = 1;
 		for(Store st : store){
 			System.out.println(st.getSh_name() + (i++));	
