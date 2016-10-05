@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 	
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="user-scalable=no, width=device-width">
+
 <title>Home</title>
 
 <!-- bootstrap css import -->
@@ -17,4 +19,7 @@
 
 <!-- jQuery UI js import-->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<!-- jQuery Mobile -->
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 	

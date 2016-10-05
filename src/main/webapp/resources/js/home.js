@@ -116,4 +116,25 @@ $(document).ready(function(){
 					$(".openbtn").css("display","");
 				},400);
 			});
+			
+			var lastY;
+			$(".visible-xs").on("touchmove",function(e){
+				 var currentY = e.originalEvent.touches[0].clientY;
+				 if(currentY < lastY){
+					 alert("up");
+				 }
+				 lastY = currentY;
+			});
+			
+			$(".tab_content").hide();
+		    $(".tab_content:first").show();
+
+		    $("ul.tabs li").click(function () {
+		        $("ul.tabs li").removeClass("active").css("color", "#1abc9c");
+		        $(this).addClass("active").css("color", "#fff");
+		        $(".tab_content").hide()
+		        var activeTab = $(this).attr("rel");
+		        $("#" + activeTab).fadeIn()
+		    });
+		    
 		});
