@@ -61,7 +61,7 @@ html, body {
 }
 
 .mb_storeItem #mb_storeImg img {
-	width: 250px;
+	width: 100%;
 	height: 218px;
 }
 
@@ -192,3 +192,36 @@ li .css-arrow::after{
   display:none;  
 }
 /* End 사이드바 메뉴 선택시 배경을 어둡게 하기 위한 css */
+
+/* 모바일 play css */
+.mb_playItem{
+	display: inline-block; 
+	width:47%; height:auto;
+	margin: 8px 1px 8px 10px; 
+	background-color: #ffffff; 
+}
+.mb_playItem #mb_playImg {
+	overflow: hidden;
+}
+
+.mb_playItem #mb_playImg img {
+	width: 100%;
+	height: 218px;
+}
+
+.mb_playItem #mb_playContent {
+	margin-left: 5px; 
+	height: 67px;
+}
+
+.mb_playItem #mb_playContent #mb_playName{
+	font-size: 15px;
+	color:#555;
+}
+
+.mb_playItem #mb_playContent p{
+	font-size: 12px; 
+	color: #9b9b9b; 
+	margin: 0 0 9px 0;
+}
+/* end 모바일 play css */

@@ -295,8 +295,10 @@ public class StoreController {
 
 	@RequestMapping(value="/detail", method=RequestMethod.GET)
 	public String detail(int id, Model model) throws IOException, ParseException, DocumentException{
+		System.out.println("detail: ");
+		
 		Store store = storeDbMapper.detail(id);
-
+		
 		//지역을 좌표로 변경 
 		HashMap<String, Double> map = new HashMap<String, Double>();
 		map = getGps(store.getSh_addr());
@@ -307,11 +309,16 @@ public class StoreController {
 
 		//놀거리 소개 
 		ArrayList<String> overviewList = new ArrayList<String>();
+		ArrayList<String> localList = new ArrayList<String>();
 		for(int i=0;i<3;i++){
 			Play play = getPlayDetailInfo(playList.get(i).getContentid().toString());
 			overviewList.add((String)play.getOverview());
+			
+			String[] tempList = new String[4];
+			tempList = playList.get(i).getAddr1().split(" ");
+			localList.add(tempList[1]);
 		}
-
+		
 		//naver blog	
 		List<Node> nodes = getBlogContent(store.getSh_name());
 		ArrayList<Blog> blogList = new ArrayList<Blog>();
@@ -334,7 +341,8 @@ public class StoreController {
 		model.addAttribute("pointY", map.get("pointY"));
 		model.addAttribute("blogList", blogList);
 		model.addAttribute("daumBlogList", getDaumBlog(store.getSh_name()));
-
+		model.addAttribute("localList", localList);
+		
 		return "store/detail";
 	}
 

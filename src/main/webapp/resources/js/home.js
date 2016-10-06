@@ -60,20 +60,20 @@ $(document).ready(function(){
 			//스토어 상세페이지로 이동
 			$(".storeItem").click(function(){
 				var detailId = $(this).attr("data-id");
-				$(location).attr("href","http://localhost:8080/greenStore/store/detail?id="+detailId);
+				$(location).attr("href","http://localhost:8080/store/detail?id="+detailId);
 			});
 			
 			//검색어로 검색
 			$(".navbar-form").on("submit",function(e){
 				e.preventDefault();
-				$(location).attr("href","http://localhost:8080/greenStore/store/search/"+$("#searchText").val());
+				$(location).attr("href","http://localhost:8080/store/search/"+$("#searchText").val());
 			});
 			
 			//조건으로 검색 
 			$("#searchStore").click(function(){
 				var area = $("#location").text();
 				var cate = $("#category").attr("value");
-				$(location).attr("href","http://localhost:8080/greenStore/store/search/"+area+"/"+cate);
+				$(location).attr("href","http://localhost:8080/store/search/"+area+"/"+cate);
 			});
 			
 			$("#mainImage").on("mousewheel",function(e){
@@ -136,5 +136,10 @@ $(document).ready(function(){
 		        var activeTab = $(this).attr("rel");
 		        $("#" + activeTab).fadeIn()
 		    });
-		    
+		  
+		    //모바일 스토어 상세페이지로 이동
+			$(".mb_storeItem").click(function(){
+				var detailId = $(this).attr("data-id");
+				$(location).attr("href","http://localhost:8080/store/detail?id="+detailId);
+			});
 		});
