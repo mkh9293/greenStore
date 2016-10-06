@@ -49,7 +49,7 @@
 		display:inline-block; 
 		text-align:center;
 		background-color:#ffffff;
-		border-radius:20px;width:80px; 
+		border-radius:20px; width:80px; 
 		height:35px; 
 		text-align:center;
 		vertical-align: middle;
@@ -96,61 +96,85 @@
 		width:97%;
 	}
 	
+	/* 모바일시 */
+	.mb_footer{
+		height: 230px; 
+		background-color: #3e3e3e; 
+		font-family:SpoqaHanSans-Regular, sans-serif;
+	}
+	.mb_inner{
+		text-align:center;
+	}
 </style>
-<footer class="footer">
-	<div class="gs_inner">
-   		<div class="gs_in_inner">
-	   		<div class="gs_greenStore">
-	   			<a href="">GreenStore</a>
-	   		</div>
-<<<<<<< HEAD
-	   		<div style="position:absolute; right:0; top:10px;">
-<!-- 		   		<div class="gs_appStore" style="display:inline-block;">
-		   			<div class="gs_ios" style="display:inline-block; text-align:center;background-color:#ffffff; border-radius:20px;width:80px; height:35px; text-align:center;vertical-align: middle;">
-			   			<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160720/img/main/main_install_iOS.png" style="width:20px;height:20px;"/>
-			   			<span style="font-size:15px;color:#000;">iOS</span>
-=======
-	   		<div class="gs_link">
-		   		<div class="gs_appStore">
+<div class="hidden-xs">
+	<footer class="footer">
+		<div class="gs_inner">
+	   		<div class="gs_in_inner">
+		   		<div class="gs_greenStore">
+		   			<a href="">GreenStore</a>
+		   		</div>
+				<div class="gs_appStore">
 		   			<div class="gs_ios" >
 			   			<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160720/img/main/main_install_iOS.png"/>
 			   			<span>iOS</span>
->>>>>>> 4a00fbb0d5d25ba8156070da9718311aeadb7da7
 		   			</div>
 		   			<div class="gs_android">
 			   			<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160720/img/main/main_install_android.png"/>
 			   			<span>Android</span>
 		   			</div>
 		   		</div>
-<<<<<<< HEAD
-		   		 -->
-		   		<div class="gs_social" style="display:inline-block;">
-		   			<a href="http://www.facebook.com/diningcode" target="_blank" style="margin-left:23px;">
-		   				<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160720/img/main/main_sns_facebook.png" style="width:20px;heigth:20px;"/>
-=======
-		   		
-		   		<div class="gs_social">
-		   			<a href="http://www.facebook.com/diningcode" target="_blank">
-		   				<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160720/img/main/main_sns_facebook.png"/>
->>>>>>> 4a00fbb0d5d25ba8156070da9718311aeadb7da7
-		   			</a>
-		   			<a href="https://twitter.com/diningcode" target="_blank">
-		   				<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160720/img/main/main_sns_twitter.png"/>
-		   			</a>
-		   			<a href="https://www.instagram.com/diningcode/" target="_blank" style="margin-right:20px;">
-		   				<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160720/img/main/main_sns_insta.png"/>
-		   			</a>
+		   		<div style="position:absolute; right:0; top:10px;">
+					<div class="gs_social">
+			   			<a href="http://www.facebook.com/diningcode" target="_blank">
+			   				<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160720/img/main/main_sns_facebook.png"/>
+			   			</a>
+			   			<a href="https://twitter.com/diningcode" target="_blank">
+			   				<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160720/img/main/main_sns_twitter.png"/>
+			   			</a>
+			   			<a href="https://www.instagram.com/diningcode/" target="_blank" style="margin-right:20px;">
+			   				<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160720/img/main/main_sns_insta.png"/>
+			   			</a>
+			   		</div>
+		   		</div>
+		   		<div class="gs_copyright" style="display:relative;width:97%;">
+		   		<!-- 	<hr align="center" style="width:97%;border:solid 1px #f6f6f6;"/> -->
+				   	<span>© 2016 GreenStore, Inc. All rights reserved.</span>
 		   		</div>
 	   		</div>
-<<<<<<< HEAD
-	   		<div class="gs_copyright" style="display:relative;width:97%;">
-	   		<!-- 	<hr align="center" style="width:97%;border:solid 1px #f6f6f6;"/> -->
-			   	<span>© 2016 GreenStore, Inc. All rights reserved.</span>
-=======
-	   		<div class="gs_copyright">
-	   			<span>© 2016 GreenStore, Inc. All rights reserved.</span>
->>>>>>> 4a00fbb0d5d25ba8156070da9718311aeadb7da7
+	   	</div>	   
+	</footer>
+</div>
+<div class="visible-xs">
+	<footer class="mb_footer">
+		<div class="mb_inner" style="text-align:center;">
+	   		<div class="mb_greenStore">
+		   			<h4><a href="" style="line-height:2;">GreenStore</a></h4>
 		   	</div>
-	   	</div>
-   	</div>	   
-</footer>
+		   	<div class="gs_appStore" style="display:block;">
+		   		<div class="gs_ios" style="margin-right:2%;">
+			   		<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160720/img/main/main_install_iOS.png"/>
+			   		<span>iOS</span>
+		   		</div>
+		   		<div class="gs_android">
+			   		<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160720/img/main/main_install_android.png"/>
+			   		<span>Android</span>
+		   		</div>
+		   	</div>
+	   		<div class="gs_social" style="margin-top:5%;">
+			   	<a href="http://www.facebook.com/diningcode" target="_blank" style="margin-right:10%;">
+			   		<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160720/img/main/main_sns_facebook.png"/>
+			   	</a>
+			   	<a href="https://twitter.com/diningcode" target="_blank" style="margin-right:10%;">
+			   		<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160720/img/main/main_sns_twitter.png"/>
+			   	</a>
+			   	<a href="https://www.instagram.com/diningcode/" target="_blank" style="margin-right:20px;">
+			   		<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160720/img/main/main_sns_insta.png"/>
+			   	</a>
+	  		</div>
+		   	<div class="gs_copyright" style="display:relative;width:97%; margin-top:4%;">
+		   		<!-- 	<hr align="center" style="width:97%;border:solid 1px #f6f6f6;"/> -->
+				   	<span>© 2016 GreenStore, Inc. All rights reserved.</span>
+		   	</div>
+	   	</div>	   
+	</footer>
+</div>
