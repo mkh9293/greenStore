@@ -12,7 +12,7 @@ SELECT * FROM review WHERE sh_id=9018 and relike = (SELECT max(relike) FROM revi
 select * from store where sh_id<1000;
 
 SELECT * FROM review;
-select * from store order by SH_RCMN DESC LIMIT 6;
+select * from store order by SH_RCMN;
 
 select * 
 from store join store_menu on store.sh_id = store_menu.sh_id  
@@ -34,8 +34,15 @@ from store where sh_addr like '%도봉구%' and induty_code_se = 2;
  	
 select * from member;
 
-	select  s.SH_ID, SH_NAME, SH_ADDR, MENU, induty_code_se_name, SH_RCMN, SH_LIKE, SH_PHOTO, MIN(PRICE) AS PRICE 
-			from store s join store_menu m on s.sh_id = m.sh_id  
-			where match(s.sh_name,s.sh_addr,s.sh_way,s.sh_pride,m.menu) against('*co*' IN BOOLEAN MODE)
-			group by sh_id
-			order by sh_rcmn desc;
+select  s.SH_ID, SH_NAME, SH_ADDR, MENU, induty_code_se_name, SH_RCMN, SH_LIKE, SH_PHOTO, MIN(PRICE) AS PRICE 
+from store s join store_menu m on s.sh_id = m.sh_id  
+where match(s.sh_name,s.sh_addr,s.sh_way,s.sh_pride,m.menu) against('*co*' IN BOOLEAN MODE)
+group by sh_id
+order by sh_rcmn desc;
+
+select  s.SH_ID, SH_NAME, SH_ADDR, MENU,induty_code_se ,induty_code_se_name, SH_RCMN, SH_LIKE, SH_PHOTO, MIN(PRICE) AS PRICE 
+from store s join store_menu m on s.sh_id = m.sh_id
+where sh_addr like '%서울특별시%' and
+induty_code_se_name like '%VTR대여%'
+group by sh_id
+order by sh_rcmn desc;

@@ -13,4 +13,5 @@ public interface StoreMapper {
 	List<Store> selectAll();
 	List<Store> search(String searchText);
 	List<Store> cateSearch(@Param("area")String area,@Param("cate")String cate);
+	List<Store> appCateSearch(@Param("area")String area,@Param("cate")String cate);
 }

@@ -30,6 +30,12 @@ public class AppHomeController {
 		return storeMapper.search(searchText);
 	}
 	
+	@RequestMapping("/cateSearch/{area}/{cate}")
+	public @ResponseBody List<Store> cateSearch(@PathVariable("area")String area,@PathVariable("cate")String cate){
+		System.out.println(area+" / "+cate);
+		return storeMapper.appCateSearch(area, cate);
+	}
+	
 //	@RequestMapping(value = "/", method = RequestMethod.GET)
 //	public @ResponseBody String home(Model model) {
 //		System.out.println("sssss");
