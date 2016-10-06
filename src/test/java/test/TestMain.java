@@ -61,10 +61,11 @@ public class TestMain {
 //	}
 	@Test
 	public void TestSearch(){
-		List<Store> store = storeMapper.search("se");
+		List<Store> storeList = storeMapper.appCateSearch("지역 선택","이 미용");
 		int i = 1;
-		for(Store st : store){
-			System.out.println(st.getSh_name() + (i++));	
+		System.out.println(storeList.size());
+		for(Store st : storeList){
+			System.out.println((i++));	
 		}
 	}
 //	@Test
