@@ -10,6 +10,8 @@ public interface RvMapper {
 		public void delete(int rkey);
 		
 		public List<Review> select(int sh_id);
+		public List<Review> oneStore(int sh_id);
 		public List<Review> listAll();
-		public List<Review> highReview();
+		
+		
 }
