@@ -109,10 +109,10 @@ $(document).ready(function(){
 	<!-- end store image, name, addr -->
 	
 	<!-- 전화 걸기, 길찾기  -->
-	<div id="callStore" data-toggle="modal" data-target="#myModal" style="margin:5px 20px 20px 20px;text-align:center;display:inline-block;border:2px solid #2F9D27;border-radius:20px;width:300px; height:45px;">
+	<div id="callStore" data-toggle="modal" data-target="#myModal" style="margin:5px 20px 20px 100px;text-align:center;display:inline-block;border:2px solid #2F9D27;border-radius:20px;width:300px; height:45px;">
 		<h4 style="color:#2F9D27"><span class="glyphicon glyphicon-earphone"></span>전화걸기</h4>
 	</div>
-	<div id="findRoad" style="margin:5px 20px 20px 20px; text-align:center;display:inline-block;border:2px solid #2F9D27;border-radius:20px;width:300px; height:45px;">
+	<div id="findRoad" style="margin:5px 20px 20px 40px; text-align:center;display:inline-block;border:2px solid #2F9D27;border-radius:20px;width:300px; height:45px;">
 		<h4 style="color:#2F9D27"><span class="glyphicon glyphicon-share-alt"></span>길찾기</h4>
 	</div>
 	<!-- end 전화 걸기, 길찾기  -->

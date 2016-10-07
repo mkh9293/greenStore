@@ -43,6 +43,12 @@ public class HomeController {
 	public String home(Model model) {
 		List<Store> store = new ArrayList<Store>();
 		List<Store> likeList = new ArrayList<Store>();
+		List<String> regionLocal = new ArrayList<String>();
+		
+		List<Store> region1 = storeMapper.region("강북구");regionLocal.add("강북구");
+		List<Store> region2 = storeMapper.region("강남구");regionLocal.add("강남구");
+		List<Store> region3 = storeMapper.region("마포구");regionLocal.add("마포구");
+		List<Store> region4 = storeMapper.region("종로구");regionLocal.add("종로구");
 		
 		store = storeMapper.webSelectAll();
 		likeList = storeMapper.likeSelectAll();
@@ -76,6 +82,12 @@ public class HomeController {
 		//model.addAttribute("cateList",cateList);
 		model.addAttribute("cateMap",cateMap);
 		model.addAttribute("localList", localList);
+		
+		model.addAttribute("region1", region1);
+		model.addAttribute("region2", region2);
+		model.addAttribute("region3", region3);
+		model.addAttribute("region4", region4);
+		model.addAttribute("regionLocal", regionLocal);
 		
 		return "home";
 	}

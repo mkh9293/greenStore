@@ -295,8 +295,6 @@ public class StoreController {
 
 	@RequestMapping(value="/detail", method=RequestMethod.GET)
 	public String detail(int id, Model model) throws IOException, ParseException, DocumentException{
-		System.out.println("detail: ");
-		
 		Store store = storeDbMapper.detail(id);
 		
 		//지역을 좌표로 변경 
@@ -310,6 +308,7 @@ public class StoreController {
 		//놀거리 소개 
 		ArrayList<String> overviewList = new ArrayList<String>();
 		ArrayList<String> localList = new ArrayList<String>();
+		
 		for(int i=0;i<3;i++){
 			Play play = getPlayDetailInfo(playList.get(i).getContentid().toString());
 			overviewList.add((String)play.getOverview());
@@ -394,12 +393,7 @@ public class StoreController {
 		storeList = storeMapper.cateSearch(area,cate);
 		String indutyName ="";
 		
-		System.out.println("storeList: ");
-		System.out.println(storeList);
-		System.out.println(storeList.size());
-		
 		if(storeList.size()>1){
-			System.out.println("not Null");
 			indutyName = storeList.get(0).getInduty_code_se_name();
 		}
 		
@@ -411,5 +405,29 @@ public class StoreController {
 
 		return "search/conditionResult";
 	}
-	
+		
+	@RequestMapping(value="/food/{induty}",method = RequestMethod.GET)
+	public String cateSearch(@PathVariable("induty")String induty, Model model){
+		//cate 가 음식으로 오면 한식,중식,일식
+		List<Store> storeList = new ArrayList<Store>();
+		storeList = storeMapper.category(induty);
+		String indutyName ="";
+		
+		if(storeList.size()>1){
+			indutyName = storeList.get(0).getInduty_code_se_name();
+		}
+		
+		ArrayList<String> localList = new ArrayList<String>();
+		for(int i=0;i<storeList.size();i++){
+			String[] tempList = storeList.get(i).getSh_addr().split(" ");
+			localList.add(tempList[1]);
+		}
+		
+		model.addAttribute("cate", indutyName);
+		model.addAttribute("storeListSize",storeList.size());
+		model.addAttribute("store",storeList);
+		model.addAttribute("localList",localList);
+
+		return "store/bestList";
+	}
 }

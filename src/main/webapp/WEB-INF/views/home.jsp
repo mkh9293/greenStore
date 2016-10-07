@@ -123,39 +123,242 @@
 		<br /> <br /> <br />
 		<button class="btn btn-primary btn-block" id="categoryBtn">확인</button>
 	</div>
-	
+	<br/>
 	<div class="container">
+		<div>
+			<span style="font-size:25px;font-weight:600;">식당 추천 리스트</span>
+			<div class="bestList">
+				<ul style="list-style:none;">
+					<li style="display: inline-block; margin:15; width:500px; height:260px; background-size: 500px; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/keyword_search/meta/pictures/eexfpmvgj6iq-m2m.jpg'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg');">
+						<a href="/store/food/1">
+							<figure>
+								<figcaption>
+									<div style="text-align:center;line-height:5;">
+										<span style="font-size:30px;color:#fff;">한식 베스트 10곳</span>
+									</div>
+								</figcaption>
+							</figure>
+						</a>
+					</li>
+					<li style="display: inline-block; margin:15; width:500px; height:260px; background-size: 500px; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/184699_1425200192391'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg')">
+						<a href="/store/food/2">
+							<figure>
+								<figcaption>
+									<div style="text-align:center;line-height:5;">
+										<span style="font-size:30px;color:#fff;">중식 베스트 10곳</span>
+									</div>
+								</figcaption>
+							</figure>
+						</a>
+					</li>
+					
+					<li style="display: inline-block; margin:15; width:500px; height:260px; background-size: 500px; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/keyword_search/meta/pictures/ayrwtxnvv7ckdczu.jpg'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg')">
+						<a href="/store/food/3">
+							<figure>
+								<figcaption>
+									<div style="text-align:center;line-height:5;">
+										<span style="font-size:30px;color:#fff;">일식 베스트 10곳</span>
+									</div>
+								</figcaption>
+							</figure>
+						</a>
+					</li>
+					<li style="display: inline-block; margin:15; width:500px; height:260px; background-size: 500px; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/keyword_search/meta/pictures/-x08y8zjwpcdu5d-.jpg'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg')">
+						<a href="/store/bestFood" style="display:inline-block; position:absolute; color:#fff; font-size:30px; z-index:5; margin:7% 13%;">리스트 더보기 </a>
+						<div style="display:inline-block; position:absolute; width:500px; height:260px;background-color:#000; opacity:0.8;"></div>
+						<a>
+							<figure>
+								<figcaption>
+									<div style="text-align:center;line-height:5;">
+										<span style="font-size:30px;color:#fff;">서울시 추천 베스트</span>
+									</div>
+								</figcaption>
+							</figure>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div><hr/>
+		
 		<!-- Store Row -->
-		<div class="row">
-			<c:forEach items="${store }" var="storeList" varStatus="i">
-				<div class="storeItem" data-id="${storeList.sh_id }">
-					<div id="storeImg">
-						<img src="${storeList.sh_photo }"
-							onerror="this.src='<c:url value="/resources/img/iseoul.jpg"/>'"
-							alt="storeImage"/>
-					</div>
-					<div id="storeContent">
-						<h4>${storeList.sh_name }</h4>
-						<p>
-							<b>${localList[i.index] }</b> - ${storeList.induty_code_se_name }
-						</p>
-						<span style="color: #16a085;">${storeList.price }~ </span><span
-							style="font-size: 13px;">원</span> <span
-							style="font-size: 13px; color: #9b9b9b;">/${storeList.menu }
-						</span>
-	
-						<div id="likeShowDiv"
-							style="float: right; margin-right: 15px; bottom: 0; font-size: 15px;">
-							<span class="glyphicon glyphicon-thumbs-up" style="margin: 0;" ></span>
-							<span style="color: #16a085; margin-left: 4px;">${storeList.sh_rcmn }</span>
-							<span class="glyphicon glyphicon-heart-empty" style="margin: 0;"></span>
-							<span style="color: #16a085; margin-left: 4px;">${storeList.sh_like }</span>
-						</div>
-					</div>
-				</div>
-			</c:forEach>
-			<br />
+		<span style="font-size:25px;font-weight:600;">서울시 추천 리스트</span>
+		<div class="region" style="display:inline-block; float:right; margin-right:5%;">
+			<nav class="nav nav-inline">
+			  <a class="nav-link active" rel="regionTab1" style="margin:20;">전체</a>
+			  <a class="nav-link"  rel="regionTab2" style="margin:20; color:#A6A6A6;">강북구</a>
+			  <a class="nav-link"  rel="regionTab3" style="margin:20; color:#A6A6A6;">강남구</a>
+			  <a class="nav-link"  rel="regionTab4" style="margin:20; color:#A6A6A6;">마포구</a>
+			  <a class="nav-link"  rel="regionTab5" style="margin:20; color:#A6A6A6;">종로구</a>
+			  <a class="nav-link"  href="/store/listAll" id="regionMore" style="margin:20;">더보기 <span class="glyphicon glyphicon-chevron-right" style="font-size:13px;margin-left:1px;"></span></a>
+			</nav>
 		</div>
+		<div class="nav-contents">
+				<div id="regionTab1" class="nav-content">
+					<div class="row">
+							<c:forEach items="${store }" var="storeList" varStatus="i">
+								<div class="storeItem" data-id="${storeList.sh_id }">
+									<div id="storeImg">
+										<img src="${storeList.sh_photo }"
+											onerror="this.src='<c:url value="/resources/img/iseoul.jpg"/>'"
+											alt="storeImage"/>
+									</div>
+									<div id="storeContent">
+										<h4>${storeList.sh_name }</h4>
+										<p>
+											<b>${localList[i.index] }</b> - ${storeList.induty_code_se_name }
+										</p>
+										<span style="color: #16a085;">${storeList.price }~ </span><span
+											style="font-size: 13px;">원</span> <span
+											style="font-size: 13px; color: #9b9b9b;">/${storeList.menu }
+										</span>
+					
+										<div id="likeShowDiv"
+											style="float: right; margin-right: 15px; bottom: 0; font-size: 15px;">
+											<span class="glyphicon glyphicon-thumbs-up" style="margin: 0;" ></span>
+											<span style="color: #16a085; margin-left: 4px;">${storeList.sh_rcmn }</span>
+											<span class="glyphicon glyphicon-heart-empty" style="margin: 0;"></span>
+											<span style="color: #16a085; margin-left: 4px;">${storeList.sh_like }</span>
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+							<br />
+						</div>
+				</div>
+				
+				<div id="regionTab2" class="nav-content">
+					<div class="row">
+							<c:forEach items="${region1 }" var="storeList" varStatus="i">
+								<div class="storeItem" data-id="${storeList.sh_id }">
+									<div id="storeImg">
+										<img src="${storeList.sh_photo }"
+											onerror="this.src='<c:url value="/resources/img/iseoul.jpg"/>'"
+											alt="storeImage"/>
+									</div>
+									<div id="storeContent">
+										<h4>${storeList.sh_name }</h4>
+										<p>
+											<b>${regionLocal[0] }</b> - ${storeList.induty_code_se_name }
+										</p>
+										<span style="color: #16a085;">${storeList.price }~ </span><span
+											style="font-size: 13px;">원</span> <span
+											style="font-size: 13px; color: #9b9b9b;">/${storeList.menu }
+										</span>
+					
+										<div id="likeShowDiv"
+											style="float: right; margin-right: 15px; bottom: 0; font-size: 15px;">
+											<span class="glyphicon glyphicon-thumbs-up" style="margin: 0;" ></span>
+											<span style="color: #16a085; margin-left: 4px;">${storeList.sh_rcmn }</span>
+											<span class="glyphicon glyphicon-heart-empty" style="margin: 0;"></span>
+											<span style="color: #16a085; margin-left: 4px;">${storeList.sh_like }</span>
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+							<br />
+						</div>
+				</div>
+				
+				<div id="regionTab3" class="nav-content">
+					<div class="row">
+							<c:forEach items="${region2 }" var="storeList" varStatus="i">
+								<div class="storeItem" data-id="${storeList.sh_id }">
+									<div id="storeImg">
+										<img src="${storeList.sh_photo }"
+											onerror="this.src='<c:url value="/resources/img/iseoul.jpg"/>'"
+											alt="storeImage"/>
+									</div>
+									<div id="storeContent">
+										<h4>${storeList.sh_name }</h4>
+										<p>
+											<b>${regionLocal[1] }</b> - ${storeList.induty_code_se_name }
+										</p>
+										<span style="color: #16a085;">${storeList.price }~ </span><span
+											style="font-size: 13px;">원</span> <span
+											style="font-size: 13px; color: #9b9b9b;">/${storeList.menu }
+										</span>
+					
+										<div id="likeShowDiv"
+											style="float: right; margin-right: 15px; bottom: 0; font-size: 15px;">
+											<span class="glyphicon glyphicon-thumbs-up" style="margin: 0;" ></span>
+											<span style="color: #16a085; margin-left: 4px;">${storeList.sh_rcmn }</span>
+											<span class="glyphicon glyphicon-heart-empty" style="margin: 0;"></span>
+											<span style="color: #16a085; margin-left: 4px;">${storeList.sh_like }</span>
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+							<br />
+						</div>
+				</div>
+				
+				<div id="regionTab4" class="nav-content">
+					<div class="row">
+							<c:forEach items="${region3 }" var="storeList" varStatus="i">
+								<div class="storeItem" data-id="${storeList.sh_id }">
+									<div id="storeImg">
+										<img src="${storeList.sh_photo }"
+											onerror="this.src='<c:url value="/resources/img/iseoul.jpg"/>'"
+											alt="storeImage"/>
+									</div>
+									<div id="storeContent">
+										<h4>${storeList.sh_name }</h4>
+										<p>
+											<b>${regionLocal[2] }</b> - ${storeList.induty_code_se_name }
+										</p>
+										<span style="color: #16a085;">${storeList.price }~ </span><span
+											style="font-size: 13px;">원</span> <span
+											style="font-size: 13px; color: #9b9b9b;">/${storeList.menu }
+										</span>
+					
+										<div id="likeShowDiv"
+											style="float: right; margin-right: 15px; bottom: 0; font-size: 15px;">
+											<span class="glyphicon glyphicon-thumbs-up" style="margin: 0;" ></span>
+											<span style="color: #16a085; margin-left: 4px;">${storeList.sh_rcmn }</span>
+											<span class="glyphicon glyphicon-heart-empty" style="margin: 0;"></span>
+											<span style="color: #16a085; margin-left: 4px;">${storeList.sh_like }</span>
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+							<br />
+						</div>
+				</div>
+				
+				<div id="regionTab5" class="nav-content">
+					<div class="row">
+							<c:forEach items="${region4 }" var="storeList" varStatus="i">
+								<div class="storeItem" data-id="${storeList.sh_id }">
+									<div id="storeImg">
+										<img src="${storeList.sh_photo }"
+											onerror="this.src='<c:url value="/resources/img/iseoul.jpg"/>'"
+											alt="storeImage"/>
+									</div>
+									<div id="storeContent">
+										<h4>${storeList.sh_name }</h4>
+										<p>
+											<b>${regionLocal[3] }</b> - ${storeList.induty_code_se_name }
+										</p>
+										<span style="color: #16a085;">${storeList.price }~ </span><span
+											style="font-size: 13px;">원</span> <span
+											style="font-size: 13px; color: #9b9b9b;">/${storeList.menu }
+										</span>
+					
+										<div id="likeShowDiv"
+											style="float: right; margin-right: 15px; bottom: 0; font-size: 15px;">
+											<span class="glyphicon glyphicon-thumbs-up" style="margin: 0;" ></span>
+											<span style="color: #16a085; margin-left: 4px;">${storeList.sh_rcmn }</span>
+											<span class="glyphicon glyphicon-heart-empty" style="margin: 0;"></span>
+											<span style="color: #16a085; margin-left: 4px;">${storeList.sh_like }</span>
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+							<br />
+						</div>
+				</div>
+			</div>
+		
 </div><br/>
 </div>
 
@@ -166,9 +369,9 @@
 		<nav class="navbar navbar-default navbar-fixed-top">
 				<div class="navbar-header">
 					<a class="navbar-brand" href="#" style="color: #ffffff;">GS</a>
-					<form id="mb_searchFrm" class="navbar-form navbar-left" action="" method="post" style="display:inline-block;width:65%;">
+					<form id="mb_searchFrm" class="navbar-form navbar-left" action="" style="display:inline-block;width:65%;">
 						<div class="form-group" style="width:110%">
-							<input type="text" id="searchText" name="searchText" class="form-control" placeholder="Search">
+							<input type="text" id="mb_searchTxt" name="searchText" class="form-control" placeholder="Search">
 						</div>
 					</form>
 					<span class="openbtn">&#9776;</span>
@@ -176,8 +379,9 @@
 		</nav>
 	</header>
 	
-	<img id="mbMainImage" style="width: 100%; height: 330px; 
-	background-image: url(https://scloud.pstatic.net/20160405_149/1459823688590GWVfp_JPEG/01_main_top_1920x630_02.jpg);"/>
+	<img id="mbMainImage" style="width: 100%; height: 300px; 
+	background-image: url(https://scloud.pstatic.net/20160405_149/1459823688590GWVfp_JPEG/01_main_top_1920x630_02.jpg);
+	background-size:1000px;"/>
 	<br /><br/>
 	
 	 <ul class="tabs">
