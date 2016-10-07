@@ -20,14 +20,33 @@ public class AppReviewController {
 	RvMapper rvmapper;
 	
 	@RequestMapping(value="/one", method=RequestMethod.GET)
-	public @ResponseBody List<Review> review(Model model){
+	public @ResponseBody List<Review> reviewOne(int sh_id){
 //		rvmapper.select(sh_id);
-		return rvmapper.select(9018);
+		return rvmapper.select(sh_id);
+	}
+	
+	@RequestMapping(value="/oneStore", method=RequestMethod.GET)
+	public @ResponseBody List<Review> reviewOneStore(int sh_id){
+//		rvmapper.select(sh_id);
+		return rvmapper.oneStore(sh_id);
 	}
 	
 	
+	@RequestMapping(value="/listAll", method=RequestMethod.GET)
+	public @ResponseBody List<Review> reviewAll(){
+//		rvmapper.select(sh_id);
+		
+		return rvmapper.listAll();
+	}
 	
 	
-	
+
+	@RequestMapping(value="/insert", method=RequestMethod.POST)
+	public @ResponseBody void reviewWrtie(Review review){
+		System.out.println(review.getMkey()+" / "+review.getRcontent()+" / "+review.getSh_id());
+		rvmapper.insert(review);
+		
+	}
+
 	
 }
