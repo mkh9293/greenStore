@@ -60,20 +60,20 @@ $(document).ready(function(){
 			//스토어 상세페이지로 이동
 			$(".storeItem").click(function(){
 				var detailId = $(this).attr("data-id");
-				$(location).attr("href","http://localhost:8080/greenStore/store/detail?id="+detailId);
+				$(location).attr("href","http://localhost:8080/store/detail?id="+detailId);
 			});
 			
 			//검색어로 검색
 			$(".navbar-form").on("submit",function(e){
 				e.preventDefault();
-				$(location).attr("href","http://localhost:8080/greenStore/store/search/"+$("#searchText").val());
+				$(location).attr("href","http://localhost:8080/store/search/"+$("#searchText").val());
 			});
 			
 			//조건으로 검색 
 			$("#searchStore").click(function(){
 				var area = $("#location").text();
 				var cate = $("#category").attr("value");
-				$(location).attr("href","http://localhost:8080/greenStore/store/search/"+area+"/"+cate);
+				$(location).attr("href","http://localhost:8080/store/search/"+area+"/"+cate);
 			});
 			
 			$("#mainImage").on("mousewheel",function(e){
@@ -94,9 +94,11 @@ $(document).ready(function(){
 		        
 		        //마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채운다.
 			    $('#mask').css({'width':maskWidth,'height':maskHeight,'display':'block','z-index':'999','opacity':'.6','filter':'alpha(opacity=80)'});  
+			   
 			    $("#mySidenav").css("width","360px");
 			});
 			
+				
 			$(".closebtn").on("click",function(){
 				$("#mySidenav").css("width","0px");
 				
@@ -113,5 +115,31 @@ $(document).ready(function(){
 				setTimeout(function(){
 					$(".openbtn").css("display","");
 				},400);
+			});
+			
+			var lastY;
+			$(".visible-xs").on("touchmove",function(e){
+				 var currentY = e.originalEvent.touches[0].clientY;
+				 if(currentY < lastY){
+					 alert("up");
+				 }
+				 lastY = currentY;
+			});
+			
+			$(".tab_content").hide();
+		    $(".tab_content:first").show();
+
+		    $("ul.tabs li").click(function () {
+		        $("ul.tabs li").removeClass("active").css("color", "#1abc9c");
+		        $(this).addClass("active").css("color", "#fff");
+		        $(".tab_content").hide()
+		        var activeTab = $(this).attr("rel");
+		        $("#" + activeTab).fadeIn()
+		    });
+		  
+		    //모바일 스토어 상세페이지로 이동
+			$(".mb_storeItem").click(function(){
+				var detailId = $(this).attr("data-id");
+				$(location).attr("href","http://localhost:8080/store/detail?id="+detailId);
 			});
 		});

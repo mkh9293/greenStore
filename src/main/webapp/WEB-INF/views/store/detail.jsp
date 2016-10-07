@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<link rel="stylesheet" href="<c:url value="/resources/dist/css/AdminLTE.min.css"/>" type="text/css">
+<link rel="stylesheet" href="<c:url value="/resources/dist/css/skins/_all-skins.min.css"/>" type="text/css">
+
 <!-- sidebar menu css -->  
 <link rel="stylesheet" href="<c:url value="/resources/css/normalize.css"/>" type="text/css">
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" type="text/css">
@@ -15,7 +18,7 @@
 <!-- DaumMap js import  -->
 <script type="text/javascript"
 	src="//apis.daum.net/maps/maps3.js?apikey=76d0dfe96fd493ccedbee52792d36e32"></script>
-		
+			
 <script type="text/javascript">
 	var sh_photo = "<c:out value="${store.sh_photo}"/>";
 	var sh_name = "<c:out value="${store.sh_name}"/>";
@@ -57,20 +60,40 @@
 		
 		$(".playItem").on("click",function(){
 			var contentId = $(this).attr("data-id");
-			window.open("http://localhost:8080/greenStore/store/detail/play?contentId="+contentId,"_blank","toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=200,width=800,height=600");
+			window.open("http://localhost:8080/store/detail/play?contentId="+contentId,"_blank","toolbar=no,scrollbars=yes,resizable=yes,top=200,left=200,width=800,height=600");
 			//$(location).attr("href","http://localhost:8080/greenStore/store/detail/play?contentId="+contentId);
 		});
-		
 		
 		var likeBtn = false;//나중에 디비에서 받아야된다.
 		$("#likeBtn").on("click",function(){
 	        if(likeBtn == false){
-	            $("#likeBtn").css("color","#F361A6");
+	        	$("#likeBtn").removeClass();
+	        	$("#likeBtn").addClass("glyphicon glyphicon-heart");
+	            $("#likeBtn").css("color","#1abc9c");
 	            likeBtn = true;
 	            alert("좋아요를 눌렀습니다.");
 	        }
 	        else{
-	            $("#likeBtn").css("color","");
+	        	$("#likeBtn").removeClass();
+	        	$("#likeBtn").addClass("glyphicon glyphicon-heart-empty");
+	            $("#likeBtn").css("color","#BDBDBD");
+	            likeBtn = false;
+	            alert("좋아요를 취소헸습니다.");
+	        }
+		});
+		
+		$("#mb_likeBtn").on("click",function(){
+	        if(likeBtn == false){
+	        	$("#mb_likeBtn").removeClass();
+	        	$("#mb_likeBtn").addClass("glyphicon glyphicon-heart");
+	            $("#mb_likeBtn").css("color","#1abc9c");
+	            likeBtn = true;
+	            alert("좋아요를 눌렀습니다.");
+	        }
+	        else{
+	        	$("#mb_likeBtn").removeClass();
+	        	$("#mb_likeBtn").addClass("glyphicon glyphicon-heart-empty");
+	            $("#mb_likeBtn").css("color","#BDBDBD");
 	            likeBtn = false;
 	            alert("좋아요를 취소헸습니다.");
 	        }
@@ -82,19 +105,18 @@
 	body span{
 		font-size:12px;
 	}
-	.playItem, #likeBtn{
+	.mb_playItem, #likeBtn, #mapImage:hover{
 		cursor:pointer;
 	}
-	
 </style>
-		
+<div class="hidden-xs hidden-sm">		
 		<img alt="detailImage" src="${store.sh_photo }" style="width:100%;height:400px;"/><br/>
 	    <div class="container">
 	    	<div class="row">
                 <div class="col-md-8" id="mainContent">
                     <div>
-                        <h3>${store.sh_name }<small>${store.sh_rcmn }</small>
-                        <span id="likeBtn" style="float:right; font-size:30px;" class="glyphicon glyphicon-heart"></span>
+                        <h3>${store.sh_name }<small style="color:#16a085;">${store.sh_rcmn }</small>
+                        <span id="likeBtn" style="float:right; font-size:30px;color:#BDBDBD;" class="glyphicon glyphicon-heart-empty"></span>
         			  </h3>
                     </div>
                     <!-- <img alt="storeDetailImg" src="${store.sh_photo }" style="width:400px;height:500px"/>  -->
@@ -114,22 +136,47 @@
                     
                     <div class="review">
                     	<h4>리뷰 </h4>
+                    	<!-- Post -->
+		                <div class="post clearfix">
+		                  <div class="user-block">
+		                    <img class="img-circle img-bordered-sm" src="../resources/dist/img/user7-128x128.jpg" alt="User Image">
+		                        <span class="username">
+		                          <a href="#">글쓴이</a>
+		                        </span>
+		                    <span class="description">날짜</span>
+		                  </div>
+		                  <!-- /.user-block -->
+		                  <p>
+		                    	리뷰내용
+		                  </p>
+		                  <ul class="list-inline">
+		                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+		                    </li>
+		                  </ul>
+		                </div>
+		                <!-- /.post -->
+		                <!-- Post -->
+		                <div class="post clearfix">
+		                  <div class="user-block">
+		                    <img class="img-circle img-bordered-sm" src="../resources/dist/img/user7-128x128.jpg" alt="User Image">
+		                        <span class="username">
+		                          <a href="#">글쓴이</a>
+		                        </span>
+		                    <span class="description">날짜</span>
+		                  </div>
+		                  <!-- /.user-block -->
+		                  <p>
+		                    	리뷰내용
+		                  </p>
+		                  <ul class="list-inline">
+		                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+		                    </li>
+		                  </ul>
+		                </div>
+		                <!-- /.post -->
                     </div><hr/>
-                    
-                    <div class="blog">
-                    	<h4>블로그</h4>
-                    	<c:forEach items="${blogList }" var="blog" varStatus="i">
-                        	<c:if test="${i.index < 3 }">
-								<div class="blogItem">
-									<a href="${blog.link }" target="_blank">${blog.title }</a>
-									<p>${blog.description }</p>
-								</div><hr/>
-							</c:if>
-						</c:forEach>
-                    </div>
-                    
                     <div class="daumBlog">
-                    	<h4>다음 블로그</h4>
+                    	<h4>블로그</h4>
                     	<c:forEach items="${daumBlogList }" var="daumBlog" varStatus="i">
                         	<c:if test="${i.index < 3 }">
 								<div class="daumBlogItem">
@@ -157,16 +204,16 @@
 						<input type=hidden name="sh_info" value="${store.sh_info }">
 				
 						<div id="map" style="width:420px;height:300px;"></div>
-                    </form><br/>
+                    </form>
 					
-                    <h6 style="color:#16a085;margin-bottom:30px;">주변 놀거리 소개</h6>
+                    <h5 style="font-size:25px;margin-bottom:30px;">주변 놀거리</h5>
                     <div id="play">
                         <c:forEach items="${playList }" var="play" varStatus="i">
                         	<c:if test="${i.index < 3 }">
 								<div class="playItem" data-id="${play.contentid }">
 									<div class="row">
 										<div class="col-md-5" >
-											<img src="${play.firstimage }" alt="playImage" onerror="this.src='<c:url value="/resources/img/iseoul.jpg"/>'" style="width:150px;height:150px;"/>
+											<img src="${play.firstimage }" alt="playImage" onerror="this.src='<c:url value="/resources/img/iseoul.jpg"/>'" style="width:120%;height:150px;"/>
 										</div>
 										<div class="col-md-7" >
 											<b>${play.title }</b><br/>
@@ -183,3 +230,110 @@
                 </div>
             </div>
         </div>   
+</div>
+<div class="visible-xs visible-sm">
+	<img alt="detailImage" src="${store.sh_photo }" style="width:100%;height:200px;"/><br/>
+	    <div class="container">
+	    	<div class="row">
+                <div class="col-md-8" id="mainContent">
+                    <div>
+                        <h5>${store.sh_name }<small style="color:#16a085">&nbsp;${store.sh_rcmn }</small>
+                        	<span id="mb_likeBtn" style="float:right; font-size:30px;color:#BDBDBD;" class="glyphicon glyphicon-heart-empty"></span>
+        			  	</h5>
+                    </div>
+                    <!-- <img alt="storeDetailImg" src="${store.sh_photo }" style="width:400px;height:500px"/>  -->
+                    <hr/>
+                    <div class="intro">
+                        <table>
+                        	<tr>
+                        		<th style="width:100px;"><span class="glyphicon glyphicon-circle-arrow-right"/><label>주소: </label></th>
+                        		<td><span style="text-decoration:underline;">${store.sh_addr }</span></td>
+                        	</tr>
+                        	<tr>
+                        		<th style="width:100px;"><span class="glyphicon glyphicon-circle-arrow-right"/><label>전화번호: </label></th>
+                        		<td><span>${store.sh_phone }</span></td>
+                        	</tr>
+                        </table>
+                        <a id="mapImage">
+                       		<img src="http://map2.daum.net/map/imageservice?IW=70&IH=70&MX=484520&MY=1126295&SCALE=10&service=open" style="position:absolute;top:70;right:20;"/>
+                   		</a>
+                    </div><hr/>
+                    
+                    <div class="review">
+                    	<h5 style="font-size:25px;">리뷰 (2) </h5>
+                    	<!-- Post -->
+		                <div class="post clearfix">
+		                  <div class="user-block">
+		                    <img class="img-circle img-bordered-sm" src="../resources/dist/img/user7-128x128.jpg" alt="User Image">
+		                        <span class="username">
+		                          <a href="#">글쓴이</a>
+		                        </span>
+		                    <span class="description">날짜</span>
+		                  </div>
+		                  <!-- /.user-block -->
+		                  <p>
+		                    	리뷰내용
+		                  </p>
+		                  <ul class="list-inline">
+		                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+		                    </li>
+		                  </ul>
+		                </div>
+		                <!-- /.post -->
+		                <!-- Post -->
+		                <div class="post clearfix">
+		                  <div class="user-block">
+		                    <img class="img-circle img-bordered-sm" src="../resources/dist/img/user7-128x128.jpg" alt="User Image">
+		                        <span class="username">
+		                          <a href="#">글쓴이</a>
+		                        </span>
+		                    <span class="description">날짜</span>
+		                  </div>
+		                  <!-- /.user-block -->
+		                  <p>
+		                    	리뷰내용
+		                  </p>
+		                  <ul class="list-inline">
+		                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+		                    </li>
+		                  </ul>
+		                </div>
+		                <!-- /.post -->
+                    </div><hr/>
+                    
+                    <div class="daumBlog">
+                    	<h5 style="font-size:25px;">블로그</h5>
+                    	<c:forEach items="${daumBlogList }" var="daumBlog" varStatus="i">
+                        	<c:if test="${i.index < 3 }">
+								<div class="daumBlogItem">
+									<a href="${daumBlog.link }" target="_blank">${daumBlog.title }</a>
+									<p>${daumBlog.description }</p>
+									<p>${daumBlog.author }</p>
+								</div><hr/>
+							</c:if>
+						</c:forEach>
+                    </div>
+               
+                </div>
+                
+                <div class="col-md-4" id="mb_sideMenu" style="position:relative; margin-top:2px;"> 
+                    <h5 style="font-size:25px;margin-bottom:30px;">주변 놀거리</h5>
+                    <div id="mb_play">
+                        <c:forEach items="${playList }" var="play" varStatus="i">
+                        	<c:if test="${i.index < 4 }">
+								<div class="mb_playItem" data-id="${play.contentid }" style="width:45%;">
+									<div id="mb_playImg">
+										<img src="${play.firstimage }" alt="playImage" onerror="this.src='<c:url value="/resources/img/iseoul.jpg"/>'" />
+									</div>
+									<div id="mb_playContent">
+										<span style="font-size:14px;font-weight:600">${play.title }</span><br/>
+										<span style="color:gray;">${localList[i.index] } - ${play.cat1 }</span><br/>
+									</div>
+								</div>
+							</c:if>
+						</c:forEach>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+activeuserprofiles=DESKTOP-JVTKQJ3;Team
+eclipse.preferences.version=1
+org.eclipse.rse.systemtype.local.systemType.defaultUserId=user
+=======
 activeuserprofiles=JINSPIRATION;Team
 eclipse.preferences.version=1
 org.eclipse.rse.systemtype.local.systemType.defaultUserId=X
+>>>>>>> 36eac4b52d290f5226f5c1606b142fdc59ea583a

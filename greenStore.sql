@@ -12,7 +12,7 @@ SELECT * FROM review WHERE sh_id=9018 and relike = (SELECT max(relike) FROM revi
 select * from store where sh_id<1000;
 
 SELECT * FROM review;
-select * from store order by SH_RCMN DESC LIMIT 6;
+select * from store order by SH_RCMN;
 
 select * 
 from store join store_menu on store.sh_id = store_menu.sh_id  
@@ -35,9 +35,3 @@ from store where sh_addr like '%�룄遊됯뎄%' and induty_code_se = 2;
 select * from member;
 
 
-SELECT * FROM review WHERE sh_id=9018 and relike = (SELECT max(relike) FROM review);
-
-
-		SELECT * FROM review r INNER JOIN store s ON r.sh_id = s.sh_id where r.sh_id=9018;
-		
-		SELECT * FROM review r INNER JOIN store s ON r.sh_id = s.sh_id

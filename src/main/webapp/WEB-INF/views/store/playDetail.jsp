@@ -37,7 +37,7 @@
 	body span{
 		font-size:12px;
 	}
-	.playItem{
+	.playItem :hover{
 		cursor:pointer;
 	}
 </style>
