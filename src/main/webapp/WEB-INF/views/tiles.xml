@@ -52,10 +52,28 @@
 		<put-attribute name="content" value="/WEB-INF/views/review/listAll.jsp" /> 
 	</definition>
 	
+	<definition name="member/index" extends="commonLayout"> 
+		<put-attribute name="content" value="/WEB-INF/views/member/index.jsp" /> 
+	</definition>
+	
+<!-- 	
+		<definition name="member/login" > 
+		<put-attribute name="content" value="/WEB-INF/views/member/login.jsp" /> 
+	</definition>
+	<definition name="member/logout" > 
+		<put-attribute name="content" value="/WEB-INF/views/member/logout.jsp" /> 
+	</definition>
+		<definition name="member/index" > 
+		<put-attribute name="content" value="/WEB-INF/views/member/index.jsp" /> 
+	</definition> -->
+<!-- 	
 	<definition name="member/login" extends="commonLayout"> 
 		<put-attribute name="content" value="/WEB-INF/views/member/login.jsp" /> 
 	</definition>
-	
+		<definition name="member/logout" extends="commonLayout"> 
+		<put-attribute name="content" value="/WEB-INF/views/member/logout.jsp" /> 
+	</definition>
+	 -->
 
 
 </tiles-definitions>	

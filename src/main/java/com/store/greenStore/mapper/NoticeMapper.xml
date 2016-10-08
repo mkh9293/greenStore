@@ -4,12 +4,12 @@
 
     <insert id="write" useGeneratedKeys="true" keyProperty="nkey">
         insert into notice(ntitle, ncontent, ndate)
-        values(#{ntitle}, #{ncontent}, sysdate)
+        values(#{ntitle}, #{ncontent}, sysdate())
     </insert>
 
 	<update id="update">
 		update notice
-		set ntitle=#{ntitle}, ncontent=#{ncontent}
+		set ntitle=#{ntitle}, ncontent=#{ncontent}, ndate=sysdate()
 		where nkey = #{nkey}
 	</update>
 	
@@ -26,9 +26,9 @@
 	<select id="listAll" resultType="com.store.greenStore.dto.Notice">
 		select nkey, ntitle, ncontent, ndate
 		from notice
-		order by ndate asc
+		order by nkey, ndate asc
 	</select>
-<<<<<<< HEAD
+
 
 	
 <!-- 	<select id="listAll" resultType="com.store.greenStore.dto.Notice">
@@ -47,6 +47,5 @@
 		where nkey = #{nkey}
 	</select> -->
 	
-=======
->>>>>>> 36eac4b52d290f5226f5c1606b142fdc59ea583a
+
 </mapper>

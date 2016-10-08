@@ -76,7 +76,7 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+/*	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public void login(Model model) {
 	
 	}
@@ -84,7 +84,7 @@ public class HomeController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public void logout(Model model) {
 		
-	}
+	}*/
 		
 	@RequestMapping(value="/search/{searchText}",method = RequestMethod.GET)
 	public @ResponseBody List<Store> search(@PathVariable("searchText")String searchText){

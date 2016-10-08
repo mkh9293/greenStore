@@ -12,8 +12,18 @@ import com.store.greenStore.mapper.MemberMapper;
 public class MemberController {
 	@Autowired MemberMapper memberMapper;
 
-	@RequestMapping("/login")
+	@RequestMapping("/index")
 	public void registerPOST(Member member){
+		/*memberMapper.insertUser(member);*/
+	}
+	
+	@RequestMapping("/login")
+	public void login(Member member){
+		/*memberMapper.insertUser(member);*/
+	}
+	
+	@RequestMapping("/logout")
+	public void logout(Member member){
 		/*memberMapper.insertUser(member);*/
 	}
 	
