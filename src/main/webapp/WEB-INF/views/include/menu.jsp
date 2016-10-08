@@ -75,12 +75,27 @@
 				$(".openbtn").css("display","");
 			},400);
 		});
+		//검색어로 검색
+		$("#searchForm").on("submit",function(e){
+			e.preventDefault();
+			$(location).attr("href","http://localhost:8080/store/search/"+$("#searchTxt").val());
+		});
+		
+		//모바일 검색어로 검색
+		$("#mb_searchFrm").on("submit",function(e){
+			e.preventDefault();
+			$(location).attr("href","http://localhost:8080/store/search/"+$("#mb_searchTxt").val());
+		});
+		
 	});
 </script> 
 <style type="text/css">
 	/* 헤더(메뉴바) css */
+	.navbar-header{
+		width:100%;
+	}
 	#header2 nav{
-		background-color: #7ac143; 
+		background-color: #1abc9c; 
 		z-index: 990;
 	}
 	#header2 nav span{
@@ -91,25 +106,61 @@
 		margin-right: 5%;
 	}
 	#header2 input{
-		width:500px;
+		width:450px;
 	}
 	/* End 헤더(메뉴바) css */
+	
+	/* 모바일 헤더(메뉴바) css */
+	#mb_header nav{
+		background-color: #1abc9c; 
+		z-index: 990;
+	}
+	#mb_header input{
+		width:100%;
+	}
+	#mb_header nav span{
+		font-size: 30px; 
+		cursor: pointer; 
+		color: #ffffff; 
+		float: right; 
+		margin-right: 5%;
+	}
+	/* End 모바일 헤더(메뉴바) css */
 </style>    
+<div class="hidden-xs">
+	<header id="header2">	
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/" style="color: #ffffff;">GreenStore</a>
+				<form id="searchForm" class="navbar-form navbar-left" action="" role="search">
+					<div class="form-group">
+						<input type="text" id="searchTxt" name="searchText" class="form-control" placeholder="Search">
+					</div>
+				</form>
+				<span class="openbtn">&#9776;</span>
+			</div>
+		</nav>
+	</header>
+</div>
 
-<header id="header2">	
-	<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="#" style="color: #ffffff;">GreenStore</a>
-			<form class="navbar-form navbar-left" action="" role="search">
-				<div class="form-group">
-					<input type="text" name="searchText" class="form-control" placeholder="Search">
-				</div>
-			</form>
-			<span class="openbtn">&#9776;</span>
-		</div>
-	</nav>
-</header>
-	<div id="mask"></div>
+<div class="visible-xs">
+	<header id="mb_header">
+		<nav class="navbar navbar-default navbar-fixed-top">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="/" style="color: #ffffff;">GS</a>
+					<form id="mb_searchFrm" class="navbar-form navbar-left" action="" role="search" style="display:inline-block;width:65%;">
+						<div class="form-group" style="width:110%">
+							<input type="text" id="mb_searchTxt" name="searchText" class="form-control" placeholder="Search">
+						</div>
+					</form>
+					<span class="openbtn">&#9776;</span>
+			</div>
+		</nav>
+	</header>
+</div>
+
+
+<div id="mask"></div>
 	
 	<div id="mySidenav" class="sidenav">
 	<a href="javascript:void(0)" class="closebtn" style="color:#fff;">&times;</a>
@@ -167,4 +218,9 @@
 		</ul>
 	</nav>
 </div>
+<<<<<<< HEAD
 	<div style="height:50px;"></div>
+=======
+	
+	<div style="height:55px;"></div>
+>>>>>>> 2719c0fc20a2ddeedd6a70e73aaaba2b6a90192c

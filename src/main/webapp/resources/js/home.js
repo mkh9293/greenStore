@@ -60,31 +60,31 @@ $(document).ready(function(){
 			//스토어 상세페이지로 이동
 			$(".storeItem").click(function(){
 				var detailId = $(this).attr("data-id");
-				$(location).attr("href","http://localhost:8080/greenStore/store/detail?id="+detailId);
+				$(location).attr("href","http://localhost:8080/store/detail?id="+detailId);
 			});
 			
 			//검색어로 검색
-			$(".navbar-form").on("submit",function(e){
+			$("#searchFrm").on("submit",function(e){
 				e.preventDefault();
-				$(location).attr("href","http://localhost:8080/greenStore/store/search/"+$("#searchText").val());
+				$(location).attr("href","http://localhost:8080/store/search/"+$("#searchText").val());
 			});
 			
 			//조건으로 검색 
 			$("#searchStore").click(function(){
 				var area = $("#location").text();
 				var cate = $("#category").attr("value");
-				$(location).attr("href","http://localhost:8080/greenStore/store/search/"+area+"/"+cate);
+				$(location).attr("href","http://localhost:8080/store/search/"+area+"/"+cate);
 			});
 			
-			$("#mainImage").on("mousewheel",function(e){
-				$("#header2").hide();
-				$("#header").show();
-			});
+//			$("#mainImage").on("mousewheel",function(e){
+//				$("#header2").hide();
+//				$("#header").show();
+//			});
 			
-			$(".container").on("mousewheel",function(e){
-				$("#header").hide();
-				$("#header2").show();
-			});
+//			$(".container").on("mousewheel",function(e){
+//				$("#header").hide();
+//				$("#header2").show();
+//			});
 			
 			$(".openbtn").on("click",function(){
 				$(this).css("display","none");
@@ -116,4 +116,64 @@ $(document).ready(function(){
 					$(".openbtn").css("display","");
 				},400);
 			});
+			
+			$(".nav-content").hide();
+		    $(".nav-content:first").show();
+		    
+			$(".nav-link").click(function(){
+				$(".nav-inline a").removeClass("nav-link active").css("color","#A6A6A6");
+				$(this).addClass("nav-link active").css("color", "#1abc9c");
+				$(".nav-inline #regionMore").css("color", "#1abc9c");
+				
+				$(".nav-content").hide();
+				var activeTab = $(this).attr("rel");
+				
+				$("#" + activeTab).show();
+			});
+			
+			var lastY;
+			$(".visible-xs").on("touchmove",function(e){
+				 var currentY = e.originalEvent.touches[0].clientY;
+				 if(currentY < lastY){
+					 alert("up");
+				 }
+				 lastY = currentY;
+			});
+			
+			$(".tab_content").hide();
+		    $(".tab_content:first").show();
+
+		    $("ul.tabs li").click(function () {
+		        $("ul.tabs li").removeClass("active").css("color", "#1abc9c");
+		        $(this).addClass("active").css("color", "#fff");
+		        $(".tab_content").hide();
+		        var activeTab = $(this).attr("rel");
+		        $("#" + activeTab).fadeIn();
+		    });
+		  
+		    //모바일 스토어 상세페이지로 이동
+			$(".mb_storeItem").click(function(){
+				var detailId = $(this).attr("data-id");
+				$(location).attr("href","http://localhost:8080/store/detail?id="+detailId);
+			});
+			
+			//모바일 검색어로 검색
+			$("#mb_searchFrm").on("submit",function(e){
+				e.preventDefault();
+				$(location).attr("href","http://localhost:8080/store/search/"+$("#mb_searchTxt").val());
+			});
+			
+			$(window).scroll(function() { 
+				if ($(window).scrollTop()>460)
+				{ 
+					$("#header").hide();
+					$("#header2").show();
+				}
+				if($(window).scrollTop()>0 && $(window).scrollTop()<460)
+				{
+					$("#header").show();
+					$("#header2").hide();
+				}
+			}); 
+			
 		});

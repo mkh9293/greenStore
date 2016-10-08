@@ -42,7 +42,17 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
 		List<Store> store = new ArrayList<Store>();
+		List<Store> likeList = new ArrayList<Store>();
+		List<String> regionLocal = new ArrayList<String>();
+		
+		List<Store> region1 = storeMapper.region("강북구");regionLocal.add("강북구");
+		List<Store> region2 = storeMapper.region("강남구");regionLocal.add("강남구");
+		List<Store> region3 = storeMapper.region("마포구");regionLocal.add("마포구");
+		List<Store> region4 = storeMapper.region("종로구");regionLocal.add("종로구");
+		
 		store = storeMapper.webSelectAll();
+		likeList = storeMapper.likeSelectAll();
+		
 		String[] areaList= {"강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구"
 				,"노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구"
 				,"송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"};
@@ -66,12 +76,18 @@ public class HomeController {
 			localList.add(tempList[1]);
 		}
 		
-		
 		model.addAttribute("store",store);
+		model.addAttribute("likeList",likeList);
 		model.addAttribute("areaList",areaList);
 		//model.addAttribute("cateList",cateList);
 		model.addAttribute("cateMap",cateMap);
 		model.addAttribute("localList", localList);
+		
+		model.addAttribute("region1", region1);
+		model.addAttribute("region2", region2);
+		model.addAttribute("region3", region3);
+		model.addAttribute("region4", region4);
+		model.addAttribute("regionLocal", regionLocal);
 		
 		return "home";
 	}

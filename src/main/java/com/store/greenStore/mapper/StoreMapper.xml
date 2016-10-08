@@ -17,6 +17,31 @@
 	
 	</select>
 	
+	<select id="likeSelectAll" resultType="com.store.greenStore.dto.Store">
+		SELECT s.SH_ID, SH_NAME, SH_ADDR, MENU, induty_code_se_name, SH_RCMN, SH_LIKE, SH_PHOTO, MIN(PRICE) AS PRICE
+		FROM store s join store_menu m
+        on s.SH_ID = m.SH_ID
+        group by s.SH_ID
+        ORDER BY SH_LIKE
+        DESC LIMIT 6;
+	</select>
+	
+	<select id="region" resultType="com.store.greenStore.dto.Store">
+			select  s.SH_ID, SH_NAME, SH_ADDR, MENU, induty_code_se_name, SH_RCMN, SH_LIKE, SH_PHOTO, MIN(PRICE) AS PRICE 
+			from store s join store_menu m on s.sh_id = m.sh_id  
+			where s.sh_addr like concat('%',#{searchText},'%')
+			group by sh_id
+			order by sh_rcmn desc LIMIT 6;
+	</select>
+	
+	<select id="category" resultType="com.store.greenStore.dto.Store">
+			select  s.SH_ID, SH_NAME, SH_ADDR, MENU, induty_code_se_name, SH_RCMN, SH_LIKE, SH_PHOTO, MIN(PRICE) AS PRICE 
+			from store s join store_menu m on s.sh_id = m.sh_id  
+			where s.INDUTY_CODE_SE = #{cate}
+			group by sh_id
+			order by sh_rcmn desc LIMIT 6;
+	</select>
+	
 	<select id="selectAll" resultType="com.store.greenStore.dto.Store">
 		SELECT *
 		FROM store
@@ -50,6 +75,27 @@
 			</if>
 			<if test="cate != 1">
 				induty_code_se = #{cate}
+			</if>
+		</where>
+		group by sh_id
+		order by sh_rcmn desc;
+	</select>
+	
+	<select id="appCateSearch" resultType="com.store.greenStore.dto.Store">
+		select  s.SH_ID, SH_NAME, SH_ADDR, MENU, induty_code_se_name, SH_RCMN, SH_LIKE, SH_PHOTO, MIN(PRICE) AS PRICE 
+		from store s join store_menu m on s.sh_id = m.sh_id  
+		<where>
+			<if test="!area.equals('지역 선택')">
+				sh_addr like concat('%',#{area},'%') and
+			</if>
+			<if test="area.equals('지역 선택')">
+				sh_addr like '%%' and
+			</if>
+			<if test="!cate.equals('업종 선택')">
+				induty_code_se_name like concat('%',#{cate},'%')
+			</if>
+			<if test="cate.equals('업종 선택')">
+				induty_code_se_name like '%%'
 			</if>
 		</where>
 		group by sh_id

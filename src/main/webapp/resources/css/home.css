@@ -84,6 +84,7 @@ html, body {
 }
 /* End 지역,카테고리 dialog css */
 
+/* 헤더(메뉴바) css */
 #header nav{
 	background: transparent none;
 }
@@ -95,9 +96,8 @@ html, body {
 	margin-right: 5%;
 }
 
-/* 헤더(메뉴바) css */
 #header2 nav{
-	background-color: #7ac143; 
+	background-color: #1abc9c; 
 	z-index: 990;
 }
 
@@ -112,6 +112,23 @@ html, body {
 	width:500px;
 }
 /* End 헤더(메뉴바) css */
+
+/* 모바일 헤더(메뉴바) css */
+#mb_header nav{
+	background-color: #1abc9c; 
+	z-index: 990;
+}
+#mb_header input{
+	width:100%;
+}
+#mb_header nav span{
+	font-size: 30px; 
+	cursor: pointer; 
+	color: #ffffff; 
+	float: right; 
+	margin-right: 5%;
+}
+/* End 모바일 헤더(메뉴바) css */
 
 /* 메인 이미지, 조건 검색에 대한 css */
 #mainImage div {
@@ -149,3 +166,77 @@ html, body {
 	background-image: url(https://scloud.pstatic.net/20160405_149/1459823688590GWVfp_JPEG/01_main_top_1920x630_02.jpg);
 }
 /* End 메인 이미지, 조건 검색에 대한 css */
+
+ul.tabs{
+    margin: 0;
+    padding: 0;
+    float: left;
+    list-style: none;
+    height: 32px;
+    border-bottom: 1px solid #eee;
+    border-left: 1px solid #eee;
+    width: 100%;
+    font-family:"dotum";
+    font-size:12px;
+}
+ul.tabs li{
+    color:#16a085;
+    float: left;
+    text-align:center;
+    cursor: pointer;
+    width:82px;
+    height: 31px;
+    line-height: 31px;
+    border: 1px solid #eee;
+    border-left: none;
+    font-weight: bold;
+    background: #fafafa;
+    overflow: hidden;
+    position: relative;
+    border : 1px solid #16a085;
+	border-radius: 4px;
+}
+ul.tabs li.active{
+	color:#fff;
+    background: #1abc9c;
+    border-bottom: 1px solid #FFFFFF;
+}
+.tab_container {
+    border: 1px solid #eee;
+    border-top: none;
+    clear: both;
+    float: left;
+    width: 100%;
+}
+
+.tab_content {
+    padding: 5px;
+    font-size: 12px;
+    display: none;
+}
+.tab_container .tab_content ul {
+    width:100%;
+    margin:0px;
+    padding:0px;
+}
+.tab_container .tab_content ul li {
+    padding:5px;
+    list-style:none
+}
+
+.bestList ul li :hover{
+	cursor: pointer;
+}
+.region{
+	display:inline-block; float:right;margin-right:5%;
+}
+.region nav {
+	
+}
+.region a{
+	margin:50;
+}
+
+.region a:hover{
+	cursor:pointer;
+}

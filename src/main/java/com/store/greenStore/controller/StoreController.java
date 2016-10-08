@@ -296,7 +296,7 @@ public class StoreController {
 	@RequestMapping(value="/detail", method=RequestMethod.GET)
 	public String detail(int id, Model model) throws IOException, ParseException, DocumentException{
 		Store store = storeDbMapper.detail(id);
-
+		
 		//지역을 좌표로 변경 
 		HashMap<String, Double> map = new HashMap<String, Double>();
 		map = getGps(store.getSh_addr());
@@ -307,11 +307,17 @@ public class StoreController {
 
 		//놀거리 소개 
 		ArrayList<String> overviewList = new ArrayList<String>();
+		ArrayList<String> localList = new ArrayList<String>();
+		
 		for(int i=0;i<3;i++){
 			Play play = getPlayDetailInfo(playList.get(i).getContentid().toString());
 			overviewList.add((String)play.getOverview());
+			
+			String[] tempList = new String[4];
+			tempList = playList.get(i).getAddr1().split(" ");
+			localList.add(tempList[1]);
 		}
-
+		
 		//naver blog	
 		List<Node> nodes = getBlogContent(store.getSh_name());
 		ArrayList<Blog> blogList = new ArrayList<Blog>();
@@ -334,7 +340,8 @@ public class StoreController {
 		model.addAttribute("pointY", map.get("pointY"));
 		model.addAttribute("blogList", blogList);
 		model.addAttribute("daumBlogList", getDaumBlog(store.getSh_name()));
-
+		model.addAttribute("localList", localList);
+		
 		return "store/detail";
 	}
 
@@ -386,12 +393,7 @@ public class StoreController {
 		storeList = storeMapper.cateSearch(area,cate);
 		String indutyName ="";
 		
-		System.out.println("storeList: ");
-		System.out.println(storeList);
-		System.out.println(storeList.size());
-		
 		if(storeList.size()>1){
-			System.out.println("not Null");
 			indutyName = storeList.get(0).getInduty_code_se_name();
 		}
 		
@@ -403,5 +405,29 @@ public class StoreController {
 
 		return "search/conditionResult";
 	}
-	
+		
+	@RequestMapping(value="/food/{induty}",method = RequestMethod.GET)
+	public String cateSearch(@PathVariable("induty")String induty, Model model){
+		//cate 가 음식으로 오면 한식,중식,일식
+		List<Store> storeList = new ArrayList<Store>();
+		storeList = storeMapper.category(induty);
+		String indutyName ="";
+		
+		if(storeList.size()>1){
+			indutyName = storeList.get(0).getInduty_code_se_name();
+		}
+		
+		ArrayList<String> localList = new ArrayList<String>();
+		for(int i=0;i<storeList.size();i++){
+			String[] tempList = storeList.get(i).getSh_addr().split(" ");
+			localList.add(tempList[1]);
+		}
+		
+		model.addAttribute("cate", indutyName);
+		model.addAttribute("storeListSize",storeList.size());
+		model.addAttribute("store",storeList);
+		model.addAttribute("localList",localList);
+
+		return "store/bestList";
+	}
 }
