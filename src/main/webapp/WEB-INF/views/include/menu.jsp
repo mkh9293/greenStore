@@ -218,9 +218,6 @@
 		</ul>
 	</nav>
 </div>
-<<<<<<< HEAD
+
 	<div style="height:50px;"></div>
-=======
-	
-	<div style="height:55px;"></div>
->>>>>>> 2719c0fc20a2ddeedd6a70e73aaaba2b6a90192c
+

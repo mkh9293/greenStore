@@ -25,7 +25,6 @@
 <script src="<c:url value="/resources/js/modal.js"/>"></script>
 <script src="<c:url value="/resources/js/home.js"/>"></script>
 
-<<<<<<< HEAD
 <style>
 /*   	.navbar-header{
 		background-color: #1ABC9c;
@@ -43,136 +42,49 @@
 		padding: 5px;
 	}
 </style>
-s
+
 <jsp:include page="include/sideMenu.jsp"/>
 
 <div id="mainImage">
 	<div>
 		<div id="searchKeyward">
 			<a id="location">전체지역 </a><span>에 있는 </span><br /> 
-			<span>서울시에서 추천하는 </span><a id="category">전체유형 </a>
+			<span>서울시에서 추천하는 </span><a id="category">전체유형</a>
 			<span>스토어 </span>
 			<br /> <br />
 		</div>
 		<div id="searchStore">
-			위 조건으로 스토어검색<span class="glyphicon glyphicon-circle-arrow-right"></span>
+			위 조건으로 스토어검색<span class="glyphicon glyphicon-circle-arrow-right"> </span>
 		</div>
 	</div>
 	<img /><br />
 </div>
-=======
-<div id="mask"></div>
-<div id="mySidenav" class="sidenav">
-		<a href="javascript:void(0)" class="closebtn" style="color:#fff;">&times;</a>
-		<div id="profile">
-			<div style="position:absolute; width:340px;height:200px; top:40px; left:25px;">
-				<img src="<c:url value="/resources/img/iseoul.jpg"/>" alt="..." class="img-circle" style="display:inline-block;width:105px;height:110px;"/>
-				<strong style="margin-left:10px;line-height:6em;color:#000">로그인 필요합니다.</strong>
-				
-			</div>
-		</div>
-		<div style="height:180px;"></div>
 	
-		<nav>
-			<ul style="list-style: none; margin: 0;padding: 0; position: absolute; width: 360px;">
-				<li style="display: inline-block; line-height: 20px; position: relative; width: 100%;">
-					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
-						<a href="" style="color: #f47721;text-decoration: none; margin-left:2%;">그린스토어 홈</a> 
-						<span class="css-arrow" ></span>
-					</div>
-					<div style="display:block;position: relative; width:100%; height:60px; border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
-						<a href="/login" style="color: #0d2474;text-decoration: none; margin-left:2%;">로그인/로그아웃</a> 
-						<span class="css-arrow"></span>
-					</div>
-					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
-						<a href="/notice" style="color: #0d2474;text-decoration: none; margin-left:2%; ">공지사항</a> 
-						<span class="css-arrow"></span>
-					</div>
-					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
-						<a href="/service" style="color: #0d2474;text-decoration: none; margin-left:2%;">서비스 소개</a> 
-						<span class="css-arrow"></span>
-					</div>
-					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
-						<a href="/mypage" style="color: #0d2474;text-decoration: none; margin-left:2%;">마이페이지</a> 
-						<span class="css-arrow"></span>
-					</div>
-					<!-- <div style="display:block;position: relative; width:100%; height:100px; line-height:5em; text-align:center;">
-						<span>GreenStore</span>
-					</div> -->
-				<br/><br/>
-					<div style="display:block;position: relative; width:100%; height:60px; text-align:center; line-height:3em;padding-left:10px; background-color:#f47721;">
-						<a href="/" style="color:#fff;">
-							그린스토어로 이동
-						</a>
-					</div>
-				</li>
-			</ul>
-		</nav>
-	</div>
-<div class="hidden-xs">
-	<header id="header">
-		<nav class="navbar navbar-default navbar-fixed-top">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="#" style="color: #ffffff;">GreenStore</a>
-					<span class="openbtn">&#9776;</span>
-			</div>
-		</nav>
-	</header>
-	<header id="header2" style="display:none;">	
-		<nav class="navbar navbar-default navbar-fixed-top">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="" style="color: #ffffff;">GreenStore</a>
-				<form id="searchFrm" class="navbar-form navbar-left" action="" method="post">
-					<div class="form-group">
-						<input type="text" id="searchText" name="searchText" class="form-control" placeholder="Search">
-					</div>
-				</form>
-				<span class="openbtn">&#9776;</span>
-			</div>
-		</nav>
-	</header>	
->>>>>>> 2719c0fc20a2ddeedd6a70e73aaaba2b6a90192c
-
-	<div id="mainImage">
+<div id="locationDiv" title="공간을 선택해주세요 ">
+	<c:forEach items="${areaList }" var="area" varStatus="i">
 		<div>
-			<div id="searchKeyward">
-				<a id="location">전체지역 </a><span>에 있는 </span><br /> 
-				<span>서울시에서 추천하는 </span><a id="category">전체 유형 </a>
-				<span>스토어 </span>
-				<br /> <br />
-			</div>
-			<div id="searchStore">
-				위 조건으로 스토어검색<span class="glyphicon glyphicon-circle-arrow-right"> </span>
-			</div>
+			<input type="radio" class="radio" id="radio${i.index }" name="radio"
+				value="${area }"> <label for="radio${i.index }">${area }
+			</label>
 		</div>
-		<img /><br />
-	</div>
+	</c:forEach>
+	<br /> <br /> <br />
+	<button class="btn btn-primary btn-block" id="locationBtn">확인</button>
+</div>
 	
-	<div id="locationDiv" title="공간을 선택해주세요 ">
-		<c:forEach items="${areaList }" var="area" varStatus="i">
-			<div>
-				<input type="radio" class="radio" id="radio${i.index }" name="radio"
-					value="${area }"> <label for="radio${i.index }">${area }
-				</label>
-			</div>
-		</c:forEach>
-		<br /> <br /> <br />
-		<button class="btn btn-primary btn-block" id="locationBtn">확인</button>
-	</div>
-	
-	<div id="categoryDiv" title="공간 유형을 선택해주세요 ">
-		<c:forEach items="${cateMap }" var="category" varStatus="i">
-			<div>
-				<input type="radio" class="cateradio" id="cateradio${i.index }"
-					name="cateradio" value="${category.key }"> <label
-					for="cateradio${i.index }">${category.value } </label>
-			</div>
-		</c:forEach>
-		<br /> <br /> <br />
-		<button class="btn btn-primary btn-block" id="categoryBtn">확인</button>
-	</div>
+<div id="categoryDiv" title="공간 유형을 선택해주세요 ">
+	<c:forEach items="${cateMap }" var="category" varStatus="i">
+		<div>
+			<input type="radio" class="cateradio" id="cateradio${i.index }"
+				name="cateradio" value="${category.key }"> <label
+				for="cateradio${i.index }">${category.value } </label>
+		</div>
+	</c:forEach>
+	<br /> <br /> <br />
+	<button class="btn btn-primary btn-block" id="categoryBtn">확인</button>
+</div>
 	<br/>
-	<div class="container">
+<div class="container">
 		<div>
 			<span style="font-size:25px;font-weight:600;">식당 추천 리스트</span>
 			<div class="bestList">
@@ -407,9 +319,8 @@ s
 				</div>
 			</div>
 		
-</div><br/>
 </div>
-
+<br/>
 <div class="visible-xs">
 	
 	<div style="height:55px;"></div>
@@ -489,16 +400,10 @@ s
 					</c:forEach>
 					<br />
 				</div>
-<<<<<<< HEAD
+
 			</div>
-		</c:forEach>
-		<br />
 	</div>
 </div><br/> 
-=======
-			</div> 
-		</div>
-    </div>
-	<div style="height:900px;"></div>	
-</div>
->>>>>>> 2719c0fc20a2ddeedd6a70e73aaaba2b6a90192c
+
+</div> 
+		

@@ -132,10 +132,10 @@
 <div class="container"  style="margin:0 auto;">
 	<div class="row">
 		<div class="col-md-4">
-			<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+			<!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 			</fb:login-button>
 			<input type="button" value="logout" onclick="FB.logout()"/>
-			<div id="status"></div>
+			<div id="status"></div> -->
 		</div>
 		<div class="col-md-4">
 			<a id="kakao-login-btn"></a>

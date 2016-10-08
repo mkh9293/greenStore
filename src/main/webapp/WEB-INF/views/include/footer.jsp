@@ -105,38 +105,7 @@
 		text-align:center;
 	}
 </style>
-<<<<<<< HEAD
-<footer class="footer">
-	<div class="gs_inner">
-   		<div class="gs_in_inner">
-	   		<div class="gs_greenStore">
-	   			<a href="">GreenStore</a>
-	   		</div>
-	   		<div style="position:absolute; right:0; top:10px;">
-	   		<div class="gs_social">
-		   			<a href="http://www.facebook.com/diningcode" target="_blank">
-		   				<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160720/img/main/main_sns_facebook.png"/>
 
-		   			</a>
-		   			<a href="https://twitter.com/diningcode" target="_blank">
-		   				<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160720/img/main/main_sns_twitter.png"/>
-		   			</a>
-		   			<a href="https://www.instagram.com/diningcode/" target="_blank" style="margin-right:20px;">
-		   				<img src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160720/img/main/main_sns_insta.png"/>
-		   			</a>
-		   		</div>
-	   		</div>
-
-	   		<div class="gs_copyright" style="display:relative;width:97%;">
-	   		<!-- 	<hr align="center" style="width:97%;border:solid 1px #f6f6f6;"/> -->
-			   	<span>© 2016 GreenStore, Inc. All rights reserved.</span>
-</div>
-</div>
-
-	   	</div>
-   	</div>	   
-</footer> 
-=======
 <div class="hidden-xs">
 	<footer class="footer">
 		<div class="gs_inner">
@@ -208,5 +177,3 @@
 		   	</div>
 	   	</div>	   
 	</footer>
-</div>
->>>>>>> 2719c0fc20a2ddeedd6a70e73aaaba2b6a90192c
