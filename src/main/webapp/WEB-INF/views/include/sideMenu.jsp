@@ -43,126 +43,10 @@
 	loginBean = (petBean.LoginInfoBean)session.getAttribute("LOGININFO");
 %>
 <!-- ./session -->
-<!-- Common css import -->
-<link rel="stylesheet" href="<c:url value="/resources/css/common.css"/>">
-    
-<script type="text/javascript">
-	$(document).ready(function(){
-		$(".openbtn").on("click",function(){
-			$(this).css("display","none");
-			
-			var maskHeight = $(document).height();  
-	        var maskWidth = $(window).width();  
-	        
-	        //마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채운다.
-	        $('#mask').css({'width':maskWidth,'height':maskHeight,'display':'block','z-index':'999','opacity':'.6','filter':'alpha(opacity=80)'});  
-	        
-			$("#mySidenav").css("width","360px");
-		});
-		$(".closebtn").on("click",function(){
-			$("#mySidenav").css("width","0px");
-			
-			$('#mask').css('display','none');
-			setTimeout(function(){
-				$(".openbtn").css("display","");
-			},400);
-		});
-		$("#mask").on("click",function(){
-			$("#mySidenav").css("width","0px");
-			
-			$('#mask').css('display','none');
-			setTimeout(function(){
-				$(".openbtn").css("display","");
-			},400);
-		});
-		//검색어로 검색
-		$("#searchForm").on("submit",function(e){
-			e.preventDefault();
-			$(location).attr("href","http://localhost:8080/store/search/"+$("#searchTxt").val());
-		});
-		
-		//모바일 검색어로 검색
-		$("#mb_searchFrm").on("submit",function(e){
-			e.preventDefault();
-			$(location).attr("href","http://localhost:8080/store/search/"+$("#mb_searchTxt").val());
-		});
-		
-	});
-</script> 
-<style type="text/css">
-	/* 헤더(메뉴바) css */
-	.navbar-header{
-		width:100%;
-	}
-	#header2 nav{
-		background-color: #1abc9c; 
-		z-index: 990;
-	}
-	#header2 nav span{
-		font-size: 30px; 
-		cursor: pointer; 
-		color: #ffffff; 
-		float: right; 
-		margin-right: 5%;
-	}
-	#header2 input{
-		width:450px;
-	}
-	/* End 헤더(메뉴바) css */
-	
-	/* 모바일 헤더(메뉴바) css */
-	#mb_header nav{
-		background-color: #1abc9c; 
-		z-index: 990;
-	}
-	#mb_header input{
-		width:100%;
-	}
-	#mb_header nav span{
-		font-size: 30px; 
-		cursor: pointer; 
-		color: #ffffff; 
-		float: right; 
-		margin-right: 5%;
-	}
-	/* End 모바일 헤더(메뉴바) css */
-</style>    
-<div class="hidden-xs">
-	<header id="header2">	
-		<nav class="navbar navbar-default navbar-fixed-top">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="/" style="color: #ffffff;">GreenStore</a>
-				<form id="searchForm" class="navbar-form navbar-left" action="" role="search">
-					<div class="form-group">
-						<input type="text" id="searchTxt" name="searchText" class="form-control" placeholder="Search">
-					</div>
-				</form>
-				<span class="openbtn">&#9776;</span>
-			</div>
-		</nav>
-	</header>
-</div>
 
-<div class="visible-xs">
-	<header id="mb_header">
-		<nav class="navbar navbar-default navbar-fixed-top">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="/" style="color: #ffffff;">GS</a>
-					<form id="mb_searchFrm" class="navbar-form navbar-left" action="" role="search" style="display:inline-block;width:65%;">
-						<div class="form-group" style="width:110%">
-							<input type="text" id="mb_searchTxt" name="searchText" class="form-control" placeholder="Search">
-						</div>
-					</form>
-					<span class="openbtn">&#9776;</span>
-			</div>
-		</nav>
-	</header>
-</div>
-
-
+<!-- sideMenu -->
 <div id="mask"></div>
-	
-	<div id="mySidenav" class="sidenav">
+<div id="mySidenav" class="sidenav">
 	<a href="javascript:void(0)" class="closebtn" style="color:#fff;">&times;</a>
 	<%if(loginBean!=null){ %>
 	<div id="profile">
@@ -219,5 +103,26 @@
 	</nav>
 </div>
 
-	<div style="height:50px;"></div>
+<header id="header">
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#" style="color: #ffffff;">GreenStore</a>
+			<span class="openbtn">&#9776;</span>
+		</div>
+	</nav>
+</header>
 
+<header id="header2" style="display:none;">	
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="" style="color: #ffffff;">GreenStore</a>
+			<form id="searchFrm" class="navbar-form navbar-left" action="" method="post">
+				<div class="form-group">
+					<input type="text" id="searchText" name="searchText" class="form-control" placeholder="Search">
+				</div>
+			</form>
+			<span class="openbtn">&#9776;</span>
+		</div>
+	</nav>
+</header>	
+<!-- ./sideMenu -->

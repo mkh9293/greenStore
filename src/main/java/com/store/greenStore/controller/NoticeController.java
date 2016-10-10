@@ -33,19 +33,20 @@ public class NoticeController {
 	@RequestMapping(value="/write", method = RequestMethod.POST)
 	public String write(HttpServletRequest request, Model model, Notice board, RedirectAttributes rttr) {
 		noticeMapper.write(board);
-    	return "redirect:/listAll";
+    	return "redirect:/notice/listAll";
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public String update(Model model, @RequestParam("nkey") int nkey) {
-		model.addAttribute("notice",noticeMapper.listOne(nkey));
+	public String update(Model model, @RequestParam("nkey") int nkey, Notice board) {
+		noticeMapper.update(board);
+		/*model.addAttribute("notice",noticeMapper.listOne(nkey));*/
 		return "notice/update";
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(Model model, Notice board) {
 		noticeMapper.update(board);
-		return "redirect:/notice/list?nkey=" + board.getNkey();
+		return "redirect:/notice/listAll?nkey=" + board.getNkey();
 	}
 
 	@RequestMapping("/delete")

@@ -10,6 +10,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.store.greenStore.dto.Store;
+import com.store.greenStore.mapper.MemberMapper;
+import com.store.greenStore.mapper.StoreDbMapper;
 import com.store.greenStore.mapper.StoreMapper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -21,6 +23,10 @@ public class TestMain {
 	
 	@Autowired 
 	StoreMapper storeMapper;
+	@Autowired 
+	MemberMapper memberMapper;
+	@Autowired
+	StoreDbMapper storeDbMapper;
 	
 //	@Autowired
 //	JsonControllers controll;
@@ -59,15 +65,15 @@ public class TestMain {
 //			System.out.println(st.getSh_name() + (i++));	
 //		}
 //	}
-	@Test
-	public void TestSearch(){
-		List<Store> storeList = storeMapper.appCateSearch("지역 선택","이 미용");
-		int i = 1;
-		System.out.println(storeList.size());
-		for(Store st : storeList){
-			System.out.println((i++));	
-		}
-	}
+//	@Test
+//	public void TestSearch(){
+//		List<Store> storeList = storeMapper.appCateSearch("지역 선택","이 미용");
+//		int i = 1;
+//		System.out.println(storeList.size());
+//		for(Store st : storeList){
+//			System.out.println((i++));	
+//		}
+//	}
 //	@Test
 //	public void TestSearch(){
 //		List<Store> store = storeMapper.search("커피");
@@ -115,5 +121,30 @@ public class TestMain {
 //			System.out.println(s.getSh_name()+ " / "+s.getInduty_code_se_name());
 //		}
 //	}
+
 	
+	//멤버 조회
+//	@Test
+//	public void selectMember(){
+//		if(memberMapper.selectMember("123")!=null){
+//			System.out.println("not null");
+//		}else{
+//			System.out.println("null");
+//			Member member = new Member();
+//			member.setMid("123");
+//			member.setMname("mkh");
+//			member.setMphoto("http://test.com");
+//			memberMapper.insertUser(member);
+//			System.out.println(member.getMkey() +" mkey~~");
+//		}
+//	}
+	
+	//상세 정보용
+//	@Test
+//	public void detail(){
+//		List<Store> items = storeDbMapper.appDetail(2350);
+//		for(Store item : items){
+//			System.out.println(item.getMenu());
+//		}
+//	}
 }

@@ -13,5 +13,8 @@ public interface RvMapper {
 		public List<Review> oneStore(int sh_id);
 		public List<Review> listAll();
 		
+		public void reLike(int rkey);
+		public void reUnlike(int rkey);
+		
 		
 }

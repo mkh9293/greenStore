@@ -8,12 +8,23 @@ import com.store.greenStore.dto.Member;
 import com.store.greenStore.mapper.MemberMapper;
 
 @Controller
+@RequestMapping("/member/*")
 public class MemberController {
 	@Autowired MemberMapper memberMapper;
 
-	@RequestMapping("/join")
+	@RequestMapping("/index")
 	public void registerPOST(Member member){
-		memberMapper.insertUser(member);
+		/*memberMapper.insertUser(member);*/
+	}
+	
+	@RequestMapping("/login")
+	public void login(Member member){
+		/*memberMapper.insertUser(member);*/
+	}
+	
+	@RequestMapping("/logout")
+	public void logout(Member member){
+		/*memberMapper.insertUser(member);*/
 	}
 	
 }

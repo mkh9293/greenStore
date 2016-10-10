@@ -85,16 +85,16 @@
 		select  s.SH_ID, SH_NAME, SH_ADDR, MENU, induty_code_se_name, SH_RCMN, SH_LIKE, SH_PHOTO, MIN(PRICE) AS PRICE 
 		from store s join store_menu m on s.sh_id = m.sh_id  
 		<where>
-			<if test="!area.equals('지역 선택')">
+			<if test="!area.equals('전체')">
 				sh_addr like concat('%',#{area},'%') and
 			</if>
-			<if test="area.equals('지역 선택')">
+			<if test="area.equals('전체')">
 				sh_addr like '%%' and
 			</if>
-			<if test="!cate.equals('업종 선택')">
+			<if test="!cate.equals('전체')">
 				induty_code_se_name like concat('%',#{cate},'%')
 			</if>
-			<if test="cate.equals('업종 선택')">
+			<if test="cate.equals('전체')">
 				induty_code_se_name like '%%'
 			</if>
 		</where>
