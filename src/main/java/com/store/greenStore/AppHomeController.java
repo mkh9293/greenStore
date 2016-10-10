@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.store.greenStore.dto.Member;
 import com.store.greenStore.dto.Store;
+import com.store.greenStore.mapper.MemberMapper;
 import com.store.greenStore.mapper.StoreMapper;
 
 @Controller
@@ -19,10 +21,26 @@ public class AppHomeController {
 	
 	@Autowired
 	StoreMapper storeMapper;
+	@Autowired
+	MemberMapper memberMapper;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public @ResponseBody List<Store> home() {
 		return storeMapper.selectAll();
+	}
+	
+	//멤버를 조회하는 액션 메소드
+	@RequestMapping(value = "/memberLookup", method = RequestMethod.POST)
+	public @ResponseBody int memberLookup(Member member) {
+		int mkey = 0;
+		Member result = memberMapper.selectMember(member.getMid());
+		if(result!=null){
+			mkey = result.getMkey();
+		}else{
+			memberMapper.insertUser(member);
+		}
+		mkey = member.getMkey();
+		return mkey;
 	}
 	
 	@RequestMapping("/search/{searchText}")
@@ -32,7 +50,7 @@ public class AppHomeController {
 	
 	@RequestMapping("/cateSearch/{area}/{cate}")
 	public @ResponseBody List<Store> cateSearch(@PathVariable("area")String area,@PathVariable("cate")String cate){
-		System.out.println(area+" / "+cate);
+		System.out.println(area +" ~~ " +cate);
 		return storeMapper.appCateSearch(area, cate);
 	}
 	

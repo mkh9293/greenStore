@@ -3,9 +3,13 @@
 <mapper namespace="com.store.greenStore.mapper.MemberMapper">
 
     <insert id="insertUser" useGeneratedKeys="true" keyProperty="mkey">
-
         insert into member(mphoto, mid, mname)
         values(#{mphoto}, #{mid}, #{mname})
     </insert>
 
+	<select id="selectMember" resultType="com.store.greenStore.dto.Member">
+		select *
+		from member
+		where MID = #{mid}
+	</select>
 </mapper>

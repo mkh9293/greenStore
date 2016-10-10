@@ -4,5 +4,7 @@ import com.store.greenStore.dto.Member;
 
 public interface MemberMapper {
 	public void insertUser(Member member);
-
+	
+	//member 조회
+	public Member selectMember(String mid);
 }

@@ -33,7 +33,7 @@ select distinct *
 from store where sh_addr like '%도봉구%' and induty_code_se = 2;
  	
 select * from member;
-
+delete from member;
 select  s.SH_ID, SH_NAME, SH_ADDR, MENU, induty_code_se_name, SH_RCMN, SH_LIKE, SH_PHOTO, MIN(PRICE) AS PRICE 
 from store s join store_menu m on s.sh_id = m.sh_id  
 where match(s.sh_name,s.sh_addr,s.sh_way,s.sh_pride,m.menu) against('*co*' IN BOOLEAN MODE)
