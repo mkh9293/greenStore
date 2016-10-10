@@ -173,4 +173,27 @@ public class JsonController {
 		
         return map;
 	}
+	
+	@RequestMapping(value="/regionBestList",method = RequestMethod.POST)
+	public @ResponseBody HashMap<Integer, Store> regionBestListJson(String region) throws IOException, ParseException{
+		List<Store> store = null;
+		
+		if("전체".equals(region)){
+			store = storeMapper.webSelectAll();
+		}else{
+			store = storeMapper.region(region);
+		}
+		
+		HashMap<Integer, Store> regionList = new HashMap<Integer, Store>();
+		Store storeOb = null;
+		
+		for(int i=0;i<store.size();i++){
+			storeOb = new Store();
+			storeOb = store.get(i);
+			
+			regionList.put(i, storeOb);
+		}
+		
+		return regionList;
+	}
 }
