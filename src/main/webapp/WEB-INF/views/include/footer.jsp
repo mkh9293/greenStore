@@ -105,6 +105,7 @@
 		text-align:center;
 	}
 </style>
+
 <div class="hidden-xs">
 	<footer class="footer">
 		<div class="gs_inner">
@@ -176,4 +177,3 @@
 		   	</div>
 	   	</div>	   
 	</footer>
-</div>

@@ -30,7 +30,7 @@
 		var markList = [];
 		
 		$.ajax({
-			url:"http://localhost:8080/greenStore/json/searchConditionJson",
+			url:"http://localhost:8080/json/searchConditionJson",
 			dataType:"json",
 			data:{"area": area, "cate": cate},
 			success:function(data){
@@ -103,7 +103,7 @@
 		});
 	});
 	</script>
-	
+<div class="hidden-xs">	
 	<c:if test="${storeListSize != 0 }">
 		<div id="searchResultMap">
 	       	 <div id="map"></div><hr/>
@@ -160,3 +160,42 @@
 	    	<br/>
         </div>
      </div>	
+</div>     
+     
+  <div class="visible-xs">
+	<div id="mb_searchResultMap" style="height: 300px; margin-bottom: 1px;">
+		<div id="mb_map" style="height: 300px;"></div>
+		<hr />
+	</div>
+	
+	<div class="container" style="width: 100%; height: 110px; background-color: #ffffff;">
+		<h3 style="margin-top:4%;margin-left:7%;font-size:25px;"><strong style="color:#6d3afb;">${area }</strong>에서 </h3>
+		<h3 style="margin-top:1%;margin-left:10%;font-size:25px;"><strong style="color:#6d3afb;">${cate }</strong>유형 검색 결과입니다.</h3>   	
+	
+	</div>
+	
+	<div class="container">
+		<!-- Store Row -->
+				<div class="row">
+					<c:forEach items="${store }" var="storeList" varStatus="i">
+						<div class="mb_storeItem" data-id="${storeList.sh_id }" style="width: 45%;">
+							<div id="mb_storeImg">
+								<img src="${storeList.sh_photo }"
+									onerror="this.src='<c:url value="/resources/img/iseoul.jpg"/>'"
+									alt="storeImage" style="width: 100% height: 218px;"/>
+							</div>
+							<div id="mb_storeContent">
+								<span id="mb_storeName"><b>${storeList.sh_name }</b></span>
+								<div id="mb_likeShowDiv"
+									style="float: right; margin-right: 5px; bottom: 0; font-size: 15px;">
+									<span class="glyphicon glyphicon-thumbs-up" style="margin: 0;" ></span>
+									<span style="color: #16a085; margin-left: 4px;">${storeList.sh_rcmn }</span>
+								</div>
+								<p>${localList[i.index] } - ${storeList.induty_code_se_name }</p>
+							</div>
+						</div>
+					</c:forEach>
+					<br />
+		</div>
+	</div>
+</div>   

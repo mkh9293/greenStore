@@ -33,25 +33,46 @@
 	
 	$(document).ready(function(){
 		var mapContainer = document.getElementById('map'), // 지도의 중심좌표
-	    mapOption = { 
+	    
+		mapOption = { 
 	        center: new daum.maps.LatLng(pointY, pointX), // 지도의 중심좌표
-	        level: 3, // 지도의 확대 레벨
+	        level: 5, // 지도의 확대 레벨
 	        draggable: false,
 	        scrollwheel: false,
 	        disableDoubleClick: false,
 	        disableDoubleClickZoom: false,
 	        keyboardShortcuts: false
 	    }; 
-	
+		var mb_mapContainer = document.getElementById('mb_map'), // 지도의 중심좌표
+		
+		mb_mapOption = { 
+	        center: new daum.maps.LatLng(pointY, pointX), // 지도의 중심좌표
+	        level: 5, // 지도의 확대 레벨
+	        draggable: false,
+	        scrollwheel: false,
+	        disableDoubleClick: false,
+	        disableDoubleClickZoom: false,
+	        keyboardShortcuts: false
+	    }; 
+		
 	    map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-		map.setZoomable(false);
+	    map.setZoomable(false);
+	    
+	    mb_map = new daum.maps.Map(mb_mapContainer, mb_mapOption);
+	    mb_map.setZoomable(false);
 	    
 		// 지도에 마커를 표시합니다 
 		var marker = new daum.maps.Marker({
 	    	map: map, 
 	    	position: new daum.maps.LatLng(pointY, pointX)
 		});
-	    
+		
+		// 모바일 지도에 마커를 표시합니다 
+		var mb_marker = new daum.maps.Marker({
+	    	map: mb_map, 
+	    	position: new daum.maps.LatLng(pointY, pointX)
+		});
+		
 		$("#map").click(function(){
 			window.open('', 'map', 'width=900, height=700,top=200,left=200');
 			$("#storeInfo").attr("target","map");
@@ -98,6 +119,14 @@
 	            alert("좋아요를 취소헸습니다.");
 	        }
 		});
+		
+		$("#callStore").on("click",function(){
+				
+		});
+		
+		$("#findRoad").on("click",function(){
+			$(location).attr("href","http://map.daum.net/link/to/"+sh_name+","+pointY+","+pointX);
+		});
 	});
 </script>
 
@@ -105,7 +134,7 @@
 	body span{
 		font-size:12px;
 	}
-	.mb_playItem, #likeBtn, #mapImage:hover{
+	.mb_playItem, #likeBtn, #mapImage, :hover{
 		cursor:pointer;
 	}
 </style>
@@ -254,9 +283,6 @@
                         		<td><span>${store.sh_phone }</span></td>
                         	</tr>
                         </table>
-                        <a id="mapImage">
-                       		<img src="http://map2.daum.net/map/imageservice?IW=70&IH=70&MX=484520&MY=1126295&SCALE=10&service=open" style="position:absolute;top:70;right:20;"/>
-                   		</a>
                     </div><hr/>
                     
                     <div class="review">
@@ -316,6 +342,30 @@
                
                 </div>
                 
+                <!-- store image, name, addr -->
+				<div class="row">
+					<div style="display:inline-block; margin:1px 10px 2px 10px;">
+						<img src="${store.sh_photo }" alt="storeImage" class="img-circle" width=120px; height=120px;/>
+					</div>
+					<div style="display:inline-block; margin-top:5px;">
+						<h5 style="font-size:20px;">${store.sh_name } </h5>
+						<p>${store.sh_addr }</p>
+					</div><hr style="width:90%;text-align:center;"/>	
+				</div>
+				<!-- end store image, name, addr -->
+						
+				<!-- 전화 걸기, 길찾기  -->
+				<div id="callStore" data-toggle="modal" data-target="#myModal" style="margin:0px 20px 20px 50px;text-align:center;display:inline-block;border:2px solid #2F9D27;border-radius:20px;width:35%; height:35px;">
+					<h4 style="color:#2F9D27;margin:2;font-size:15px;"><span class="glyphicon glyphicon-earphone" style="font-size:19px;"></span>전화걸기</h4>
+				</div>
+				<div id="findRoad" style="margin:5px 20px 20px 20px; text-align:center;display:inline-block;border:2px solid #2F9D27;border-radius:20px;width:35%; height:35px;">
+					<h4 style="color:#2F9D27;margin:2;font-size:15px;"><span class="glyphicon glyphicon-share-alt" style="font-size:19px;"></span>길찾기</h4>
+				</div>
+				<!-- end 전화 걸기, 길찾기  -->
+						
+				<div id="mb_map" style="width:100%;height:400px;"></div>
+				<hr/>
+						
                 <div class="col-md-4" id="mb_sideMenu" style="position:relative; margin-top:2px;"> 
                     <h5 style="font-size:25px;margin-bottom:30px;">주변 놀거리</h5>
                     <div id="mb_play">
