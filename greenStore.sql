@@ -46,3 +46,10 @@ where sh_addr like '%서울특별시%' and
 induty_code_se_name like '%VTR대여%'
 group by sh_id
 order by sh_rcmn desc;
+
+select * from store where sh_id = 2350; 
+select * from store_menu;
+
+select store_menu.menu
+from store join store_menu on store.sh_id = store_menu.sh_id  
+where store.sh_id = 2350;

@@ -5,40 +5,28 @@
 		<put-attribute name="head" value="/WEB-INF/views/include/header.jsp" />
 		<put-attribute name="menu" value="" /> 
 		<put-attribute name="content" value="" /> 
-		<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" /> 
-	</definition> 
+		<put-attribute name="footer" value="" /> 
+	</definition>
 	
 	<!-- home -->
 	<definition name="home" extends="commonLayout"> 
 		<put-attribute name="content" value="/WEB-INF/views/home.jsp" /> 
+		<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" /> 
 	</definition> 
+	
+	<definition name="store/daumNavi" extends="commonLayout"> 
+		<put-attribute name="content" value="/WEB-INF/views/store/daumNavi.jsp" /> 
+	</definition> 
+	
+	<definition name="store/playDetail" extends="commonLayout"> 
+		<put-attribute name="content" value="/WEB-INF/views/store/playDetail.jsp" /> 
+	</definition>
 	
 	<definition name="*/*" extends="commonLayout">
 		<put-attribute name="menu" value="/WEB-INF/views/include/menu.jsp" /> 
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" /> 
+		<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" /> 
 	</definition>
-	
-
-	<!-- more Search -->
-	<!-- 더보기 -->
-	<definition name="search/moreResult" extends="commonLayout"> 
-		<put-attribute name="menu" value="/WEB-INF/views/include/menu.jsp" /> 
-		<put-attribute name="content" value="/WEB-INF/views/search/moreResult.jsp" /> 
-	</definition>
-	
-	<!-- text Search -->
-	<!-- 검색어 검색 -->
-	<definition name="search/textResult" extends="commonLayout"> 
-		<put-attribute name="menu" value="/WEB-INF/views/include/menu.jsp" /> 
-		<put-attribute name="content" value="/WEB-INF/views/search/textResult.jsp" /> 
-	</definition>
-	
-	<definition name="store/detail" extends="commonLayout"> 
-		<put-attribute name="menu" value="/WEB-INF/views/include/menu.jsp" /> 
-		<put-attribute name="content" value="/WEB-INF/views/store/detail.jsp" /> 
-	</definition>
-
-	
 	
 	<definition name="notice/listAll" extends="commonLayout"> 
 		<put-attribute name="content" value="/WEB-INF/views/notice/listAll.jsp" /> 
@@ -51,6 +39,29 @@
 	<definition name="review/listAll" extends="commonLayout"> 
 		<put-attribute name="content" value="/WEB-INF/views/review/listAll.jsp" /> 
 	</definition>
+	
+	<definition name="member/index" extends="commonLayout"> 
+		<put-attribute name="content" value="/WEB-INF/views/member/index.jsp" /> 
+	</definition>
+	
+<!-- 	
+		<definition name="member/login" > 
+		<put-attribute name="content" value="/WEB-INF/views/member/login.jsp" /> 
+	</definition>
+	<definition name="member/logout" > 
+		<put-attribute name="content" value="/WEB-INF/views/member/logout.jsp" /> 
+	</definition>
+		<definition name="member/index" > 
+		<put-attribute name="content" value="/WEB-INF/views/member/index.jsp" /> 
+	</definition> -->
+<!-- 	
+	<definition name="member/login" extends="commonLayout"> 
+		<put-attribute name="content" value="/WEB-INF/views/member/login.jsp" /> 
+	</definition>
+		<definition name="member/logout" extends="commonLayout"> 
+		<put-attribute name="content" value="/WEB-INF/views/member/logout.jsp" /> 
+	</definition>
+	 -->
 
 
 </tiles-definitions>	

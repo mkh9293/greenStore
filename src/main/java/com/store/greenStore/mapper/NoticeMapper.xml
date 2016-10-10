@@ -4,12 +4,12 @@
 
     <insert id="write" useGeneratedKeys="true" keyProperty="nkey">
         insert into notice(ntitle, ncontent, ndate)
-        values(#{ntitle}, #{ncontent}, sysdate)
+        values(#{ntitle}, #{ncontent}, sysdate())
     </insert>
 
 	<update id="update">
 		update notice
-		set ntitle=#{ntitle}, ncontent=#{ncontent}
+		set ntitle=#{ntitle}, ncontent=#{ncontent}, ndate=sysdate()
 		where nkey = #{nkey}
 	</update>
 	
@@ -26,6 +26,25 @@
 	<select id="listAll" resultType="com.store.greenStore.dto.Notice">
 		select nkey, ntitle, ncontent, ndate
 		from notice
-		order by ndate asc
+		order by nkey, ndate asc
 	</select>
+
+
+	
+<!-- 	<select id="listAll" resultType="com.store.greenStore.dto.Notice">
+		<![CDATA[
+			select *
+			from notice
+			order by nkey desc
+		]]>
+<<<<<<< HEAD
+	</select> -->
+
+<!-- 	
+	<select id="searchById" resultType="com.store.greenStore.dto.Notice">
+		select nkey, ntitle, ncontent
+		from notice
+		where nkey = #{nkey}
+	</select> -->
+
 </mapper>

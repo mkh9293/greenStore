@@ -4,7 +4,7 @@
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="rkey">
         INSERT review(MKEY,SH_ID,RCONTENT,RELIKE,RDATE)
-        VALUES (#{mkey}, #{sh_id}, #{rcontent},#{relike},NOW())
+        VALUES (#{mkey}, #{sh_id}, #{rcontent},0,NOW())
     </insert>
 	
 	
@@ -17,18 +17,25 @@
 		DELETE FROM review where rkey=#{rkey}
 	</delete>
 	
-	<select id="select">
-		SELECT * FROM review WHERE sh_id=9018 and relike = (SELECT max(relike) FROM review);
+	<select id="select" resultType="com.store.greenStore.dto.Review">
+		SELECT * FROM review WHERE sh_id=#{sh_id} and relike = (SELECT max(relike) FROM review);
 	</select>
 	
 	<select id="listAll" resultType="com.store.greenStore.dto.Review">
-		SELECT * FROM review
+		SELECT * FROM review r INNER JOIN store s ON r.sh_id = s.sh_id
 	</select>
 	
-	<select id="highReview" resultType="com.store.greenStore.dto.Review">
-		SELECT * FROM review WHERE relike = (select MAX(relike) from review)
+	<select id="oneStore" resultType="com.store.greenStore.dto.Review">
+		SELECT * FROM review WHERE sh_id=#{sh_id}
 	</select>
 	
+	<select id="reLike" >
+		UPDATE review SET relike=relike+1 where rkey=#{rkey}
+	</select>
+	
+	<select id="reUnlike">
+		UPDATE review SET relike=relike-1 where rkey=#{rkey}
+	</select>
 	
 	
 </mapper>

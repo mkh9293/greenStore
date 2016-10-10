@@ -7,10 +7,21 @@ public class Review {
 	private String rcontent;
 	private int relike;
 	private Date rdate;
+	private String sh_name;
+	
 	
 	public int getRkey() {
 		return rkey;
 	}
+	
+	public String getSh_name() {
+		return sh_name;
+	}
+
+	public void setSh_name(String sh_name) {
+		this.sh_name = sh_name;
+	}
+
 	public void setRkey(int rkey) {
 		this.rkey = rkey;
 	}

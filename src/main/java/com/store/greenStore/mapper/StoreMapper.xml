@@ -26,6 +26,22 @@
         DESC LIMIT 6;
 	</select>
 	
+	<select id="region" resultType="com.store.greenStore.dto.Store">
+			select  s.SH_ID, SH_NAME, SH_ADDR, MENU, induty_code_se_name, SH_RCMN, SH_LIKE, SH_PHOTO, MIN(PRICE) AS PRICE 
+			from store s join store_menu m on s.sh_id = m.sh_id  
+			where s.sh_addr like concat('%',#{searchText},'%')
+			group by sh_id
+			order by sh_rcmn desc LIMIT 6;
+	</select>
+	
+	<select id="category" resultType="com.store.greenStore.dto.Store">
+			select  s.SH_ID, SH_NAME, SH_ADDR, MENU, induty_code_se_name, SH_RCMN, SH_LIKE, SH_PHOTO, MIN(PRICE) AS PRICE 
+			from store s join store_menu m on s.sh_id = m.sh_id  
+			where s.INDUTY_CODE_SE = #{cate}
+			group by sh_id
+			order by sh_rcmn desc LIMIT 6;
+	</select>
+	
 	<select id="selectAll" resultType="com.store.greenStore.dto.Store">
 		SELECT *
 		FROM store

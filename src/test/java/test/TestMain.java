@@ -1,5 +1,7 @@
 package test;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +9,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.store.greenStore.dto.Member;
+import com.store.greenStore.dto.Store;
 import com.store.greenStore.mapper.MemberMapper;
+import com.store.greenStore.mapper.StoreDbMapper;
 import com.store.greenStore.mapper.StoreMapper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -22,6 +25,8 @@ public class TestMain {
 	StoreMapper storeMapper;
 	@Autowired 
 	MemberMapper memberMapper;
+	@Autowired
+	StoreDbMapper storeDbMapper;
 	
 //	@Autowired
 //	JsonControllers controll;
@@ -119,18 +124,27 @@ public class TestMain {
 
 	
 	//멤버 조회
-	@Test
-	public void selectMember(){
-		if(memberMapper.selectMember("123")!=null){
-			System.out.println("not null");
-		}else{
-			System.out.println("null");
-			Member member = new Member();
-			member.setMid("123");
-			member.setMname("mkh");
-			member.setMphoto("http://test.com");
-			memberMapper.insertUser(member);
-			System.out.println(member.getMkey() +" mkey~~");
-		}
-	}
+//	@Test
+//	public void selectMember(){
+//		if(memberMapper.selectMember("123")!=null){
+//			System.out.println("not null");
+//		}else{
+//			System.out.println("null");
+//			Member member = new Member();
+//			member.setMid("123");
+//			member.setMname("mkh");
+//			member.setMphoto("http://test.com");
+//			memberMapper.insertUser(member);
+//			System.out.println(member.getMkey() +" mkey~~");
+//		}
+//	}
+	
+	//상세 정보용
+//	@Test
+//	public void detail(){
+//		List<Store> items = storeDbMapper.appDetail(2350);
+//		for(Store item : items){
+//			System.out.println(item.getMenu());
+//		}
+//	}
 }

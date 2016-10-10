@@ -167,7 +167,7 @@ html, body {
 }
 /* End 메인 이미지, 조건 검색에 대한 css */
 
-ul.tabs {
+ul.tabs{
     margin: 0;
     padding: 0;
     float: left;
@@ -179,7 +179,7 @@ ul.tabs {
     font-family:"dotum";
     font-size:12px;
 }
-ul.tabs li {
+ul.tabs li{
     color:#16a085;
     float: left;
     text-align:center;
@@ -196,7 +196,7 @@ ul.tabs li {
     border : 1px solid #16a085;
 	border-radius: 4px;
 }
-ul.tabs li.active {
+ul.tabs li.active{
 	color:#fff;
     background: #1abc9c;
     border-bottom: 1px solid #FFFFFF;
@@ -222,4 +222,21 @@ ul.tabs li.active {
 .tab_container .tab_content ul li {
     padding:5px;
     list-style:none
+}
+
+.bestList ul li :hover{
+	cursor: pointer;
+}
+.region{
+	display:inline-block; float:right;margin-right:5%;
+}
+.region nav {
+	
+}
+.region a{
+	margin:50;
+}
+
+.region a:hover{
+	cursor:pointer;
 }

@@ -3,34 +3,45 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <!-- notice -->
 <link rel="stylesheet" href="<c:url value="/resources/bootstrap/css/bootstrap.min.css"/>" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 <link rel="stylesheet" href="<c:url value="/resources/dist/css/AdminLTE.min.css"/>" type="text/css">
-<link rel="stylesheet" href="<c:url value="/resources/dist/css/skins/_all-skins.min.css"/>" type="text/css">
-<script src="<c:url value="/resources/plugins/jQuery/jquery-2.2.3.min.js"/>"></script>
+<link rel="stylesheet" href="<c:url value="/resources/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"/>" type="text/css">
+<%-- <script src="<c:url value="/resources/plugins/jQuery/jquery-2.2.3.min.js"/>"></script> --%>
 <script src="<c:url value="/resources/bootstrap/js/bootstrap.min.js"/>"></script>
 <script src="<c:url value="/resources/plugins/fastclick/fastclick.js"/>"></script>
 <script src="<c:url value="/resources/dist/js/app.min.js"/>"></script>
+
+<script src="<c:url value="/resources/dist/js/demo.js"/>"></script>
+<!--  <script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script> -->
+<script src="<c:url value="/resources/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"/>"></script>
+
+<script src="<c:url value="/resources/js/modal.js"/>"></script>
+<link rel="stylesheet" href="<c:url value="/resources/css/modal.css"/>" type="text/css">
 
 <!-- Home -->
 <link rel="stylesheet" href="<c:url value="/resources/css/normalize.css"/>" type="text/css">
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" type="text/css">
 <link rel="stylesheet" href="<c:url value="/resources/css/home.css"/>" type="text/css">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/common.css"/>">
 <script src="<c:url value="/resources/js/home.js"/>"></script>
+
 
 <!-- style -->
 <style>
-	.navbar-header{
+/* 	.navbar-header{
 		background-color: #1ABC9c;
+		width: 100%;
 	}
 	.navbar-brand {
 		font-family : SpoquHanSans-Reqular, sans-serif;
 		font-size: 25px;
-	}
+	} */
 	.col-md-12{
-		margin-top: 100px;
+		margin-top: 80px;
 	}
 	.input-group {
 		margin-top: 80px;
@@ -41,45 +52,10 @@
 
 
 </style>
-
-<div id="mask"></div>
-<div id="mySidenav" class="sidenav">
-	<a href="javascript:void(0)" class="closebtn">&times;</a>
-	<div></div>
-	<a href="#">About</a> <a href="#">Services</a> <a href="#">Clients</a>
-	<a href="#">Contact</a>
-</div>
-
-<header id="header">
-	<nav class="navbar navbar-default navbar-fixed-top">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#" style="color: #ffffff;">GreenStore</a>
-				<span class="openbtn">&#9776;</span>
-		</div>
-	</nav>
-</header>
-
-<header id="header2" style="display:none;">	
-	<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="#" style="color: #ffffff;">GreenStore</a>
-			<form class="navbar-form navbar-left" action="" role="search">
-				<div class="form-group">
-					<input type="text" name="searchText" class="form-control" placeholder="Search">
-				</div>
-			</form>
-			<span class="openbtn">&#9776;</span>
-		</div>
-	</nav>
-</header>	
-
-
+<jsp:include page="../include/sideMenu.jsp"/>
 <div class="container">
-
-
 	<div class="row">
-	
-	        <div class="col-md-12">
+	      <div class="col-md-12">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#activity" data-toggle="tab">'좋아요'한 리뷰</a></li>

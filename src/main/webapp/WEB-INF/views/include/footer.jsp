@@ -8,7 +8,6 @@
 			$(".gs_android").on("click",function(){
 				window.open("https://play.google.com/store/apps/details?id=com.diningcode");
 			});
-			
 		});	
 </script>
 <style type="text/css">
@@ -106,6 +105,7 @@
 		text-align:center;
 	}
 </style>
+
 <div class="hidden-xs">
 	<footer class="footer">
 		<div class="gs_inner">
@@ -177,4 +177,3 @@
 		   	</div>
 	   	</div>	   
 	</footer>
-</div>
