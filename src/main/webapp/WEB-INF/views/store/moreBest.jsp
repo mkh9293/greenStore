@@ -32,7 +32,7 @@
 
 </style>
 <div class="hidden-xs">
-	<div style="width:100%; height:390px; background-size:100%; background-image: url(https://scloud.pstatic.net/20160804_227/1470286733316zWDy3_JPEG/top_01.jpg?type=f1158_367)">
+	<div style="width:100%; height:100%; background-size:100%; background-image: url(https://scloud.pstatic.net/20160804_227/1470286733316zWDy3_JPEG/top_01.jpg?type=f1158_367)">
 		<figure style="margin:0;">
 			<figcaption>
 				<div style="text-align: center; line-height: 3;">

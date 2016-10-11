@@ -79,7 +79,7 @@
 			
 	</style>
 <div class="hidden-xs">
-	<div style="width:1300px; height:390px; background-size:100%; background-image: url(https://scloud.pstatic.net/20160901_105/1472693529319VGBIU_JPEG/160901_curation_thumb.jpeg?type=f1158_367)"></div>
+	<div style="width:1300px; height:100%; background-size:100%; background-image: url(https://scloud.pstatic.net/20160901_105/1472693529319VGBIU_JPEG/160901_curation_thumb.jpeg?type=f1158_367)"></div>
 	<div class="container" style="width: 100%; height: 200px; border-bottom:1px solid #EAEAEA;">
 		<h3 style="margin-top: 4%;  font-size: 45px; text-align:center;">
 			<strong style="color: #6d3afb;">${cate} 베스트 </strong>
