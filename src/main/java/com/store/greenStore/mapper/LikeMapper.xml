@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.store.greenStore.mapper.LikeMapper">
+
+	<select id="searchLikeByMkey" resultType="com.store.greenStore.dto.LikeDto">
+		select *
+		from store_like sl join review_like rl on sl.mkey = rl.mkey
+		where sl.mkey = #{mkey};
+	</select>
+	
+	<insert id="storeLike">
+		insert store_like 
+		
+	</insert>
+</mapper>
