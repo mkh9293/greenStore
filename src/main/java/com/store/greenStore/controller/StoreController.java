@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.catalina.filters.SetCharacterEncodingFilter;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.io.SAXReader;
@@ -350,6 +351,7 @@ public class StoreController {
 	public String play(Model model, @RequestParam(value="contentId") String contentId) throws IOException, ParseException{
 		Play play = getPlayDetailInfo(contentId);
 
+		
 		model.addAttribute("playInfo", play);
 
 		return "store/playDetail";
@@ -369,7 +371,7 @@ public class StoreController {
 	public String searchAll(Model model) throws IOException, ParseException{
 		List<Store> store = new ArrayList<Store>();
 		store = storeMapper.webSelectAll();
-
+		
 		model.addAttribute("store", store);
 
 		return "search/moreResult";
@@ -378,11 +380,18 @@ public class StoreController {
 	@RequestMapping(value="/search/{searchText}",method = RequestMethod.GET)
 	public String search(@PathVariable("searchText")String searchText, Model model){
 		List<Store> storeList = storeMapper.search(searchText);
-
+		
+		ArrayList<String> localList = new ArrayList<String>();
+		for(int i=0;i<storeList.size();i++){
+			String[] tempList = storeList.get(i).getSh_addr().split(" ");
+			localList.add(tempList[1]);
+		}
+		
 		model.addAttribute("searchText", searchText);
 		model.addAttribute("store", storeList);
 		model.addAttribute("storeListSize", storeList.size());
-
+		model.addAttribute("localList",localList);
+		
 		return "search/textResult";
 	}
 
@@ -397,16 +406,27 @@ public class StoreController {
 			indutyName = storeList.get(0).getInduty_code_se_name();
 		}
 		
+		ArrayList<String> localList = new ArrayList<String>();
+		for(int i=0;i<storeList.size();i++){
+			String[] tempList = storeList.get(i).getSh_addr().split(" ");
+			localList.add(tempList[1]);
+		}
 		model.addAttribute("area",area);
 		model.addAttribute("cate", indutyName);
 		model.addAttribute("cateJson",cate);
 		model.addAttribute("storeListSize",storeList.size());
 		model.addAttribute("store",storeList);
-
+		model.addAttribute("localList",localList);
+		
 		return "search/conditionResult";
 	}
+	
+	@RequestMapping(value="/moreBest",method = RequestMethod.GET)
+	public void cateSearch(){
 		
-	@RequestMapping(value="/food/{induty}",method = RequestMethod.GET)
+	}	
+	
+	@RequestMapping(value="/best/{induty}",method = RequestMethod.GET)
 	public String cateSearch(@PathVariable("induty")String induty, Model model){
 		//cate 가 음식으로 오면 한식,중식,일식
 		List<Store> storeList = new ArrayList<Store>();

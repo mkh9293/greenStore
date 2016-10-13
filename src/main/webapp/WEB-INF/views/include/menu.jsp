@@ -23,7 +23,6 @@
 <script src="<c:url value="/resources/dist/js/demo.js"/>"></script>
 <script src="<c:url value="/resources/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"/>"></script>
 <script src="<c:url value="/resources/js/modal.js"/>"></script>
-<script src="<c:url value="/resources/js/home.js"/>"></script>
 
 <!-- session -->
 <jsp:useBean id="loginBean" class="petBean.LoginInfoBean"/>
@@ -43,8 +42,6 @@
 	loginBean = (petBean.LoginInfoBean)session.getAttribute("LOGININFO");
 %>
 <!-- ./session -->
-<!-- Common css import -->
-<link rel="stylesheet" href="<c:url value="/resources/css/common.css"/>">
     
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -218,6 +215,4 @@
 		</ul>
 	</nav>
 </div>
-
-	<div style="height:50px;"></div>
-
+<div style="height:54px;"></div>

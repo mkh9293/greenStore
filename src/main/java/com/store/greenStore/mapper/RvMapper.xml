@@ -21,8 +21,8 @@
 		SELECT * FROM review WHERE sh_id=#{sh_id} and relike = (SELECT max(relike) FROM review);
 	</select>
 	
-	<select id="listAll" resultType="com.store.greenStore.dto.Review">
-		SELECT * FROM review r INNER JOIN store s ON r.sh_id = s.sh_id
+	<select id="listAll" resultType="com.store.greenStore.dto.Review"> 
+		SELECT * FROM review r INNER JOIN store s ON r.sh_id = s.sh_id order by rkey asc;
 	</select>
 	
 	<select id="oneStore" resultType="com.store.greenStore.dto.Review">
