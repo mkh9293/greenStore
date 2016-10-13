@@ -49,13 +49,20 @@ public class AppReviewController {
 	@RequestMapping(value="/insert", method=RequestMethod.POST)
 	public @ResponseBody void reviewWrtie(Review review){
 		System.out.println(review.getMkey()+" / "+review.getRcontent()+" / "+review.getSh_id());
+		
 		rvmapper.insert(review);
 		
 	}
 
+	@RequestMapping(value="/update", method=RequestMethod.POST)
+	public @ResponseBody void reviewUpdate(Review review){
+		System.out.println(review.getMkey()+" / "+review.getRcontent()+" / "+review.getSh_id());
+		rvmapper.update(review);
+		
+	}
+	
 	@RequestMapping(value="/delete", method=RequestMethod.GET)
 	public @ResponseBody void reviewDelete(Review review){
-		System.out.println(review.getRkey()+" / "+review.getRcontent()+" / "+review.getSh_id());
 		rvmapper.delete(review.getRkey());
 		
 	}
@@ -69,5 +76,7 @@ public class AppReviewController {
 			rvmapper.reLike(myLike.getRkey());
 		
 	}
+	
+	
 	
 }

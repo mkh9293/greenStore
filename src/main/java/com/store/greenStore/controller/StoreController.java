@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.catalina.filters.SetCharacterEncodingFilter;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.io.SAXReader;
@@ -350,6 +351,7 @@ public class StoreController {
 	public String play(Model model, @RequestParam(value="contentId") String contentId) throws IOException, ParseException{
 		Play play = getPlayDetailInfo(contentId);
 
+		
 		model.addAttribute("playInfo", play);
 
 		return "store/playDetail";

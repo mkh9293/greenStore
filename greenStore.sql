@@ -53,3 +53,6 @@ select * from store_menu;
 select store_menu.menu
 from store join store_menu on store.sh_id = store_menu.sh_id  
 where store.sh_id = 2350;
+
+
+SELECT * FROM review r INNER JOIN store s ON r.sh_id = s.sh_id order by rdate desc;
