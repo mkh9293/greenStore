@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.store.greenStore.dto.Member;
 import com.store.greenStore.dto.Review;
 import com.store.greenStore.dto.ReviewLike;
+import com.store.greenStore.dto.Store;
 import com.store.greenStore.mapper.RvLikeMapper;
 import com.store.greenStore.mapper.RvMapper;
 
@@ -49,13 +51,20 @@ public class AppReviewController {
 	@RequestMapping(value="/insert", method=RequestMethod.POST)
 	public @ResponseBody void reviewWrtie(Review review){
 		System.out.println(review.getMkey()+" / "+review.getRcontent()+" / "+review.getSh_id());
+		
 		rvmapper.insert(review);
 		
 	}
 
+	@RequestMapping(value="/update", method=RequestMethod.POST)
+	public @ResponseBody void reviewUpdate(Review review){
+		System.out.println(review.getMkey()+" / "+review.getRcontent()+" / "+review.getSh_id());
+		rvmapper.update(review);
+		
+	}
+	
 	@RequestMapping(value="/delete", method=RequestMethod.GET)
 	public @ResponseBody void reviewDelete(Review review){
-		System.out.println(review.getRkey()+" / "+review.getRcontent()+" / "+review.getSh_id());
 		rvmapper.delete(review.getRkey());
 		
 	}
@@ -68,6 +77,14 @@ public class AppReviewController {
 		else
 			rvmapper.reLike(myLike.getRkey());
 		
+	}
+	
+	@RequestMapping(value="/appReviewCateSearch/{area}/{cate}", method=RequestMethod.GET)
+	public @ResponseBody List<Review> reviewCateSearch(@PathVariable("area")String area,@PathVariable("cate")String cate){
+		System.out.println(area +" ~~ " +cate);
+		if(cate.equals("운동시설"))
+			cate = "수영장"; // 수영장, 볼링장, 당구장, 골프장 등등.
+		return rvmapper.appReviewCateSearch(area, cate);
 	}
 	
 }

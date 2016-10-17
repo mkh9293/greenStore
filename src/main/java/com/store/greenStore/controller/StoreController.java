@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.catalina.filters.SetCharacterEncodingFilter;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.io.SAXReader;
@@ -329,8 +330,12 @@ public class StoreController {
 	public String play(Model model, @PathVariable("contentId") String contentId, @PathVariable("startName") String startName, @PathVariable("startAddr") String startAddr, @PathVariable("endName") String endName, @PathVariable("endAddr") String endAddr) throws IOException, ParseException{
 		
 		Play play = getPlayDetailInfo(contentId);
+<<<<<<< HEAD
 		HashMap<String, Double> map = getGps(startAddr);
 		HashMap<String, Double> map2 = getGps(endAddr);
+=======
+
+>>>>>>> origin/master
 		
 		model.addAttribute("playInfo", play);
 		model.addAttribute("addr", endAddr);

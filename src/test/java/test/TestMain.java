@@ -1,5 +1,6 @@
 package test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -9,8 +10,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import com.store.greenStore.dto.Review;
 import com.store.greenStore.dto.Store;
+import com.store.greenStore.dto.LikeDto;
+import com.store.greenStore.mapper.LikeMapper;
 import com.store.greenStore.mapper.MemberMapper;
+import com.store.greenStore.mapper.RvMapper;
 import com.store.greenStore.mapper.StoreDbMapper;
 import com.store.greenStore.mapper.StoreMapper;
 
@@ -27,6 +32,10 @@ public class TestMain {
 	MemberMapper memberMapper;
 	@Autowired
 	StoreDbMapper storeDbMapper;
+	@Autowired
+	RvMapper rvmapper;
+	@Autowired
+	LikeMapper likeMapper;
 	
 //	@Autowired
 //	JsonControllers controll;
@@ -147,4 +156,28 @@ public class TestMain {
 //			System.out.println(item.getMenu());
 //		}
 //	}
+	
+	@Test
+	public void detail(){
+		List<Review> items = rvmapper.appReviewCateSearch("강남구", "한식");
+		if(items == null) System.out.println("값이 없다");
+		for(Review item : items){
+			System.out.println(item.getSh_addr());
+			System.out.println(item.getINDUTY_CODE_SE_NAME());
+			System.out.println("---------------------------");
+		
+			
+		}
+	}
+	
+//		List<LikeDto> items = likeMapper.searchLikeByMkey(3);
+//		for(LikeDto item : items){
+//			System.out.println(item.getMkey()+" / "+item.getSh_id()+" / "+item.getRkey());
+//		}
+		LikeDto ld = new LikeDto();
+		ld.setMkey(3);
+		List<LikeDto> items = new ArrayList<LikeDto>();
+		items.add(ld);
+		System.out.println(items.get(0));
+	}
 }
