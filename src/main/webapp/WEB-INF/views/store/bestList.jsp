@@ -79,7 +79,7 @@
 			
 	</style>
 <div class="hidden-xs">
-	<div style="width:1300px; height:100%; background-size:100%; background-image: url(https://scloud.pstatic.net/20160901_105/1472693529319VGBIU_JPEG/160901_curation_thumb.jpeg?type=f1158_367)"></div>
+	<div style="width:1300px; height:390; background-size:100%; background-image: url(https://scloud.pstatic.net/20160901_105/1472693529319VGBIU_JPEG/160901_curation_thumb.jpeg?type=f1158_367)"></div>
 	<div class="container" style="width: 100%; height: 200px; border-bottom:1px solid #EAEAEA;">
 		<h3 style="margin-top: 4%;  font-size: 45px; text-align:center;">
 			<strong style="color: #6d3afb;">${cate} 베스트 </strong>
@@ -147,24 +147,26 @@
 	</div>
 
 <div class="visible-xs">
-	<div class="container" style="width: 100%; height: 100px; border-bottom:1px solid #EAEAEA;">
-		<h3 style="margin-top: 6%;  font-size: 25px; text-align:center;">
-			<strong style="color: #6d3afb;">${cate} 베스트 10곳  </strong>
+	<div class="container" style="width: 100%; height: 110px; border-bottom:1px solid #EAEAEA;">
+		<h3 style="margin-top: 4%;  font-size: 30; text-align:center;">
+			<strong style="color: #6d3afb;">${cate} 베스트 </strong>
 		</h3>
 	</div>
 		<div style="width:100%; background-color: #ffffff;">
+			<br/>
 			<div class="container">
 				<!-- Store Row -->
-				<c:forEach items="${store }" var="storeList" varStatus="i">
-							<div class="stItem" data-id="${storeList.sh_id }"  style="padding:10px; width:99%;height:45%;">
+				<div class="row">
+						<c:forEach items="${store }" var="storeList" varStatus="i">
+							<div class="stItem" data-id="${storeList.sh_id }"  style="padding:10px;">
 								<div class="row">
 									<div class="col-md-3" id="stImg">
 											<img src="${storeList.sh_photo }"
 												onerror="this.src='<c:url value="/resources/img/iseoul.jpg"/>'"
-												alt="storeImage"  style="width:100%;height:180px;"/>
+												alt="storeImage"  style="width:99%;height:20%;"/>
 										</div>
-										<div class="col-md-6" id="stContent">
-											<h4 style="font-size:20px; display:inline-block; margin:0;">${storeList.sh_name }</h4>
+										<div class="col-md-6" id="stContent" style="margin-left:10;">
+											<h4 style="display:inline-block; font-size:20; margin-bottom:0;">${storeList.sh_name }</h4>
 											
 											<div id="likeShowDiv" style="display:inline-block; margin-left: 1%; font-size: 15px;">
 												<span class="glyphicon glyphicon-thumbs-up" style="margin: 0;" ></span>
@@ -172,31 +174,32 @@
 												<span class="glyphicon glyphicon-heart-empty" style="margin: 0;"></span>
 												<span style="color: #16a085; margin-left: 4px;">${storeList.sh_like }</span>
 											</div>
-											<p style="font-size:13px;margin-left:10;"><b>${localList[i.index] }</b> - ${storeList.induty_code_se_name }</p>
+											<p style="font-size:12;"><b>${localList[i.index] }</b> - ${storeList.induty_code_se_name }</p>
 											
 											<div class="review">
 						                    	<!-- Post -->
 								                <div class="post clearfix">
 								                  <div class="user-block">
-								                    <img class="img-circle img-bordered-sm" src="<c:url value="/resources/img/iseoul.jpg"/>" alt="User Image" style="width:10%;"/>
+								                    <img class="img-circle img-bordered-sm" src="<c:url value="/resources/img/iseoul.jpg"/>" alt="User Image"/>
 								                    
-								                    <div style="display:inline-block;margin-left: 10;">
-									                    <span class="username" style="margin:0;font-size:13;">
+								                    <div style="display:inline-block; margin-left: 10;">
+									                    <span class="username" style="margin:0;">
 									                          <a href="#">글쓴이</a>
 									                    </span>
-									                    <span class="description" style="margin:0;font-size:13;">날짜</span>
-									                  	<p style="font-size:15;">리뷰내용 </p>
+									                    <span class="description" style="margin:0;">날짜</span>
+									                  	<p>리뷰내용 </p>
 									                 </div>
 								                  </div>
 								                </div>
 								                <!-- /.post -->
-								           </div>	
-								           									
-										   <span id="detailStore" style="font-size:13px;font-weight:600;float:right">${storeList.sh_name } 더보기<span class="glyphicon glyphicon-chevron-right"></span></span>									
-									</div>
+								           	   <span id="detailStore" style="font-size:15;font-weight:600;float:right">${storeList.sh_name } 더보기<span class="glyphicon glyphicon-chevron-right"></span></span>									
+									       </div>	
+								    </div>
 								</div>
-							</div><hr style="width:100%;"/>
+							</div>
 						</c:forEach>
+						<br />
+					</div>
 			</div>
 		</div>
 </div>

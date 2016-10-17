@@ -67,6 +67,7 @@ $(document).ready(function(){
 			$("#searchStore").click(function(){
 				var area = $("#location").text();
 				var cate = $("#category").attr("value");
+				
 				$(location).attr("href","http://localhost:8080/store/search/"+area+"/"+cate);
 			});
 			

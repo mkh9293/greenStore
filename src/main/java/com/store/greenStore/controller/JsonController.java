@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.store.greenStore.dto.Play;
 import com.store.greenStore.dto.Store;
+import com.store.greenStore.dto.StoreLike;
 import com.store.greenStore.mapper.StoreMapper;
 
 @Controller
@@ -195,5 +196,14 @@ public class JsonController {
 		}
 		
 		return regionList;
+	}
+	
+	@RequestMapping(value="/likeJson",method = RequestMethod.POST)
+	public @ResponseBody HashMap<Integer, StoreLike> likeJson(int sh_id) throws IOException, ParseException{
+		System.out.println("sh_id: "+sh_id);
+		HashMap<Integer, StoreLike> map = new HashMap<Integer, StoreLike>();
+		map.put(1, storeMapper.likePlus(sh_id, 1));
+		System.out.println("map: "+map.get(1));
+		return map;
 	}
 }

@@ -104,6 +104,7 @@ public class StoreController {
 		while ((inputLine = in.readLine()) != null) {
 			ins += inputLine;
 		}
+		
 		JSONParser jsonParser = new JSONParser();
 
 		JSONObject jsonObject2 = (JSONObject) jsonParser.parse(ins);
@@ -119,23 +120,25 @@ public class StoreController {
 
 		for(int i=0;i<arrayResult.size();i++){
 			JSONObject jsonTemp = (JSONObject)arrayResult.get(i);
-			Play play = new Play();
+			if(!((String)jsonTemp.get("cat1")).equals("A05") && !((String)jsonTemp.get("cat1")).equals("B02")){
+				Play play = new Play();
 
-			play.setContentid(jsonTemp.get("contentid"));
-			play.setAddr1((String)jsonTemp.get("addr1"));
-			play.setAddr2(jsonTemp.get("addr2"));
-			play.setFirstimage((String)jsonTemp.get("firstimage"));
+				play.setContentid(jsonTemp.get("contentid"));
+				play.setAddr1((String)jsonTemp.get("addr1"));
+				play.setAddr2(jsonTemp.get("addr2"));
+				play.setFirstimage((String)jsonTemp.get("firstimage"));
 
-			play.setMapx(jsonTemp.get("mapx"));
-			play.setMapy(jsonTemp.get("mapy"));
+				play.setMapx(jsonTemp.get("mapx"));
+				play.setMapy(jsonTemp.get("mapy"));
 
-			play.setReadcount((long)jsonTemp.get("readcount"));
-			play.setTitle((String)jsonTemp.get("title"));
+				play.setReadcount((long)jsonTemp.get("readcount"));
+				play.setTitle((String)jsonTemp.get("title"));
 
-			play.setCat1(codeList.get((String)jsonTemp.get("cat1")));
-			play.setSigungucode(jsonTemp.get("sigungucode"));
-
-			playList.add(play);
+				play.setCat1(codeList.get((String)jsonTemp.get("cat1")));
+				play.setSigungucode(jsonTemp.get("sigungucode"));
+				
+				playList.add(play);	
+			}
 		}
 
 		return playList;
@@ -148,6 +151,7 @@ public class StoreController {
 		codeList.put("A03", "레포츠");
 		codeList.put("A04", "쇼핑");
 		codeList.put("A05", "음식");
+		
 		//숙박 음식 빼고 ..
 		codeList.put("B02", "숙박");
 		codeList.put("C01", "추천코스");
@@ -187,37 +191,9 @@ public class StoreController {
 		play.setCat1(codeList.get((String)jsonObject2.get("cat1")));
 		play.setSigungucode((String)jsonObject2.get("sigungucode"));
 		play.setOverview((String)jsonObject2.get("overview"));
-
+		
 		return play;
 	}
-
-	//놀거리 서비스 코드로 소분류 갖고 오기
-	private String getPlayServiceCode(String cat1, String cat2, String cat3) throws IOException, ParseException{
-		URL url = new URL("http://api.visitkorea.or.kr/openapi/service/rest/KorService/categoryCode?ServiceKey="+serviceKey+"&numOfRows=10&pageSize=10&pageNo=1&startPage=1&cat1="+cat1+"&cat2="+cat2+"&cat3="+cat3+"&MobileOS=ETC&MobileApp=공유자원포털&_type=json");
-
-		URLConnection yc = url.openConnection();
-		BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
-		String inputLine = "";
-		String ins = "";
-
-		while ((inputLine = in.readLine()) != null) {
-			ins += inputLine;
-		}
-
-		JSONParser jsonParser = new JSONParser();
-
-		JSONObject jsonObject2 = (JSONObject) jsonParser.parse(ins);
-
-		jsonObject2 = (JSONObject) jsonObject2.get("response");
-		jsonObject2 = (JSONObject) jsonObject2.get("body");
-		jsonObject2 = (JSONObject) jsonObject2.get("items");
-		jsonObject2 = (JSONObject) jsonObject2.get("item");
-
-		
-		return "";
-	}
-	//놀거리 지역코드로 지역 갖고 오기
-
 
 	//naver blog 검색 data 받아오기 
 	private List<Node> getBlogContent(String searchStore) throws IOException, DocumentException{
@@ -239,7 +215,6 @@ public class StoreController {
 		while ((inputLine = in.readLine()) != null) {
 			ins += inputLine;
 		}
-		System.out.println(ins);
 
 		SAXReader saxReader = new SAXReader();
 		Document document = saxReader.read(new StringReader(ins));
@@ -309,13 +284,18 @@ public class StoreController {
 		ArrayList<String> overviewList = new ArrayList<String>();
 		ArrayList<String> localList = new ArrayList<String>();
 		
-		for(int i=0;i<3;i++){
+		for(int i=0;i<4;i++){
 			Play play = getPlayDetailInfo(playList.get(i).getContentid().toString());
 			overviewList.add((String)play.getOverview());
 			
 			String[] tempList = new String[4];
-			tempList = playList.get(i).getAddr1().split(" ");
-			localList.add(tempList[1]);
+			
+			if(playList.get(i).getAddr1() != null){
+				tempList = playList.get(i).getAddr1().split(" ");
+				localList.add(tempList[1]);
+			}else{
+				localList.add("");
+			}
 		}
 		
 		//naver blog	
@@ -344,14 +324,23 @@ public class StoreController {
 		
 		return "store/detail";
 	}
-
-
-	@RequestMapping(value="/detail/play", method=RequestMethod.GET)
-	public String play(Model model, @RequestParam(value="contentId") String contentId) throws IOException, ParseException{
+	
+	@RequestMapping(value="/`/{contentId}/{startName}/{startAddr}/{endName}/{endAddr}", method=RequestMethod.GET)
+	public String play(Model model, @PathVariable("contentId") String contentId, @PathVariable("startName") String startName, @PathVariable("startAddr") String startAddr, @PathVariable("endName") String endName, @PathVariable("endAddr") String endAddr) throws IOException, ParseException{
+		
 		Play play = getPlayDetailInfo(contentId);
-
+		HashMap<String, Double> map = getGps(startAddr);
+		HashMap<String, Double> map2 = getGps(endAddr);
+		
 		model.addAttribute("playInfo", play);
-
+		model.addAttribute("addr", endAddr);
+		model.addAttribute("startX", map2.get("pointX"));
+		model.addAttribute("startY", map2.get("pointY"));
+		model.addAttribute("endX", map.get("pointX"));
+		model.addAttribute("endY", map.get("pointY"));
+		model.addAttribute("startName", startName);
+		model.addAttribute("endName", endName);
+		
 		return "store/playDetail";
 	}
 
@@ -374,16 +363,28 @@ public class StoreController {
 
 		return "search/moreResult";
 	}
-
+	
+	private ArrayList<String> getLocalList(List<Store> storeList){
+		
+		ArrayList<String> localList = new ArrayList<String>();
+		for(int i=0;i<storeList.size();i++){
+			String[] tempList;
+			if(storeList.get(i).getSh_addr()!=null){
+				tempList = storeList.get(i).getSh_addr().split(" ");
+				localList.add(tempList[1]);
+			}else{
+				localList.add("");
+			}
+		}
+		
+		return localList;
+	}
+	
 	@RequestMapping(value="/search/{searchText}",method = RequestMethod.GET)
 	public String search(@PathVariable("searchText")String searchText, Model model){
 		List<Store> storeList = storeMapper.search(searchText);
 		
-		ArrayList<String> localList = new ArrayList<String>();
-		for(int i=0;i<storeList.size();i++){
-			String[] tempList = storeList.get(i).getSh_addr().split(" ");
-			localList.add(tempList[1]);
-		}
+		ArrayList<String> localList = getLocalList(storeList);
 		
 		model.addAttribute("searchText", searchText);
 		model.addAttribute("store", storeList);
@@ -393,6 +394,14 @@ public class StoreController {
 		return "search/textResult";
 	}
 
+	private String getIndutyName(String cate){
+		HashMap<String, String> map = new HashMap<String,String>();
+		map.put("1", "한식");map.put("2", "중식");map.put("3","경양식,일식");
+		map.put("4", "기타외식");map.put("5", "미용업");map.put("6", "목욕업");
+		map.put("7", "세탁업");map.put("8", "숙박업");map.put("13", "기타서비스");
+		
+		return map.get(cate);
+	}
 	@RequestMapping(value="/search/{area}/{cate}",method = RequestMethod.GET)
 	public String cateSearch(@PathVariable("area")String area, @PathVariable("cate")String cate, Model model){
 		//cate 가 음식으로 오면 한식,중식,일식
@@ -400,8 +409,10 @@ public class StoreController {
 		storeList = storeMapper.cateSearch(area,cate);
 		String indutyName ="";
 		
-		if(storeList.size()>1){
+		if(storeList.size()>0){
 			indutyName = storeList.get(0).getInduty_code_se_name();
+		}else{
+			indutyName = getIndutyName(cate);
 		}
 		
 		ArrayList<String> localList = new ArrayList<String>();
@@ -431,15 +442,13 @@ public class StoreController {
 		storeList = storeMapper.category(induty);
 		String indutyName ="";
 		
-		if(storeList.size()>1){
+		if(storeList.size()>0){
 			indutyName = storeList.get(0).getInduty_code_se_name();
+		}else{
+			indutyName = getIndutyName(induty);
 		}
 		
-		ArrayList<String> localList = new ArrayList<String>();
-		for(int i=0;i<storeList.size();i++){
-			String[] tempList = storeList.get(i).getSh_addr().split(" ");
-			localList.add(tempList[1]);
-		}
+		ArrayList<String> localList = getLocalList(storeList);
 		
 		model.addAttribute("cate", indutyName);
 		model.addAttribute("storeListSize",storeList.size());
@@ -447,5 +456,22 @@ public class StoreController {
 		model.addAttribute("localList",localList);
 
 		return "store/bestList";
+	}
+
+	@RequestMapping(value="/mb/detail/play/{contentId}/{playName}/{playAddr}",method = RequestMethod.GET)
+	public String mbPlayDetail(@PathVariable("contentId")String contentId, @PathVariable("playName")String playName, @PathVariable("playAddr")String playAddr, Model model) throws IOException, ParseException{
+		System.out.println("mb_plaYY: "+contentId );
+		
+		Play play = getPlayDetailInfo(contentId);
+		HashMap<String, Double> map = getGps(playAddr);
+		
+		model.addAttribute("playInfo", play);
+		model.addAttribute("addr", playAddr);
+		model.addAttribute("pointX", map.get("pointX"));
+		model.addAttribute("pointY", map.get("pointY"));
+		model.addAttribute("playName", playName);
+		model.addAttribute("daumBlogList", getDaumBlog(play.getTitle()));
+		
+		return "store/mbPlayDetail";
 	}
 }

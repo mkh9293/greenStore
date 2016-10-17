@@ -148,7 +148,7 @@
 			<div class="bestList">
 				<ul style="list-style: none;">
 					<li
-						style="display: inline-block; margin: 15; width: 500px; height: 260px; background-size: 500px; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/keyword_search/meta/pictures/eexfpmvgj6iq-m2m.jpg'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg');">
+						style="display: inline-block; margin: 15; width: 45%; height: 260px; background-size: 500px; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/keyword_search/meta/pictures/eexfpmvgj6iq-m2m.jpg'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg');">
 						<a href="/store/best/1">
 							<figure>
 								<figcaption>
@@ -160,7 +160,7 @@
 						</a>
 					</li>
 					<li
-						style="display: inline-block; margin: 15; width: 500px; height: 260px; background-size: 500px; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/184699_1425200192391'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg')">
+						style="display: inline-block; margin: 15; width: 45%; height: 260px; background-size: 500px; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/184699_1425200192391'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg')">
 						<a href="/store/best/2">
 							<figure>
 								<figcaption>
@@ -173,7 +173,7 @@
 					</li>
 
 					<li
-						style="display: inline-block; margin: 15; width: 500px; height: 260px; background-size: 500px; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/keyword_search/meta/pictures/ayrwtxnvv7ckdczu.jpg'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg')">
+						style="display: inline-block; margin: 15; width: 45%; height: 260px; background-size: 500px; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/keyword_search/meta/pictures/ayrwtxnvv7ckdczu.jpg'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg')">
 						<a href="/store/best/3">
 							<figure>
 								<figcaption>
@@ -185,14 +185,15 @@
 					</a>
 					</li>
 					<li
-						style="display: inline-block; margin: 15; width: 500px; height: 260px; background-size: 500px; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/keyword_search/meta/pictures/-x08y8zjwpcdu5d-.jpg'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg')">
-						<a href="/store/moreBest"
-						style="display: inline-block; position: absolute; color: #fff; font-size: 30px; z-index: 5; margin: 7% 13%;">리스트
-							더보기 </a>
+						style="display: inline-block; margin: 15; width: 45%; height: 260px; background-size: 500px; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/keyword_search/meta/pictures/-x08y8zjwpcdu5d-.jpg'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg')">
 						<div
-							style="display: inline-block; position: absolute; width: 500px; height: 260px; background-color: #000; opacity: 0.8;"></div>
+							style="display: inline-block; position: absolute; width: 39%; height: 260px; background-color: #000; opacity: 0.8; padding:5% 12%;">
+							<a href="/store/moreBest"
+						style="display: inline-block; position: absolute; color: #fff; font-size: 30px; z-index: 5;">리스트
+							더보기 </a>	
+						</div>
 						<a>
-							<figure>
+							<figure style="margin:20;">
 								<figcaption>
 									<div style="text-align: center; line-height: 5;">
 										<span style="font-size: 30px; color: #fff;">서울시 추천 베스트</span>
@@ -240,7 +241,7 @@
 						<div id="storeImg">
 							<img src="${storeList.sh_photo }"
 								onerror="this.src='<c:url value="/resources/img/iseoul.jpg"/>'"
-								alt="storeImage" />
+								alt="storeImage"/>
 						</div>
 						<div id="storeContent">
 							<h4>${storeList.sh_name }</h4>
@@ -273,7 +274,7 @@
 	<header id="mb_header">
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#" style="color: #ffffff;">GS</a>
+				<a class="navbar-brand" href="/" style="color: #ffffff;">GS</a>
 				<form id="mb_searchFrm" class="navbar-form navbar-left" action=""
 					style="display: inline-block; width: 65%;">
 					<div class="form-group" style="width: 110%">
@@ -290,15 +291,14 @@
 		style="width: 100%; height: 300px; background-image: url(https://scloud.pstatic.net/20160405_149/1459823688590GWVfp_JPEG/01_main_top_1920x630_02.jpg); background-size: 1000px;" />
 	<br />
 	<br />
-
-
+	
 	<div>
-		<span style="font-size: 25px; font-weight: 600;">식당 추천 리스트</span>
+		<span style="font-size: 25px; font-weight: 600; margin:2%;">식당 추천 리스트</span>
 		<div class="bestList">
 			<ul style="list-style: none; padding: 0;">
 				<li
 					style="display: inline-block; margin: 2%; width: 96%; height: 220px; background-size: 100%; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/keyword_search/meta/pictures/eexfpmvgj6iq-m2m.jpg'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg');">
-					<a href="/store/food/1">
+					<a href="/store/best/1">
 						<figure>
 							<figcaption>
 								<div style="text-align: center; line-height: 5;">
@@ -310,7 +310,7 @@
 				</li>
 				<li
 					style="display: inline-block; margin: 2%; width: 96%; height: 220px; background-size: 100%; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/184699_1425200192391'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg')">
-					<a href="/store/food/2">
+					<a href="/store/best/2">
 						<figure>
 							<figcaption>
 								<div style="text-align: center; line-height: 5;">
@@ -323,7 +323,7 @@
 
 				<li
 					style="display: inline-block; margin: 2%; width: 96%; height: 220px; background-size: 100%; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/keyword_search/meta/pictures/ayrwtxnvv7ckdczu.jpg'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg')">
-					<a href="/store/food/3">
+					<a href="/store/best/3">
 						<figure>
 							<figcaption>
 								<div style="text-align: center; line-height: 5;">
@@ -335,7 +335,7 @@
 				</li>
 				<li
 					style="display: inline-block; margin: 2%; width: 96%; height: 220px; background-size: 100%; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/keyword_search/meta/pictures/-x08y8zjwpcdu5d-.jpg'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg')">
-					<a href="/store/bestFood"
+					<a href="/store/moreBest"
 					style="display: inline-block; position: absolute; color: #fff; font-size: 30px; z-index: 5; margin: 12% 30%;">리스트
 						더보기 </a>
 					<div
@@ -416,6 +416,6 @@
 				</div>
 			</div>
 		</div>
-		<div style="height: 900px;"></div>
+		<div style="height: 910px;"></div>
 	</div>
 </div>
