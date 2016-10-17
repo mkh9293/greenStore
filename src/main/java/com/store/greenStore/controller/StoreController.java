@@ -326,16 +326,13 @@ public class StoreController {
 		return "store/detail";
 	}
 	
-	@RequestMapping(value="/`/{contentId}/{startName}/{startAddr}/{endName}/{endAddr}", method=RequestMethod.GET)
+	@RequestMapping(value="/detail/play/{contentId}/{startName}/{startAddr}/{endName}/{endAddr}", method=RequestMethod.GET)
 	public String play(Model model, @PathVariable("contentId") String contentId, @PathVariable("startName") String startName, @PathVariable("startAddr") String startAddr, @PathVariable("endName") String endName, @PathVariable("endAddr") String endAddr) throws IOException, ParseException{
 		
 		Play play = getPlayDetailInfo(contentId);
-<<<<<<< HEAD
+
 		HashMap<String, Double> map = getGps(startAddr);
 		HashMap<String, Double> map2 = getGps(endAddr);
-=======
-
->>>>>>> origin/master
 		
 		model.addAttribute("playInfo", play);
 		model.addAttribute("addr", endAddr);
