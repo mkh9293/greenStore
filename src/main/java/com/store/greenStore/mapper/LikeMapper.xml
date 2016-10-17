@@ -9,7 +9,11 @@
 	</select>
 	
 	<insert id="storeLike">
-		insert store_like 
-		
+		insert store_like(MKEY,SH_ID)
+		values (#{mkey},#{sh_id}) 
+	</insert>
+	
+	<insert id="storeLikeUp">
+		UPDATE store SET sh_like=sh_like+1 where sh_id=#{sh_id}
 	</insert>
 </mapper>

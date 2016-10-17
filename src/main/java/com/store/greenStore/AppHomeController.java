@@ -58,9 +58,16 @@ public class AppHomeController {
 		
 		//사용자 조회 후 이미 회원이 존재하면 like 정보들을 리턴. 만약 like한게 없으면 like.size()는 0 이됨.
 		if(result.getMkey()!=mkey){
+			System.out.println("1");
 			likeDto.setMkey(result.getMkey());
 			like = likeMapper.searchLikeByMkey(likeDto.getMkey());
+			if(like.size() == 0){
+				likeDto.setRkey("");
+				likeDto.setSh_id("");
+				like.add(likeDto);
+			}
 		}else{
+			System.out.println("2");
 			//사용자 조회 후 회원이 존재하지 않으면 정보 저장 후 값 리턴.
 			memberMapper.insertUser(member);
 			likeDto.setMkey(member.getMkey());
@@ -82,17 +89,6 @@ public class AppHomeController {
 		return storeMapper.appCateSearch(area, cate);
 	}
 	
-	@RequestMapping("/detail/{sh_id}")
-	public @ResponseBody List<Store> appDetail(@PathVariable("sh_id")int sh_id){
-		return storeDbMapper.appDetail(sh_id);
-	}
-	
-	//스토어 좋아요 메소드
-	@RequestMapping("/storeLike")
-	public @ResponseBody void storeLike(StoreLike storeLike){
-		System.out.println(storeLike.getMkey() + " / "+storeLike.getSh_id());
-		likeMapper.storeLike(storeLike);
-	}
 	
 //	@RequestMapping(value = "/", method = RequestMethod.GET)
 //	public @ResponseBody String home(Model model) {

@@ -26,6 +26,12 @@ public class Store {
 	private Object pointX;
 	private Object pointY;
 	
+	//play 객체와 합치기
+	private String addr1;
+	private Object addr2;
+	private String firstimage;
+	private String title;
+	
 	public Object getPointX() {
 		return pointX;
 	}
@@ -134,4 +140,30 @@ public class Store {
 	public void setBase_ym(Date base_ym) {
 		this.base_ym = base_ym;
 	}
+	public String getAddr1() {
+		return addr1;
+	}
+	public void setAddr1(String addr1) {
+		this.addr1 = addr1;
+	}
+	public Object getAddr2() {
+		return addr2;
+	}
+	public void setAddr2(Object addr2) {
+		this.addr2 = addr2;
+	}
+	public String getFirstimage() {
+		return firstimage;
+	}
+	public void setFirstimage(String firstimage) {
+		this.firstimage = firstimage;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
+	
 }
