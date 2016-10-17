@@ -9,8 +9,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import com.store.greenStore.dto.Review;
 import com.store.greenStore.dto.Store;
 import com.store.greenStore.mapper.MemberMapper;
+import com.store.greenStore.mapper.RvMapper;
 import com.store.greenStore.mapper.StoreDbMapper;
 import com.store.greenStore.mapper.StoreMapper;
 
@@ -27,6 +29,8 @@ public class TestMain {
 	MemberMapper memberMapper;
 	@Autowired
 	StoreDbMapper storeDbMapper;
+	@Autowired
+	RvMapper rvmapper;
 	
 //	@Autowired
 //	JsonControllers controll;
@@ -147,4 +151,18 @@ public class TestMain {
 //			System.out.println(item.getMenu());
 //		}
 //	}
+	
+	@Test
+	public void detail(){
+		List<Review> items = rvmapper.appReviewCateSearch("강남구", "한식");
+		if(items == null) System.out.println("값이 없다");
+		for(Review item : items){
+			System.out.println(item.getSh_addr());
+			System.out.println(item.getINDUTY_CODE_SE_NAME());
+			System.out.println("---------------------------");
+		
+			
+		}
+	}
+	
 }

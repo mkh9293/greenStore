@@ -2,7 +2,10 @@ package com.store.greenStore.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.store.greenStore.dto.Review;
+import com.store.greenStore.dto.Store;
 
 public interface RvMapper {
 		public void insert(Review rv);
@@ -16,5 +19,6 @@ public interface RvMapper {
 		public void reLike(int rkey);
 		public void reUnlike(int rkey);
 		
+		List<Review> appReviewCateSearch(@Param("area")String area,@Param("cate")String cate);
 		
 }

@@ -8,8 +8,36 @@ public class Review {
 	private int relike;
 	private Date rdate;
 	private String sh_name;
+	private String sh_addr;
+	private int INDUTY_CODE_SE;
+	private String INDUTY_CODE_SE_NAME;
 	
 	
+	
+	public int getINDUTY_CODE_SE() {
+		return INDUTY_CODE_SE;
+	}
+
+	public void setINDUTY_CODE_SE(int iNDUTY_CODE_SE) {
+		INDUTY_CODE_SE = iNDUTY_CODE_SE;
+	}
+
+	public String getINDUTY_CODE_SE_NAME() {
+		return INDUTY_CODE_SE_NAME;
+	}
+
+	public void setINDUTY_CODE_SE_NAME(String iNDUTY_CODE_SE_NAME) {
+		INDUTY_CODE_SE_NAME = iNDUTY_CODE_SE_NAME;
+	}
+
+	public String getSh_addr() {
+		return sh_addr;
+	}
+
+	public void setSh_addr(String sh_addr) {
+		this.sh_addr = sh_addr;
+	}
+
 	public int getRkey() {
 		return rkey;
 	}

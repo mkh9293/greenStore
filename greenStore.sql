@@ -54,5 +54,24 @@ select store_menu.menu
 from store join store_menu on store.sh_id = store_menu.sh_id  
 where store.sh_id = 2350;
 
-
 SELECT * FROM review r INNER JOIN store s ON r.sh_id = s.sh_id order by rdate desc;
+
+
+		select  s.SH_ID, SH_NAME, SH_ADDR, MENU, induty_code_se_name, SH_RCMN, SH_LIKE, SH_PHOTO, MIN(PRICE) AS PRICE 
+		from store s join store_menu m on s.sh_id = m.sh_id  
+		<where>
+			<if test="!area.equals('전체')">
+				sh_addr like concat('%',#{area},'%') and
+			</if>
+			<if test="area.equals('전체')">
+				sh_addr like '%%' and
+			</if>
+			<if test="!cate.equals('전체')">
+				induty_code_se_name like concat('%',#{cate},'%')
+			</if>
+			<if test="cate.equals('전체')">
+				induty_code_se_name like '%%'
+			</if>
+		</where>
+		group by sh_id
+		order by sh_rcmn desc;

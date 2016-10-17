@@ -31,11 +31,35 @@
 	
 	<select id="reLike" >
 		UPDATE review SET relike=relike+1 where rkey=#{rkey}
+	
 	</select>
+	
 	
 	<select id="reUnlike">
 		UPDATE review SET relike=relike-1 where rkey=#{rkey}
 	</select>
 	
+	
+		<select id="appReviewCateSearch" resultType="com.store.greenStore.dto.Review">
+		select  s.SH_ID, SH_NAME, SH_ADDR, induty_code_se_name, SH_RCMN, SH_LIKE, 
+		SH_PHOTO, RKEY, MKEY, RCONTENT, RELIKE, RDATE 
+		from store s join review r on s.sh_id = r.sh_id  
+		<where>
+			<if test="!area.equals('전체')">
+				sh_addr like concat('%',#{area},'%') and
+			</if>
+			<if test="area.equals('전체')">
+				sh_addr like '%%' and
+			</if>
+			<if test="!cate.equals('전체')">
+				induty_code_se_name like concat('%',#{cate},'%')
+			</if>
+			<if test="cate.equals('전체')">
+				induty_code_se_name like '%%'
+			</if>
+		</where>
+		
+		order by sh_rcmn desc;
+	</select>
 	
 </mapper>
