@@ -1,7 +1,6 @@
 package com.store.greenStore.dto;
 
 public class Member {
-	
 	private int mkey;
 	private String mphoto;
 	private String mid;

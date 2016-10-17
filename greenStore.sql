@@ -75,3 +75,18 @@ SELECT * FROM review r INNER JOIN store s ON r.sh_id = s.sh_id order by rdate de
 		</where>
 		group by sh_id
 		order by sh_rcmn desc;
+select distinct *
+from store_like sl join review_like rl on sl.mkey = rl.mkey
+where sl.mkey = 4;
+
+select *
+from review_like;
+select *
+from store_like;
+insert store_like (mkey,sh_id) values (3,9016);
+insert review_like (rkey,MKEY) values (2,3);
+select *
+from review_like;
+insert review (MKEY,SH_ID,RCONTENT,RELIKE) values (3,9015,"맛있다.",0);
+
+SELECT * FROM review r INNER JOIN store s ON r.sh_id = s.sh_id order by rdate desc;
