@@ -24,6 +24,7 @@
 	var sh_name = "<c:out value="${store.sh_name}"/>";
 	var sh_addr = "<c:out value="${store.sh_addr}"/>";
 	var sh_way = "<c:out value="${store.sh_way}"/>";
+	var sh_id = "<c:out value="${store.sh_id}"/>";
 	
 	var pointX = ${pointX};
 	var pointY = ${pointY};
@@ -47,7 +48,7 @@
 		
 		mb_mapOption = { 
 	        center: new daum.maps.LatLng(pointY, pointX), // 지도의 중심좌표
-	        level: 5, // 지도의 확대 레벨
+	        level: 4, // 지도의 확대 레벨
 	        draggable: false,
 	        scrollwheel: false,
 	        disableDoubleClick: false,
@@ -81,8 +82,20 @@
 		
 		$(".playItem").on("click",function(){
 			var contentId = $(this).attr("data-id");
-			window.open("http://localhost:8080/store/detail/play?contentId="+contentId,"_blank","toolbar=no,scrollbars=yes,resizable=yes,top=200,left=200,width=800,height=600");
+			var addr1 = $(this).find(".addr1").text();
+			var title = $(this).find(".title").text();
+		
+			window.open("http://localhost:8080/store/detail/play/"+contentId+"/"+sh_name+"/"+sh_addr+"/"+title+"/"+addr1,"_blank","toolbar=no,scrollbars=yes,resizable=no,top=200,left=200,width=800,height=600");
+			
 			//$(location).attr("href","http://localhost:8080/greenStore/store/detail/play?contentId="+contentId);
+		});
+		
+		$(".mb_playItem").on("click",function(){
+			var contentId = $(this).attr("data-id");
+			var addr1 = $(this).find(".addr1").text();
+			var title = $(this).find(".title").text();
+			
+			$(location).attr("href","http://localhost:8080/store/mb/detail/play/"+contentId+"/"+title+"/"+addr1);
 		});
 		
 		var likeBtn = false;//나중에 디비에서 받아야된다.
@@ -93,6 +106,17 @@
 	            $("#likeBtn").css("color","#1abc9c");
 	            likeBtn = true;
 	            alert("좋아요를 눌렀습니다.");
+	            
+	            $.ajax({
+	            	url:"http://localhost:8080/json/likeJson",
+	            	data:{"sh_id":sh_id},
+	            	method:"post",
+	            	success:function(data){
+	            		$.each(data, function(key, value){
+	    					alert(value);
+	    				});
+	            	}
+	            });
 	        }
 	        else{
 	        	$("#likeBtn").removeClass();
@@ -134,7 +158,7 @@
 	body span{
 		font-size:12px;
 	}
-	.mb_playItem, #likeBtn, #mapImage, :hover{
+	.mb_playItem, #likeBtn, #mapImage :hover{
 		cursor:pointer;
 	}
 </style>
@@ -245,9 +269,8 @@
 											<img src="${play.firstimage }" alt="playImage" onerror="this.src='<c:url value="/resources/img/iseoul.jpg"/>'" style="width:120%;height:150px;"/>
 										</div>
 										<div class="col-md-7" >
-											<b>${play.title }</b><br/>
-											
-											<span style="color:gray;">위치: </span><span>${play.addr1 }</span><br/>
+											<b class="title">${play.title }</b><br/>
+											<span style="color:gray;">위치: </span><span class="addr1">${play.addr1 }</span><br/>
 											<span style="color:gray;">분류: </span><span>${play.cat1 }</span><br/>
 										</div>
 									</div>
@@ -343,12 +366,12 @@
                 </div>
                 
                 <!-- store image, name, addr -->
-				<div class="row">
+				<div class="row" style="margin-left:2%;">
 					<div style="display:inline-block; margin:1px 10px 2px 10px;">
 						<img src="${store.sh_photo }" alt="storeImage" class="img-circle" width=120px; height=120px;/>
 					</div>
-					<div style="display:inline-block; margin-top:5px;">
-						<h5 style="font-size:20px;">${store.sh_name } </h5>
+					<div style="display:inline-block; margin-top:5px; width:65%;">
+						<h5 style="font-size:20px;margin:0;">${store.sh_name } </h5>
 						<p>${store.sh_addr }</p>
 					</div><hr style="width:90%;text-align:center;"/>	
 				</div>
@@ -376,8 +399,9 @@
 										<img src="${play.firstimage }" alt="playImage" onerror="this.src='<c:url value="/resources/img/iseoul.jpg"/>'" />
 									</div>
 									<div id="mb_playContent">
-										<span style="font-size:14px;font-weight:600">${play.title }</span><br/>
+										<span style="font-size:14px;font-weight:600" class="title">${play.title }</span><br/>
 										<span style="color:gray;">${localList[i.index] } - ${play.cat1 }</span><br/>
+										<span style="display:hidden" class="addr1">${play.addr1 }</span><br/>
 									</div>
 								</div>
 							</c:if>
@@ -385,5 +409,5 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div><br/>
 </div>

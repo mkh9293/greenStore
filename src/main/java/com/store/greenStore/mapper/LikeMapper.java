@@ -11,4 +11,7 @@ public interface LikeMapper {
 	
 	//스토어 좋아요
 	void storeLike(StoreLike storeLike);
+	
+	//스토어 좋아요 +1
+	void storeLikeUp(int sh_id);
 }

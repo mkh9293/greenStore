@@ -54,6 +54,8 @@ select store_menu.menu
 from store join store_menu on store.sh_id = store_menu.sh_id  
 where store.sh_id = 2350;
 
+<<<<<<< HEAD
+=======
 SELECT * FROM review r INNER JOIN store s ON r.sh_id = s.sh_id order by rdate desc;
 
 
@@ -75,6 +77,7 @@ SELECT * FROM review r INNER JOIN store s ON r.sh_id = s.sh_id order by rdate de
 		</where>
 		group by sh_id
 		order by sh_rcmn desc;
+>>>>>>> 00e8ca8c7d54bd5d1369e717d3face7325c78ba5
 select distinct *
 from store_like sl join review_like rl on sl.mkey = rl.mkey
 where sl.mkey = 4;
@@ -90,3 +93,12 @@ from review_like;
 insert review (MKEY,SH_ID,RCONTENT,RELIKE) values (3,9015,"맛있다.",0);
 
 SELECT * FROM review r INNER JOIN store s ON r.sh_id = s.sh_id order by rdate desc;
+<<<<<<< HEAD
+delete from store_like;
+select *
+		from store join store_menu on store.sh_id = store_menu.sh_id
+		where store.sh_id = 2350;
+select *
+from store;
+=======
+>>>>>>> 00e8ca8c7d54bd5d1369e717d3face7325c78ba5

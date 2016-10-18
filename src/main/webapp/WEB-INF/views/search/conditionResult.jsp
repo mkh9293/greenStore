@@ -118,10 +118,10 @@
 		<!-- Store Row -->
          <div id="storeRow" class="row">
            <c:if test="${storeListSize == 0 }">
-	            <div>
-		            <div>
-		            	<h3>검색 결과가 없습니다.</h3>
-		            </div>
+	            <div style="height:300px;text-align:center;">
+	            	<div style="font-size:27px;font-weight:570;padding:10%;">
+	            		검색 결과가 없습니다.<br/>다른 검색 조건으로 찾아보세요.
+		           </div>
 		        </div><hr/>
 	       </c:if>
             

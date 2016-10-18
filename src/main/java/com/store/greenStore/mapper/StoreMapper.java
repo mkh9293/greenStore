@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.store.greenStore.dto.Store;
+import com.store.greenStore.dto.StoreLike;
 
 public interface StoreMapper {
 	void insert(Store data);
@@ -18,4 +19,6 @@ public interface StoreMapper {
 	List<Store> cateSearch(@Param("area")String area,@Param("cate")String cate);
 	
 	List<Store> appCateSearch(@Param("area")String area,@Param("cate")String cate);
+	
+	StoreLike likePlus(@Param("shid")int shid, @Param("mk")int mk);
 }

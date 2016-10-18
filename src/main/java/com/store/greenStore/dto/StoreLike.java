@@ -4,6 +4,7 @@ public class StoreLike {
 
 	private int mkey;
 	private int sh_id;
+	private int flag;
 	
 	public int getMkey() {
 		return mkey;
@@ -18,5 +19,11 @@ public class StoreLike {
 		this.sh_id = sh_id;
 	}
 	
+	public int getFlag() {
+		return flag;
+	}
+	public void setFlag(int flag) {
+		this.flag = flag;
+	}
 	
 }

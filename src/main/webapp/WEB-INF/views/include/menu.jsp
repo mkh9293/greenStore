@@ -181,7 +181,7 @@
 		<ul style="list-style: none; margin: 0;padding: 0; position: absolute; width: 360px;">
 			<li style="display: inline-block; line-height: 20px; position: relative; width: 100%;">
 				<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
-					<a href="../greenStore" style="color: #f47721;text-decoration: none; margin-left:2%;">그린스토어 홈</a> 
+					<a href="/" style="color: #f47721;text-decoration: none; margin-left:2%;">그린스토어 홈</a> 
 					<span class="css-arrow" ></span>
 				</div>
 				<div style="display:block;position: relative; width:100%; height:60px; border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
