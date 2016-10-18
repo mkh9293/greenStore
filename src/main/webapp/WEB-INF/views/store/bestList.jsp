@@ -76,15 +76,43 @@
 				cursor:pointer;
 				color:#16a085;
 			}
-			
+			#bestTitle h4{
+				position:absolute;font-size:50px;color:#fff;width:100%;top:250;
+			}
 	</style>
 <div class="hidden-xs">
-	<div style="width:1300px; height:390; background-size:100%; background-image: url(https://scloud.pstatic.net/20160901_105/1472693529319VGBIU_JPEG/160901_curation_thumb.jpeg?type=f1158_367)"></div>
-	<div class="container" style="width: 100%; height: 200px; border-bottom:1px solid #EAEAEA;">
+	<div id="bestTitle" style="width:1300px; height:450; text-align:center;">
+		<c:if test="${induty == 1}">
+			<img src="<c:url value="/resources/img/o-kfood.jpeg"/>" style="position:relative;width:100%;height:100%;"/>
+			<h4>한식 베스트 10</h4>
+		</c:if>
+		<c:if test="${induty == 2}">
+			<img src="<c:url value="/resources/img/o-cfood.jpeg"/>" style="width:100%;height:100%;"/>
+			<h4>중식 베스트 10</h4>
+		</c:if>
+			<c:if test="${induty == 3}"> 
+			<img src="<c:url value="/resources/img/o-jfood.jpeg"/>" style="width:100%;height:100%;"/>
+			<h4>일식 베스트 10</h4>
+		</c:if>
+		
+		<c:if test="${induty == 5}">
+			<img style="width:100%; height:100%; background-size:100%;background-image: url('http://mulga.seoul.go.kr/photo/20151126102205.jpg'), url('http://mulga.seoul.go.kr/photo/20151126102205.jpg')"/>
+			<h4>미용 베스트 리스트</h4>
+		</c:if>
+		<c:if test="${induty == 7}">
+			<img style="width:100%; height:100%; background-size:100%;background-image: url('http://mulga.seoul.go.kr/photo/SDC10302.JPG'), url('http://mulga.seoul.go.kr/photo/SDC10302.JPG')"/>
+			<h4>세탁 베스트 리스트</h4>
+		</c:if>
+		<c:if test="${induty == 8}"> 
+			<img style="width:100%; height:450px; background-size:100%;background-image: url('http://mulga.seoul.go.kr/photo/20111104140652.jpg'), url('http://mulga.seoul.go.kr/photo/20111104140652.jpg')"/>
+			<h4>숙박 베스트 리스트</h4>
+		</c:if>
+	</div>
+	<%-- <div class="container" style="width: 100%; height: 200px; border-bottom:1px solid #EAEAEA;">
 		<h3 style="margin-top: 4%;  font-size: 45px; text-align:center;">
 			<strong style="color: #6d3afb;">${cate} 베스트 </strong>
 		</h3>
-	</div>
+	</div> --%>
 		<div style="width:100%; background-color: #ffffff;">
 			<br/>
 			<div class="container">
@@ -96,7 +124,7 @@
 									<div class="col-md-3" id="stImg">
 											<img src="${storeList.sh_photo }"
 												onerror="this.src='<c:url value="/resources/img/iseoul.jpg"/>'"
-												alt="storeImage"  style="width:250px;height:250px;"/>
+												alt="storeImage"  style="width:100%;height:250px;"/>
 										</div>
 										<div class="col-md-6" id="stContent" style="height:250px;">
 											<h4 style="display:inline-block;">${storeList.sh_name }</h4>

@@ -29,89 +29,74 @@
 	.bestList ul li{
 		display: inline-block; margin: 20; width: 45%; /* height: 230px; */ background-size: 100%;
 	}
-
+	#bestTitle{
+		position:absolute; width:100%; top:130;
+	}
+	#bestTitle h4{
+		font-size:50px;color:#fff;
+	}
+	#bestTitle span{
+		font-size:20px;font-weight:600;color:#f47721;text-decoration: underline;
+	}
 </style>
 <div class="hidden-xs">
-	<div style="width:100%; height:390; background-size:100%; background-image: url(https://scloud.pstatic.net/20160804_227/1470286733316zWDy3_JPEG/top_01.jpg?type=f1158_367)">
-		<figure style="margin:0;">
-			<figcaption>
-				<div style="text-align: center; line-height: 3;">
-					<span style="font-size: 50px; font-weight:600; color: #fff;">서울시 추천 리스트</span>
-					<span style="display:block;font-size: 20px; font-weight:600; color: #FFD014;  text-decoration: underline;">업종별 베스트</span>
-				</div>
-			</figcaption>
-		</figure>
+	<div style="width:100%; height:390; text-align:center;">
+		<img src="<c:url value="/resources/img/o-morelist.jpeg"/>" alt="" style="width:100%; height:100%; opacity:0.9;"/>
+		<div id="bestTitle">
+			<h4>서울시 추천 리스트</h4>	
+			<span>업종별 베스트</span>
+		</div>
 	</div>
 	<div style="width:100%; height:40px;"></div>
 	<div style="width: 100%; background-color: #ffffff;">
 			<div class="bestList">
 					<ul style="list-style: none; margin:0;">
-						<li style="background-size: 100%; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/keyword_search/meta/pictures/eexfpmvgj6iq-m2m.jpg'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg');">
+						<li style="height:300px;">
 							<a href="/store/best/1">
-								<figure>
-									<figcaption>
-										<div style="text-align: center; line-height: 5;">
-											<span style="font-size: 30px; color: #fff;">한식 베스트 10곳</span>
-										</div>
-									</figcaption>
-								</figure>
+								<img src="<c:url value="/resources/img/kfood.png"/>" style="width:100%;height:100%;"/>
 							</a>
 						</li>
-						<li
-							style="background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/184699_1425200192391'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg')">
+						<li style="height:300px;">
 							<a href="/store/best/2">
-								<figure>
-									<figcaption>
-										<div style="text-align: center; line-height: 5;">
-											<span style="font-size: 30px; color: #fff;">중식 베스트 10곳</span>
-										</div>
-									</figcaption>
-								</figure>
-						</a>
+									<img src="<c:url value="/resources/img/cfood.png"/>" style="width:100%;height:100%;"/>
+							</a>
 						</li>
-
-						<li style="background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/keyword_search/meta/pictures/ayrwtxnvv7ckdczu.jpg'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg')">
+						<li style="height:300px;">
 							<a href="/store/best/3">
-								<figure>
-									<figcaption>
-										<div style="text-align: center; line-height: 5;">
-											<span style="font-size: 30px; color: #fff;">일식 베스트 10곳</span>
-										</div>
-									</figcaption>
-								</figure>
+								<img src="<c:url value="/resources/img/jfood.png"/>" style="width:100%;height:100%;"/>
 							</a>
 						</li>
 						
-						<li style=" background-image: url('http://mulga.seoul.go.kr/photo/20151126102205.jpg'), url('http://mulga.seoul.go.kr/photo/20151126102205.jpg')">
+						<li style=" height:300px; background-image: url('http://mulga.seoul.go.kr/photo/20151126102205.jpg'), url('http://mulga.seoul.go.kr/photo/20151126102205.jpg')">
 							<a href="/store/best/5">
-								<figure>
-									<figcaption>
-										<div style="text-align: center; line-height: 5;">
-											<span style="font-size: 30px; color: #fff;">미용실 베스트</span>
+								<figure style="margin:0;">
+									<figcaption style="margin:0;">
+										<div style="text-align: center; line-height: 9.5;">
+											<span style="font-size: 30px; font-weight:600; color: #fff;">미용실 베스트</span>
 										</div>
 									</figcaption>
 								</figure>
 							</a>
 						</li>
 						
-						<li style=" background-image: url('http://mulga.seoul.go.kr/photo/SDC10302.JPG'), url('http://mulga.seoul.go.kr/photo/SDC10302.JPG')">
+						<li style=" height:300px; background-image: url('http://mulga.seoul.go.kr/photo/SDC10302.JPG'), url('http://mulga.seoul.go.kr/photo/SDC10302.JPG')">
 							<a href="/store/best/7">
 								<figure>
 									<figcaption>
-										<div style="text-align: center; line-height: 5;">
-											<span style="font-size: 30px; color: #fff;">세탁소 베스트</span>
+										<div style="text-align: center; line-height: 10;">
+											<span style="font-size: 30px; font-weight:600; color: #fff;">세탁소 베스트</span>
 										</div>
 									</figcaption>
 								</figure>
 							</a>
 						</li>
 						
-						<li style="background-size: 100%; background-image: url('http://mulga.seoul.go.kr/photo/20111104140652.jpg'), url('http://mulga.seoul.go.kr/photo/20111104140652.jpg')">
+						<li style="height:300px;  background-size: 100%; background-image: url('http://mulga.seoul.go.kr/photo/20111104140652.jpg'), url('http://mulga.seoul.go.kr/photo/20111104140652.jpg')">
 							<a href="/store/best/8">
 								<figure>
 									<figcaption>
-										<div style="text-align: center; line-height: 5;">
-											<span style="font-size: 30px; color: #fff;">숙박 베스트</span>
+										<div style="text-align: center; line-height: 10;">
+											<span style="font-size: 30px; font-weight:600; color: #fff;">숙박 베스트</span>
 										</div>
 									</figcaption>
 								</figure>
@@ -132,39 +117,21 @@
 	<div style="width: 100%; background-color: #ffffff;">
 			<div class="bestList">
 					<ul style="list-style: none; margin:0; padding:0;">
-						<li style="display: inline-block; margin: 2%; width: 96%; height: 220px; background-size: 100%; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/keyword_search/meta/pictures/eexfpmvgj6iq-m2m.jpg'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg');">
+						<li style="display: inline-block; margin: 2%; width: 96%; height: 220px;">
 							<a href="/store/best/1">
-								<figure>
-									<figcaption>
-										<div style="text-align: center; line-height: 5;">
-											<span style="font-size: 30px; color: #fff;">한식 베스트 10곳</span>
-										</div>
-									</figcaption>
-								</figure>
+								<img src="<c:url value="/resources/img/kfood.png"/>" style="width:100%;height:100%;"/>
 							</a>
 						</li>
 						<li
-							style="display: inline-block; margin: 2%; width: 96%; height: 220px;background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/184699_1425200192391'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg')">
+							style="display: inline-block; margin: 2%; width: 96%; height: 220px;">
 							<a href="/store/best/2">
-								<figure>
-									<figcaption>
-										<div style="text-align: center; line-height: 5;">
-											<span style="font-size: 30px; color: #fff;">중식 베스트 10곳</span>
-										</div>
-									</figcaption>
-								</figure>
-						</a>
+									<img src="<c:url value="/resources/img/cfood.png"/>" style="width:100%;height:100%;"/>
+							</a>
 						</li>
 
-						<li style="display: inline-block; margin: 2%; width: 96%; height: 220px;background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/keyword_search/meta/pictures/ayrwtxnvv7ckdczu.jpg'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg')">
+						<li style="display: inline-block; margin: 2%; width: 96%; height: 220px;">
 							<a href="/store/best/3">
-								<figure>
-									<figcaption>
-										<div style="text-align: center; line-height: 5;">
-											<span style="font-size: 30px; color: #fff;">일식 베스트 10곳</span>
-										</div>
-									</figcaption>
-								</figure>
+								<img src="<c:url value="/resources/img/jfood.png"/>" style="width:100%;height:100%;"/>
 							</a>
 						</li>
 						
@@ -172,8 +139,8 @@
 							<a href="/store/best/5">
 								<figure>
 									<figcaption>
-										<div style="text-align: center; line-height: 5;">
-											<span style="font-size: 30px; color: #fff;">미용실 베스트</span>
+										<div style="text-align: center; line-height:8;">
+											<span style="font-size: 23px;font-weight:600;color: #fff;">미용실 베스트</span>
 										</div>
 									</figcaption>
 								</figure>
@@ -184,8 +151,8 @@
 							<a href="/store/best/7">
 								<figure>
 									<figcaption>
-										<div style="text-align: center; line-height: 5;">
-											<span style="font-size: 30px; color: #fff;">세탁소 베스트</span>
+										<div style="text-align: center; line-height: 8;">
+											<span style="font-size: 23px; color: #fff;">세탁소 베스트</span>
 										</div>
 									</figcaption>
 								</figure>
@@ -197,8 +164,8 @@
 							<a href="/store/best/8">
 								<figure>
 									<figcaption>
-										<div style="text-align: center; line-height: 5;">
-											<span style="font-size: 30px; color: #fff;">숙박 베스트</span>
+										<div style="text-align: center; line-height: 8;">
+											<span style="font-size: 23px; font-weight:600; color: #fff;">숙박 베스트</span>
 										</div>
 									</figcaption>
 								</figure>

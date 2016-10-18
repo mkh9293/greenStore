@@ -105,16 +105,15 @@
 	        	$("#likeBtn").addClass("glyphicon glyphicon-heart");
 	            $("#likeBtn").css("color","#1abc9c");
 	            likeBtn = true;
-	            alert("좋아요를 눌렀습니다.");
 	            
 	            $.ajax({
-	            	url:"http://localhost:8080/json/likeJson",
+	            	url:"http://localhost:8080/json/likePlus",
 	            	data:{"sh_id":sh_id},
 	            	method:"post",
 	            	success:function(data){
 	            		$.each(data, function(key, value){
-	    					alert(value);
-	    				});
+	            			alert("좋아요를 눌렀습니다.");
+	            		});
 	            	}
 	            });
 	        }
@@ -123,7 +122,17 @@
 	        	$("#likeBtn").addClass("glyphicon glyphicon-heart-empty");
 	            $("#likeBtn").css("color","#BDBDBD");
 	            likeBtn = false;
-	            alert("좋아요를 취소헸습니다.");
+	            
+	            $.ajax({
+	            	url:"http://localhost:8080/json/likeMin",
+	            	data:{"sh_id":sh_id},
+	            	method:"post",
+	            	success:function(data){
+	            		$.each(data, function(key, value){
+	            			alert("좋아요를 취소헸습니다.");
+	    				});
+	            	}
+	            });
 	        }
 		});
 		
@@ -154,11 +163,11 @@
 	});
 </script>
 
-<style>
+<style type="text/css">
 	body span{
 		font-size:12px;
 	}
-	.mb_playItem, #likeBtn, #mapImage :hover{
+	#map, #likeBtn, .playItem:hover{
 		cursor:pointer;
 	}
 </style>

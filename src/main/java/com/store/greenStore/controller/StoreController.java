@@ -408,13 +408,20 @@ public class StoreController {
 	public String cateSearch(@PathVariable("area")String area, @PathVariable("cate")String cate, Model model){
 		//cate 가 음식으로 오면 한식,중식,일식
 		List<Store> storeList = new ArrayList<Store>();
-		storeList = storeMapper.cateSearch(area,cate);
 		String indutyName ="";
 		
-		if(storeList.size()>0){
-			indutyName = storeList.get(0).getInduty_code_se_name();
+		if(cate.equals("10")){
+			storeList = storeMapper.webSelectAll();
+			
+			indutyName = "전체";
 		}else{
-			indutyName = getIndutyName(cate);
+			storeList = storeMapper.cateSearch(area,cate);
+			
+			if(storeList.size()>0){
+				indutyName = storeList.get(0).getInduty_code_se_name();
+			}else{
+				indutyName = getIndutyName(cate);
+			}
 		}
 		
 		ArrayList<String> localList = new ArrayList<String>();
@@ -453,6 +460,7 @@ public class StoreController {
 		ArrayList<String> localList = getLocalList(storeList);
 		
 		model.addAttribute("cate", indutyName);
+		model.addAttribute("induty", induty);
 		model.addAttribute("storeListSize",storeList.size());
 		model.addAttribute("store",storeList);
 		model.addAttribute("localList",localList);

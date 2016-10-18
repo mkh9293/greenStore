@@ -140,7 +140,7 @@
 	<div class="col-md-8">
 		<span style="margin-top: 1%; font-size: 22px; font-weight: 600;">경로안내</span>
 		<h3 style="margin-top: 2%;font-size: 35px; text-align: center;">
-			<strong style="color: #6d3afb;">${startName} - ${endName}</strong>
+			<strong style="color: #1abc9c;">${startName} → ${endName}</strong>
 		</h3>
 	</div>
 </div>
