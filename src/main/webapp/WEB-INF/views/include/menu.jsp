@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/normalize.css"/>" type="text/css">
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" type="text/css">
 <link rel="stylesheet" href="<c:url value="/resources/css/home.css"/>" type="text/css">
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/common.css"/>">
+<link rel="stylesheet" href="<c:url value="/resources/css/common.css"/>" type="text/css">
 
 <script src="<c:url value="/resources/bootstrap/js/bootstrap.min.js"/>"></script>
 <script src="<c:url value="/resources/plugins/fastclick/fastclick.js"/>"></script>
@@ -172,7 +172,7 @@
 	<div id="profile">
 		<div style="position:absolute; width:340px;height:200px; top:40px; left:25px;">
 			<img src="<c:url value="/resources/img/iseoul.jpg"/>" alt="iseoul" class="img-circle" style="display:inline-block;width:105px;height:110px;"/>
-			<strong style="margin-left:10px;line-height:6em;color:#000">로그인 필요합니다.</strong>		
+			<strong style="margin-left:10px;line-height:6em;color:#fff">로그인 필요합니다.</strong>		
 		</div>
 	</div>
 	<%} %>	
@@ -181,7 +181,7 @@
 		<ul style="list-style: none; margin: 0;padding: 0; position: absolute; width: 360px;">
 			<li style="display: inline-block; line-height: 20px; position: relative; width: 100%;">
 				<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
-					<a href="../greenStore" style="color: #f47721;text-decoration: none; margin-left:2%;">그린스토어 홈</a> 
+					<a href="/" style="color: #f47721;text-decoration: none; margin-left:2%;">그린스토어 홈</a> 
 					<span class="css-arrow" ></span>
 				</div>
 				<div style="display:block;position: relative; width:100%; height:60px; border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">

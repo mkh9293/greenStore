@@ -64,9 +64,14 @@ $(document).ready(function(){
 			});
 			
 			//조건으로 검색 
-			$("#searchStore").click(function(){
+			$("#searchStore").on("click",function(){
 				var area = $("#location").text();
 				var cate = $("#category").attr("value");
+				
+				if(typeof cate =="undefined"){
+					cate = "10";
+				}
+				
 				$(location).attr("href","http://localhost:8080/store/search/"+area+"/"+cate);
 			});
 			

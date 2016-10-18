@@ -2,10 +2,6 @@ html, body {
 	background-color: #f6f6f6;
 }
 
-#location, #category, #searchStore :hover{
-	cursor: pointer;
-}
-
 /* 지역,카테고리 선택 css */
 #locationDiv, #locationDiv div, #categoryDiv, #categoryDiv div {
 	clear: both;
@@ -134,7 +130,7 @@ html, body {
 #mainImage div {
 	z-index: 20; 
 	position: absolute; 
-	margin: 10%;
+	margin: 5%;
 }
 
 #mainImage #searchKeyward{
@@ -152,7 +148,7 @@ html, body {
 
 #mainImage #searchStore {
 	position:relative;
-	color: #FFD014; 
+	color: #f47721; 
 	width: 200px;
 	margin:0;
 }
@@ -162,8 +158,7 @@ html, body {
 }
 #mainImage img{
 	width: 100%; 
-	height: 500px; 
-	background-image: url(https://scloud.pstatic.net/20160405_149/1459823688590GWVfp_JPEG/01_main_top_1920x630_02.jpg);
+	height: 450px; 
 }
 /* End 메인 이미지, 조건 검색에 대한 css */
 

@@ -149,7 +149,7 @@
 	<footer class="mb_footer">
 		<div class="mb_inner" style="text-align:center;">
 	   		<div class="mb_greenStore">
-		   			<h4><a href="" style="line-height:2;">GreenStore</a></h4>
+		   			<h4 style="margin:0;"><a href="/" style="line-height:2;">GreenStore</a></h4>
 		   	</div>
 		   	<div class="gs_appStore" style="display:block;">
 		   		<div class="gs_ios" style="margin-right:2%;">
@@ -178,3 +178,4 @@
 		   	</div>
 	   	</div>	   
 	</footer>
+</div>

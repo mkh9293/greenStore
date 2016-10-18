@@ -30,6 +30,7 @@ public class AppHomeController {
 	MemberMapper memberMapper;
 	@Autowired
 	StoreDbMapper storeDbMapper;
+	
 	@Autowired
 	LikeMapper likeMapper;
 	

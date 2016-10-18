@@ -165,10 +165,9 @@ public class TestMain {
 			System.out.println(item.getSh_addr());
 			System.out.println(item.getINDUTY_CODE_SE_NAME());
 			System.out.println("---------------------------");
-		
-			
 		}
 	}
+}
 	
 //		List<LikeDto> items = likeMapper.searchLikeByMkey(3);
 //		for(LikeDto item : items){
@@ -180,4 +179,5 @@ public class TestMain {
 //		items.add(ld);
 //		System.out.println(items.get(0));
 //	}
-}
+//}
+

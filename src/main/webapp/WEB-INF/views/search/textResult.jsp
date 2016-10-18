@@ -127,15 +127,23 @@
 		
 	});
 	</script>
+	<style type="text/css">
+		.storeItem:hover{
+			cursor:pointer;
+		}
+	</style>
 <div class="hidden-xs">
-	<div id="searchResultMap" style="height: 300px; margin-bottom: 1px;">
-		<div id="map" style="height: 300px;"></div>
-		<hr />
-	</div>
+	<c:if test="${storeListSize != 0 }">
+		<div id="searchResultMap" style="height: 300px; margin-bottom: 1px;">
+			<div id="map" style="height: 300px;"></div>
+			<hr />
+		</div>
+	</c:if>
+	
 	<div class="container"
 		style="width: 100%; height: 110px; background-color: #ffffff;">
 		<h3 style="margin-top: 3%; margin-left: 7%; font-size: 30px;">
-			<strong style="color: #6d3afb;">${searchText }</strong>검색 결과입니다.
+			<strong style="color: #1abc9c;">${searchText }</strong>검색 결과입니다.
 		</h3>
 	</div>
 	<div class="container">
@@ -143,10 +151,13 @@
 		<!-- Store Row -->
 		<div class="row" id="storeRow">
 			<c:if test="${storeListSize == 0 }">
-				<div>
-					<h3 style="font-size: 30px;">검색 결과가 없습니다.</h3>
-				</div>
-			</c:if>
+	            <div style="height:300px;text-align:center;">
+	            	<div style="font-size:27px;font-weight:570;padding:10%;">
+	            		검색 결과가 없습니다.<br/>다른 검색 조건으로 찾아보세요.
+		           </div>
+		        </div><hr/>
+	       </c:if>
+	       
 			<c:if test="${storeListSize != 0 }">
 				<!-- Store Row -->
 		<div class="row">
@@ -185,12 +196,15 @@
 	</div>
 </div>
 <div class="visible-xs">
-	<div id="mb_searchResultMap" style="height: 300px; margin-bottom: 1px;">
-		<div id="mb_map" style="height: 300px;"></div>
-		<hr />
-	</div>
+	<c:if test="${storeListSize != 0 }">
+		<div id="mb_searchResultMap" style="height: 300px; margin-bottom: 1px;">
+			<div id="mb_map" style="height: 300px;"></div>
+			<hr />
+		</div>
+	</c:if>
+	
 	<div class="container"
-		style="width: 100%; height: 110px; background-color: #ffffff;">
+		style="width: 100%; height: 150px; background-color: #ffffff;">
 		<h3 style="margin-top: 5%; margin-left: 7%; font-size: 30px;">
 			<strong style="color: #6d3afb;">${searchText }</strong>검색 결과입니다.
 		</h3>
@@ -199,25 +213,35 @@
 	<div class="container">
 		<!-- Store Row -->
 				<div class="row">
-					<c:forEach items="${store }" var="storeList" varStatus="i">
-						<div class="mb_storeItem" data-id="${storeList.sh_id }" style="width: 45%;">
-							<div id="mb_storeImg">
-								<img src="${storeList.sh_photo }"
-									onerror="this.src='<c:url value="/resources/img/iseoul.jpg"/>'"
-									alt="storeImage" style="width: 100% height: 218px;"/>
-							</div>
-							<div id="mb_storeContent">
-								<span id="mb_storeName"><b>${storeList.sh_name }</b></span>
-								<div id="mb_likeShowDiv"
-									style="float: right; margin-right: 5px; bottom: 0; font-size: 15px;">
-									<span class="glyphicon glyphicon-thumbs-up" style="margin: 0;" ></span>
-									<span style="color: #16a085; margin-left: 4px;">${storeList.sh_rcmn }</span>
+					<c:if test="${storeListSize == 0 }">
+			            <div style="height:300px;text-align:center;">
+			            	<div style="font-size:27px;font-weight:570;padding:10%;">
+			            		검색 결과가 없습니다.<br/>다른 검색 조건으로 찾아보세요.
+				           </div>
+				        </div><hr/>
+			       </c:if>
+			       
+			       <c:if test="${storeListSize != 0 }">
+				       	<c:forEach items="${store }" var="storeList" varStatus="i">
+							<div class="mb_storeItem" data-id="${storeList.sh_id }" style="width: 45%;">
+								<div id="mb_storeImg">
+									<img src="${storeList.sh_photo }"
+										onerror="this.src='<c:url value="/resources/img/iseoul.jpg"/>'"
+										alt="storeImage" style="width: 100% height: 218px;"/>
 								</div>
-								<p>${localList[i.index] } - ${storeList.induty_code_se_name }</p>
+								<div id="mb_storeContent">
+									<span id="mb_storeName"><b>${storeList.sh_name }</b></span>
+									<div id="mb_likeShowDiv"
+										style="float: right; margin-right: 5px; bottom: 0; font-size: 15px;">
+										<span class="glyphicon glyphicon-thumbs-up" style="margin: 0;" ></span>
+										<span style="color: #16a085; margin-left: 4px;">${storeList.sh_rcmn }</span>
+									</div>
+									<p>${localList[i.index] } - ${storeList.induty_code_se_name }</p>
+								</div>
 							</div>
-						</div>
-					</c:forEach>
-					<br />
+						</c:forEach>
+					</c:if>
+				<br />
 		</div>
 	</div>
 </div>

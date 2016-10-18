@@ -22,6 +22,11 @@
 		<put-attribute name="content" value="/WEB-INF/views/store/playDetail.jsp" /> 
 	</definition>
 	
+	<definition name="error/*" extends="commonLayout"> 
+		<put-attribute name="menu" value="/WEB-INF/views/include/menu.jsp" /> 
+		<put-attribute name="content" value="/WEB-INF/views/error/{1}.jsp" /> 
+	</definition>
+	
 	<definition name="*/*" extends="commonLayout">
 		<put-attribute name="menu" value="/WEB-INF/views/include/menu.jsp" /> 
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" /> 

@@ -1,6 +1,10 @@
+@import url('http://fonts.googleapis.com/earlyaccess/nanumgothic.css');
+
 html, body {
-	font-family: NanumBarunGothic,'나눔바른고딕',NanumGothic,'돋움',Dotum,Helvetica,'Aspple SD Gothic Neo',Sans-serif!important;
-}
+/* 	font-family: NanumBarunGothic,'나눔바른고딕',NanumGothic,'돋움',Dotum,Helvetica,'Aspple SD Gothic Neo',Sans-serif!important;
+ */
+ font-family:'Nanum Gothic';
+ }
 
 /* 스토어 이미지 css */
 .storeItem{
@@ -8,6 +12,9 @@ html, body {
 	margin: 15px; 
 	background-color: #ffffff; 
 	box-shadow: 0px 0px 1px 0px #ccc;
+	border-radius:3px;
+	-webkit-border-radius :3px;
+    -ms-border-radius : 3px;
 }
 
 .storeItem #storeImg {
@@ -21,6 +28,9 @@ html, body {
 	transition: all .3s ease-out;
 	width: 340px;
 	height: 200px;
+	border-radius:3px 3px 0px 0px;
+	-webkit-border-radius :3px 3px 0px 0px;
+    -ms-border-radius : 3px 3px 0px 0px;
 }
 
 .storeItem img:hover {
@@ -134,7 +144,7 @@ html, body {
 	top : 0;
 	position: absolute;
 	z-index: 1;
-  	background-color: #7ac143;
+  	background-color: #1abc9c;
 }
 
 .sidenav a :not(1) {
