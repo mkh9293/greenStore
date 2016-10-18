@@ -174,10 +174,10 @@ public class TestMain {
 //		for(LikeDto item : items){
 //			System.out.println(item.getMkey()+" / "+item.getSh_id()+" / "+item.getRkey());
 //		}
-		LikeDto ld = new LikeDto();
-		ld.setMkey(3);
-		List<LikeDto> items = new ArrayList<LikeDto>();
-		items.add(ld);
-		System.out.println(items.get(0));
-	}
+//		LikeDto ld = new LikeDto();
+//		ld.setMkey(3);
+//		List<LikeDto> items = new ArrayList<LikeDto>();
+//		items.add(ld);
+//		System.out.println(items.get(0));
+//	}
 }
