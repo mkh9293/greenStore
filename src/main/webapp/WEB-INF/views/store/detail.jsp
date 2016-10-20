@@ -100,7 +100,8 @@
 		
 		var likeBtn = false;//나중에 디비에서 받아야된다.
 		$("#likeBtn").on("click",function(){
-	        if(likeBtn == false){
+			
+			if(likeBtn == false){
 	        	$("#likeBtn").removeClass();
 	        	$("#likeBtn").addClass("glyphicon glyphicon-heart");
 	            $("#likeBtn").css("color","#1abc9c");

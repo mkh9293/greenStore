@@ -177,7 +177,7 @@
 <div class="visible-xs">
 	<div class="container" style="width: 100%; height: 110px; border-bottom:1px solid #EAEAEA;">
 		<h3 style="margin-top: 4%;  font-size: 30; text-align:center;">
-			<strong style="color: #6d3afb;">${cate} 베스트 </strong>
+			<strong style="color: #16a085;">${cate} 베스트 </strong>
 		</h3>
 	</div>
 		<div style="width:100%; background-color: #ffffff;">
@@ -224,7 +224,8 @@
 									       </div>	
 								    </div>
 								</div>
-							</div>
+							</div><hr/>
+							
 						</c:forEach>
 						<br />
 					</div>
