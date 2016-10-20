@@ -165,10 +165,7 @@ public class TestMain {
 			System.out.println(item.getSh_addr());
 			System.out.println(item.getINDUTY_CODE_SE_NAME());
 			System.out.println("---------------------------");
-		
-			
 		}
-	
 	}
 }
 	
@@ -183,3 +180,4 @@ public class TestMain {
 //		System.out.println(items.get(0));
 //	}
 //}
+
