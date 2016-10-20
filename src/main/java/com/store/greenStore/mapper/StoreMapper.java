@@ -21,4 +21,5 @@ public interface StoreMapper {
 	List<Store> appCateSearch(@Param("area")String area,@Param("cate")String cate);
 	
 	StoreLike likePlus(@Param("shid")int shid, @Param("mk")int mk);
+	StoreLike likeMin(@Param("shid")int shid, @Param("mk")int mk);
 }

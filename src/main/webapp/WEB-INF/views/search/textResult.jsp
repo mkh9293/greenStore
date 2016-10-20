@@ -127,6 +127,11 @@
 		
 	});
 	</script>
+	<style type="text/css">
+		.storeItem:hover{
+			cursor:pointer;
+		}
+	</style>
 <div class="hidden-xs">
 	<c:if test="${storeListSize != 0 }">
 		<div id="searchResultMap" style="height: 300px; margin-bottom: 1px;">
@@ -138,7 +143,7 @@
 	<div class="container"
 		style="width: 100%; height: 110px; background-color: #ffffff;">
 		<h3 style="margin-top: 3%; margin-left: 7%; font-size: 30px;">
-			<strong style="color: #6d3afb;">${searchText }</strong>검색 결과입니다.
+			<strong style="color: #1abc9c;">${searchText }</strong>검색 결과입니다.
 		</h3>
 	</div>
 	<div class="container">

@@ -17,7 +17,7 @@
 		color: #949494;
 	}
 	.error_detail  b{
-		color:#16a085;
+		color:#1abc9c;
 	}
 	
 	#div_line{
@@ -30,7 +30,7 @@
 		margin:10%;
 	}
 	.error_otherwise b{
-		color:#16a085;
+		color:#1abc9c;
 	}
 	.error_btn div{
 		display:inline-block;
@@ -44,7 +44,7 @@
 		background-color: #4d4d4d;
 	}
 	.goHome{
-		background-color: #16a085;
+		background-color: #1abc9c;
 	}
 	.error_btn div a{
 		color:#fff;

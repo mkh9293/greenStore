@@ -198,12 +198,19 @@ public class JsonController {
 		return regionList;
 	}
 	
-	@RequestMapping(value="/likeJson",method = RequestMethod.POST)
-	public @ResponseBody HashMap<Integer, StoreLike> likeJson(int sh_id) throws IOException, ParseException{
-		System.out.println("sh_id: "+sh_id);
+	@RequestMapping(value="/likePlus",method = RequestMethod.POST)
+	public @ResponseBody HashMap<Integer, StoreLike> likePlus(int sh_id) throws IOException, ParseException{
 		HashMap<Integer, StoreLike> map = new HashMap<Integer, StoreLike>();
 		map.put(1, storeMapper.likePlus(sh_id, 1));
-		System.out.println("map: "+map.get(1));
+		
+		return map;
+	}
+	
+	@RequestMapping(value="/likeMin",method = RequestMethod.POST)
+	public @ResponseBody HashMap<Integer, StoreLike> likeMin(int sh_id) throws IOException, ParseException{
+		HashMap<Integer, StoreLike> map = new HashMap<Integer, StoreLike>();
+		map.put(1, storeMapper.likeMin(sh_id, 1));
+		
 		return map;
 	}
 }

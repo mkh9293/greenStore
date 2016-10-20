@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/normalize.css"/>" type="text/css">
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" type="text/css">
 <link rel="stylesheet" href="<c:url value="/resources/css/home.css"/>" type="text/css">
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/common.css"/>">
+<link rel="stylesheet" href="<c:url value="/resources/css/common.css"/>" type="text/css">
 
 <script src="<c:url value="/resources/bootstrap/js/bootstrap.min.js"/>"></script>
 <script src="<c:url value="/resources/plugins/fastclick/fastclick.js"/>"></script>
@@ -172,7 +172,7 @@
 	<div id="profile">
 		<div style="position:absolute; width:340px;height:200px; top:40px; left:25px;">
 			<img src="<c:url value="/resources/img/iseoul.jpg"/>" alt="iseoul" class="img-circle" style="display:inline-block;width:105px;height:110px;"/>
-			<strong style="margin-left:10px;line-height:6em;color:#000">로그인 필요합니다.</strong>		
+			<strong style="margin-left:10px;line-height:6em;color:#fff">로그인 필요합니다.</strong>		
 		</div>
 	</div>
 	<%} %>	

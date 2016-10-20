@@ -103,16 +103,22 @@
 		});
 	});
 	</script>
+	<style type="text/css">
+		.storeItem:hover{
+			cursor:pointer;
+		}
+	</style>
 <div class="hidden-xs">	
-	<c:if test="${storeListSize != 0 }">
-		<div id="searchResultMap">
-	       	 <div id="map"></div><hr/>
-	    </div>
-    </c:if>
-    
+	<c:if test="${storeListSize != 0}">
+		<c:if test="${cateJson != 10 }">
+			<div id="searchResultMap">
+		       	 <div id="map"></div><hr/>
+		    </div>
+		</c:if>
+	</c:if>
 	<div class="container" id="resultText">
-			<h3 style="margin-top:3%;margin-left:7%;font-size:30px;"><strong style="color:#6d3afb;">${area }</strong>에서 </h3>
-			<h3 style="margin-top:1%;margin-left:10%;font-size:30px;"><strong style="color:#6d3afb;">${cate }</strong>유형 검색 결과입니다.</h3>   	
+			<h3 style="margin-top:3%;margin-left:7%;font-size:30px;"><strong style="color:#1abc9c;">${area }</strong>에서 </h3>
+			<h3 style="margin-top:1%;margin-left:10%;font-size:30px;"><strong style="color:#1abc9c;">${cate }</strong>유형 검색 결과입니다.</h3>   	
 	</div>
 	<div class="container">
 		<!-- Store Row -->
