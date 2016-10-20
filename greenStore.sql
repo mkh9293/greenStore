@@ -100,5 +100,5 @@ select *
 		where store.sh_id = 2350;
 select *
 from store;
-=======
->>>>>>> 00e8ca8c7d54bd5d1369e717d3face7325c78ba5
+
+SELECT * FROM review r INNER JOIN store s ON r.sh_id = s.sh_id where r.sh_id=9018;
