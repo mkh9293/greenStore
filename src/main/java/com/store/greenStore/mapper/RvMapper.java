@@ -15,6 +15,7 @@ public interface RvMapper {
 		public List<Review> select(int sh_id);
 		public List<Review> oneStore(int sh_id);
 		public List<Review> listAll();
+		public List<Review> myReview(int mid);
 		
 		public void reLike(int rkey);
 		public void reUnlike(int rkey);

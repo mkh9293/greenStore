@@ -16,6 +16,26 @@
 
 <!-- Home js import -->
 <script src="<c:url value="/resources/js/home.js"/>"></script>
+
+<!-- session -->
+<jsp:useBean id="loginBean" class="petBean.LoginInfoBean"/>
+<%
+	request.setCharacterEncoding("UTF-8");
+	String idNum = request.getParameter("idNum");
+	String nick="";
+	String img="#";
+	
+	if(idNum!=null){
+		loginBean.setId(request.getParameter("idNum"));
+		loginBean.setNick(request.getParameter("nickName"));
+		loginBean.setImgUrl(request.getParameter("profile_img"));
+		session.setAttribute("LOGININFO", loginBean);
+	}
+	
+	loginBean = (petBean.LoginInfoBean)session.getAttribute("LOGININFO");
+%>
+<!-- ./session -->
+
 <script type="text/javascript">
 $(document).ready(function(){
 	//조건으로 검색 
@@ -46,62 +66,77 @@ $(document).ready(function(){
 	}
 </style>
 
-<div id="mask"></div>
 <div id="mySidenav" class="sidenav">
-	<a href="javascript:void(0)" class="closebtn" style="color: #fff;">&times;</a>
-	<div id="profile" style="background-color:#1abc9c;">
-		<div style="position: absolute; width: 340px; height: 200px; top: 40px; left: 25px;">
-			<img src="<c:url value="/resources/img/iseoul.jpg"/>" alt="..."
-				class="img-circle"
-				style="display: inline-block; width: 105px; height: 110px;" /> <strong
-				style="margin-left: 10px; line-height: 6em; color: #fff">로그인
-				필요합니다.</strong>
-
+	<a href="javascript:void(0)" class="closebtn" style="color:#fff;">&times;</a>
+	<%if(loginBean!=null){ %>
+	<div id="profile">
+		<div style="position:absolute; width:340px;height:200px; top:40px; left:25px;">
+			<img src="<c:url value="<%=loginBean.getImgUrl() %>"/>" alt="profile" class="img-circle" style="display:inline-block;width:105px;height:110px;"/>
+			<strong style="margin-left:10px;line-height:6em;color:#000"><%=loginBean.getNick() %><font color="blue">(<%=loginBean.getId() %>)</font></strong>			
 		</div>
 	</div>
-	<div style="height: 180px;"></div>
-
+	<%}else{ %>
+	<div id="profile">
+		<div style="position:absolute; width:340px;height:200px; top:40px; left:25px;">
+			<img src="<c:url value="/resources/img/iseoul.jpg"/>" alt="iseoul" class="img-circle" style="display:inline-block;width:105px;height:110px;"/>
+			<strong style="margin-left:10px;line-height:6em;color:#fff">로그인 필요합니다.</strong>		
+		</div>
+	</div>
+	<%} %>	
+	<div style="height:180px;"></div>
 	<nav>
-		<ul
-			style="list-style: none; margin: 0; padding: 0; position: absolute; width: 360px;">
-			<li
-				style="display: inline-block; line-height: 20px; position: relative; width: 100%;">
-				<div
-					style="display: block; position: relative; width: 100%; height: 60px; border: 0.1em solid #F6F6F6; line-height: 3em; padding-left: 10px; background-color: #ffffff;">
-					<a href=""
-						style="color: #f47721; text-decoration: none; margin-left: 2%;">그린스토어
-						홈</a> <span class="css-arrow"></span>
+		<ul style="list-style: none; margin: 0;padding: 0; position: absolute; width: 360px;">
+			<li style="display: inline-block; line-height: 20px; position: relative; width: 100%;">
+				<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+					<a href="http://localhost:8080/greenStore" style="color: #f47721;text-decoration: none; margin-left:2%;">그린스토어 홈</a> 
+					<span class="css-arrow" ></span>
 				</div>
-				<div
-					style="display: block; position: relative; width: 100%; height: 60px; border: 0.1em solid #F6F6F6; line-height: 3em; padding-left: 10px; background-color: #ffffff;">
-					<a href="/login"
-						style="color: #0d2474; text-decoration: none; margin-left: 2%;">로그인/로그아웃</a>
+				<div style="display:block;position: relative; width:100%; height:60px; border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+					<%if(loginBean!=null){ %>
+					<a href="http://localhost:8080/greenStore/member/logout" style="color: #0d2474;text-decoration: none; margin-left:2%;">로그아웃</a> 
+					<span class="css-arrow"></span>
+					<%}else{ %>			
+					<a href="http://localhost:8080/greenStore/member/login" style="color: #0d2474;text-decoration: none; margin-left:2%;">로그인</a> 
+					<span class="css-arrow"></span>
+					<%} %>
+				</div>
+				<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+					<a href="http://localhost:8080/greenStore/notice/listAll" style="color: #0d2474;text-decoration: none; margin-left:2%; ">공지사항</a> 
 					<span class="css-arrow"></span>
 				</div>
-				<div
-					style="display: block; position: relative; width: 100%; height: 60px; border: 0.1em solid #F6F6F6; line-height: 3em; padding-left: 10px; background-color: #ffffff;">
-					<a href="/notice"
-						style="color: #0d2474; text-decoration: none; margin-left: 2%;">공지사항</a>
+				<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+					<a href="http://localhost:8080/greenStore/notice/service" style="color: #0d2474;text-decoration: none; margin-left:2%;">서비스 소개</a> 
 					<span class="css-arrow"></span>
 				</div>
-				<div
-					style="display: block; position: relative; width: 100%; height: 60px; border: 0.1em solid #F6F6F6; line-height: 3em; padding-left: 10px; background-color: #ffffff;">
-					<a href="/service"
-						style="color: #0d2474; text-decoration: none; margin-left: 2%;">서비스
-						소개</a> <span class="css-arrow"></span>
-				</div>
-				<div
-					style="display: block; position: relative; width: 100%; height: 60px; border: 0.1em solid #F6F6F6; line-height: 3em; padding-left: 10px; background-color: #ffffff;">
-					<a href="/mypage"
-						style="color: #0d2474; text-decoration: none; margin-left: 2%;">마이페이지</a>
-					<span class="css-arrow"></span>
-				</div> <!-- <div style="display:block;position: relative; width:100%; height:100px; line-height:5em; text-align:center;">
-						<span>GreenStore</span>
-					</div> --> <br />
-			<br />
-				<div
-					style="display: block; position: relative; width: 100%; height: 60px; text-align: center; line-height: 3em; padding-left: 10px; background-color: #f47721;">
-					<a href="/" style="color: #fff;"> 그린스토어로 이동 </a>
+					<%if(loginBean!=null){ %>
+					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+						<a href="http://localhost:8080/greenStore/mypage/storeLike?mid=<%=loginBean.getId()%>" style="color: #0d2474;text-decoration: none; margin-left:2%;">좋아요스토어</a> 
+						<span class="css-arrow"></span>
+					</div>
+					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+						<a href="http://localhost:8080/greenStore/mypage/reviewLike?mid=<%=loginBean.getId()%>" style="color: #0d2474;text-decoration: none; margin-left:2%;">좋아요리뷰</a> 
+						<span class="css-arrow"></span>
+					</div>
+					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+						<a href="http://localhost:8080/greenStore/review/myReview?mid=<%=loginBean.getId()%>" style="color: #0d2474;text-decoration: none; margin-left:2%;">나의리뷰보기</a> 
+						<span class="css-arrow"></span>
+					</div>
+					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+						<a href="http://localhost:8080/greenStore/review/listAll" style="color: #0d2474;text-decoration: none; margin-left:2%;">리뷰전체보기</a> 
+						<span class="css-arrow"></span>
+					</div>
+					<%}else{ %>
+					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+						<a href="http://localhost:8080/greenStore/review/listAll" style="color: #0d2474;text-decoration: none; margin-left:2%;">리뷰전체보기</a> 
+						<span class="css-arrow"></span>
+					</div>
+					<%} %>	
+				
+				<br/><br/>
+				<div style="display:block;position: relative; width:100%; height:60px; text-align:center; line-height:3em;padding-left:10px; background-color:#f47721;">
+					<a href="http://localhost:8080/greenStore" style="color:#fff;">
+						그린스토어로 이동
+					</a>
 				</div>
 			</li>
 		</ul>

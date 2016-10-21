@@ -40,7 +40,7 @@
 	}
 </style>
 <div class="hidden-xs">
-	<div style="width:100%; height:390; text-align:center;">
+	<div style="width:100%; height:600px; text-align:center;">
 		<img src="<c:url value="/resources/img/o-morelist.jpeg"/>" alt="" style="width:100%; height:100%; opacity:0.9;"/>
 		<div id="bestTitle">
 			<h4>서울시 추천 리스트</h4>	

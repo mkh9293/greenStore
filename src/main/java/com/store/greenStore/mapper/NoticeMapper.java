@@ -9,8 +9,8 @@ public interface NoticeMapper {
 
 	void write(Notice board);
 	void update(Notice board);
-	void remove(int nkey);
-	
+	void delete(int nkey);
+	public Notice selectById(int nkey);
 	Notice listOne(int nkey);
 	List<Notice> listAll();
 	

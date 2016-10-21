@@ -38,18 +38,9 @@
 	loginBean = (petBean.LoginInfoBean)session.getAttribute("LOGININFO");
 %>
 
-<div id="header">
-   	<div id="warp">
-		<div id="top">
-			<%if(loginBean!=null){ %>
-			<Strong><%=loginBean.getNick() %>
-			<font color="blue">(<%=loginBean.getId() %>)</font>
-			</Strong>님 환영합니다/<a href="/greenStore">메인페이지로 이동</a>
-			<%}else{ %>
-			<jsp:include page="login.jsp"/>
-			<%} %>	
-		</div>
-	</div>
-</div>
+<script>
+       location.href="/greenStore";
+</script>
+
 
 

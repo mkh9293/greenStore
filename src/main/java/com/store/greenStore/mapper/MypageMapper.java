@@ -7,8 +7,9 @@ import com.store.greenStore.dto.StoreLike;
 
 public interface MypageMapper {
 	
-	List<StoreLike> selectStoreLike();
-	List<ReviewLike> selectReviewLike();
-	List<ReviewLike> sort();
+	List<StoreLike> storeLike(int mid);
+	List<ReviewLike> reviewLike(int mid);
+
+
 
 }

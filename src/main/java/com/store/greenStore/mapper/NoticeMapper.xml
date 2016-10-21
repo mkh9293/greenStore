@@ -11,22 +11,24 @@
 		update notice
 		set ntitle=#{ntitle}, ncontent=#{ncontent}, ndate=sysdate()
 		where nkey = #{nkey}
+		
 	</update>
 	
-	<delete id="remove">
+	<select id="selectById" resultType="com.store.greenStore.dto.Notice">
+		SELECT *
+		FROM notice
+		WHERE nkey = #{nkey}
+	</select>
+	
+	<delete id="delete">
 		delete from notice where nkey=#{nkey}
 	</delete>
 	
-	<select id="listOne" resultType="com.store.greenStore.dto.Notice">
-		select nkey, ntitle, ncontent
-		from notice
-		where nkey = #{nkey}
-	</select>
 	
 	<select id="listAll" resultType="com.store.greenStore.dto.Notice">
 		select nkey, ntitle, ncontent, ndate
 		from notice
-		order by nkey, ndate asc
+		order by nkey desc
 	</select>
 
 

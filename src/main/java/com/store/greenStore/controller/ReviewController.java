@@ -1,9 +1,8 @@
 package com.store.greenStore.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -16,6 +15,19 @@ public class ReviewController {
 	@Autowired
 	RvMapper rvMapper;
 	
+	@RequestMapping(value="/listAll")
+	public String list(Model model) {
+		model.addAttribute("list", rvMapper.listAll());
+		return "review/listAll";
+	}
+	
+	@RequestMapping(value="/myReview")
+	public String myReview(Model model, @RequestParam("mid") int mid) {
+		model.addAttribute("myreview", rvMapper.myReview(mid));
+		return "review/myReview";
+	}
+
+	//////////////////////////////
 	
 	@RequestMapping("/reviewWrite")
 	public void reviewInsert(Review rv){
@@ -59,7 +71,7 @@ public class ReviewController {
 	}
 	*/
 	
-	
+/*	
 	@RequestMapping("/listAll")
 	public void listAll(){
 		List<Review> rvlist = rvMapper.listAll();
@@ -75,6 +87,8 @@ public class ReviewController {
 		}
 		
 	}
+	*/
 	
+
 	
 }

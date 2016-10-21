@@ -10,14 +10,14 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 <link rel="stylesheet" href="<c:url value="/resources/dist/css/AdminLTE.min.css"/>" type="text/css">
 <link rel="stylesheet" href="<c:url value="/resources/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"/>" type="text/css">
-<%-- <script src="<c:url value="/resources/plugins/jQuery/jquery-2.2.3.min.js"/>"></script> --%>
+<script src="<c:url value="/resources/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"/>"></script>
+
 <script src="<c:url value="/resources/bootstrap/js/bootstrap.min.js"/>"></script>
 <script src="<c:url value="/resources/plugins/fastclick/fastclick.js"/>"></script>
 <script src="<c:url value="/resources/dist/js/app.min.js"/>"></script>
 
 <script src="<c:url value="/resources/dist/js/demo.js"/>"></script>
-<!--  <script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script> -->
-<script src="<c:url value="/resources/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"/>"></script>
+
 
 <script src="<c:url value="/resources/js/modal.js"/>"></script>
 <link rel="stylesheet" href="<c:url value="/resources/css/modal.css"/>" type="text/css">
@@ -27,7 +27,6 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" type="text/css">
 <link rel="stylesheet" href="<c:url value="/resources/css/home.css"/>" type="text/css">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/common.css"/>">
-<script src="<c:url value="/resources/js/home.js"/>"></script>
 
 
 <!-- style -->
@@ -41,7 +40,7 @@
 		font-size: 25px;
 	} */
 	.col-md-12{
-		margin-top: 80px;
+		margin-top: 20px;
 	}
 	.input-group {
 		margin-top: 80px;
@@ -52,128 +51,42 @@
 
 
 </style>
-<jsp:include page="../include/sideMenu.jsp"/>
 <div class="container">
 	<div class="row">
 	      <div class="col-md-12">
           <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-              <li class="active"><a href="#activity" data-toggle="tab">'좋아요'한 리뷰</a></li>
-              <li><a href="#timeline" data-toggle="tab">'좋아요'한 스토어</a></li>
-            </ul>
             <div class="tab-content">
               <div class="active tab-pane" id="activity">
 			    <!-- Post -->
+			    <c:forEach var="review" items="${ list }">
                 <div class="post clearfix">
                   <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="../resources/dist/img/user7-128x128.jpg" alt="User Image">
+                    <img class="img-circle img-bordered-sm" src="../resources/img/iseoul.jpg" alt="User Image">
                         <span class="username">
-                          <a href="#">글쓴이</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+                          <a href="#">${ review.mname }</a>
+                          <a href="#" class="pull-right btn-box-tool"></a>
                         </span>
-                    <span class="description">날짜</span>
+                    <span class="description"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${ review.rdate }" /></span>
                   </div>
                   <!-- /.user-block -->
                   <p>
-                    	리뷰내용
+                  ${ review.rcontent }
                   </p>
                   <ul class="list-inline">
                     <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
                     </li>
                   </ul>
                 </div>
+                 </c:forEach>
                 <!-- /.post -->
 
-
-<!--                 Post
-                <div class="post">
-                  <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="../resources/dist/img/user6-128x128.jpg" alt="User Image">
-                        <span class="username">
-                          <a href="#">Adam Jones</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                    <span class="description">Posted 5 photos - 5 days ago</span>
-                  </div>
-                  /.user-block
-                  <div class="row margin-bottom">
- 
-                    /.col
-                    <div class="col-sm-6">
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <img class="img-responsive" src="../resources/dist/img/photo2.png" alt="Photo">
-                          <br>
-                          <img class="img-responsive" src="../resources/dist/img/photo3.jpg" alt="Photo">
-                        </div>
-                        /.col
-                        <div class="col-sm-6">
-                          <img class="img-responsive" src="../resources/dist/img/photo4.jpg" alt="Photo">
-                          <br>
-                          <img class="img-responsive" src="../resources/dist/img/photo1.png" alt="Photo">
-                        </div>
-                        /.col
-                      </div>
-                      /.row
-                    </div>
-                    /.col
-                  </div>
-                  /.row
-
-                  <ul class="list-inline">
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                    </li>
-                    <li class="pull-right">
-                      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                        (5)</a></li>
-                  </ul>
-
-   
-                </div> -->
-                <!-- /.post -->
+                </div>
               </div>
               <!-- /.tab-pane -->
-              <div class="tab-pane" id="timeline">
-               
-           <div class="box box-widget">
-            <div class="box-header with-border">
-              <div class="user-block">
-                <img class="img-circle" src="../resources/dist/img/user1-128x128.jpg" alt="User Image">
-                <span class="username"><a href="#">글쓴이</a></span>
-                <span class="description">날짜</span>
-              </div>
-             
-              <div class="box-tools">
-                <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Mark as read">
-                  <i class="fa fa-circle-o"></i></button>
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-     
-            </div>
- 
-            <div class="box-body">
-              <img class="img-responsive pad" src="../resources/dist/img/photo2.png" alt="Photo">
-
-              <p>스토어정보</p>
-
-              <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
-              <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> 리뷰가기</button>
-            </div>
-            </div>
-               
-               
-
-              </div>
-              <!-- /.tab-pane -->
-            </div>
             <!-- /.tab-content -->
           </div>
           <!-- /.nav-tabs-custom -->
         </div>
-	
-	
 	
 	</div>
 	

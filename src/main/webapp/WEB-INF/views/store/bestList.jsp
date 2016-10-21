@@ -77,11 +77,11 @@
 				color:#16a085;
 			}
 			#bestTitle h4{
-				position:absolute;font-size:50px;color:#fff;width:100%;top:250;
+				position:absolute;font-size:70px;color:#fff;width:100%;top:250;
 			}
 	</style>
 <div class="hidden-xs">
-	<div id="bestTitle" style="width:1300px; height:450; text-align:center;">
+	<div id="bestTitle" style="width:100%; height:70%; text-align:center;">
 		<c:if test="${induty == 1}">
 			<img src="<c:url value="/resources/img/o-kfood.jpeg"/>" style="position:relative;width:100%;height:100%;"/>
 			<h4>한식 베스트 10</h4>

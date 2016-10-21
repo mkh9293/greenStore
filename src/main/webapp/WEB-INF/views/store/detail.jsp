@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script src="<c:url value="/resources/se2/init.js" />"></script>
+<script src="<c:url value="/resources/se2/js/HuskyEZCreator.js" />"></script>
+
 
 <link rel="stylesheet" href="<c:url value="/resources/dist/css/AdminLTE.min.css"/>" type="text/css">
 <link rel="stylesheet" href="<c:url value="/resources/dist/css/skins/_all-skins.min.css"/>" type="text/css">
@@ -19,6 +22,27 @@
 <script type="text/javascript"
 	src="//apis.daum.net/maps/maps3.js?apikey=76d0dfe96fd493ccedbee52792d36e32"></script>
 			
+
+<!-- session -->
+<jsp:useBean id="loginBean" class="petBean.LoginInfoBean"/>
+<%
+	request.setCharacterEncoding("UTF-8");
+	String idNum = request.getParameter("idNum");
+	String nick="";
+	String img="#";
+	
+	if(idNum!=null){
+		loginBean.setId(request.getParameter("idNum"));
+		loginBean.setNick(request.getParameter("nickName"));
+		loginBean.setImgUrl(request.getParameter("profile_img"));
+		session.setAttribute("LOGININFO", loginBean);
+	}
+	
+	loginBean = (petBean.LoginInfoBean)session.getAttribute("LOGININFO");
+%>
+<!-- ./session -->
+
+
 <script type="text/javascript">
 	var sh_photo = "<c:out value="${store.sh_photo}"/>";
 	var sh_name = "<c:out value="${store.sh_name}"/>";
@@ -161,6 +185,13 @@
 		$("#findRoad").on("click",function(){
 			$(location).attr("href","http://map.daum.net/link/to/"+sh_name+","+pointY+","+pointX);
 		});
+		
+ 		$(".reviewWrite").on("click",function(){
+			var contentId = $(this).attr("data-id");
+			window.open("http://localhost:8080/greenStore/review/reviewWrite/"+sh_id,"toolbar=no,scrollbars=yes,resizable=no,top=200,left=200,width=800,height=600");
+		
+		}); 
+		
 	});
 </script>
 
@@ -173,8 +204,9 @@
 	}
 </style>
 <div class="hidden-xs hidden-sm">		
-		<img alt="detailImage" src="${store.sh_photo }" style="width:100%;height:400px;"/><br/>
+		
 	    <div class="container">
+	    <img alt="detailImage" src="${store.sh_photo }" style="width:100%; height:500px;"/><br/>
 	    	<div class="row">
                 <div class="col-md-8" id="mainContent">
                     <div>
@@ -198,46 +230,36 @@
                      </div><hr/>
                     
                     <div class="review">
-                    	<h4>리뷰 </h4>
+                    	<h4>리뷰 <a id ="reviewWrite" type="button" class="btn btn-primary" data-id="2350">작성하기</a> </h4>
+                        <c:forEach items="${ list }" var="review" varStatus="i">
+                        	<c:if test="${i.index < 4 }">
+							<div class="post clearfix">
+				                  <div class="user-block">
+				                    <img class="img-circle img-bordered-sm" src="../resources/img/iseoul.jpg" alt="User Image">
+				                        <span class="username">
+				                          <a href="#">${ review.mname }</a>
+				                          <a href="#" class="pull-right btn-box-tool"></a>
+				                        </span>
+				                    <span class="description"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${ review.rdate }" /></span>
+				                  </div>
+				                  <!-- /.user-block -->
+				                  <p>
+				                  ${ review.rcontent }
+				                  </p>
+				                  <ul class="list-inline">
+				                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+				                    </li>
+				                  </ul>
+				                </div>
+							</c:if>
+						</c:forEach>
+                    
+                    	
+                    	
                     	<!-- Post -->
-		                <div class="post clearfix">
-		                  <div class="user-block">
-		                    <img class="img-circle img-bordered-sm" src="../resources/dist/img/user7-128x128.jpg" alt="User Image">
-		                        <span class="username">
-		                          <a href="#">글쓴이</a>
-		                        </span>
-		                    <span class="description">날짜</span>
-		                  </div>
-		                  <!-- /.user-block -->
-		                  <p>
-		                    	리뷰내용
-		                  </p>
-		                  <ul class="list-inline">
-		                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-		                    </li>
-		                  </ul>
-		                </div>
-		                <!-- /.post -->
-		                <!-- Post -->
-		                <div class="post clearfix">
-		                  <div class="user-block">
-		                    <img class="img-circle img-bordered-sm" src="../resources/dist/img/user7-128x128.jpg" alt="User Image">
-		                        <span class="username">
-		                          <a href="#">글쓴이</a>
-		                        </span>
-		                    <span class="description">날짜</span>
-		                  </div>
-		                  <!-- /.user-block -->
-		                  <p>
-		                    	리뷰내용
-		                  </p>
-		                  <ul class="list-inline">
-		                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-		                    </li>
-		                  </ul>
-		                </div>
 		                <!-- /.post -->
                     </div><hr/>
+                    
                     <div class="daumBlog">
                     	<h4>블로그</h4>
                     	<c:forEach items="${daumBlogList }" var="daumBlog" varStatus="i">
@@ -266,7 +288,7 @@
 						<input type=hidden name="sh_phone" value="${store.sh_phone }">
 						<input type=hidden name="sh_info" value="${store.sh_info }">
 				
-						<div id="map" style="width:420px;height:300px;"></div>
+						<div id="map" style="width:365px;height:300px;"></div>
                     </form>
 					
                     <h5 style="font-size:25px;margin-bottom:30px;">주변 놀거리</h5>
@@ -294,8 +316,9 @@
         </div>   
 </div>
 <div class="visible-xs visible-sm">
-	<img alt="detailImage" src="${store.sh_photo }" style="width:100%;height:200px;"/><br/>
+	
 	    <div class="container">
+	    <img alt="detailImage" src="${store.sh_photo }" style="width:100%;height:200px;"/><br/>
 	    	<div class="row">
                 <div class="col-md-8" id="mainContent">
                     <div>
@@ -303,7 +326,6 @@
                         	<span id="mb_likeBtn" style="float:right; font-size:30px;color:#BDBDBD;" class="glyphicon glyphicon-heart-empty"></span>
         			  	</h5>
                     </div>
-                    <!-- <img alt="storeDetailImg" src="${store.sh_photo }" style="width:400px;height:500px"/>  -->
                     <hr/>
                     <div class="intro">
                         <table>
