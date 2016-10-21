@@ -24,7 +24,7 @@
 	</select>
 	
 	<select id="oneStore" resultType="com.store.greenStore.dto.Review">
-		SELECT * FROM review WHERE sh_id=#{sh_id}
+	SELECT * FROM review r INNER JOIN store s ON r.sh_id = s.sh_id where r.sh_id=#{sh_id};
 	</select>
 	
 	<select id="reLike" >
