@@ -28,7 +28,7 @@
 
 <!-- style -->
 <style>
-	.container{
+	.row{
 		margin-top: 50px;
 	}
 

@@ -20,7 +20,6 @@
 <script src="<c:url value="/resources/dist/js/demo.js"/>"></script>
 <script src="<c:url value="/resources/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"/>"></script>
 <script src="<c:url value="/resources/js/modal.js"/>"></script>
-<script src="<c:url value="/resources/js/home.js"/>"></script>
 
 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
@@ -100,11 +99,11 @@
       Kakao.API.request({
         url: '/v1/user/me',
         success: function(res) {
-        	$.ajax({
-					url:'/greenStore/member/login',
+         	$.ajax({
+					url:'/member/login',
 					type:'post',
 					data:{"mname":res.properties.nickname,"mid":res.id,"mphoto":res.properties.thumbnail_image},
-				 });
+				 }); 
           var str = JSON.stringify(res);
           var id = str.substring(str.indexOf('id'),str.length);
           var start_id = id.indexOf(':');

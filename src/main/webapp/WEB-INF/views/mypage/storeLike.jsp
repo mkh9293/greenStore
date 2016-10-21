@@ -27,7 +27,6 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" type="text/css">
 <link rel="stylesheet" href="<c:url value="/resources/css/home.css"/>" type="text/css">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/common.css"/>">
-<script src="<c:url value="/resources/js/home.js"/>"></script>
 
 
 <!-- style -->
@@ -36,12 +35,8 @@
 		background-color: #1ABC9c;
 		width: 100%;
 	}*/
-	h4 {
-		font-family : SpoquHanSans-Reqular, sans-serif;
-
-	} 
-	.col-md-12{
-		margin-top: 20px;
+	.row{
+		margin-top: 50px;
 	}
 	.input-group {
 		margin-top: 80px;
@@ -74,7 +69,7 @@
 		                <span class="username"><a href="#">${ storeLike.mname }</a></span> --%>
 		              </div> 
 		              <div class="box-tools">
-		                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+<!-- 		                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button> -->
 		            </div>
 		            <div class="box-body">
 		            	

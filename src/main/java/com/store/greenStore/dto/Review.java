@@ -3,16 +3,29 @@ import java.util.Date;
 public class Review {
 	private int rkey;
 	private int mkey;
+	
 	private int sh_id;
 	private String rcontent;
 	private int relike;
 	private Date rdate;
 	private String sh_name;
+
+	private String mname;
+	private int mid;
+	
 	private String sh_addr;
 	private int INDUTY_CODE_SE;
 	private String INDUTY_CODE_SE_NAME;
 	
 	
+	public String getMname() {
+		return mname;
+	}
+
+	public void setMname(String mname) {
+		this.mname = mname;
+	}
+
 	
 	public int getINDUTY_CODE_SE() {
 		return INDUTY_CODE_SE;
@@ -36,6 +49,7 @@ public class Review {
 
 	public void setSh_addr(String sh_addr) {
 		this.sh_addr = sh_addr;
+
 	}
 
 	public int getRkey() {
@@ -82,6 +96,14 @@ public class Review {
 	}
 	public void setRdate(Date rdate) {
 		this.rdate = rdate;
+	}
+
+	public int getMid() {
+		return mid;
+	}
+
+	public void setMid(int mid) {
+		this.mid = mid;
 	}
 	
 	

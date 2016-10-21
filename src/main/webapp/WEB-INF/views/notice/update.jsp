@@ -23,7 +23,7 @@
 </script>
 <style type="text/css">
 
-	.container {
+	.row {
 		margin-top:50px;
 	}
 </style>

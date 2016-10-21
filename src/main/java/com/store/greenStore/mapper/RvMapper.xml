@@ -20,7 +20,8 @@
 	</select>
 	
 	<select id="listAll" resultType="com.store.greenStore.dto.Review"> 
-		SELECT * FROM review r INNER JOIN store s ON r.sh_id = s.sh_id order by rkey asc;
+		SELECT * FROM review r INNER JOIN store s ON r.sh_id = s.sh_id 
+		join member m on r.mkey= m.mkey order by rkey asc;
 	</select>
 	
 	<select id="oneStore" resultType="com.store.greenStore.dto.Review">

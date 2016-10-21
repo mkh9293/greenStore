@@ -65,7 +65,40 @@ $(document).ready(function(){
 		display: inline-block; margin: 15; width: 45%; height: 300px;
 	}
 </style>
+<div class="hidden-xs">
+	<header id="header2">	
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/" style="color: #ffffff;">GreenStore</a>
+				<form id="searchForm" class="navbar-form navbar-left" action="" role="search">
+					<div class="form-group">
+						<input type="text" id="searchTxt" name="searchText" class="form-control" placeholder="Search">
+					</div>
+				</form>
+				<span class="openbtn">&#9776;</span>
+			</div>
+		</nav>
+	</header>
+</div>
 
+<div class="visible-xs">
+	<header id="mb_header">
+		<nav class="navbar navbar-default navbar-fixed-top">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="/" style="color: #ffffff;">GS</a>
+					<form id="mb_searchFrm" class="navbar-form navbar-left" action="" role="search" style="display:inline-block;width:65%;">
+						<div class="form-group" style="width:110%">
+							<input type="text" id="mb_searchTxt" name="searchText" class="form-control" placeholder="Search">
+						</div>
+					</form>
+					<span class="openbtn">&#9776;</span>
+			</div>
+		</nav>
+	</header>
+</div>
+
+
+<div id="mask"></div>
 <div id="mySidenav" class="sidenav">
 	<a href="javascript:void(0)" class="closebtn" style="color:#fff;">&times;</a>
 	<%if(loginBean!=null){ %>
