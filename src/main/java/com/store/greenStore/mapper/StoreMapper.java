@@ -11,7 +11,7 @@ public interface StoreMapper {
 	void insert(Store data);
 	List<Store> webSelectAll();
 	List<Store> likeSelectAll();
-	List<Store> selectAll();
+	List<Store> selectAll(@Param("start")int start,@Param("end")int end);
 	List<Store> region(String searchText);
 	List<Store> category(@Param("cate")String cate);
 	

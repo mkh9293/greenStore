@@ -9,12 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.store.greenStore.dto.LikeDto;
 import com.store.greenStore.dto.Member;
 import com.store.greenStore.dto.Store;
-import com.store.greenStore.dto.StoreLike;
 import com.store.greenStore.mapper.LikeMapper;
 import com.store.greenStore.mapper.MemberMapper;
 import com.store.greenStore.mapper.StoreDbMapper;
@@ -23,20 +23,19 @@ import com.store.greenStore.mapper.StoreMapper;
 @Controller
 @RequestMapping("/app")
 public class AppHomeController {
-	
 	@Autowired
 	StoreMapper storeMapper;
 	@Autowired
 	MemberMapper memberMapper;
 	@Autowired
 	StoreDbMapper storeDbMapper;
-	
 	@Autowired
 	LikeMapper likeMapper;
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public @ResponseBody List<Store> home() {
-		return storeMapper.selectAll();
+	@RequestMapping(value = "/{start}", method = RequestMethod.GET)
+	public @ResponseBody List<Store> home(@PathVariable("start")int start) {
+		System.out.println(start + " /start");
+		return storeMapper.selectAll(start,6);
 	}
 	
 	//멤버를 조회하는 액션 메소드
