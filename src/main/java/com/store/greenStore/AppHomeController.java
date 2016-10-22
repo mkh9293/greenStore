@@ -35,7 +35,7 @@ public class AppHomeController {
 	@RequestMapping(value = "/{start}", method = RequestMethod.GET)
 	public @ResponseBody List<Store> home(@PathVariable("start")int start) {
 		System.out.println(start + " /start");
-		return storeMapper.selectAll(start,6);
+		return storeMapper.appSelectAll(start,6);
 	}
 	
 	//멤버를 조회하는 액션 메소드

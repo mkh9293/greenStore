@@ -158,7 +158,7 @@ html, body {
 }
 #mainImage img{
 	width: 100%; 
-	height: 450px; 
+	height: 70%; 
 }
 /* End 메인 이미지, 조건 검색에 대한 css */
 

@@ -46,4 +46,10 @@
         <beans:property name="basePackage" value="com.store.greenStore" />
         <beans:property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
     </beans:bean>
+    
+<!--     <beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
+    </beans:bean> -->
+    
+    <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+    
 </beans:beans>

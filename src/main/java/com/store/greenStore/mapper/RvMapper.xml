@@ -7,10 +7,8 @@
         VALUES (#{mkey}, #{sh_id}, #{rcontent},0,NOW())
     </insert>
 	
-	
     <update id="update">
   		UPDATE review SET rcontent=#{rcontent}, rdate=now() where rkey=#{rkey}
-
     </update>
 	
 	<delete id="delete">
@@ -29,19 +27,24 @@
 	</select>
 	
 	<select id="listAll" resultType="com.store.greenStore.dto.Review"> 
-		SELECT * FROM review r INNER JOIN store s ON r.sh_id = s.sh_id order by rkey asc;
+		SELECT * FROM review r INNER JOIN store s ON r.sh_id = s.sh_id 
+		join member m on r.mkey= m.mkey order by rkey asc;
 	</select>
 	
 	<select id="oneStore" resultType="com.store.greenStore.dto.Review">
-		SELECT * FROM review WHERE sh_id=#{sh_id}
+	SELECT * FROM review r INNER JOIN store s ON r.sh_id = s.sh_id where r.sh_id=#{sh_id};
 	</select>
 	
 	<select id="reLike" >
 		UPDATE review SET relike=relike+1 where rkey=#{rkey}
-	
 	</select>
 	
-	
+	<select id="myReview" resultType="com.store.greenStore.dto.Review">
+ 		select * from review join member on review.mkey = member.mkey 
+ 		join store s on review.sh_id = s.sh_id
+		where member.mid = #{ mid }
+	</select>
+
 	<select id="reUnlike">
 		UPDATE review SET relike=relike-1 where rkey=#{rkey}
 	</select>
@@ -65,8 +68,7 @@
 				induty_code_se_name like '%%'
 			</if>
 		</where>
-		
-		order by sh_rcmn desc;
+
 	</select>
 	
 </mapper>

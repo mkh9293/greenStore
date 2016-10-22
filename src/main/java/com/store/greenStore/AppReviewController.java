@@ -33,9 +33,10 @@ public class AppReviewController {
 		return rvmapper.select(sh_id);
 	}
 	
-	@RequestMapping(value="/oneStore", method=RequestMethod.GET)
-	public @ResponseBody List<Review> reviewOneStore(int sh_id){
-//		rvmapper.select(sh_id);
+	@RequestMapping(value="/oneStore/{sh_id}", method=RequestMethod.GET)
+	public @ResponseBody List<Review> reviewOneStore(@PathVariable("sh_id") int sh_id){
+		System.out.println(sh_id);
+		
 		return rvmapper.oneStore(sh_id);
 	}
 	
@@ -86,5 +87,7 @@ public class AppReviewController {
 			cate = "수영장"; // 수영장, 볼링장, 당구장, 골프장 등등.
 		return rvmapper.appReviewCateSearch(area, cate);
 	}
+	
+
 	
 }

@@ -16,6 +16,26 @@
 
 <!-- Home js import -->
 <script src="<c:url value="/resources/js/home.js"/>"></script>
+
+<!-- session -->
+<jsp:useBean id="loginBean" class="petBean.LoginInfoBean"/>
+<%
+	request.setCharacterEncoding("UTF-8");
+	String idNum = request.getParameter("idNum");
+	String nick="";
+	String img="#";
+	
+	if(idNum!=null){
+		loginBean.setId(request.getParameter("idNum"));
+		loginBean.setNick(request.getParameter("nickName"));
+		loginBean.setImgUrl(request.getParameter("profile_img"));
+		session.setAttribute("LOGININFO", loginBean);
+	}
+	
+	loginBean = (petBean.LoginInfoBean)session.getAttribute("LOGININFO");
+%>
+<!-- ./session -->
+
 <script type="text/javascript">
 $(document).ready(function(){
 	//조건으로 검색 
@@ -41,65 +61,115 @@ $(document).ready(function(){
 		width: 200px;
 		margin:0;
 	}
-	
+	.bestList ul li{
+		display: inline-block; margin: 15; width: 45%; height: 300px;
+	}
 </style>
+<div class="hidden-xs">
+	<header id="header2">	
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/" style="color: #ffffff;">GreenStore</a>
+				<form id="searchForm" class="navbar-form navbar-left" action="" role="search">
+					<div class="form-group">
+						<input type="text" id="searchTxt" name="searchText" class="form-control" placeholder="Search">
+					</div>
+				</form>
+				<span class="openbtn">&#9776;</span>
+			</div>
+		</nav>
+	</header>
+</div>
+
+<div class="visible-xs">
+	<header id="mb_header">
+		<nav class="navbar navbar-default navbar-fixed-top">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="/" style="color: #ffffff;">GS</a>
+					<form id="mb_searchFrm" class="navbar-form navbar-left" action="" role="search" style="display:inline-block;width:65%;">
+						<div class="form-group" style="width:110%">
+							<input type="text" id="mb_searchTxt" name="searchText" class="form-control" placeholder="Search">
+						</div>
+					</form>
+					<span class="openbtn">&#9776;</span>
+			</div>
+		</nav>
+	</header>
+</div>
+
 
 <div id="mask"></div>
 <div id="mySidenav" class="sidenav">
-	<a href="javascript:void(0)" class="closebtn" style="color: #fff;">&times;</a>
-	<div id="profile" style="background-color:#1abc9c;">
-		<div style="position: absolute; width: 340px; height: 200px; top: 40px; left: 25px;">
-			<img src="<c:url value="/resources/img/iseoul.jpg"/>" alt="..."
-				class="img-circle"
-				style="display: inline-block; width: 105px; height: 110px;" /> <strong
-				style="margin-left: 10px; line-height: 6em; color: #fff">로그인
-				필요합니다.</strong>
-
+	<a href="javascript:void(0)" class="closebtn" style="color:#fff;">&times;</a>
+	<%if(loginBean!=null){ %>
+	<div id="profile">
+		<div style="position:absolute; width:340px;height:200px; top:40px; left:25px;">
+			<img src="<c:url value="<%=loginBean.getImgUrl() %>"/>" alt="profile" class="img-circle" style="display:inline-block;width:105px;height:110px;"/>
+			<strong style="margin-left:10px;line-height:6em;color:#000"><%=loginBean.getNick() %><font color="blue">(<%=loginBean.getId() %>)</font></strong>			
 		</div>
 	</div>
-	<div style="height: 180px;"></div>
-
+	<%}else{ %>
+	<div id="profile">
+		<div style="position:absolute; width:340px;height:200px; top:40px; left:25px;">
+			<img src="<c:url value="/resources/img/iseoul.jpg"/>" alt="iseoul" class="img-circle" style="display:inline-block;width:105px;height:110px;"/>
+			<strong style="margin-left:10px;line-height:6em;color:#fff">로그인 필요합니다.</strong>		
+		</div>
+	</div>
+	<%} %>	
+	<div style="height:180px;"></div>
 	<nav>
-		<ul
-			style="list-style: none; margin: 0; padding: 0; position: absolute; width: 360px;">
-			<li
-				style="display: inline-block; line-height: 20px; position: relative; width: 100%;">
-				<div
-					style="display: block; position: relative; width: 100%; height: 60px; border: 0.1em solid #F6F6F6; line-height: 3em; padding-left: 10px; background-color: #ffffff;">
-					<a href=""
-						style="color: #f47721; text-decoration: none; margin-left: 2%;">그린스토어
-						홈</a> <span class="css-arrow"></span>
+		<ul style="list-style: none; margin: 0;padding: 0; position: absolute; width: 360px;">
+			<li style="display: inline-block; line-height: 20px; position: relative; width: 100%;">
+				<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+					<a href="http://localhost:8080/greenStore" style="color: #f47721;text-decoration: none; margin-left:2%;">그린스토어 홈</a> 
+					<span class="css-arrow" ></span>
 				</div>
-				<div
-					style="display: block; position: relative; width: 100%; height: 60px; border: 0.1em solid #F6F6F6; line-height: 3em; padding-left: 10px; background-color: #ffffff;">
-					<a href="/login"
-						style="color: #0d2474; text-decoration: none; margin-left: 2%;">로그인/로그아웃</a>
+				<div style="display:block;position: relative; width:100%; height:60px; border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+					<%if(loginBean!=null){ %>
+					<a href="http://localhost:8080/greenStore/member/logout" style="color: #0d2474;text-decoration: none; margin-left:2%;">로그아웃</a> 
+					<span class="css-arrow"></span>
+					<%}else{ %>			
+					<a href="http://localhost:8080/greenStore/member/login" style="color: #0d2474;text-decoration: none; margin-left:2%;">로그인</a> 
+					<span class="css-arrow"></span>
+					<%} %>
+				</div>
+				<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+					<a href="http://localhost:8080/greenStore/notice/listAll" style="color: #0d2474;text-decoration: none; margin-left:2%; ">공지사항</a> 
 					<span class="css-arrow"></span>
 				</div>
-				<div
-					style="display: block; position: relative; width: 100%; height: 60px; border: 0.1em solid #F6F6F6; line-height: 3em; padding-left: 10px; background-color: #ffffff;">
-					<a href="/notice"
-						style="color: #0d2474; text-decoration: none; margin-left: 2%;">공지사항</a>
+				<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+					<a href="http://localhost:8080/greenStore/notice/service" style="color: #0d2474;text-decoration: none; margin-left:2%;">서비스 소개</a> 
 					<span class="css-arrow"></span>
 				</div>
-				<div
-					style="display: block; position: relative; width: 100%; height: 60px; border: 0.1em solid #F6F6F6; line-height: 3em; padding-left: 10px; background-color: #ffffff;">
-					<a href="/service"
-						style="color: #0d2474; text-decoration: none; margin-left: 2%;">서비스
-						소개</a> <span class="css-arrow"></span>
-				</div>
-				<div
-					style="display: block; position: relative; width: 100%; height: 60px; border: 0.1em solid #F6F6F6; line-height: 3em; padding-left: 10px; background-color: #ffffff;">
-					<a href="/mypage"
-						style="color: #0d2474; text-decoration: none; margin-left: 2%;">마이페이지</a>
-					<span class="css-arrow"></span>
-				</div> <!-- <div style="display:block;position: relative; width:100%; height:100px; line-height:5em; text-align:center;">
-						<span>GreenStore</span>
-					</div> --> <br />
-			<br />
-				<div
-					style="display: block; position: relative; width: 100%; height: 60px; text-align: center; line-height: 3em; padding-left: 10px; background-color: #f47721;">
-					<a href="/" style="color: #fff;"> 그린스토어로 이동 </a>
+					<%if(loginBean!=null){ %>
+					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+						<a href="http://localhost:8080/greenStore/mypage/storeLike?mid=<%=loginBean.getId()%>" style="color: #0d2474;text-decoration: none; margin-left:2%;">좋아요스토어</a> 
+						<span class="css-arrow"></span>
+					</div>
+					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+						<a href="http://localhost:8080/greenStore/mypage/reviewLike?mid=<%=loginBean.getId()%>" style="color: #0d2474;text-decoration: none; margin-left:2%;">좋아요리뷰</a> 
+						<span class="css-arrow"></span>
+					</div>
+					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+						<a href="http://localhost:8080/greenStore/review/myReview?mid=<%=loginBean.getId()%>" style="color: #0d2474;text-decoration: none; margin-left:2%;">나의리뷰보기</a> 
+						<span class="css-arrow"></span>
+					</div>
+					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+						<a href="http://localhost:8080/greenStore/review/listAll" style="color: #0d2474;text-decoration: none; margin-left:2%;">리뷰전체보기</a> 
+						<span class="css-arrow"></span>
+					</div>
+					<%}else{ %>
+					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+						<a href="http://localhost:8080/greenStore/review/listAll" style="color: #0d2474;text-decoration: none; margin-left:2%;">리뷰전체보기</a> 
+						<span class="css-arrow"></span>
+					</div>
+					<%} %>	
+				
+				<br/><br/>
+				<div style="display:block;position: relative; width:100%; height:60px; text-align:center; line-height:3em;padding-left:10px; background-color:#f47721;">
+					<a href="http://localhost:8080/greenStore" style="color:#fff;">
+						그린스토어로 이동
+					</a>
 				</div>
 			</li>
 		</ul>
@@ -142,7 +212,7 @@ $(document).ready(function(){
 				</span>
 			</div>
 		</div>
-		<img src="<c:url value="/resources/img/homeImage.png"/>"/><br />
+		<img src="<c:url value="/resources/img/mainImage.jpeg"/>"/><br />
 	</div>
 
 	<div id="locationDiv" title="공간을 선택해주세요 ">
@@ -174,25 +244,23 @@ $(document).ready(function(){
 			<span style="font-size: 25px; font-weight: 600;">식당 추천 리스트</span>
 			<div class="bestList">
 				<ul style="list-style: none;">
-					<li
-						style="display: inline-block; margin: 15; width: 45%; height: 260px;">
+					<li>
 						<a href="/store/best/1">
 							<img src="<c:url value="/resources/img/kfood.png"/>" style="width:100%;height:100%;"/>
 						</a>
 					</li>
-					<li
-						style="display: inline-block; margin: 15; width: 45%; height: 260px; background-size: 500px; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/184699_1425200192391'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg')">
+					<li>
 						<a href="/store/best/2">
 								<img src="<c:url value="/resources/img/cfood.png"/>" style="width:100%;height:100%;"/>
 						</a>
 					</li>
 
-					<li style="display: inline-block; margin: 15; width: 45%; height: 260px; background-size: 500px; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/keyword_search/meta/pictures/ayrwtxnvv7ckdczu.jpg'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg')">
-						<a href="/store/best/3">
+					<li>
+					<a href="/store/best/3">
 								<img src="<c:url value="/resources/img/jfood.png"/>" style="width:100%;height:100%;"/>
 						</a>
 					</li>
-					<li style="display: inline-block; margin: 15; width: 45%; height: 260px; background-size: 500px; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/keyword_search/meta/pictures/-x08y8zjwpcdu5d-.jpg'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg')">
+					<li>
 						<a href="/store/moreBest">
 							<img src="<c:url value="/resources/img/morelist.png"/>" style="width:100%;height:100%;"/>
 						</a>
@@ -282,7 +350,7 @@ $(document).ready(function(){
 		</nav>
 	</header>
 
-	<img id="mbMainImage" src="<c:url value="/resources/img/homeImage.png"/>" alt="homeImage" style="width: 100%; height: 300px;" />
+	<img id="mbMainImage" src="<c:url value="/resources/img/mainImage.jpeg"/>" alt="homeImage" style="width: 100%; height: 300px;" />
 	<br />
 	<br />
 	
@@ -291,25 +359,25 @@ $(document).ready(function(){
 		<div class="bestList">
 			<ul style="list-style: none; padding: 0;">
 				<li
-					style="display: inline-block; margin: 2%; width: 96%; height: 220px; background-size: 100%; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/keyword_search/meta/pictures/eexfpmvgj6iq-m2m.jpg'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg');">
+					style="display: inline-block; margin: 2%; width: 96%; height: 250px; background-size: 100%; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/keyword_search/meta/pictures/eexfpmvgj6iq-m2m.jpg'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg');">
 					<a href="/store/best/1">
 						<img src="<c:url value="/resources/img/kfood.png"/>" style="width:100%;height:100%;"/>
 					</a>
 				</li>
 				<li
-					style="display: inline-block; margin: 2%; width: 96%; height: 220px; background-size: 100%; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/184699_1425200192391'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg')">
+					style="display: inline-block; margin: 2%; width: 96%; height: 250px; background-size: 100%; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/184699_1425200192391'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg')">
 					<a href="/store/best/2">
 						<img src="<c:url value="/resources/img/cfood.png"/>" style="width:100%;height:100%;"/>
 					</a>
 				</li>
 
 				<li
-					style="display: inline-block; margin: 2%; width: 96%; height: 220px; background-size: 100%; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/keyword_search/meta/pictures/ayrwtxnvv7ckdczu.jpg'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg')">
+					style="display: inline-block; margin: 2%; width: 96%; height: 250px; background-size: 100%; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/keyword_search/meta/pictures/ayrwtxnvv7ckdczu.jpg'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg')">
 					<a href="/store/best/3">
 						<img src="<c:url value="/resources/img/jfood.png"/>" style="width:100%;height:100%;"/>
 					</a>
 				</li>
-				<li style="display: inline-block; margin: 2%; width: 96%; height: 220px; background-size: 100%; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/keyword_search/meta/pictures/-x08y8zjwpcdu5d-.jpg'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg')">
+				<li style="display: inline-block; margin: 2%; width: 96%; height: 250px; background-size: 100%; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/keyword_search/meta/pictures/-x08y8zjwpcdu5d-.jpg'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg')">
 					<a href="/store/moreBest">
 						<img src="<c:url value="/resources/img/morelist.png"/>" style="width:100%;height:100%;"/>
 					</a>

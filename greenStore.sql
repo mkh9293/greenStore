@@ -88,3 +88,6 @@ UPDATE review SET rcontent='안녕', rdate=now() where rkey=1;
 SELECT *
 		FROM store
 		ORDER BY sh_rcmn DESC LIMIT 5,6
+
+SELECT * FROM review r INNER JOIN store s ON r.sh_id = s.sh_id where r.sh_id=9018;
+

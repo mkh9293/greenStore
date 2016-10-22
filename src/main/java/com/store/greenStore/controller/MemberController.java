@@ -19,7 +19,7 @@ public class MemberController {
 	
 	@RequestMapping("/login")
 	public void login(Member member){
-		/*memberMapper.insertUser(member);*/
+//		memberMapper.insertUser(member);
 	}
 	
 	@RequestMapping("/logout")

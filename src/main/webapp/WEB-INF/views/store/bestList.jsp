@@ -77,11 +77,11 @@
 				color:#16a085;
 			}
 			#bestTitle h4{
-				position:absolute;font-size:50px;color:#fff;width:100%;top:250;
+				position:absolute;font-size:70px;color:#fff;width:100%;top:250;
 			}
 	</style>
 <div class="hidden-xs">
-	<div id="bestTitle" style="width:1300px; height:450; text-align:center;">
+	<div id="bestTitle" style="width:100%; height:70%; text-align:center;">
 		<c:if test="${induty == 1}">
 			<img src="<c:url value="/resources/img/o-kfood.jpeg"/>" style="position:relative;width:100%;height:100%;"/>
 			<h4>한식 베스트 10</h4>
@@ -177,7 +177,7 @@
 <div class="visible-xs">
 	<div class="container" style="width: 100%; height: 110px; border-bottom:1px solid #EAEAEA;">
 		<h3 style="margin-top: 4%;  font-size: 30; text-align:center;">
-			<strong style="color: #6d3afb;">${cate} 베스트 </strong>
+			<strong style="color: #16a085;">${cate} 베스트 </strong>
 		</h3>
 	</div>
 		<div style="width:100%; background-color: #ffffff;">
@@ -224,7 +224,8 @@
 									       </div>	
 								    </div>
 								</div>
-							</div>
+							</div><hr/>
+							
 						</c:forEach>
 						<br />
 					</div>

@@ -181,33 +181,53 @@
 		<ul style="list-style: none; margin: 0;padding: 0; position: absolute; width: 360px;">
 			<li style="display: inline-block; line-height: 20px; position: relative; width: 100%;">
 				<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
-					<a href="/" style="color: #f47721;text-decoration: none; margin-left:2%;">그린스토어 홈</a> 
+					<a href="http://localhost:8080/greenStore" style="color: #f47721;text-decoration: none; margin-left:2%;">그린스토어 홈</a> 
 					<span class="css-arrow" ></span>
 				</div>
 				<div style="display:block;position: relative; width:100%; height:60px; border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
 					<%if(loginBean!=null){ %>
-					<a href="../greenStore/member/logout" style="color: #0d2474;text-decoration: none; margin-left:2%;">로그아웃</a> 
+					<a href="http://localhost:8080/greenStore/member/logout" style="color: #0d2474;text-decoration: none; margin-left:2%;">로그아웃</a> 
 					<span class="css-arrow"></span>
 					<%}else{ %>			
-					<a href="../greenStore/member/login" style="color: #0d2474;text-decoration: none; margin-left:2%;">로그인</a> 
+					<a href="http://localhost:8080/greenStore/member/login" style="color: #0d2474;text-decoration: none; margin-left:2%;">로그인</a> 
 					<span class="css-arrow"></span>
 					<%} %>
 				</div>
 				<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
-					<a href="../greenStore/notice/listAll" style="color: #0d2474;text-decoration: none; margin-left:2%; ">공지사항</a> 
+					<a href="http://localhost:8080/greenStore/notice/listAll" style="color: #0d2474;text-decoration: none; margin-left:2%; ">공지사항</a> 
 					<span class="css-arrow"></span>
 				</div>
 				<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
-					<a href="#" style="color: #0d2474;text-decoration: none; margin-left:2%;">서비스 소개</a> 
+					<a href="http://localhost:8080/greenStore/notice/service" style="color: #0d2474;text-decoration: none; margin-left:2%;">서비스 소개</a> 
 					<span class="css-arrow"></span>
 				</div>
-				<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
-					<a href="../greenStore/review/listAll" style="color: #0d2474;text-decoration: none; margin-left:2%;">마이페이지</a> 
-					<span class="css-arrow"></span>
-				</div>
+					<%if(loginBean!=null){ %>
+					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+						<a href="http://localhost:8080/greenStore/mypage/storeLike?mid=<%=loginBean.getId()%>" style="color: #0d2474;text-decoration: none; margin-left:2%;">좋아요스토어</a> 
+						<span class="css-arrow"></span>
+					</div>
+					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+						<a href="http://localhost:8080/greenStore/mypage/reviewLike?mid=<%=loginBean.getId()%>" style="color: #0d2474;text-decoration: none; margin-left:2%;">좋아요리뷰</a> 
+						<span class="css-arrow"></span>
+					</div>
+					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+						<a href="http://localhost:8080/greenStore/review/myReview?mid=<%=loginBean.getId()%>" style="color: #0d2474;text-decoration: none; margin-left:2%;">나의리뷰보기</a> 
+						<span class="css-arrow"></span>
+					</div>
+					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+						<a href="http://localhost:8080/greenStore/review/listAll" style="color: #0d2474;text-decoration: none; margin-left:2%;">리뷰전체보기</a> 
+						<span class="css-arrow"></span>
+					</div>
+					<%}else{ %>
+					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+						<a href="http://localhost:8080/greenStore/review/listAll" style="color: #0d2474;text-decoration: none; margin-left:2%;">리뷰전체보기</a> 
+						<span class="css-arrow"></span>
+					</div>
+					<%} %>	
+				
 				<br/><br/>
 				<div style="display:block;position: relative; width:100%; height:60px; text-align:center; line-height:3em;padding-left:10px; background-color:#f47721;">
-					<a href="../greenStore" style="color:#fff;">
+					<a href="http://localhost:8080/greenStore" style="color:#fff;">
 						그린스토어로 이동
 					</a>
 				</div>
@@ -215,4 +235,4 @@
 		</ul>
 	</nav>
 </div>
-<div style="height:54px;"></div>
+<div style="height:54spx;"></div>
