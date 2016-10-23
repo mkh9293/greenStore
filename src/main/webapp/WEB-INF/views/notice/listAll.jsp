@@ -30,7 +30,7 @@
           <div class="box box-solid">
             <div class="box-header with-border">
               <h2 class="box-title" style="margin:20px;">GreenStore 공지사항을 알려드립니다!</h2>
-              
+              <a href="http://localhost:8080/greenStore/notice/write" class="btn">글쓰기</a>
             
             </div>
             <c:forEach var="notice" items="${ list }">
@@ -52,30 +52,11 @@
 	                    <div class="box-body">
 							${ notice.ncontent }
 	                    </div>
-							<%-- <div class="box-body" style="position:right;">
-								<a href="update?nkey=${ notice.nkey }" class="btn btn-warning">글수정하기</a>
-							 	<!-- <button type="submit" class="btn btn-danger">글삭제하기</button> -->
-							 	<a href="delete?nkey=${ notice.nkey }" data-confirm="삭제하시겠습니까?" class="btn btn-danger">글삭제하기</a>
-								<button type="submit" class="btn btn-primary">전체글보기</button>
-	                    	</div>  --%>
 	                    		<div class="pull-right">
-	                    		<form role="form" method="post">
-									<input type="hidden" name="nkey" value="${notice.nkey}">
-								
-                		 <a href="http://localhost:8080/greenStore/notice/write" class="btn">글쓰기</a>
-								<a
-									href="update?nkey=${notice.nkey}"
-									class="btn"> <i class="icon-list"></i> 수정
-						
-								</a> <a
-									href="delete?nkey=${notice.nkey}"
-									class="btn" data-confirm="삭제하시겠습니까?"> <i class="icon-remove"></i>
-									삭제
-								</a> <a href="listAll"
-									class="btn"> <i class="icon-list"></i> 목록으로
-								</a> 
+								<a href="update?nkey=${notice.nkey}" class="btn" id="btn-primary"> <i class="icon-list"></i> 수정</a>
+								<a href="delete?nkey=${notice.nkey}" class="btn" data-confirm="삭제하시겠습니까?"> <i class="icon-remove"></i>삭제</a>
+								<a href="listAll" class="btn"> <i class="icon-list"></i> 목록으로</a> 
 							</div>
-							</form>
 	                  </div>
 	                </div>
 	              </div>

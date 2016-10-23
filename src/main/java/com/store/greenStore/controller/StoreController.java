@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
-
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
@@ -13,16 +12,14 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.catalina.filters.SetCharacterEncodingFilter;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
+import org.dom4j.Node;
 import org.dom4j.io.SAXReader;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.dom4j.Element;
-import org.dom4j.Node;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,8 +30,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.store.greenStore.dto.Blog;
+import com.store.greenStore.dto.Notice;
 import com.store.greenStore.dto.Play;
+import com.store.greenStore.dto.Review;
 import com.store.greenStore.dto.Store;
+import com.store.greenStore.mapper.RvMapper;
 import com.store.greenStore.mapper.StoreDbMapper;
 import com.store.greenStore.mapper.StoreMapper;
 
@@ -42,6 +42,9 @@ import com.store.greenStore.mapper.StoreMapper;
 @RequestMapping(value="/store/*")
 public class StoreController {
 
+	@Autowired
+	RvMapper rvMapper;
+	
 	@Autowired
 	StoreDbMapper storeDbMapper;
 
@@ -485,6 +488,18 @@ public class StoreController {
 		return "store/mbPlayDetail";
 	}
 	
+	
+//	@RequestMapping(value="/write/{sh_id}", method=RequestMethod.GET)
+//	public String write(Model model,Store store, Review review, @PathVariable("sh_id") int sh_id){
+//
+////		model.addAttribute("store", store);
+//		Review rv = new Review();
+////		rv.setMid(1);
+////		rv.setMname("admin");
+////		
+//		rvMapper.insert(review);
+//		return "store/wirte";
+//	}
 	
 	
 }

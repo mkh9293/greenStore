@@ -11,12 +11,12 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		var formObj = $("form[role='form']"); //role form 인 Element를 가지고 오겠다
-		$(".btn-warning").on("click", function() {
-			formObj.attr("action", "/greenStore/notice/update")
+		$(".btn-primary").on("click", function() {
+			formObj.attr("action", "/greenStore/notice/update");
+			formObj.attr("method", "post");
 			formObj.submit();
-		});
-		$(".btn-danger").on("click", function() {
-			self.location = "/skhu/book/listAll";
+
+		
 		});
 
 	})
@@ -31,60 +31,24 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-		
-		
-		<form role="form" method="post">
-
-	<input type="hidden" name="nkey" value="${notice.nkey}">
-
-	<div class="box-body">
-		<div class="form-group">
-			<label for="exampleInputEmail">Title</label> <input type="text"
-				name="ntitle" class="form-control" value="${notice.ntitle}">
-		</div>
-
-		<div class="form-group">
-			<label for="exampleInputPassword1">Contents</label>
-			<textarea id="body" name="ncontent" class="smarteditor2">${notice.ncontent}</textarea>
-		</div>
-	</div>
-
-	<div class="box-footer">
-		<button type="submit" class="btn btn-success">SAVE</button>
-		<button type="submit" class="btn btn-danger">CANCLE</button>
-	</div>
-</form>
-<%-- 		<form:form method="post" modelAttribute="notice" enctype="multipart/form-data">
-		    <div>
-		        <span>제목:</span>
-		        <form:input path="title" />
-		    </div>
-		    <form:textarea path="body" class="smarteditor2" />
-		    
-		    <
-		    <div>
-		        <button type="submit" class="btn btn-primary" name="cmd" value="save">
-		            <i class="icon-ok icon-white"></i> 저장하기
-		        </button>
-		        <a href="article.do?id=" class="btn">
-		            <i class="icon-ban-circle"></i> 취소
-		        </a>
-		    </div>
-		</form:form> --%>
-		
-			<%-- <form role="form" method="post">
-			<input type="hidden" name="nkey" value="${notice.nkey }">
+			<form role="form" method="post">
+			<input type="hidden" name="nkey" value="${notice.nkey}">
 				<div>
 					<label style="font-size: 18px;"></label>
-					<input type="text" name="ntitle" value="${ notice.ntitle}" style="width: 100%;" />
+					<input type="text" name="ntitle" style="width: 100%;" value="${notice.ntitle}"/>
 				</div>
 				<div class="contentDiv">
-					<textarea id="txtContent" class="smarteditor2" name="ncontent" rows="30" style="width:100%;">${notice.ncontent}</textarea>
+				<textarea id="txtContent"  name="ncontent" class="smarteditor2"  rows="30" style="width:100%;" >${notice.ncontent}</textarea>
 				</div>
 				<div class="buttonDiv">
-					<button type="submit" class="btn btn-primary">글쓰기</button>
+				 <button type="submit" class="btn btn-primary" name="cmd" value="save">
+		            <i class="icon-ok icon-white"></i> 저장하기
+		        </button>
+						<a href="listAll" class="btn"> <i class="icon-list"></i> 목록으로</a>
 				</div>
-			</form> --%>
+
+			</form>
+
 		</div>
 	</div>
 </div>

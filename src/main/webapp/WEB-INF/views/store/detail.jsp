@@ -2,10 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="<c:url value="/resources/se2/init.js" />"></script>
-<script src="<c:url value="/resources/se2/js/HuskyEZCreator.js" />"></script>
+<script type="text/javascript" src="/resources/js/upload.js"></script>
 
+    <script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 
-<link rel="stylesheet" href="<c:url value="/resources/dist/css/AdminLTE.min.css"/>" type="text/css">
 <link rel="stylesheet" href="<c:url value="/resources/dist/css/skins/_all-skins.min.css"/>" type="text/css">
 
 <!-- sidebar menu css -->  
@@ -109,7 +110,7 @@
 			var addr1 = $(this).find(".addr1").text();
 			var title = $(this).find(".title").text();
 		
-			window.open("http://localhost:8080/store/detail/play/"+contentId+"/"+sh_name+"/"+sh_addr+"/"+title+"/"+addr1,"_blank","toolbar=no,scrollbars=yes,resizable=no,top=200,left=200,width=800,height=600");
+			window.open("http://localhost:8080/greenStore/store/detail/play/"+contentId+"/"+sh_name+"/"+sh_addr+"/"+title+"/"+addr1,"_blank","toolbar=no,scrollbars=yes,resizable=no,top=200,left=200,width=800,height=600");
 			
 			//$(location).attr("href","http://localhost:8080/greenStore/store/detail/play?contentId="+contentId);
 		});
@@ -119,7 +120,7 @@
 			var addr1 = $(this).find(".addr1").text();
 			var title = $(this).find(".title").text();
 			
-			$(location).attr("href","http://localhost:8080/store/mb/detail/play/"+contentId+"/"+title+"/"+addr1);
+			$(location).attr("href","http://localhost:8080/greenStore/store/mb/detail/play/"+contentId+"/"+title+"/"+addr1);
 		});
 		
 		var likeBtn = false;//나중에 디비에서 받아야된다.
@@ -186,12 +187,27 @@
 			$(location).attr("href","http://map.daum.net/link/to/"+sh_name+","+pointY+","+pointX);
 		});
 		
- 		$(".reviewWrite").on("click",function(){
-			var contentId = $(this).attr("data-id");
-			window.open("http://localhost:8080/greenStore/review/reviewWrite/"+sh_id,"toolbar=no,scrollbars=yes,resizable=no,top=200,left=200,width=800,height=600");
 		
+		$(function() {
+			  $('#add-button').on("click", function() {
+			      var rcontent = $('form[name=rcontent]').val();
+			      var mkey = 1;
+			      
+					 $.ajax({
+							url:"http://localhost:8080/greenStore/json/write",
+							type:"post",
+							data:{"meky": mkey ,"sh_id": sh_id, "rcontent": rcontent},
+							success:function(data){
+								alert(data);
+							}
+						 });
+			});
+		
+
+/*  		$(".review").on("click",function(){
+			window.open("http://localhost:8080/greenStore/store/write/"+sh_id,"_blank","toolbar=no,scrollbars=yes,resizable=no,top=200,left=200,width=800,height=600");
 		}); 
-		
+  */
 	});
 </script>
 
@@ -214,7 +230,6 @@
                         <span id="likeBtn" style="float:right; font-size:30px;color:#BDBDBD;" class="glyphicon glyphicon-heart-empty"></span>
         			  </h3>
                     </div>
-                    <!-- <img alt="storeDetailImg" src="${store.sh_photo }" style="width:400px;height:500px"/>  -->
                     <hr/>
                     <div class="intro">
                         <table>
@@ -230,34 +245,24 @@
                      </div><hr/>
                     
                     <div class="review">
-                    	<h4>리뷰 <a id ="reviewWrite" type="button" class="btn btn-primary" data-id="2350">작성하기</a> </h4>
-                        <c:forEach items="${ list }" var="review" varStatus="i">
-                        	<c:if test="${i.index < 4 }">
-							<div class="post clearfix">
-				                  <div class="user-block">
-				                    <img class="img-circle img-bordered-sm" src="../resources/img/iseoul.jpg" alt="User Image">
-				                        <span class="username">
-				                          <a href="#">${ review.mname }</a>
-				                          <a href="#" class="pull-right btn-box-tool"></a>
-				                        </span>
-				                    <span class="description"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${ review.rdate }" /></span>
-				                  </div>
-				                  <!-- /.user-block -->
-				                  <p>
-				                  ${ review.rcontent }
-				                  </p>
-				                  <ul class="list-inline">
-				                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-				                    </li>
-				                  </ul>
-				                </div>
-							</c:if>
-						</c:forEach>
-                    
-                    	
-                    	
-                    	<!-- Post -->
-		                <!-- /.post -->
+                   <h4>리뷰</h4>
+                   <form method="post" class="example-form">
+                   <textarea style="width:85%;" name="rcontent" id="rontent"></textarea>
+                   <button type="submit" class="btn">추가</button>
+                <!--    <a href="http://localhost:8080/greenStore/store/write?" class="btn">저장</a> -->
+                   </form>
+                    <!-- <div id="review" style="width:365px;height:300px;"></div>  -->
+<%-- 							<form role="form" method="post">
+							<input type="hidden" name="sh_id" value="${store.sh_id}">
+							<input type="hidden" name="mid" value="1"> 
+								<div class="contentDiv">
+								 	<textarea id="txtContent" class="smarteditor2" name="rcontent" rows="30" style="width:100%;"></textarea>
+								</div>
+								<div class="buttonDiv">
+									<button type="submit" class="btn btn-primary">Submit</button>
+								</div>
+							</form> --%>
+								
                     </div><hr/>
                     
                     <div class="daumBlog">

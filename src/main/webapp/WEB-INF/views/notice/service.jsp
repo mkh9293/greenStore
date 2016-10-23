@@ -92,8 +92,8 @@
 	<hr/>
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-		<h3>음식점은 물론,<br/>세탁소에 미용실까지!</h3>
-		<h3>주변의 <strong>'착한 스토어'</strong>를 찾을 땐<br/> 함께 그린 스토어에 들러보세요.</h3>
+		<h4>음식점은 물론,<br/>세탁소에 미용실까지!</h4>
+		<h4>주변의 <strong>'착한 스토어'</strong>를 찾을 땐<br/> 함께 그린 스토어에 들러보세요.</h4>
 		<p></p><p>
 		</p>
 		<hr/>

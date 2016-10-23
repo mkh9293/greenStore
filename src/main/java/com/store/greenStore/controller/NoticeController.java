@@ -50,29 +50,29 @@ public class NoticeController {
 //		
 //		board.setUser_id(user.getId());
 		noticeMapper.write(board);
-		noticeImageMapper.updateArticleImage(board);
+//		noticeImageMapper.updateArticleImage(board);
     	return "redirect:/notice/listAll";
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public String update(Model model, @RequestParam("nkey") int nkey, Notice board) {
-		noticeMapper.update(board);
-//		model.addAttribute("board", noticeMapper.selectById(nkey));
+//		noticeMapper.update(board);
+		model.addAttribute("board", noticeMapper.selectById(nkey));
 		return "notice/update";
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(Model model, Notice board) {
 		noticeMapper.update(board);
-		noticeImageMapper.updateArticleImage(board);
+//		noticeImageMapper.updateArticleImage(board);
 		return "redirect:/notice/listAll";
 	}
 
 	@RequestMapping("/delete")
 	public String delete(Model model, @RequestParam("nkey") int nkey) {
 		noticeMapper.delete(nkey);
-		noticeImageMapper.delete(nkey);
-		return "notice/listAll";
+//		noticeImageMapper.delete(nkey);
+		return "redirect:/notice/listAll";
 	}
 	
 	@RequestMapping("/service")

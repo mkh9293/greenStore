@@ -31,16 +31,9 @@
 
 <!-- style -->
 <style>
-/* 	.navbar-header{
-		background-color: #1ABC9c;
-		width: 100%;
-	}
-	.navbar-brand {
-		font-family : SpoquHanSans-Reqular, sans-serif;
-		font-size: 25px;
-	} */
+
 	.row{
-		margin-top: 80px;
+		margin-top: 50px;
 	}
 	.box-title {
 		padding: 5px;
@@ -50,14 +43,15 @@
 </style>
 <div class="container">
 	<div class="row">
-	      <div class="col-md-12">
+	      <div class="col-md-12" >
           <div class="nav-tabs-custom">
-            <div class="tab-content">
+            <div class="tab-content" style="padding:50px;">
               <div class="active tab-pane" id="activity">
-			    <!-- Post -->
 			    <c:forEach var="review" items="${ list }">
                 <div class="post clearfix">
+                	<h4><a href="http://localhost:8080/greenStore/store/detail?id=${review.sh_id}">${ review.sh_name }</a></h4>
                   <div class="user-block">
+                   
                     <img class="img-circle img-bordered-sm" src="../resources/img/iseoul.jpg" alt="User Image">
                         <span class="username">
                           <a href="#">${ review.mname }</a>
@@ -65,11 +59,7 @@
                         </span>
                     <span class="description"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${ review.rdate }" /></span>
                  	
-                  </div>
-                  <h4>${ review.sh_name } <a href="http://localhost:8080/greenStore/store/detail?id=${reviewLike.sh_id}"><button type="button" class="btn btn-default btn-xs" style="margin-left:20px;"><i class="fa fa-share"></i> 이 스토어 더보기</button>
- 		             </a></h4>
- 		             <hr/>
-                  <!-- /.user-block -->
+                   </div>
                   <p>
                   ${ review.rcontent }
                   </p>
@@ -79,18 +69,12 @@
                   </ul>
                 </div>
                  </c:forEach>
-                <!-- /.post -->
-
                 </div>
               </div>
-              <!-- /.tab-pane -->
-            <!-- /.tab-content -->
           </div>
-          <!-- /.nav-tabs-custom -->
         </div>
 	
 	</div>
-
-	</div> -->
+	</div> 
 
 

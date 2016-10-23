@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -14,22 +13,30 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.store.greenStore.dto.Play;
+import com.store.greenStore.dto.Review;
 import com.store.greenStore.dto.Store;
 import com.store.greenStore.dto.StoreLike;
+import com.store.greenStore.mapper.RvMapper;
 import com.store.greenStore.mapper.StoreMapper;
 
 @Controller
 @RequestMapping(value="/json/*")
 public class JsonController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(SNSController.class);
 	@Autowired
 	StoreMapper storeMapper;
+	
+	@Autowired
+	RvMapper rvMapper;
 	
 	private final String appkey = "01b35d68e4ea90f252393375e98e3958";
 	
@@ -213,4 +220,14 @@ public class JsonController {
 		
 		return map;
 	}
+	
+	@RequestMapping(value="/write")
+	public @ResponseBody void reviewWrtie(Review review) throws IOException, ParseException{
+		logger.info("test???");
+//		rvMapper.insert(review);
+	
+
+	}
+	
+	
 }

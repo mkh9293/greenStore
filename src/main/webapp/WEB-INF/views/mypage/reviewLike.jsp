@@ -28,12 +28,29 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/home.css"/>" type="text/css">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/common.css"/>">
 
-
+<!-- session -->
+<jsp:useBean id="loginBean" class="petBean.LoginInfoBean"/>
+<%
+	request.setCharacterEncoding("UTF-8");
+	String idNum = request.getParameter("idNum");
+	String nick="";
+	String img="#";
+	
+	if(idNum!=null){
+		loginBean.setId(request.getParameter("idNum"));
+		loginBean.setNick(request.getParameter("nickName"));
+		loginBean.setImgUrl(request.getParameter("profile_img"));
+		session.setAttribute("LOGININFO", loginBean);
+	}
+	
+	loginBean = (petBean.LoginInfoBean)session.getAttribute("LOGININFO");
+%>
+<!-- ./session -->
 <!-- style -->
 <style>
 
 	.row {
-		margin-top: 80px;
+		margin-top: 50px;
 	}
 	.input-group {
 		margin-top: 80px;
@@ -43,29 +60,33 @@
 	}
 
 </style>
-<jsp:include page="../include/menu.jsp"/>
 <div class="container">
 	<div class="row">
 	      <div class="col-md-12">
           <div class="nav-tabs-custom">
-            <div class="tab-content">
+            <div class="tab-content" style="padding:50px;">
               <div class="active tab-pane" id="activity">
               
 			   <!-- Post -->
 			    <c:forEach var="reviewLike" items="${ reviewlike }">
                 <div class="post clearfix">
                   <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="../resources/img/iseoul.jpg" alt="User Image">
-                        <span class="username">
-                          <a href="#">${ reviewLike.mkey }</a>
+                  
+                   <%= loginBean.getNick() %>님이 좋아요를 누르신 <span style="font-size:25px;"> <a href="http://localhost:8080/greenStore/store/detail?id=${reviewLike.sh_id}">${ reviewLike.sh_name }</a></span> 리뷰입니다.
+
+ 		             		</a>
                           <a href="#" class="pull-right btn-box-tool"></a>
-                        </span>
-                    <span class="description"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${ reviewLike.rdate }" /></span>
+                   <!--  <img class="img-circle img-bordered-sm" src="../resources/img/iseoul.jpg" alt="User Image"> -->
+                      <!--   <span class="username"> -->
+                          <%-- <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${ reviewLike.rdate }" />에 <%= loginBean.getNick() %>님이 남기신 ${ reviewLike.sh_name } 리뷰입니다.
+                          <a href="http://localhost:8080/greenStore/store/detail?id=${reviewLike.sh_id}"><button type="button" class="btn btn-default btn-xs" style="margin-left:20px;"><i class="fa fa-share"></i> 이 스토어 더보기</button>
+ 		             		</a>
+                          <a href="#" class="pull-right btn-box-tool"></a> --%>
+                      <!--   </span> -->
+                    <span class="description"></span>
                   </div>
                   <!-- /.user-block -->
-                  <h4>${ reviewLike.sh_name } <a href="http://localhost:8080/greenStore/store/detail?id=${reviewLike.sh_id}"><button type="button" class="btn btn-default btn-xs" style="margin-left:20px;"><i class="fa fa-share"></i> 이 스토어 더보기</button>
- 		             </a></h4>
-                  <hr/>
+                  
                   <p>
                   
                   ${ reviewLike.rcontent }

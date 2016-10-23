@@ -25,7 +25,24 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" type="text/css">
 <link rel="stylesheet" href="<c:url value="/resources/css/home.css"/>" type="text/css">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/common.css"/>">
-
+<!-- session -->
+<jsp:useBean id="loginBean" class="petBean.LoginInfoBean"/>
+<%
+	request.setCharacterEncoding("UTF-8");
+	String idNum = request.getParameter("idNum");
+	String nick="";
+	String img="#";
+	
+	if(idNum!=null){
+		loginBean.setId(request.getParameter("idNum"));
+		loginBean.setNick(request.getParameter("nickName"));
+		loginBean.setImgUrl(request.getParameter("profile_img"));
+		session.setAttribute("LOGININFO", loginBean);
+	}
+	
+	loginBean = (petBean.LoginInfoBean)session.getAttribute("LOGININFO");
+%>
+<!-- ./session -->
 <!-- style -->
 <style>
 	.row{
@@ -38,23 +55,23 @@
 	<div class="row">
 	      <div class="col-md-12">
           <div class="nav-tabs-custom">
-            <div class="tab-content">
+            <div class="tab-content" style="padding:50px">
               <div class="active tab-pane" id="activity">
 			    <!-- Post -->
 			    <c:forEach var="review" items="${ myreview }">
                 <div class="post clearfix">
-                  <div class="user-block">
-                    <!-- <img class="img-circle img-bordered-sm" src="../resources/img/iseoul.jpg" alt="User Image"> -->
+             <div class="user-block">
+                    <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${ review.rdate }" />에  <b><%= loginBean.getNick() %></b>님이 작성하신<span style="font-size:25px;"> <a href="http://localhost:8080/greenStore/store/detail?id=${reviewLike.sh_id}">${ review.sh_name }</a></span> 리뷰입니다.
                         <span class="username">
-                      <h4>${ review.sh_name } 
- 		             <a href="http://localhost:8080/greenStore/store/detail?id=${review.sh_id}"><button type="button" class="btn btn-default btn-xs" style="margin-left:20px;"><i class="fa fa-share"></i> 이 스토어 더보기</button>
- 		             </a></h4>
+                          
                           <a href="#" class="pull-right btn-box-tool"></a>
                         </span>
-                    <span class="description"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${ review.rdate }" /></span>
-                  </div>
+                 	
+                   </div>
+                  <%--<h4>${ review.sh_name } <a href="http://localhost:8080/greenStore/store/detail?id=${reviewLike.sh_id}"><button type="button" class="btn btn-default btn-xs" style="margin-left:20px;"><i class="fa fa-share"></i> 이 스토어 더보기</button>
+ 		             </a></h4> --%>
+ 		             <!-- hr/> -->
                   <!-- /.user-block -->
-
                   <p>
                   ${ review.rcontent }
                   </p>

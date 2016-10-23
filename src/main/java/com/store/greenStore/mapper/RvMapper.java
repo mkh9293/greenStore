@@ -23,5 +23,6 @@ public interface RvMapper {
 		
 		List<Review> appReviewCateSearch(@Param("area")String area,@Param("cate")String cate);
 		
+		void write(Review rv);
 		
 }
