@@ -32,6 +32,7 @@ public class Store {
 	private String firstimage;
 	private String title;
 	
+
 	public Object getPointX() {
 		return pointX;
 	}

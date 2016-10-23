@@ -21,8 +21,15 @@
 		DELETE FROM review where rkey=#{rkey}
 	</delete>
 	
-	<select id="select" resultType="com.store.greenStore.dto.Review">
+	<!-- <select id="select" resultType="com.store.greenStore.dto.Review">
 		SELECT * FROM review WHERE sh_id=#{sh_id} and relike = (SELECT max(relike) FROM review);
+	</select> -->
+	
+	<select id="select" resultType="com.store.greenStore.dto.Review">
+		SELECT * 
+		FROM review join member on review.mkey = member.mkey
+		WHERE sh_id=#{sh_id}
+		ORDER BY relike limit 1
 	</select>
 	
 	<select id="listAll" resultType="com.store.greenStore.dto.Review"> 

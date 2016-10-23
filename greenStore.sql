@@ -54,30 +54,6 @@ select store_menu.menu
 from store join store_menu on store.sh_id = store_menu.sh_id  
 where store.sh_id = 2350;
 
-<<<<<<< HEAD
-=======
-SELECT * FROM review r INNER JOIN store s ON r.sh_id = s.sh_id order by rdate desc;
-
-
-		select  s.SH_ID, SH_NAME, SH_ADDR, MENU, induty_code_se_name, SH_RCMN, SH_LIKE, SH_PHOTO, MIN(PRICE) AS PRICE 
-		from store s join store_menu m on s.sh_id = m.sh_id  
-		<where>
-			<if test="!area.equals('전체')">
-				sh_addr like concat('%',#{area},'%') and
-			</if>
-			<if test="area.equals('전체')">
-				sh_addr like '%%' and
-			</if>
-			<if test="!cate.equals('전체')">
-				induty_code_se_name like concat('%',#{cate},'%')
-			</if>
-			<if test="cate.equals('전체')">
-				induty_code_se_name like '%%'
-			</if>
-		</where>
-		group by sh_id
-		order by sh_rcmn desc;
->>>>>>> 00e8ca8c7d54bd5d1369e717d3face7325c78ba5
 select distinct *
 from store_like sl join review_like rl on sl.mkey = rl.mkey
 where sl.mkey = 4;
@@ -93,7 +69,7 @@ from review_like;
 insert review (MKEY,SH_ID,RCONTENT,RELIKE) values (3,9015,"맛있다.",0);
 
 SELECT * FROM review r INNER JOIN store s ON r.sh_id = s.sh_id order by rdate desc;
-<<<<<<< HEAD
+
 delete from store_like;
 select *
 		from store join store_menu on store.sh_id = store_menu.sh_id
@@ -101,4 +77,17 @@ select *
 select *
 from store;
 
+SELECT * 
+		FROM review join member on review.mkey = member.mkey 
+		WHERE sh_id = 9015 
+		order by relike limit 1;
+		
+update review set rdate=now() where sh_id = 9015;
+UPDATE review SET rcontent='안녕', rdate=now() where rkey=1;
+
+SELECT *
+		FROM store
+		ORDER BY sh_rcmn DESC LIMIT 5,6
+
 SELECT * FROM review r INNER JOIN store s ON r.sh_id = s.sh_id where r.sh_id=9018;
+

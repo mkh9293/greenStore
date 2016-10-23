@@ -13,6 +13,7 @@ public interface StoreMapper {
 	List<Store> webSelectAll();
 	List<Store> likeSelectAll();
 	List<Store> selectAll();
+	List<Store> appSelectAll(@Param("start")int start,@Param("end")int end);
 	List<Store> region(String searchText);
 	List<Store> category(@Param("cate")String cate);
 	
