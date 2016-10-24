@@ -2,10 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<!-- bootstrap js import -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 <!-- sidebar menu css -->
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/normalize.css"/>" type="text/css">
@@ -40,7 +36,11 @@
 	}
 </style>
 <div class="hidden-xs">
+<<<<<<< Updated upstream
 	<div style="width:100%; height:600px; text-align:center;">
+=======
+	<div style="width:100%; height:450; text-align:center;">
+>>>>>>> Stashed changes
 		<img src="<c:url value="/resources/img/o-morelist.jpeg"/>" alt="" style="width:100%; height:100%; opacity:0.9;"/>
 		<div id="bestTitle">
 			<h4>서울시 추천 리스트</h4>	

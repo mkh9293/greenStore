@@ -108,7 +108,7 @@
 		<nav class="navbar navbar-default navbar-fixed-top">
 				<div class="navbar-header">
 					<a class="navbar-brand" href="/" style="color: #ffffff;">GS</a>
-					<form id="mb_searchFrm" class="navbar-form navbar-left" action="" role="search" style="display:inline-block;width:65%;">
+					<form id="mb_searchFrm" class="navbar-form navbar-left" action="" role="search" style="display:inline-block;width:60%;">
 						<div class="form-group" style="width:110%">
 							<input type="text" id="mb_searchTxt" name="searchText" class="form-control" placeholder="Search">
 						</div>

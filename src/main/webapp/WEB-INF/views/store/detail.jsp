@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<<<<<<< Updated upstream
 <script src="<c:url value="/resources/se2/js/jindo.min.js" />"></script>
 <script src="<c:url value="/resources/se2/js/HuskyEZCreator.js" />"></script> 
 
@@ -11,6 +12,9 @@
 <script src="<c:url value="/resources/bootstrap/js/bootstrap.min.js"/>"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+=======
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+>>>>>>> Stashed changes
 
 <link rel="stylesheet" href="<c:url value="/resources/dist/css/skins/_all-skins.min.css"/>" type="text/css">
 
@@ -28,8 +32,18 @@
 <script type="text/javascript"
 	src="//apis.daum.net/maps/maps3.js?apikey=76d0dfe96fd493ccedbee52792d36e32"></script>
 
+<<<<<<< Updated upstream
 
 
+=======
+<!-- session -->
+<jsp:useBean id="loginBean" class="petBean.LoginInfoBean"/>
+<%
+	request.setCharacterEncoding("UTF-8");
+	loginBean = (petBean.LoginInfoBean)session.getAttribute("LOGININFO");
+%>	
+	
+>>>>>>> Stashed changes
 <script type="text/javascript">
 	var sh_photo = "<c:out value="${store.sh_photo}"/>";
 	var sh_name = "<c:out value="${store.sh_name}"/>";
@@ -111,6 +125,7 @@
 		
 		var likeBtn = false;//나중에 디비에서 받아야된다.
 		$("#likeBtn").on("click",function(){
+<<<<<<< Updated upstream
 			
 			if(likeBtn == false){
 	        	$("#likeBtn").removeClass();
@@ -146,6 +161,53 @@
 	            	}
 	            });
 	        }
+=======
+			<%if(loginBean!=null){ %>
+				if(likeBtn == false){
+		        	$("#likeBtn").removeClass();
+		        	$("#likeBtn").addClass("glyphicon glyphicon-heart");
+		            $("#likeBtn").css("color","#1abc9c");
+		            likeBtn = true;
+		            
+		            $.ajax({
+		            	url:"http://localhost:8080/json/likePlus",
+		            	data:{"sh_id":sh_id},
+		            	method:"post",
+		            	success:function(data){
+		            		$.each(data, function(key, value){
+		            			alert("좋아요를 눌렀습니다.");
+		            		});
+		            	}
+		            });
+		        }
+		        else{
+		        	$("#likeBtn").removeClass();
+		        	$("#likeBtn").addClass("glyphicon glyphicon-heart-empty");
+		            $("#likeBtn").css("color","#BDBDBD");
+		            likeBtn = false;
+		            
+		            $.ajax({
+		            	url:"http://localhost:8080/json/likeMin",
+		            	data:{"sh_id":sh_id},
+		            	method:"post",
+		            	success:function(data){
+		            		$.each(data, function(key, value){
+		            			alert("좋아요를 취소헸습니다.");
+		    				});
+		            	}
+		            });
+		        }
+			<%}else{ %>
+				var maskHeight = $(document).height(); 
+				$('#myModal1').css({'height':maskHeight,'display':'block'});  
+			<%}%>
+		});
+		$("#myModal1 .close").on("click",function(){
+			$("#myModal1").css("display","none");
+		});
+		$("#myModal1 .modal-footer").on("click",function(){
+			$("#myModal1").css("display","none");
+>>>>>>> Stashed changes
 		});
 		
 		$("#mb_likeBtn").on("click",function(){
@@ -202,9 +264,14 @@
 	}
 </style>
 <div class="hidden-xs hidden-sm">		
+<<<<<<< Updated upstream
 		
 	    <div class="container">
 	    <img alt="detailImage" src="${store.sh_photo }" style="width:100%; height:500px;"/><br/>
+=======
+		<div class="container">
+	    	<img alt="detailImage" src="${store.sh_photo }" style="width:100%;height:20em;"/><br/>
+>>>>>>> Stashed changes
 	    	<div class="row">
                 <div class="col-md-8" id="mainContent">
                     <div>
@@ -272,7 +339,11 @@
 						<input type=hidden name="sh_phone" value="${store.sh_phone }">
 						<input type=hidden name="sh_info" value="${store.sh_info }">
 				
+<<<<<<< Updated upstream
 						<div id="map" style="width:365px;height:300px;"></div>
+=======
+						<div id="map" style="height:300px;"></div>
+>>>>>>> Stashed changes
                     </form>
 					
                     <h5 style="font-size:25px;margin-bottom:30px;">주변 놀거리</h5>
@@ -298,6 +369,22 @@
                 </div>
             </div>
         </div>   
+        <!-- Modal -->
+		<div class="modal" id="myModal1" style="top:100px; width:100%;display:none;">
+		  <div class="modal-content" style="width:770px; left:300;">
+		      <div class="modal-header">
+		        <button type="button" class="close"><span aria-hidden="true">&times;</span></button>
+		      </div>
+		      <div class="modal-body" style="text-align:center">
+		       	<h2 style="font-size:20px;">로그인 하시면 가고싶은 식당을 편하게 저장해서 내 프로필 페이지에서 볼 수 있어요! :)</h2>
+		      </div>
+		      <div class="modal-footer" style="text-align:center;">
+		        <button type="button" class="btn btn-default btn-lg" style="width:30%;">취소</button>
+		      	<a class="btn btn-success btn-lg" href="/login" style="width:30%; margin-left:7%">로그인</a>
+		      </div>
+		    </div>
+		</div>
+	<!-- end Modal -->
 </div>
 <div class="visible-xs visible-sm">
 	
