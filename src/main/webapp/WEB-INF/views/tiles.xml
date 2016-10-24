@@ -33,11 +33,5 @@
 		<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" /> 
 	</definition>
 
-	<definition name="store/write" extends="commonLayout"> 
-		<put-attribute name="content" value="/WEB-INF/views/store/write.jsp" /> 
-	</definition> 
-	
-
-
 </tiles-definitions>	
 	

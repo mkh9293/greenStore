@@ -54,7 +54,6 @@ public class StoreController {
 	//data.go.kr appkey
 	private final String serviceKey = "Hg3hdDoudw4mO5fh6hxBa3XnJBF2Zdr3o9s1EZu04FYctqRNkH2g5eEAWqF1xyivTDrUtwE5gWb0U9PTI7VP5A%3D%3D";
 
-
 	//daum appkey
 	private final String appkey = "01b35d68e4ea90f252393375e98e3958";
 
@@ -487,5 +486,7 @@ public class StoreController {
 		
 		return "store/mbPlayDetail";
 	}
+	
+	
 	
 }

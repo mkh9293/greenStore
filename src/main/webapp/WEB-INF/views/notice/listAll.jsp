@@ -30,11 +30,11 @@
           <div class="box box-solid">
             <div class="box-header with-border">
               <h2 class="box-title" style="margin:20px;">GreenStore 공지사항을 알려드립니다!</h2>
-              <c:if test="${not empty member }"> 
-              <c:if test="${ member.mname == admin }">
+             <%--  <c:if test="${not empty member }"> 
+              <c:if test="${ member.mname == admin }"> --%>
               	<a href="http://localhost:8080/greenStore/notice/write" class="btn">글쓰기</a>
-			  </c:if> 
-			  </c:if>
+			<%--   </c:if> 
+			  </c:if> --%>
             </div>
             <c:forEach var="notice" items="${ list }">
 	            <div class="box-body">
@@ -56,12 +56,12 @@
 							${ notice.ncontent }
 	                    </div>
 	                    		<div class="pull-right">
-	                    		<c:if test="${not empty member }"> 
-	                    		<c:if test="${ member.mname == admin }">
+	                    		<%-- <c:if test="${not empty member }"> 
+	                    		<c:if test="${ member.mname == admin }"> --%>
 									<a href="update?nkey=${notice.nkey}" class="btn" id="btn-primary"> <i class="icon-list"></i> 수정</a>
 									<a href="delete?nkey=${notice.nkey}" class="btn" data-confirm="삭제하시겠습니까?"> <i class="icon-remove"></i>삭제</a>
-								</c:if>
-								</c:if>
+							<%-- 	</c:if>
+								</c:if> --%>
 								<a href="listAll" class="btn"> <i class="icon-list"></i> 목록으로</a> 
 							</div>
 	                  </div>
@@ -73,5 +73,4 @@
         </div>
 	</div>
 </div>
-
 

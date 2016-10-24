@@ -14,14 +14,13 @@
 	</select>
 	
 	<select id="member" resultType="com.store.greenStore.dto.Member">
-	select count(mid) from member
-	where mid = #{mid}
+		select count(mid) from member
+		where mid = #{mid}
 	</select>
 	
-		<update id="update">
+	<update id="update" >
 		update member
 		set mname=#{mname}, mphoto=#{mphoto}
 		where mid = #{mid}
-		
 	</update>
 </mapper>

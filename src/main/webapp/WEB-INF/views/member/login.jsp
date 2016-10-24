@@ -15,14 +15,12 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" type="text/css">
 <link rel="stylesheet" href="<c:url value="/resources/css/home.css"/>" type="text/css">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/common.css"/>">
-
 <script src="<c:url value="/resources/bootstrap/js/bootstrap.min.js"/>"></script>
 <script src="<c:url value="/resources/plugins/fastclick/fastclick.js"/>"></script>
 <script src="<c:url value="/resources/dist/js/app.min.js"/>"></script>
 <script src="<c:url value="/resources/dist/js/demo.js"/>"></script>
 <script src="<c:url value="/resources/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"/>"></script>
 <script src="<c:url value="/resources/js/modal.js"/>"></script>
-
 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 

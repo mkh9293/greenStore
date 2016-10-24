@@ -46,12 +46,6 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 
-	// 안드로이드용
-//	@RequestMapping(value = "/", method = RequestMethod.GET)
-//	public @ResponseBody List<Stoe> home(Model model) {
-//		return storeMapper.selectAll();
-//	}
-
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model,HttpSession session,HttpServletRequest request) {
 		List<Store> store = new ArrayList<Store>();
@@ -99,6 +93,10 @@ public class HomeController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(Model model,HttpSession session,HttpServletRequest request) {
 		session.invalidate();
+		logger.info("세션바이바이");
+		if(session != null){
+			logger.info("세션안사라짐...");
+		}
 		return "redirect:/";
 	}
 		
@@ -128,7 +126,9 @@ public class HomeController {
 		String fileName = imgfile.getOriginalFilename();
 		String fileType = fileName.substring(fileName.lastIndexOf("."), fileName.length());
 		String replaceName = cal.getTimeInMillis() + fileType;  
-		String path = request.getSession().getServletContext().getRealPath("/")+File.separator+"resources/upload";
+		
+		//저장경로 = 프로젝트파일 폴더안에 resources/upload 만들어야됨.
+		String path = request.getSession().getServletContext().getRealPath("")+"resources"+File.separator+"upload";
 		System.out.println(path);
 		FileUpload.fileUpload(imgfile, path, replaceName);
 		model.addAttribute("path", path);

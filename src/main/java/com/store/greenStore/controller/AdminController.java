@@ -8,25 +8,17 @@ import com.store.greenStore.dto.Member;
 import com.store.greenStore.mapper.MemberMapper;
 
 @Controller
-@RequestMapping("/member/*")
-public class MemberController {
+@RequestMapping("/admin/*")
+public class AdminController {
 
 	@Autowired MemberMapper memberMapper;
-
-	@RequestMapping("/index")
-	public void registerPOST(Member member){
-		/*memberMapper.insertUser(member);*/
-	}
+	
+	//mid=123456789 mname="admin"으로 로그인
 	@RequestMapping("/login")
 	public void login(Member member){
-//		memberMapper.insertUser(member);
+		
+		
 	}
-	@RequestMapping("/logout")
-	public void logout(Member member){
-		/*memberMapper.insertUser(member);*/
-	}
-	
-	
-	
+
 	
 }

@@ -14,6 +14,12 @@
         INSERT review(MKEY,SH_ID,RCONTENT,RELIKE,RDATE)
         VALUES (#{mkey}, #{sh_id}, #{rcontent},0,NOW())
     </insert>
+    
+   	<select id="selectById" resultType="com.store.greenStore.dto.Review">
+		SELECT *
+		FROM review
+		WHERE rkey = #{rkey}
+	</select>
 	
     <update id="update">
   		UPDATE review SET rcontent=#{rcontent}, rdate=now() where rkey=#{rkey}

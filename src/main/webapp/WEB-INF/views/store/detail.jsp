@@ -1,11 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script src="<c:url value="/resources/se2/init.js" />"></script>
-<script type="text/javascript" src="/resources/js/upload.js"></script>
+<script src="<c:url value="/resources/se2/js/jindo.min.js" />"></script>
+<script src="<c:url value="/resources/se2/js/HuskyEZCreator.js" />"></script> 
 
-    <script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<link rel="stylesheet" href="<c:url value="/resources/bootstrap/css/bootstrap.min.css"/>" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="<c:url value="/resources/css/home.css"/>" type="text/css">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/common.css"/>">
+<script src="<c:url value="/resources/bootstrap/js/bootstrap.min.js"/>"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
 <link rel="stylesheet" href="<c:url value="/resources/dist/css/skins/_all-skins.min.css"/>" type="text/css">
 
@@ -169,7 +174,7 @@
 		});
 		
 		
-		$(function() {
+/* 		$(function() {
 			  $('#add-button').on("click", function() {
 			      var rcontent = $('form[name=rcontent]').val();
 			      var mkey = 1;
@@ -183,12 +188,8 @@
 							}
 						 });
 			});
-		
+		 */
 
-/*  		$(".review").on("click",function(){
-			window.open("http://localhost:8080/greenStore/store/write/"+sh_id,"_blank","toolbar=no,scrollbars=yes,resizable=no,top=200,left=200,width=800,height=600");
-		}); 
-  */
 	});
 </script>
 
@@ -225,24 +226,22 @@
                         </table>
                      </div><hr/>
                     
-                    <div class="review">
+                   <div class="review">
                    <h4>리뷰</h4>
-                   <form method="post" class="example-form">
-                   <textarea style="width:85%;" name="rcontent" id="rontent"></textarea>
-                   <button type="submit" class="btn">추가</button>
-                <!--    <a href="http://localhost:8080/greenStore/store/write?" class="btn">저장</a> -->
-                   </form>
-                    <!-- <div id="review" style="width:365px;height:300px;"></div>  -->
-<%-- 							<form role="form" method="post">
-							<input type="hidden" name="sh_id" value="${store.sh_id}">
-							<input type="hidden" name="mid" value="1"> 
-								<div class="contentDiv">
-								 	<textarea id="txtContent" class="smarteditor2" name="rcontent" rows="30" style="width:100%;"></textarea>
-								</div>
-								<div class="buttonDiv">
-									<button type="submit" class="btn btn-primary">Submit</button>
-								</div>
-							</form> --%>
+                 <!--   <form role="form" method="post" action="review/reviewWrite">
+                   		<input type="hidden" name="sh_id" value="2350">
+                   		<input type="hidden" name="mkey" value="2">
+	                    <textarea style="width:85%;" name="rcontent" id="rontent"></textarea>
+	                    <a href="http://localhost:8080/greenStore/review/reviewWrite" class="btn"> <i class="icon-list"></i>추가</a>
+	                    <button type="submit" class="btn btn-primary" onclick="onWrite()">
+		           		<i class="icon-ok icon-white"></i> 추가
+		       	   		</button>
+                   </form> -->
+                   
+                   
+                   
+                   
+                   <!-- 리뷰작성 -->
 								
                     </div><hr/>
                     
@@ -258,7 +257,6 @@
 							</c:if>
 						</c:forEach>
                     </div>
-               
                 </div>
                 
                 <div class="col-md-4" id="sideMenu" style="position:relative; margin-top:2px;"> 
@@ -328,47 +326,9 @@
                     
                     <div class="review">
                     	<h5 style="font-size:25px;">리뷰 (2) </h5>
-                    	<!-- Post -->
-		                <div class="post clearfix">
-		                  <div class="user-block">
-		                    <img class="img-circle img-bordered-sm" src="../resources/dist/img/user7-128x128.jpg" alt="User Image">
-		                        <span class="username">
-		                          <a href="#">글쓴이</a>
-		                        </span>
-		                    <span class="description">날짜</span>
-		                  </div>
-		                  <!-- /.user-block -->
-		                  <p>
-		                    	리뷰내용
-		                  </p>
-		                  <ul class="list-inline">
-		                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-		                    </li>
-		                  </ul>
-		                </div>
-		                <!-- /.post -->
-		                <!-- Post -->
-		                <div class="post clearfix">
-		                  <div class="user-block">
-		                    <img class="img-circle img-bordered-sm" src="../resources/dist/img/user7-128x128.jpg" alt="User Image">
-		                        <span class="username">
-		                          <a href="#">글쓴이</a>
-		                        </span>
-		                    <span class="description">날짜</span>
-		                  </div>
-		                  <!-- /.user-block -->
-		                  <p>
-		                    	리뷰내용
-		                  </p>
-		                  <ul class="list-inline">
-		                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-		                    </li>
-		                  </ul>
-		                </div>
-		                <!-- /.post -->
                     </div><hr/>
                     
-                    <div class="daumBlog">
+                   <div class="daumBlog">
                     	<h5 style="font-size:25px;">블로그</h5>
                     	<c:forEach items="${daumBlogList }" var="daumBlog" varStatus="i">
                         	<c:if test="${i.index < 3 }">
@@ -380,7 +340,6 @@
 							</c:if>
 						</c:forEach>
                     </div>
-               
                 </div>
                 
                 <!-- store image, name, addr -->
