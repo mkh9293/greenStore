@@ -24,23 +24,6 @@
 <script src="<c:url value="/resources/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"/>"></script>
 <script src="<c:url value="/resources/js/modal.js"/>"></script>
 
-<!-- session -->
-<jsp:useBean id="loginBean" class="petBean.LoginInfoBean"/>
-<%
-	request.setCharacterEncoding("UTF-8");
-	String idNum = request.getParameter("idNum");
-	String nick="";
-	String img="#";
-	
-	if(idNum!=null){
-		loginBean.setId(request.getParameter("idNum"));
-		loginBean.setNick(request.getParameter("nickName"));
-		loginBean.setImgUrl(request.getParameter("profile_img"));
-		session.setAttribute("LOGININFO", loginBean);
-	}
-	
-	loginBean = (petBean.LoginInfoBean)session.getAttribute("LOGININFO");
-%>
 <!-- ./session -->
     
 <script type="text/javascript">
@@ -128,7 +111,7 @@
 	<header id="header2">	
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="/" style="color: #ffffff;">GreenStore</a>
+				<a class="navbar-brand" href="http://localhost:8080/greenStore" style="color: #ffffff;">GreenStore</a>
 				<form id="searchForm" class="navbar-form navbar-left" action="" role="search">
 					<div class="form-group">
 						<input type="text" id="searchTxt" name="searchText" class="form-control" placeholder="Search">
@@ -161,22 +144,23 @@
 	
 	<div id="mySidenav" class="sidenav">
 	<a href="javascript:void(0)" class="closebtn" style="color:#fff;">&times;</a>
-	<%if(loginBean!=null){ %>
+	 <c:if test="${not empty member }"> 
 	<div id="profile">
 		<div style="position:absolute; width:340px;height:200px; top:40px; left:25px;">
-			<img src="<c:url value="<%=loginBean.getImgUrl() %>"/>" alt="profile" class="img-circle" style="display:inline-block;width:105px;height:110px;"/>
-			<strong style="margin-left:10px;line-height:6em;color:#000"><%=loginBean.getNick() %><font color="blue">(<%=loginBean.getId() %>)</font></strong>			
+			<img src="<c:url value="${member.mphoto}"/>" alt="profile" class="img-circle" style="display:inline-block;width:105px;height:110px;"/>
+			<strong style="margin-left:10px;line-height:6em;color:#000">${member.mname }<font color="blue">(${member.mid })</font></strong>			
 		</div>
 	</div>
-	<%}else{ %>
+	</c:if>
+	 <c:if test="${empty member }"> 
 	<div id="profile">
 		<div style="position:absolute; width:340px;height:200px; top:40px; left:25px;">
 			<img src="<c:url value="/resources/img/iseoul.jpg"/>" alt="iseoul" class="img-circle" style="display:inline-block;width:105px;height:110px;"/>
 			<strong style="margin-left:10px;line-height:6em;color:#fff">로그인 필요합니다.</strong>		
 		</div>
 	</div>
-	<%} %>	
-	<div style="height:180px;"></div>
+	</c:if>
+ 	<div style="height:180px;"></div>
 	<nav>
 		<ul style="list-style: none; margin: 0;padding: 0; position: absolute; width: 360px;">
 			<li style="display: inline-block; line-height: 20px; position: relative; width: 100%;">
@@ -185,13 +169,14 @@
 					<span class="css-arrow" ></span>
 				</div>
 				<div style="display:block;position: relative; width:100%; height:60px; border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
-					<%if(loginBean!=null){ %>
-					<a href="http://localhost:8080/greenStore/member/logout" style="color: #0d2474;text-decoration: none; margin-left:2%;">로그아웃</a> 
+					<c:if test="${not empty member }"> 
+					<a href="http://localhost:8080/greenStore/logout" style="color: #0d2474;text-decoration: none; margin-left:2%;">로그아웃</a> 
 					<span class="css-arrow"></span>
-					<%}else{ %>			
-					<a href="http://localhost:8080/greenStore/member/login" style="color: #0d2474;text-decoration: none; margin-left:2%;">로그인</a> 
+					</c:if>	
+					<c:if test="${empty member }"> 
+					<a href="http://localhost:8080/greenStore/oauth/login?snsname=kakao" style="color: #0d2474;text-decoration: none; margin-left:2%;">로그인</a> 
 					<span class="css-arrow"></span>
-					<%} %>
+					</c:if>
 				</div>
 				<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
 					<a href="http://localhost:8080/greenStore/notice/listAll" style="color: #0d2474;text-decoration: none; margin-left:2%; ">공지사항</a> 
@@ -201,29 +186,24 @@
 					<a href="http://localhost:8080/greenStore/notice/service" style="color: #0d2474;text-decoration: none; margin-left:2%;">서비스 소개</a> 
 					<span class="css-arrow"></span>
 				</div>
-					<%if(loginBean!=null){ %>
+					<c:if test="${not empty member }"> 
 					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
-						<a href="http://localhost:8080/greenStore/mypage/storeLike?mid=<%=loginBean.getId()%>" style="color: #0d2474;text-decoration: none; margin-left:2%;">좋아요스토어</a> 
+						<a href="http://localhost:8080/greenStore/mypage/storeLike?mid=${member.mid }" style="color: #0d2474;text-decoration: none; margin-left:2%;">좋아요스토어</a> 
 						<span class="css-arrow"></span>
 					</div>
 					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
-						<a href="http://localhost:8080/greenStore/mypage/reviewLike?mid=<%=loginBean.getId()%>" style="color: #0d2474;text-decoration: none; margin-left:2%;">좋아요리뷰</a> 
+						<a href="http://localhost:8080/greenStore/mypage/reviewLike?mid=${member.mid }" style="color: #0d2474;text-decoration: none; margin-left:2%;">좋아요리뷰</a> 
 						<span class="css-arrow"></span>
 					</div>
 					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
-						<a href="http://localhost:8080/greenStore/review/myReview?mid=<%=loginBean.getId()%>" style="color: #0d2474;text-decoration: none; margin-left:2%;">나의리뷰보기</a> 
+						<a href="http://localhost:8080/greenStore/review/myReview?mid=${member.mid }" style="color: #0d2474;text-decoration: none; margin-left:2%;">나의리뷰보기</a> 
 						<span class="css-arrow"></span>
 					</div>
-					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
-						<a href="http://localhost:8080/greenStore/review/listAll" style="color: #0d2474;text-decoration: none; margin-left:2%;">리뷰전체보기</a> 
-						<span class="css-arrow"></span>
-					</div>
-					<%}else{ %>
+					</c:if>
 					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
 						<a href="http://localhost:8080/greenStore/review/listAll" style="color: #0d2474;text-decoration: none; margin-left:2%;">리뷰전체보기</a> 
 						<span class="css-arrow"></span>
 					</div>
-					<%} %>	
 				
 				<br/><br/>
 				<div style="display:block;position: relative; width:100%; height:60px; text-align:center; line-height:3em;padding-left:10px; background-color:#f47721;">

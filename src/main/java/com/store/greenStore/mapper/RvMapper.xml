@@ -2,11 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.store.greenStore.mapper.RvMapper">
 	    
-    <insert id="write" useGeneratedKeys="true" keyProperty="rkey">
-        INSERT review(mid, SH_ID, rcontent, rdate)
-        VALUES (#{mid},#{sh_id}, #{rcontent}, now())
-    </insert>
-
+	<select id="region" resultType="com.store.greenStore.dto.Review">
+			select  s.SH_ID, SH_NAME, SH_ADDR, MENU, induty_code_se_name, SH_RCMN, SH_LIKE, SH_PHOTO, MIN(PRICE) AS PRICE 
+			from store s join review r on s.sh_id = r.sh_id  
+			where s.sh_addr like concat('%',#{searchText},'%')
+			group by sh_id
+			order by sh_rcmn desc;
+	</select>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="rkey">
         INSERT review(MKEY,SH_ID,RCONTENT,RELIKE,RDATE)

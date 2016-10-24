@@ -221,13 +221,29 @@ public class JsonController {
 		return map;
 	}
 	
-	@RequestMapping(value="/write")
-	public @ResponseBody void reviewWrtie(Review review) throws IOException, ParseException{
-		logger.info("test???");
-//		rvMapper.insert(review);
-	
-
+	@RequestMapping(value="/regionReviewList",method = RequestMethod.POST)
+	public @ResponseBody HashMap<Integer, Review> regionReviewListJson(String region) throws IOException, ParseException{
+		List<Review> review = null;
+		
+		if("전체".equals(region)){
+			review = rvMapper.listAll();
+		}else{
+			review = rvMapper.region(region);
+		}
+		
+		HashMap<Integer, Review> regionList = new HashMap<Integer, Review>();
+		Review reviewOb = null;
+		
+		for(int i=0;i<review.size();i++){
+			reviewOb = new Review();
+			reviewOb = review.get(i);
+			
+			regionList.put(i, reviewOb);
+		}
+		
+		return regionList;
 	}
+	
 	
 	
 }

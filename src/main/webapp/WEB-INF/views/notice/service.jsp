@@ -25,13 +25,12 @@
 
 .row {
 		text-align: center;
-
 	} 
 
 </style>
 
     <div class="container">
-	    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+	    <div id="myCarousel" class="carousel slide" data-ride="carousel" style="">
 	      <ol class="carousel-indicators">
 	        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 	        <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -39,19 +38,19 @@
 	      </ol>
 	      <div class="carousel-inner" role="listbox">
 	        <div class="item active">
-	          <img class="first-slide" src="../resources/img/c3.jpg" style="width:100%;" alt="First slide">
+	          <img class="first-slide" src="../resources/img/c3.jpg" style="width:900px;margin:0 auto; margin-top:50px;" alt="First slide">
 	          <div class="container">
 	
 	          </div>
 	        </div>
 	        <div class="item">
-	          <img class="second-slide" src="../resources/img/c2.jpg" style="width:100%;" alt="Second slide">
+	          <img class="second-slide" src="../resources/img/c2.jpg" style="width:900px;margin:0 auto; margin-top:50px;"  alt="Second slide">
 	          <div class="container">
 	
 	          </div>
 	        </div>
 	        <div class="item">
-	          <img class="third-slide" src="../resources/img/c1.jpg" style="width:100%;" alt="Third slide">
+	          <img class="third-slide" src="../resources/img/c1.jpg" style="width:900px;margin:0 auto; margin-top:50px;"  alt="Third slide">
 	          <div class="container">
 	          </div>
 	        </div>
@@ -66,23 +65,22 @@
 	      </a>
 	    </div>
     
-    <hr/>
-	<p><p>
+    <br/>
 	
     <div class="container marketing">
       <div class="row">
         <div class="col-lg-4">
-          <img class="img-circle" src="../resources/img/s1.png" alt="Generic placeholder image" width="300" height="300">
+          <img class="img-circle" src="../resources/img/s1.png" alt="Generic placeholder image" >
           <h3>서울시가 추천해<br>믿을수 있는</h3>
           <p>우리 동네 지역 경제 활성화는 덤!</p>
         </div>
         <div class="col-lg-4">
-          <img class="img-circle" src="../resources/img/s3.png" alt="Generic placeholder image" width="300" height="300">
+          <img class="img-circle" src="../resources/img/s3.png" alt="Generic placeholder image" >
           <h3>매월 바뀌는<br>착한스토어 순위</h3>
           <p>찾아가봤더니 사라졌다?<br/>헛걸음 최소화</p>
         </div>
         <div class="col-lg-4">
-          <img class="img-circle" src="../resources/img/s2.png" alt="Generic placeholder image"  width="300" height="300">
+          <img class="img-circle" src="../resources/img/s2.png" alt="Generic placeholder image" >
           <h3>주변<br>관광 명소까지</h3>
           <p>밥 먹고 뭐할까?<br/>세탁소에 옷 맡기고 뭘하지?<br/>고민하지마세요!</p>
         </div>
@@ -91,12 +89,13 @@
 
 	<hr/>
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-		<h4>음식점은 물론,<br/>세탁소에 미용실까지!</h4>
-		<h4>주변의 <strong>'착한 스토어'</strong>를 찾을 땐<br/> 함께 그린 스토어에 들러보세요.</h4>
-		<p></p><p>
-		</p>
-		<hr/>
+        <div class="col-md-6 col-md-offset-3" style="margin-top:50px; margin-bottom:50px">
+		<h4>음식점은 물론, 세탁소에 미용실까지!</h4>
+		<br/>
+		<h4>주변의 <strong>'착한 스토어'</strong>를 찾을 땐</h4><br/><h4>함께 그린 스토어에 들러보세요.</h4>
+		<br/>
+		
+
 		</div>
 	</div>
 </div>

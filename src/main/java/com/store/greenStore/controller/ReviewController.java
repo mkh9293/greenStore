@@ -27,7 +27,6 @@ public class ReviewController {
 		return "review/myReview";
 	}
 
-	//////////////////////////////
 	
 	@RequestMapping("/reviewWrite")
 	public void reviewInsert(Review rv){
@@ -71,24 +70,5 @@ public class ReviewController {
 	}
 	*/
 	
-/*	
-	@RequestMapping("/listAll")
-	public void listAll(){
-		List<Review> rvlist = rvMapper.listAll();
-		for(Review rv : rvlist){
-			System.out.println("=============================");
-			System.out.println(rv.getRkey());
-			System.out.println(rv.getMkey());
-			System.out.println(rv.getSh_id());
-			System.out.println(rv.getRcontent());
-			System.out.println(rv.getRelike());
-			System.out.println(rv.getRdate());
-			System.out.println("=============================");
-		}
-		
-	}
-	*/
-	
-
 	
 }

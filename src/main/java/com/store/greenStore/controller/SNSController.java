@@ -33,36 +33,34 @@ import com.store.greenStore.service.Utils;
 @RequestMapping("/*")
 public class SNSController {
 	private static final Logger logger = LoggerFactory.getLogger(SNSController.class);
+	
 	@Autowired MemberMapper memberMapper;
 	
-	//카카오 api
+	//카카오 REST API 키값
 	private static final String restapi="55c4125dae1ff298482707a80f0bde7f"; 
 	private static final String mydomainkakao ="http%3A%2F%2Flocalhost%3A8080%2FgreenStore%2Foauth%2Fcallback%2Fkakao";
 	private static final String karequestUrl = "https://kauth.kakao.com/oauth/authorize?client_id="+restapi+"&redirect_uri="+mydomainkakao+"&response_type=code&state=";
 	
 	@RequestMapping(value = "/oauth/login")
-	public String login(HttpSession session ,@RequestParam(required = false,value = "snsname") String snsname) {
+	public String kakao(HttpSession session ,@RequestParam(required = false,value = "snsname") String snsname) {
 	    if(snsname.equals("kakao")){
 	        String state = Utils.generateState();
 	        session.setAttribute("state", state);
 	        logger.info("Sesstion.state :" + state);
 	        logger.info("login 코드 요청 보낸 uri 값은 "+karequestUrl+state);
-	        return "redirect:" + karequestUrl+state;   //만들어진 URL로 인증을 요청합니다.
+	        //인증요청
+	        return "redirect:" + karequestUrl+state;   
 	    }
 	    else if(snsname.equals("facebook")) {
 	    	//
 	    }
-	    logger.info("로직 종료");
 	    return null;
 	}
 	
 	@RequestMapping(value = "oauth/callback/kakao")
     public String callbackkakao(Member member, @RequestParam(required = false,value ="state") String state, @RequestParam(required = false,value = "code") String code, HttpServletRequest request, Model model, HttpSession session){
-        logger.info("카카오로 부터 응답이 왔습니다.");
         logger.info("받은 변수의 값은 state :"+state);
-        logger.info("받은 변수의 값은 code :"+code);
         String grant_type="authorization_code";
-        logger.info("토큰을 받을 주소를 만듭니다.");
         String tokenReqUrl="https://kauth.kakao.com/oauth/token?grant_type="+grant_type+"&client_id="+restapi+"&redirect_uri="+mydomainkakao+"&code="+code;
         logger.info("토큰 주소는 : "+tokenReqUrl);
         String data = getHtml(tokenReqUrl, code);      
@@ -72,29 +70,45 @@ public class SNSController {
         String tokenType = map.get("token_type");
         String refresh_Token = map.get("refresh_token");
         String scope = map.get("scope");
-        session.setAttribute("accessToken", accessToken);
+        
+        session = request.getSession();
+        
+        System.out.println(session.getAttribute("accessToken")+ " session Check");
+        
         logger.info("accessToken : " + accessToken);
-        logger.info("token_type : " + tokenType);
-        logger.info("refresh_token : " + refresh_Token);
-        logger.info("scope : "+ scope);
         String kakaoUserProfileReqUrl="https://kapi.kakao.com/v1/user/me?Authorization="+accessToken;
         logger.info("받아온 토큰으로 사용자 정보 요청 url 생성 : " + kakaoUserProfileReqUrl);
         String userData = getHtml(kakaoUserProfileReqUrl, tokenType + " " + accessToken);
-        logger.info("1.받아온 데이터는 : " + userData);
-        model.addAttribute("userData", userData);
-        UserkakaoVo userkakaoVo    = new Gson().fromJson(userData, UserkakaoVo.class );
         
-        //db저장
-    	Member user = new Member();
-		user.setMid(userkakaoVo.getId());
-        user.setMname(userkakaoVo.getProperties().get("nickname"));
-        user.setMphoto(userkakaoVo.getProperties().get("thumbnail_image"));
-        memberMapper.insertUser(user);
-        logger.info("로그인 유저 카카오 ID : " +userkakaoVo.getId());
-        logger.info("로그인 유저 카카오 닉네임 : " +userkakaoVo.getProperties().get("nickname"));
+        UserkakaoVo userkakaoVo = new Gson().fromJson(userData, UserkakaoVo.class );
+	    logger.info("mid : " +userkakaoVo.getId());
+        logger.info("mname : " +userkakaoVo.getProperties().get("nickname"));
         
-  
-  
+       
+		Member result = memberMapper.selectMember(userkakaoVo.getId());
+		Member user = new Member();
+		
+		if(result.getMid().equals(userkakaoVo.getId()) == false) {
+	        user.setMname(userkakaoVo.getProperties().get("nickname"));
+	        user.setMphoto(userkakaoVo.getProperties().get("thumbnail_image"));
+	        memberMapper.insertUser(user);
+		} else {
+
+        member = new Member();
+        member.setMid(userkakaoVo.getId());
+        member.setMname(userkakaoVo.getProperties().get("nickname"));
+        member.setMphoto(userkakaoVo.getProperties().get("profile_image"));
+        session.setAttribute("member", member);
+        System.out.println(member.getMid());
+		session = request.getSession(false);
+			if(session!=null){
+				Member vo = (Member)session.getAttribute("member");
+				if(vo!=null){
+					System.out.println(vo.getMphoto()+ " / "+vo.getMid());
+					model.addAttribute("member", vo);
+				}
+			}
+		}
         return "redirect:/";
     } 
 
@@ -125,6 +139,7 @@ public class SNSController {
         }
         return resultValue;
     }
+      
      public static Map<String, String> JSONStringToMap(String str){
         Map<String,String> map = new HashMap<String,String>();
         ObjectMapper mapper = new ObjectMapper();

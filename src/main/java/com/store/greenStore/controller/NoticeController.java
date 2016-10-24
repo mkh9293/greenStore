@@ -1,15 +1,6 @@
 package com.store.greenStore.controller;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.UUID;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.store.greenStore.dto.Notice;
-import com.store.greenStore.dto.PhotoVo;
-import com.store.greenStore.mapper.ImageMapper;
 import com.store.greenStore.mapper.NoticeImageMapper;
 import com.store.greenStore.mapper.NoticeMapper;
 
@@ -29,7 +18,6 @@ import com.store.greenStore.mapper.NoticeMapper;
 @RequestMapping("/notice/*")
 public class NoticeController {
 	@Autowired NoticeMapper noticeMapper;
-	@Autowired ImageMapper imageMapper;
 	@Autowired NoticeImageMapper noticeImageMapper;
 	
 	@RequestMapping(value="/listAll")
@@ -45,18 +33,12 @@ public class NoticeController {
 	
 	@RequestMapping(value="/write", method = RequestMethod.POST)
 	public String write(HttpServletRequest request, Model model, Notice board) {
-//		HttpSession session = request.getSession();
-//		Member user=(Member)session.getAttribute("login");
-//		
-//		board.setUser_id(user.getId());
 		noticeMapper.write(board);
-//		noticeImageMapper.updateArticleImage(board);
     	return "redirect:/notice/listAll";
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public String update(Model model, @RequestParam("nkey") int nkey, Notice board) {
-//		noticeMapper.update(board);
 		model.addAttribute("board", noticeMapper.selectById(nkey));
 		return "notice/update";
 	}
@@ -64,14 +46,12 @@ public class NoticeController {
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(Model model, Notice board) {
 		noticeMapper.update(board);
-//		noticeImageMapper.updateArticleImage(board);
 		return "redirect:/notice/listAll";
 	}
 
 	@RequestMapping("/delete")
 	public String delete(Model model, @RequestParam("nkey") int nkey) {
 		noticeMapper.delete(nkey);
-//		noticeImageMapper.delete(nkey);
 		return "redirect:/notice/listAll";
 	}
 	
@@ -79,7 +59,22 @@ public class NoticeController {
 	public String service(Model model) {
 		return "notice/service";
 	}
-	
+
+/*	@RequestMapping(value = "fileUpload", method = RequestMethod.POST)
+	public String fileUpload(Model model, MultipartRequest multipartRequest, HttpServletRequest request) throws IOException{
+		MultipartFile imgfile = multipartRequest.getFile("Filedata");
+		Calendar cal = Calendar.getInstance();
+		String fileName = imgfile.getOriginalFilename();
+		String fileType = fileName.substring(fileName.lastIndexOf("."), fileName.length());
+		String replaceName = cal.getTimeInMillis() + fileType;  
+		
+		String path = request.getSession().getServletContext().getRealPath("/")+File.separator+"resources/upload";
+		FileUpload.fileUpload(imgfile, path, replaceName);
+		model.addAttribute("path", path);
+		model.addAttribute("filename", replaceName);
+		return "notice/file_upload";
+	}
+	*/
 	//se
 /*	@RequestMapping("/{id}/image")
 	public void image(@PathVariable("id") int id, HttpServletResponse response) throws IOException {
@@ -138,7 +133,5 @@ public class NoticeController {
 			e.printStackTrace();
 		}
 	}*/
-
-
 
 }

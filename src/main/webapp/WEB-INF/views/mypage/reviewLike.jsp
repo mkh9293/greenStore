@@ -28,24 +28,6 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/home.css"/>" type="text/css">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/common.css"/>">
 
-<!-- session -->
-<jsp:useBean id="loginBean" class="petBean.LoginInfoBean"/>
-<%
-	request.setCharacterEncoding("UTF-8");
-	String idNum = request.getParameter("idNum");
-	String nick="";
-	String img="#";
-	
-	if(idNum!=null){
-		loginBean.setId(request.getParameter("idNum"));
-		loginBean.setNick(request.getParameter("nickName"));
-		loginBean.setImgUrl(request.getParameter("profile_img"));
-		session.setAttribute("LOGININFO", loginBean);
-	}
-	
-	loginBean = (petBean.LoginInfoBean)session.getAttribute("LOGININFO");
-%>
-<!-- ./session -->
 <!-- style -->
 <style>
 
@@ -72,7 +54,7 @@
                 <div class="post clearfix">
                   <div class="user-block">
                   
-                   <%= loginBean.getNick() %>님이 좋아요를 누르신 <span style="font-size:25px;"> <a href="http://localhost:8080/greenStore/store/detail?id=${reviewLike.sh_id}">${ reviewLike.sh_name }</a></span> 리뷰입니다.
+                  ${member.mname }님이 좋아요를 누르신 <span style="font-size:25px;"> <a href="http://localhost:8080/greenStore/store/detail?id=${reviewLike.sh_id}">${ reviewLike.sh_name }</a></span> 리뷰입니다.
 
  		             		</a>
                           <a href="#" class="pull-right btn-box-tool"></a>

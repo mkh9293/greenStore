@@ -72,7 +72,7 @@ $(document).ready(function(){
 					cate = "10";
 				}
 				
-				$(location).attr("href","http://localhost:8080/store/search/"+area+"/"+cate);
+				$(location).attr("href","http://localhost:8080/greenStore/store/search/"+area+"/"+cate);
 			});
 			
 //			$("#mainImage").on("mousewheel",function(e){
@@ -131,13 +131,13 @@ $(document).ready(function(){
 		    //모바일 스토어 상세페이지로 이동
 			$(".mb_storeItem").click(function(){
 				var detailId = $(this).attr("data-id");
-				$(location).attr("href","http://localhost:8080/store/detail?id="+detailId);
+				$(location).attr("href","http://localhost:8080/greenStore/store/detail?id="+detailId);
 			});
 			
 			//모바일 검색어로 검색
 			$("#mb_searchFrm").on("submit",function(e){
 				e.preventDefault();
-				$(location).attr("href","http://localhost:8080/store/search/"+$("#mb_searchTxt").val());
+				$(location).attr("href","http://localhost:8080/greenStore/store/search/"+$("#mb_searchTxt").val());
 			});
 			
 			$(window).scroll(function() { 
@@ -159,7 +159,7 @@ $(document).ready(function(){
 				$(this).css("color","#16a085");
 				
 				$.ajax({
-					url:"http://localhost:8080/json/regionBestList",
+					url:"http://localhost:8080/greenStore/json/regionBestList",
 					type: "POST",
 					data: {"region": region},
 					dataType: "json",
@@ -208,7 +208,7 @@ $(document).ready(function(){
 				$(".regionMorebtn").click();
 				
 				$.ajax({
-					url:"http://localhost:8080/json/regionBestList",
+					url:"http://localhost:8080/greenStore/json/regionBestList",
 					type: "POST",
 					data: {"region": region},
 					dataType: "json",
@@ -247,5 +247,5 @@ $(document).ready(function(){
 //동적 이벤트 연결
 $(document).on("click","#regionContent .storeItem",function(){
 	var detailId = $(this).attr("data-id");
-	$(location).attr("href","http://localhost:8080/store/detail?id="+detailId);
+	$(location).attr("href","http://localhost:8080/greenStore/store/detail?id="+detailId);
 });

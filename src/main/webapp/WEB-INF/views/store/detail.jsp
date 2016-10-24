@@ -22,26 +22,7 @@
 <!-- DaumMap js import  -->
 <script type="text/javascript"
 	src="//apis.daum.net/maps/maps3.js?apikey=76d0dfe96fd493ccedbee52792d36e32"></script>
-			
 
-<!-- session -->
-<jsp:useBean id="loginBean" class="petBean.LoginInfoBean"/>
-<%
-	request.setCharacterEncoding("UTF-8");
-	String idNum = request.getParameter("idNum");
-	String nick="";
-	String img="#";
-	
-	if(idNum!=null){
-		loginBean.setId(request.getParameter("idNum"));
-		loginBean.setNick(request.getParameter("nickName"));
-		loginBean.setImgUrl(request.getParameter("profile_img"));
-		session.setAttribute("LOGININFO", loginBean);
-	}
-	
-	loginBean = (petBean.LoginInfoBean)session.getAttribute("LOGININFO");
-%>
-<!-- ./session -->
 
 
 <script type="text/javascript">
@@ -133,7 +114,7 @@
 	            likeBtn = true;
 	            
 	            $.ajax({
-	            	url:"http://localhost:8080/json/likePlus",
+	            	url:"http://localhost:8080/greenStore/json/likePlus",
 	            	data:{"sh_id":sh_id},
 	            	method:"post",
 	            	success:function(data){

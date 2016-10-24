@@ -488,18 +488,4 @@ public class StoreController {
 		return "store/mbPlayDetail";
 	}
 	
-	
-//	@RequestMapping(value="/write/{sh_id}", method=RequestMethod.GET)
-//	public String write(Model model,Store store, Review review, @PathVariable("sh_id") int sh_id){
-//
-////		model.addAttribute("store", store);
-//		Review rv = new Review();
-////		rv.setMid(1);
-////		rv.setMname("admin");
-////		
-//		rvMapper.insert(review);
-//		return "store/wirte";
-//	}
-	
-	
 }

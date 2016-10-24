@@ -13,6 +13,8 @@
 <script src="<c:url value="/resources/bootstrap/js/bootstrap.min.js"/>"></script>
 <script src="<c:url value="/resources/plugins/fastclick/fastclick.js"/>"></script>
 <script src="<c:url value="/resources/dist/js/app.min.js"/>"></script>
+<!-- Home js import -->
+<script src="<c:url value="/resources/js/home2.js"/>"></script>
 
 <script src="<c:url value="/resources/dist/js/demo.js"/>"></script>
 <script src="<c:url value="/resources/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"/>"></script>
@@ -25,24 +27,7 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" type="text/css">
 <link rel="stylesheet" href="<c:url value="/resources/css/home.css"/>" type="text/css">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/common.css"/>">
-<!-- session -->
-<jsp:useBean id="loginBean" class="petBean.LoginInfoBean"/>
-<%
-	request.setCharacterEncoding("UTF-8");
-	String idNum = request.getParameter("idNum");
-	String nick="";
-	String img="#";
-	
-	if(idNum!=null){
-		loginBean.setId(request.getParameter("idNum"));
-		loginBean.setNick(request.getParameter("nickName"));
-		loginBean.setImgUrl(request.getParameter("profile_img"));
-		session.setAttribute("LOGININFO", loginBean);
-	}
-	
-	loginBean = (petBean.LoginInfoBean)session.getAttribute("LOGININFO");
-%>
-<!-- ./session -->
+
 <!-- style -->
 <style>
 	.row{
@@ -57,30 +42,40 @@
           <div class="nav-tabs-custom">
             <div class="tab-content" style="padding:50px">
               <div class="active tab-pane" id="activity">
-			    <!-- Post -->
-			    <c:forEach var="review" items="${ myreview }">
-                <div class="post clearfix">
-             <div class="user-block">
-                    <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${ review.rdate }" />에  <b><%= loginBean.getNick() %></b>님이 작성하신<span style="font-size:25px;"> <a href="http://localhost:8080/greenStore/store/detail?id=${reviewLike.sh_id}">${ review.sh_name }</a></span> 리뷰입니다.
-                        <span class="username">
-                          
-                          <a href="#" class="pull-right btn-box-tool"></a>
-                        </span>
-                 	
-                   </div>
-                  <%--<h4>${ review.sh_name } <a href="http://localhost:8080/greenStore/store/detail?id=${reviewLike.sh_id}"><button type="button" class="btn btn-default btn-xs" style="margin-left:20px;"><i class="fa fa-share"></i> 이 스토어 더보기</button>
- 		             </a></h4> --%>
- 		             <!-- hr/> -->
-                  <!-- /.user-block -->
-                  <p>
-                  ${ review.rcontent }
-                  </p>
-                  <ul class="list-inline">
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                    </li>
-                  </ul>
-                </div>
-                 </c:forEach>
+				<span style="font-size: 25px; font-weight: 600;">내가 작성한 리뷰</span>
+				<div class="region" style="display: inline-block; float: right; margin-right: 5%;">
+					<nav class="nav nav-inline">
+						<div class="regionMore">
+							<button class="regionMorebtn">
+								지역별 <span class="glyphicon glyphicon-chevron-right" style="font-size: 13px; margin-left: 1px;"></span>
+							</button>
+							<div id="myDropdown" class="regionMore-content" style="bacground-color:#fff;">
+								<a>전체</a><a>강북구</a><a>강남구</a>
+								<a>강동구</a><a>강서구</a><a>관악구</a> 
+								<a>광진구</a><a>구로구</a><a>금천구</a> 
+								<a>노원구</a><a>도봉구</a><a>동대문구</a>
+								<a>동작구</a><a>마포구</a><a>서대문구</a> 
+								<a>서초구</a><a>성동구</a><a>성북구</a><a>마포구</a>
+								<a>송파구</a><a>양천구</a><a>영등포구</a><a>종로구</a> 
+								<a>용산구</a><a>은평구</a><a>중구</a><a>중랑구</a>
+							</div>
+						</div>
+					</nav>
+				</div>
+				<div id="regionContent" class="nav-content">
+				</div>
+				</div>
+		    		<c:forEach var="review" items="${ myreview }">
+                		<div class="post clearfix">
+             				<div class="user-block">
+                    			<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${ review.rdate }" />에  <b>${member.mname }</b>님이 작성하신<span style="font-size:25px;"> <a href="http://localhost:8080/greenStore/store/detail?id=${reviewLike.sh_id}">${ review.sh_name }</a></span> 리뷰입니다.
+                   			</div>
+                  			${ review.rcontent }
+                  			<ul class="list-inline">
+                    			<li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a></li>
+                 			</ul>
+                		</div>
+                 	</c:forEach> 
                 </div>
               </div>
           </div>
