@@ -205,7 +205,6 @@
 						              	</c:if>
 						            </li>
 			                  	</ul>
->>>>>>> beb180a9445a25fc6500269b24323231a651ed04
 		                	</div>
 		                 </c:forEach>
                 	</div>
