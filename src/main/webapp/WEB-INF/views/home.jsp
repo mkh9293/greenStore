@@ -127,7 +127,7 @@ $(document).ready(function(){
 	<header id="header">
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#" style="color: #ffffff;">GreenStore</a>
+				<a class="navbar-brand" href="/" style="color: #ffffff;">GreenStore</a>
 				<span class="openbtn">&#9776;</span>
 			</div>
 		</nav>
@@ -287,7 +287,7 @@ $(document).ready(function(){
 			<div class="navbar-header">
 				<a class="navbar-brand" href="/" style="color: #ffffff;">GS</a>
 				<form id="mb_searchFrm" class="navbar-form navbar-left" action=""
-					style="display: inline-block; width: 65%;">
+					style="display: inline-block; width: 60%;">
 					<div class="form-group" style="width: 110%">
 						<input type="text" id="mb_searchTxt" name="searchText"
 							class="form-control" placeholder="Search">
@@ -307,25 +307,25 @@ $(document).ready(function(){
 		<div class="bestList">
 			<ul style="list-style: none; padding: 0;">
 				<li
-					style="display: inline-block; margin: 2%; width: 96%; height: 250px; background-size: 100%; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/keyword_search/meta/pictures/eexfpmvgj6iq-m2m.jpg'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg');">
+					style="display: inline-block; margin: 2%; width: 96%; height: 250px;">
 					<a href="/store/best/1">
 						<img src="<c:url value="/resources/img/kfood.png"/>" style="width:100%;height:100%;"/>
 					</a>
 				</li>
 				<li
-					style="display: inline-block; margin: 2%; width: 96%; height: 250px; background-size: 100%; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/184699_1425200192391'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg')">
+					style="display: inline-block; margin: 2%; width: 96%; height: 250px;">
 					<a href="/store/best/2">
 						<img src="<c:url value="/resources/img/cfood.png"/>" style="width:100%;height:100%;"/>
 					</a>
 				</li>
 
 				<li
-					style="display: inline-block; margin: 2%; width: 96%; height: 250px; background-size: 100%; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/keyword_search/meta/pictures/ayrwtxnvv7ckdczu.jpg'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg')">
+					style="display: inline-block; margin: 2%; width: 96%; height: 250px;">
 					<a href="/store/best/3">
 						<img src="<c:url value="/resources/img/jfood.png"/>" style="width:100%;height:100%;"/>
 					</a>
 				</li>
-				<li style="display: inline-block; margin: 2%; width: 96%; height: 250px; background-size: 100%; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/keyword_search/meta/pictures/-x08y8zjwpcdu5d-.jpg'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg')">
+				<li style="display: inline-block; margin: 2%; width: 96%; height: 250px;">
 					<a href="/store/moreBest">
 						<img src="<c:url value="/resources/img/morelist.png"/>" style="width:100%;height:100%;"/>
 					</a>

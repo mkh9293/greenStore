@@ -5,9 +5,6 @@
 <link rel="stylesheet" href="<c:url value="/resources/dist/css/AdminLTE.min.css"/>" type="text/css">
 <link rel="stylesheet" href="<c:url value="/resources/dist/css/skins/_all-skins.min.css"/>" type="text/css">
 
-<!-- bootstrap js import -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 <!-- sidebar menu css -->  
 <link rel="stylesheet" href="<c:url value="/resources/css/normalize.css"/>" type="text/css">
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" type="text/css">
@@ -77,7 +74,11 @@
 				color:#16a085;
 			}
 			#bestTitle h4{
+<<<<<<< Updated upstream
 				position:absolute;font-size:70px;color:#fff;width:100%;top:250;
+=======
+				position:absolute;font-size:60px;color:#fff;width:100%;top:200;
+>>>>>>> Stashed changes
 			}
 	</style>
 <div class="hidden-xs">
@@ -191,7 +192,7 @@
 									<div class="col-md-3" id="stImg">
 											<img src="${storeList.sh_photo }"
 												onerror="this.src='<c:url value="/resources/img/iseoul.jpg"/>'"
-												alt="storeImage"  style="width:99%;height:20%;"/>
+												alt="storeImage"  style="width:99%;height:30%;"/>
 										</div>
 										<div class="col-md-6" id="stContent" style="margin-left:10;">
 											<h4 style="display:inline-block; font-size:20; margin-bottom:0;">${storeList.sh_name }</h4>

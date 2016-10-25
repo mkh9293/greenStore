@@ -1,23 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>지도 </title>
-
-<!-- bootstrap css import -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
 
 <!-- Daum Map css import -->
 <link rel="stylesheet" href="<c:url value="/resources/css/daumMap.css"/>" type="text/css">
-
-<!-- jQuery import -->
-<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-
-<!-- bootstrap js import -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <!-- Daum Map js import -->
 <script type="text/javascript"
@@ -95,8 +81,6 @@ $(document).ready(function(){
 		cursor:pointer;
 	}
 </style>
-</head>
-<body>
 	<!-- store image, name, addr -->
 	<div style="display:inline-block; margin:1px 10px 2px 40px;">
 		<img src="${store.sh_photo }" alt="storeImage" class="img-circle" width=120px; height=120px;/>
@@ -137,5 +121,3 @@ $(document).ready(function(){
 	  </div>
 	</div>
 	<!-- end Modal -->
-</body>
-</html>
