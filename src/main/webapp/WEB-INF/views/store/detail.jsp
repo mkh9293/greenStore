@@ -1,25 +1,49 @@
+<<<<<<< HEAD
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+=======
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+>>>>>>> origin/master
 
+<<<<<<< HEAD
+=======
+<script src="<c:url value="/resources/se2/js/jindo.min.js" />"></script>
+<script src="<c:url value="/resources/se2/js/HuskyEZCreator.js" />"></script> 
+
+<<<<<<< HEAD
+<!-- 리뷰 js import -->
+=======
+<<<<<<< HEAD
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+=======
+>>>>>>> 56d04e091dbd51b2fb16012343c891b99e9db569
+>>>>>>> beb180a9445a25fc6500269b24323231a651ed04
+>>>>>>> 6371ef597ac3e3c6e1d8c7191a2be8a3f14fbe2a
 <link rel="stylesheet" href="<c:url value="/resources/bootstrap/css/bootstrap.min.css"/>" type="text/css">
+>>>>>>> origin/master
 <script src="<c:url value="/resources/js/rv.js"/>"></script>
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/common.css"/>">
+
+<!-- 아이콘 css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
+<!-- 리뷰 css -->
 <link rel="stylesheet" href="<c:url value="/resources/dist/css/AdminLTE.min.css"/>" type="text/css">
 <link rel="stylesheet" href="<c:url value="/resources/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"/>" type="text/css">
 <link rel="stylesheet" href="<c:url value="/resources/css/modal.css"/>" type="text/css">
-<link rel="stylesheet" href="<c:url value="/resources/css/normalize.css"/>" type="text/css">
-<link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" type="text/css">
-<link rel="stylesheet" href="<c:url value="/resources/css/home.css"/>" type="text/css">
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/common.css"/>">
-<script src="<c:url value="/resources/bootstrap/js/bootstrap.min.js"/>"></script>
+
 <script src="<c:url value="/resources/plugins/fastclick/fastclick.js"/>"></script>
 <script src="<c:url value="/resources/dist/js/app.min.js"/>"></script>
 <script src="<c:url value="/resources/dist/js/demo.js"/>"></script>
+<<<<<<< HEAD
+=======
 <link rel="stylesheet" href="<c:url value="/resources/bootstrap/css/bootstrap.min.css"/>" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -30,6 +54,7 @@
 >>>>>>> origin/master
 >>>>>>> beb180a9445a25fc6500269b24323231a651ed04
 
+>>>>>>> origin/master
 
 <link rel="stylesheet" href="<c:url value="/resources/dist/css/skins/_all-skins.min.css"/>" type="text/css">
 
@@ -45,6 +70,8 @@
 
 <!-- DaumMap js import  -->
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=76d0dfe96fd493ccedbee52792d36e32"></script>
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
 
 =======
@@ -66,8 +93,9 @@
 	loginBean = (petBean.LoginInfoBean)session.getAttribute("LOGININFO");
 %>	
 >>>>>>> origin/master
+>>>>>>> origin/master
 	
-	<!-- jQuery js import -->
+<!-- jQuery js import -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 	
 >>>>>>> beb180a9445a25fc6500269b24323231a651ed04
@@ -134,9 +162,8 @@
 			$("#storeInfo").submit();
 		});
 		
-<<<<<<< HEAD
 		var likeBtn = "<c:out value="${store.isLike}"/>";//나중에 디비에서 받아야된다.
-=======
+
 		$(".playItem").on("click",function(){
 			var contentId = $(this).attr("data-id");
 			var addr1 = $(this).find(".addr1").text();
@@ -153,7 +180,6 @@
 			
 			$(location).attr("href","http://localhost:8080/greenStore/store/mb/detail/play/"+contentId+"/"+title+"/"+addr1);
 		});
->>>>>>> origin/master
 		
 		$("#likeBtn").on("click",function(){
 <<<<<<< HEAD
@@ -262,24 +288,6 @@
 			$("#myModal1").css("display","none");
 		});
 		
-		$(".playItem").on("click",function(){
-			var contentId = $(this).attr("data-id");
-			var addr1 = $(this).find(".addr1").text();
-			var title = $(this).find(".title").text();
-		
-			window.open("http://localhost:8080/greenStore/store/detail/play/"+contentId+"/"+sh_name+"/"+sh_addr+"/"+title+"/"+addr1,"_blank","toolbar=no,scrollbars=yes,resizable=no,top=200,left=200,width=800,height=600");
-			
-			//$(location).attr("href","http://localhost:8080/greenStore/store/detail/play?contentId="+contentId);
-		});
-		
-		$(".mb_playItem").on("click",function(){
-			var contentId = $(this).attr("data-id");
-			var addr1 = $(this).find(".addr1").text();
-			var title = $(this).find(".title").text();
-			
-			$(location).attr("href","http://localhost:8080/greenStore/store/mb/detail/play/"+contentId+"/"+title+"/"+addr1);
-		});
-		
 		$("#myModal1 .close").on("click",function(){
 			$("#myModal1").css("display","none");
 		});
@@ -308,13 +316,7 @@
 		$("#findRoad").on("click",function(){
 			$(location).attr("href","http://map.daum.net/link/to/"+sh_name+","+pointY+","+pointX);
 		});
-<<<<<<< HEAD
-=======
-		
-			
-		
 
->>>>>>> origin/master
 	});
 	
 	$(document).ready(function(){
@@ -324,7 +326,10 @@
 	    });
 	    
 	});
+<<<<<<< HEAD
+=======
 	
+>>>>>>> origin/master
 </script>
 
 <style type="text/css">
@@ -358,6 +363,8 @@
 </style>
 <div class="hidden-xs hidden-sm">		
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 
 =======
 <<<<<<< HEAD
@@ -373,6 +380,7 @@
 =======
 >>>>>>> origin/master
 >>>>>>> beb180a9445a25fc6500269b24323231a651ed04
+>>>>>>> origin/master
 		<div class="container">
 	    	<img alt="detailImage" src="${store.sh_photo }" style="width:100%;height:20em;"/><br/>
 	    	<div class="row">
@@ -402,22 +410,7 @@
                         	</tr>
                         </table>
                      </div><hr/>
-                    
-<<<<<<< HEAD
-                   <div class="review">
-                   <h4>리뷰</h4>
-                   <form role="form" method="post" action="/greenStore/review/write">
-                   		<input type="hidden" name="sh_id" value="2350">
-                   		<input type="hidden" name="mkey" value="2">
-	                    <textarea style="width:85%;" name="rcontent" id="rontent"></textarea><br/>
-	                    
-	                    <button type="submit" class="btn btn-primary" style="margin-top:1%;">추가</button>
-	               </form>
-                   
-                   <!-- 리뷰작성 -->
-				   </div><hr/>
-                    
-=======
+   
                    	<div class="review">
 	                   	<h4 style="margin-bottom:20px;margin-right:20px;display:inline;">리뷰</h4>
 	                <!--    	<div id="writebtn" style="margin-bottom:20px;display:inline;float:right;">리뷰작성하기</div> -->
@@ -493,7 +486,7 @@
 					</div>
 					
                   <!--./리뷰끝  -->
->>>>>>> origin/master
+
                     <div class="daumBlog">
                     	<h4>블로그</h4>
                     	<c:forEach items="${daumBlogList }" var="daumBlog" varStatus="i">
@@ -506,7 +499,6 @@
 							</c:if>
 						</c:forEach>
                     </div>
-                </div>
                 </div>
                 
                 <div class="col-md-4" id="sideMenu" style="position:relative; margin-top:2px;"> 

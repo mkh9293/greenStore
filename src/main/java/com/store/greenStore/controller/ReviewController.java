@@ -9,11 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-<<<<<<< HEAD
 import com.store.greenStore.dto.Member;
 import com.store.greenStore.dto.Notice;
-=======
->>>>>>> origin/master
 import com.store.greenStore.dto.Review;
 import com.store.greenStore.mapper.MemberMapper;
 import com.store.greenStore.mapper.RvMapper;
