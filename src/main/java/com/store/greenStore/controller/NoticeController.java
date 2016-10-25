@@ -31,7 +31,7 @@ public class NoticeController {
 		return "notice/write";
 	}
 	
-	@RequestMapping(value="/write", method = RequestMethod.POST)
+	@RequestMapping(value="/write")
 	public String write(HttpServletRequest request, Model model, Notice board) {
 		noticeMapper.write(board);
     	return "redirect:/notice/listAll";

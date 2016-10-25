@@ -80,7 +80,7 @@ public class SNSController {
         
         int mkey = 0;
 		Member result = memberMapper.selectMember(userkakaoVo.getId());
-		Member user = new Member();
+		
 		
 		if(result == null) {
 			result = new Member(); 
@@ -90,11 +90,13 @@ public class SNSController {
 		if(result.getMkey() != mkey) {
 			logger.info("디비에 저장되어있음.");
 		} else {
-			logger.info("디비에 저장되어없음.");
+			logger.info("디비에 없음.");
+			Member user = new Member();
 			user.setMid(userkakaoVo.getId());
 			user.setMname(userkakaoVo.getProperties().get("nickname"));
 	        user.setMphoto(userkakaoVo.getProperties().get("thumbnail_image"));
 	        memberMapper.insertUser(user);
+	        
 	        logger.info("저장완료");
 		}
 
@@ -110,7 +112,7 @@ public class SNSController {
 			if(session!=null){
 				Member vo = (Member)session.getAttribute("member");
 				if(vo!=null){
-					System.out.println(vo.getMphoto()+ " / "+vo.getMid());
+					System.out.println(vo.getMphoto()+ " / "+vo.getMid()+ " / "+vo.getMkey());
 					model.addAttribute("member", vo);
 				}
 			}

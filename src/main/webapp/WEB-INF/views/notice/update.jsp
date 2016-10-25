@@ -61,7 +61,7 @@ var oEditors = [];
  });
 
 var onModify = function(){
-	oEditors.getById["ncontent"].exec("UPDATE_CONTENTS_FIELD", []); 
+	oEditors.getById["ncontent"].exec("UPDATE_CONTENTS_FIELD", [ ]); 
 	var boardWriteForm = document.getElementById("boardWriteForm");  
 	boardWriteForm.action ="notice/update";              
 	boardWriteForm.submit();  

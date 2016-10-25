@@ -7,12 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+<<<<<<< HEAD
 import com.store.greenStore.dto.Member;
 import com.store.greenStore.dto.Notice;
+=======
+>>>>>>> origin/master
 import com.store.greenStore.dto.Review;
+import com.store.greenStore.mapper.MemberMapper;
 import com.store.greenStore.mapper.RvMapper;
 
 @Controller
@@ -20,6 +23,9 @@ import com.store.greenStore.mapper.RvMapper;
 public class ReviewController {
 	@Autowired
 	RvMapper rvMapper;
+	
+	@Autowired
+	MemberMapper memberMapper;
 	
 	//전체 리뷰 조회
 	@RequestMapping(value="/listAll")
@@ -40,82 +46,25 @@ public class ReviewController {
 		model.addAttribute("review", rvMapper.myReview(mid));
 		return "review/myReview";
 	}
-	//글작성
-	@RequestMapping(value="/write", method = RequestMethod.GET)
-	public String write(Model model, Notice board) {
-		return "review/write";
-	}
 	
-	@RequestMapping(value="/write", method = RequestMethod.POST)
-	public String write(HttpServletRequest request, Model model, Review rv) {
-		rvMapper.insert(rv);
-    	return "redirect:/review/listAll";
-	}
+	@RequestMapping(value="/reviewUpdate")
+	 public String reviewUpdate(Model model, @RequestParam("rkey") int rkey, HttpServletRequest request,HttpSession session){
+		  String rcontent = request.getParameter("rcontent");
+		  int mid = Integer.parseInt(request.getParameter("mid"));
+		  Review review = new Review();
+		  review.setRkey(rkey);
+		  review.setRcontent(rcontent);
+		  rvMapper.update(review);
+		  return "redirect:/review/myReview?mid="+mid;
+	 }
 	
-	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public String update(Model model, @RequestParam("rkey") int rkey, Review rv) {
-		model.addAttribute("review", rvMapper.selectById(rkey));
-		return "review/update";
-	}
-
-	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String update(Model model, Review rv) {
-		rvMapper.update(rv);
-		return "redirect:/reivew/listAll";
-	}
-
-	@RequestMapping("/delete")
-	public String delete(Model model, @RequestParam("rkey") int rkey) {
-		rvMapper.delete(rkey);
-		return "redirect:/review/listAll";
-	}
-	
+	@RequestMapping(value="/reviewRemove")
+	 public String reviewRemove(HttpServletRequest request, @RequestParam("rkey") int rkey, HttpSession session) {
 		
-//	@RequestMapping("/write")
-//	public String reviewInsert(Review rv,  @RequestParam("sh_id") int sh_id, @RequestParam("mkey") int mkey, @RequestParam("rcontent") String rcontent){
-//		
-//		//임시로 내가 넣어준 값임. 후에는 rv만 받아와서 바로 insert하는 것으로.
-////		Review rvexam = new Review();
-////		rvexam.setMkey(1);
-////		rvexam.setSh_id(9018);
-////		rvexam.setRelike(110);
-////		rvexam.setRcontent("맛있네요");
-//		//↑여기까지 필요없음
-////		rvMapper.insert(rvexam);
-//		
-//		rv.setMkey(mkey);
-//		rv.setRcontent(rcontent);
-//		rv.setRelike(0);
-//		rv.setSh_id(sh_id);
-//		rvMapper.insert(rv);
-//		System.out.println("삽입성공");
-//		return "store/detail?id="+sh_id;
-//	}
-//	
-//	@RequestMapping("/reviewUpdate")
-//	public void reviewUpdate(@RequestParam("rkey") int rkey){
-//	//이렇게 써주려면 url에 reviewUpdate?rkey=1 이런식으로 직접 써주어야 에러가 안남.
-//		Review rv = new Review();
-////		rv.setRkey(rkey);
-//		rv.setRkey(1);
-//		rv.setRcontent("호이호");
-//		rvMapper.update(rv);
-//		System.out.println("수정완료");
-//	}
-//	
-//	@RequestMapping("/reviewDelete")
-////	public void reviewDelete(@RequestParam("rkey") int rkey){
-//	public void reviewDelete(){
-//		System.out.println("삭제하러간다");
-//		rvMapper.delete(1);
-//	}
-//	
-//	@RequestMapping("/select")
-//	public void reviewOne(@RequestParam("sh_id") int sh_id){
-//		
-//		System.out.println();
-//	}
-	
+		int mid = rvMapper.findMid(rkey);
+		rvMapper.delete(rkey);
+	  return "redirect:/review/myReview?mid="+mid;
+	 }
 	
 	
 }
