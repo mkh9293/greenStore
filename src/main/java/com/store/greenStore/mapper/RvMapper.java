@@ -17,9 +17,14 @@ public interface RvMapper {
 		public List<Review> select(int sh_id);
 		public List<Review> oneStore(int sh_id);
 		public List<Review> listAll();
+<<<<<<< HEAD
+		public List<Review> weblistAll(@Param("mk")int mk);
+		//내가쓴 리뷰찾기
+=======
 
 		public List<Review> weblistAll(@Param("mk")int mk);
 
+>>>>>>> 6371ef597ac3e3c6e1d8c7191a2be8a3f14fbe2a
 		public List<Review> myReview(int mid);
 		
 		public int findMid(int rkey);

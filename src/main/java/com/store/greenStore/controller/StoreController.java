@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+<<<<<<< HEAD
+
+=======
+>>>>>>> 6371ef597ac3e3c6e1d8c7191a2be8a3f14fbe2a
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -32,8 +36,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.store.greenStore.dto.Blog;
 import com.store.greenStore.dto.Member;
+<<<<<<< HEAD
+=======
 import com.store.greenStore.dto.Notice;
 
+>>>>>>> 6371ef597ac3e3c6e1d8c7191a2be8a3f14fbe2a
 import com.store.greenStore.dto.Play;
 import com.store.greenStore.dto.Review;
 import com.store.greenStore.dto.Store;
@@ -281,7 +288,10 @@ public class StoreController {
 
 	@RequestMapping(value="/detail", method=RequestMethod.GET)
 	public String detail(int id, Model model, HttpSession session) throws IOException, ParseException, DocumentException{
+<<<<<<< HEAD
+=======
 
+>>>>>>> 6371ef597ac3e3c6e1d8c7191a2be8a3f14fbe2a
 		Member member = (Member)session.getAttribute("member");
 		
 		int mk = 0;
@@ -290,7 +300,11 @@ public class StoreController {
 		}
 		Store store = storeDbMapper.detail(id, mk);
 		System.out.println("store Detail : "+store.getIsLike());
+<<<<<<< HEAD
+		Store store = storeDbMapper.detail(id);
+=======
 
+>>>>>>> 6371ef597ac3e3c6e1d8c7191a2be8a3f14fbe2a
 		
 		//지역을 좌표로 변경 
 		HashMap<String, Double> map = new HashMap<String, Double>();
@@ -535,6 +549,8 @@ public class StoreController {
 	
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
 	
 	
 	
@@ -542,5 +558,6 @@ public class StoreController {
 >>>>>>> origin/master
 >>>>>>> beb180a9445a25fc6500269b24323231a651ed04
 >>>>>>> origin/master
+>>>>>>> 6371ef597ac3e3c6e1d8c7191a2be8a3f14fbe2a
 }
 
