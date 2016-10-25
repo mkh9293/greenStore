@@ -37,6 +37,7 @@ public class ReviewController {
 		
 		return "review/listAll";
 	}
+	
 	//내가 작성한 리뷰 보기
 	@RequestMapping(value="/myReview")
 	public String myReview(Model model, @RequestParam("mid") int mid) {
@@ -44,24 +45,24 @@ public class ReviewController {
 		return "review/myReview";
 	}
 	
+	//리뷰 수정
 	@RequestMapping(value="/reviewUpdate")
-	 public String reviewUpdate(Model model, @RequestParam("rkey") int rkey, HttpServletRequest request,HttpSession session){
-		  String rcontent = request.getParameter("rcontent");
-		  int mid = Integer.parseInt(request.getParameter("mid"));
-		  Review review = new Review();
-		  review.setRkey(rkey);
-		  review.setRcontent(rcontent);
-		  rvMapper.update(review);
-		  return "redirect:/review/myReview?mid="+mid;
+	 public String reviewUpdate(Model model, @RequestParam("rkey") int rkey, HttpServletRequest request,HttpSession session) {
+		String rcontent = request.getParameter("rcontent");
+		int mid = Integer.parseInt(request.getParameter("mid"));
+		Review review = new Review();
+		review.setRkey(rkey);
+		review.setRcontent(rcontent);
+		rvMapper.update(review);
+		return "redirect:/review/myReview?mid="+mid;
 	 }
 	
+	//리뷰삭제
 	@RequestMapping(value="/reviewRemove")
 	 public String reviewRemove(HttpServletRequest request, @RequestParam("rkey") int rkey, HttpSession session) {
-		
 		int mid = rvMapper.findMid(rkey);
 		rvMapper.delete(rkey);
 	  return "redirect:/review/myReview?mid="+mid;
 	 }
-	
 	
 }

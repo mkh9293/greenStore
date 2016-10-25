@@ -110,6 +110,28 @@
 	    width: 80%; /* Could be more or less, depending on screen size */
 	}
 </style>
+<style>
+	.row{
+		margin-top: 50px;
+	}
+	.accordion_sub { display: none; }
+	.accordion_banner {
+		margin-bottom:20px;
+	}
+	
+</style>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".accordion_banner .accordion_title").click(function() {
+            if($(this).next("div").is(":visible")){
+            $(this).next("div").slideUp("fast");
+            } else {
+                $(".accordion_banner .accordion_sub").slideUp("fast");
+                $(this).next("div").slideToggle("fast");
+            }
+        });
+    });
+</script>
 
 <div class="container">
 	<div class="row">
@@ -144,6 +166,23 @@
 				<div id="regionContent" class="nav-content">
 					<div class="row">
 					    <c:forEach items="${ review }" var="reviewList" >
+<<<<<<< HEAD
+		                <div class="post clearfix">
+		                	<span style="font-size:25px;margin-right:10px;"><a href="http://localhost:8080/greenStore/store/detail?id=${reviewList.sh_id}">${ reviewList.sh_name }</a></span>
+		                	<span><i class="fa fa-thumbs-o-up margin-r-5"></i>  ${reviewList.relike}</span>
+		                  	<div class="user-block">
+		                    <img class="img-circle img-bordered-sm" src="${reviewList.mphoto }"/>
+		                        <span class="username">
+		                          <a href="#">${ reviewList.mname }</a>
+		                          <a href="#" class="pull-right btn-box-tool"></a>
+		                        </span>
+		                    <span class="description">
+		                    <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${ reviewList.rdate }" /></span>
+		                   	</div>
+		                    <div style="margin-bottom:15px;">
+                  			${ reviewList.rcontent }
+                  			</div>
+=======
 			                <div class="post clearfix">
 			                	<h4><a href="/greenStore/store/detail?id=${reviewList.sh_id}">${ reviewList.sh_name }</a></h4>
 			                  	<div class="user-block">
@@ -166,6 +205,7 @@
 						              	</c:if>
 						            </li>
 			                  	</ul>
+>>>>>>> beb180a9445a25fc6500269b24323231a651ed04
 		                	</div>
 		                 </c:forEach>
                 	</div>

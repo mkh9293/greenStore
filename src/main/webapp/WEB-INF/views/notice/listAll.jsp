@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -38,7 +37,6 @@
             </div>
             <c:forEach var="notice" items="${ list }">
 	            <div class="box-body">
-	            
 	              <div class="box-group" id="accordion">
 	                <div class="panel box box-success">
 	                  <div class="box-header with-border">
