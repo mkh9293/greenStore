@@ -12,6 +12,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Node;
@@ -30,6 +32,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.store.greenStore.dto.Blog;
+import com.store.greenStore.dto.Member;
 import com.store.greenStore.dto.Notice;
 import com.store.greenStore.dto.Play;
 import com.store.greenStore.dto.Review;
@@ -175,7 +178,8 @@ public class StoreController {
 		while ((inputLine = in.readLine()) != null) {
 			ins += inputLine;
 		}
-
+		System.out.println("ins: "+ins);
+		
 		JSONParser jsonParser = new JSONParser();
 
 		JSONObject jsonObject2 = (JSONObject) jsonParser.parse(ins);
@@ -272,8 +276,16 @@ public class StoreController {
 	}
 
 	@RequestMapping(value="/detail", method=RequestMethod.GET)
-	public String detail(int id, Model model) throws IOException, ParseException, DocumentException{
-		Store store = storeDbMapper.detail(id);
+	public String detail(int id, Model model, HttpSession session) throws IOException, ParseException, DocumentException{
+		Member member = (Member)session.getAttribute("member");
+		
+		int mk = 0;
+		if(member !=null){
+			mk = member.getMkey();
+		}
+		Store store = storeDbMapper.detail(id, mk);
+		
+		System.out.println("store Detail : "+store.getIsLike());
 		
 		//지역을 좌표로 변경 
 		HashMap<String, Double> map = new HashMap<String, Double>();
@@ -315,7 +327,7 @@ public class StoreController {
 
 			blogList.add(blog);
 		}
-
+		
 		model.addAttribute("store", store);
 		model.addAttribute("playList", playList);
 		model.addAttribute("overviewList", overviewList);
@@ -324,6 +336,7 @@ public class StoreController {
 		model.addAttribute("blogList", blogList);
 		model.addAttribute("daumBlogList", getDaumBlog(store.getSh_name()));
 		model.addAttribute("localList", localList);
+		model.addAttribute("member", (Member)session.getAttribute("member"));
 		
 		return "store/detail";
 	}
@@ -486,7 +499,4 @@ public class StoreController {
 		
 		return "store/mbPlayDetail";
 	}
-	
-	
-	
 }

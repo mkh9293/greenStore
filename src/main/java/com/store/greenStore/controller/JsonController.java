@@ -9,6 +9,8 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -21,7 +23,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.store.greenStore.dto.Member;
 import com.store.greenStore.dto.Review;
+import com.store.greenStore.dto.ReviewLike;
 import com.store.greenStore.dto.Store;
 import com.store.greenStore.dto.StoreLike;
 import com.store.greenStore.mapper.RvMapper;
@@ -206,27 +210,50 @@ public class JsonController {
 	}
 	
 	@RequestMapping(value="/likePlus",method = RequestMethod.POST)
-	public @ResponseBody HashMap<Integer, StoreLike> likePlus(int sh_id) throws IOException, ParseException{
+	public @ResponseBody HashMap<Integer, StoreLike> likePlus(int sh_id, int mk) throws IOException, ParseException{
 		HashMap<Integer, StoreLike> map = new HashMap<Integer, StoreLike>();
-		map.put(1, storeMapper.likePlus(sh_id, 1));
+		map.put(1, storeMapper.likePlus(sh_id, mk));
 		
 		return map;
 	}
 	
 	@RequestMapping(value="/likeMin",method = RequestMethod.POST)
-	public @ResponseBody HashMap<Integer, StoreLike> likeMin(int sh_id) throws IOException, ParseException{
+	public @ResponseBody HashMap<Integer, StoreLike> likeMin(int sh_id, int mk) throws IOException, ParseException{
 		HashMap<Integer, StoreLike> map = new HashMap<Integer, StoreLike>();
-		map.put(1, storeMapper.likeMin(sh_id, 1));
+		map.put(1, storeMapper.likeMin(sh_id, mk));
 		
 		return map;
 	}
 	
+	@RequestMapping(value="/rvlikePlus",method = RequestMethod.POST)
+	public @ResponseBody HashMap<Integer, ReviewLike> rvlikePlus(int rk, int mk) throws IOException, ParseException{
+		System.out.println("rk: "+rk+" mk:"+mk);
+		HashMap<Integer, ReviewLike> map = new HashMap<Integer, ReviewLike>();
+		map.put(1, rvMapper.rvlikePlus(rk, mk));
+		
+		return map;
+	}
+	
+	@RequestMapping(value="/rvlikeMin",method = RequestMethod.POST)
+	public @ResponseBody HashMap<Integer, ReviewLike> rvlikeMin(int rk, int mk) throws IOException, ParseException{
+		System.out.println("rk: "+rk);
+		HashMap<Integer, ReviewLike> map = new HashMap<Integer, ReviewLike>();
+		map.put(1, rvMapper.rvlikeMin(rk, mk));
+		
+		return map;
+	}
 	@RequestMapping(value="/regionReviewList",method = RequestMethod.POST)
-	public @ResponseBody HashMap<Integer, Review> regionReviewListJson(String region) throws IOException, ParseException{
+	public @ResponseBody HashMap<Integer, Review> regionReviewListJson(String region, HttpSession session) throws IOException, ParseException{
+		Member vo = (Member)session.getAttribute("member");
+		int mk = 0;
+		if(vo !=null){
+			mk = vo.getMkey();
+		}
+		System.out.println("??"+mk);
 		List<Review> review = null;
 		
 		if("전체".equals(region)){
-			review = rvMapper.listAll();
+			review = rvMapper.weblistAll(mk);
 		}else{
 			review = rvMapper.region(region);
 		}

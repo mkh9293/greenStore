@@ -71,7 +71,7 @@
 			</div>
 
 			<div class="goHome">
-				<a href="/">그린스토어 홈</a>
+				<a href="/greenStore">그린스토어 홈</a>
 			</div>
 		</div>
 	</div>

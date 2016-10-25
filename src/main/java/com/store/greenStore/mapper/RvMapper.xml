@@ -45,6 +45,11 @@
 		join member m on r.mkey= m.mkey order by rkey asc;
 	</select>
 	
+	<select id="weblistAll" resultType="com.store.greenStore.dto.Review"> 
+		SELECT *,(select count(*) from REVIEW_LIKE where mkey = #{mk}) as isLike FROM review r INNER JOIN store s ON r.sh_id = s.sh_id 
+		join member m on r.mkey= m.mkey order by rkey asc;
+	</select>
+	
 	<select id="oneStore" resultType="com.store.greenStore.dto.Review">
 	SELECT * FROM review r INNER JOIN store s ON r.sh_id = s.sh_id where r.sh_id=#{sh_id};
 	</select>
@@ -63,6 +68,12 @@
 		UPDATE review SET relike=relike-1 where rkey=#{rkey}
 	</select>
 	
+	<select id="rvlikePlus" statementType="CALLABLE" resultType="com.store.greenStore.dto.ReviewLike">
+        {  call rvlikeplus(#{rk, mode=IN}, #{mk, mode=IN} ) }
+    </select>
+    <select id="rvlikeMin" statementType="CALLABLE" resultType="com.store.greenStore.dto.ReviewLike">
+        {  call rvlikemin(#{rk, mode=IN}, #{mk, mode=IN} ) }
+    </select>
 	
 	<select id="appReviewCateSearch" resultType="com.store.greenStore.dto.Review">
 		select  s.SH_ID, SH_NAME, SH_ADDR, induty_code_se_name, SH_RCMN, SH_LIKE, 

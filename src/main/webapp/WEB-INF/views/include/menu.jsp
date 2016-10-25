@@ -38,13 +38,13 @@
 		//검색어로 검색
 		$("#searchForm").on("submit",function(e){
 			e.preventDefault();
-			$(location).attr("href","http://localhost:8080/store/search/"+$("#searchTxt").val());
+			$(location).attr("href","http://localhost:8080/greenStore/store/search/"+$("#searchTxt").val());
 		});
 		
 		//모바일 검색어로 검색
 		$("#mb_searchFrm").on("submit",function(e){
 			e.preventDefault();
-			$(location).attr("href","http://localhost:8080/store/search/"+$("#mb_searchTxt").val());
+			$(location).attr("href","http://localhost:8080/greenStore/store/search/"+$("#mb_searchTxt").val());
 		});
 		
 	});

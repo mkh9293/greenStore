@@ -1,20 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<<<<<<< Updated upstream
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <script src="<c:url value="/resources/se2/js/jindo.min.js" />"></script>
 <script src="<c:url value="/resources/se2/js/HuskyEZCreator.js" />"></script> 
 
-<link rel="stylesheet" href="<c:url value="/resources/bootstrap/css/bootstrap.min.css"/>" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="<c:url value="/resources/css/home.css"/>" type="text/css">
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/common.css"/>">
-<script src="<c:url value="/resources/bootstrap/js/bootstrap.min.js"/>"></script>
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-=======
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
->>>>>>> Stashed changes
 
 <link rel="stylesheet" href="<c:url value="/resources/dist/css/skins/_all-skins.min.css"/>" type="text/css">
 
@@ -31,19 +23,10 @@
 <!-- DaumMap js import  -->
 <script type="text/javascript"
 	src="//apis.daum.net/maps/maps3.js?apikey=76d0dfe96fd493ccedbee52792d36e32"></script>
-
-<<<<<<< Updated upstream
-
-
-=======
-<!-- session -->
-<jsp:useBean id="loginBean" class="petBean.LoginInfoBean"/>
-<%
-	request.setCharacterEncoding("UTF-8");
-	loginBean = (petBean.LoginInfoBean)session.getAttribute("LOGININFO");
-%>	
 	
->>>>>>> Stashed changes
+	<!-- jQuery js import -->
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	
 <script type="text/javascript">
 	var sh_photo = "<c:out value="${store.sh_photo}"/>";
 	var sh_name = "<c:out value="${store.sh_name}"/>";
@@ -56,6 +39,8 @@
 	
 	var map;
 	var overlay;
+	
+	var session = "<c:out value="${member}"/>";
 	
 	$(document).ready(function(){
 		var mapContainer = document.getElementById('map'), // 지도의 중심좌표
@@ -105,6 +90,57 @@
 			$("#storeInfo").submit();
 		});
 		
+		var likeBtn = "<c:out value="${store.isLike}"/>";//나중에 디비에서 받아야된다.
+		
+		$("#likeBtn").on("click",function(){
+			if(session==null || session==''){
+				var maskHeight = $(document).height(); 
+				$('#myModal1').css({'height':maskHeight,'display':'block'});  
+				
+			}else{
+				var mk = "<c:out value="${member.mkey}"/>";
+				
+				if(likeBtn == 0){
+					$("#likeBtn").removeClass();
+		        	$("#likeBtn").addClass("glyphicon glyphicon-heart");
+		            $("#likeBtn").css("color","#1abc9c");
+		            likeBtn = true;
+		            
+		            $.ajax({
+		            	url:"http://localhost:8080/greenStore/json/likePlus",
+		            	data:{"sh_id":sh_id,"mk":mk},
+		            	method:"post",
+		            	success:function(data){
+		            		$.each(data, function(key, value){
+		            			alert("좋아요를 눌렀습니다.");
+		            		});
+		            	}
+		            });
+		        }
+		        else{
+		        	$("#likeBtn").removeClass();
+		        	$("#likeBtn").addClass("glyphicon glyphicon-heart-empty");
+		            $("#likeBtn").css("color","#BDBDBD");
+		            likeBtn = false;
+		            
+		            $.ajax({
+		            	url:"http://localhost:8080/greenStore/json/likeMin",
+		            	data:{"sh_id":sh_id,"mk":mk},
+		            	method:"post",
+		            	success:function(data){
+		            		$.each(data, function(key, value){
+		            			alert("좋아요를 취소했습니다.");
+		    				});
+		            	}
+		            });
+		        }
+			}
+		});
+		
+		$("#loginCancel").on("click",function(){
+			$("#myModal1").css("display","none");
+		});
+		
 		$(".playItem").on("click",function(){
 			var contentId = $(this).attr("data-id");
 			var addr1 = $(this).find(".addr1").text();
@@ -123,91 +159,8 @@
 			$(location).attr("href","http://localhost:8080/greenStore/store/mb/detail/play/"+contentId+"/"+title+"/"+addr1);
 		});
 		
-		var likeBtn = false;//나중에 디비에서 받아야된다.
-		$("#likeBtn").on("click",function(){
-<<<<<<< Updated upstream
-			
-			if(likeBtn == false){
-	        	$("#likeBtn").removeClass();
-	        	$("#likeBtn").addClass("glyphicon glyphicon-heart");
-	            $("#likeBtn").css("color","#1abc9c");
-	            likeBtn = true;
-	            
-	            $.ajax({
-	            	url:"http://localhost:8080/greenStore/json/likePlus",
-	            	data:{"sh_id":sh_id},
-	            	method:"post",
-	            	success:function(data){
-	            		$.each(data, function(key, value){
-	            			alert("좋아요를 눌렀습니다.");
-	            		});
-	            	}
-	            });
-	        }
-	        else{
-	        	$("#likeBtn").removeClass();
-	        	$("#likeBtn").addClass("glyphicon glyphicon-heart-empty");
-	            $("#likeBtn").css("color","#BDBDBD");
-	            likeBtn = false;
-	            
-	            $.ajax({
-	            	url:"http://localhost:8080/json/likeMin",
-	            	data:{"sh_id":sh_id},
-	            	method:"post",
-	            	success:function(data){
-	            		$.each(data, function(key, value){
-	            			alert("좋아요를 취소헸습니다.");
-	    				});
-	            	}
-	            });
-	        }
-=======
-			<%if(loginBean!=null){ %>
-				if(likeBtn == false){
-		        	$("#likeBtn").removeClass();
-		        	$("#likeBtn").addClass("glyphicon glyphicon-heart");
-		            $("#likeBtn").css("color","#1abc9c");
-		            likeBtn = true;
-		            
-		            $.ajax({
-		            	url:"http://localhost:8080/json/likePlus",
-		            	data:{"sh_id":sh_id},
-		            	method:"post",
-		            	success:function(data){
-		            		$.each(data, function(key, value){
-		            			alert("좋아요를 눌렀습니다.");
-		            		});
-		            	}
-		            });
-		        }
-		        else{
-		        	$("#likeBtn").removeClass();
-		        	$("#likeBtn").addClass("glyphicon glyphicon-heart-empty");
-		            $("#likeBtn").css("color","#BDBDBD");
-		            likeBtn = false;
-		            
-		            $.ajax({
-		            	url:"http://localhost:8080/json/likeMin",
-		            	data:{"sh_id":sh_id},
-		            	method:"post",
-		            	success:function(data){
-		            		$.each(data, function(key, value){
-		            			alert("좋아요를 취소헸습니다.");
-		    				});
-		            	}
-		            });
-		        }
-			<%}else{ %>
-				var maskHeight = $(document).height(); 
-				$('#myModal1').css({'height':maskHeight,'display':'block'});  
-			<%}%>
-		});
 		$("#myModal1 .close").on("click",function(){
 			$("#myModal1").css("display","none");
-		});
-		$("#myModal1 .modal-footer").on("click",function(){
-			$("#myModal1").css("display","none");
->>>>>>> Stashed changes
 		});
 		
 		$("#mb_likeBtn").on("click",function(){
@@ -234,24 +187,6 @@
 		$("#findRoad").on("click",function(){
 			$(location).attr("href","http://map.daum.net/link/to/"+sh_name+","+pointY+","+pointX);
 		});
-		
-		
-/* 		$(function() {
-			  $('#add-button').on("click", function() {
-			      var rcontent = $('form[name=rcontent]').val();
-			      var mkey = 1;
-			      
-					 $.ajax({
-							url:"http://localhost:8080/greenStore/json/write",
-							type:"post",
-							data:{"meky": mkey ,"sh_id": sh_id, "rcontent": rcontent},
-							success:function(data){
-								alert(data);
-							}
-						 });
-			});
-		 */
-
 	});
 </script>
 
@@ -262,22 +197,45 @@
 	#map, #likeBtn, .playItem:hover{
 		cursor:pointer;
 	}
+	.modal{
+		display: none; /* Hidden by default */
+	    position: fixed; /* Stay in place */
+	    z-index: 1; /* Sit on top */
+	    left: 0;
+	    top: 0;
+	    width: 100%; /* Full width */
+	    height: 100%; /* Full height */
+	    overflow: auto; /* Enable scroll if needed */
+	    background-color: rgb(0,0,0); /* Fallback color */
+	    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	}
+	.modal-content {
+		top:150;
+		left:100;
+	    background-color: #fefefe;
+	    margin: 4%; /* 15% from the top and centered */
+	    padding: 20px;
+	    border: 1px solid #888;
+	    width: 80%; /* Could be more or less, depending on screen size */
+	}
 </style>
 <div class="hidden-xs hidden-sm">		
-<<<<<<< Updated upstream
-		
-	    <div class="container">
-	    <img alt="detailImage" src="${store.sh_photo }" style="width:100%; height:500px;"/><br/>
-=======
+
 		<div class="container">
 	    	<img alt="detailImage" src="${store.sh_photo }" style="width:100%;height:20em;"/><br/>
->>>>>>> Stashed changes
 	    	<div class="row">
                 <div class="col-md-8" id="mainContent">
                     <div>
                         <h3>${store.sh_name }<small style="color:#16a085;">${store.sh_rcmn }</small>
-                        <span id="likeBtn" style="float:right; font-size:30px;color:#BDBDBD;" class="glyphicon glyphicon-heart-empty"></span>
-        			  </h3>
+                        
+                        <c:if test="${store.isLike == 0}">
+                      	  <span id="likeBtn" style="float:right; font-size:30px;color:#BDBDBD;" class="glyphicon glyphicon-heart-empty"></span>
+        			    </c:if>
+                      	<c:if test="${store.isLike == 1}">
+                      	  <span id="likeBtn" style="float:right; font-size:30px;color:#1abc9c;" class="glyphicon glyphicon-heart"></span>
+        			    </c:if>
+                      
+                      </h3>
                     </div>
                     <hr/>
                     <div class="intro">
@@ -295,22 +253,16 @@
                     
                    <div class="review">
                    <h4>리뷰</h4>
-                 <!--   <form role="form" method="post" action="review/reviewWrite">
+                   <form role="form" method="post" action="/greenStore/review/write">
                    		<input type="hidden" name="sh_id" value="2350">
                    		<input type="hidden" name="mkey" value="2">
-	                    <textarea style="width:85%;" name="rcontent" id="rontent"></textarea>
-	                    <a href="http://localhost:8080/greenStore/review/reviewWrite" class="btn"> <i class="icon-list"></i>추가</a>
-	                    <button type="submit" class="btn btn-primary" onclick="onWrite()">
-		           		<i class="icon-ok icon-white"></i> 추가
-		       	   		</button>
-                   </form> -->
-                   
-                   
-                   
+	                    <textarea style="width:85%;" name="rcontent" id="rontent"></textarea><br/>
+	                    
+	                    <button type="submit" class="btn btn-primary" style="margin-top:1%;">추가</button>
+	               </form>
                    
                    <!-- 리뷰작성 -->
-								
-                    </div><hr/>
+				   </div><hr/>
                     
                     <div class="daumBlog">
                     	<h4>블로그</h4>
@@ -339,12 +291,8 @@
 						<input type=hidden name="sh_phone" value="${store.sh_phone }">
 						<input type=hidden name="sh_info" value="${store.sh_info }">
 				
-<<<<<<< Updated upstream
-						<div id="map" style="width:365px;height:300px;"></div>
-=======
 						<div id="map" style="height:300px;"></div>
->>>>>>> Stashed changes
-                    </form>
+				    </form>
 					
                     <h5 style="font-size:25px;margin-bottom:30px;">주변 놀거리</h5>
                     <div id="play">
@@ -370,8 +318,8 @@
             </div>
         </div>   
         <!-- Modal -->
-		<div class="modal" id="myModal1" style="top:100px; width:100%;display:none;">
-		  <div class="modal-content" style="width:770px; left:300;">
+		<div class="modal" id="myModal1">
+		  <div class="modal-content">
 		      <div class="modal-header">
 		        <button type="button" class="close"><span aria-hidden="true">&times;</span></button>
 		      </div>
@@ -379,8 +327,8 @@
 		       	<h2 style="font-size:20px;">로그인 하시면 가고싶은 식당을 편하게 저장해서 내 프로필 페이지에서 볼 수 있어요! :)</h2>
 		      </div>
 		      <div class="modal-footer" style="text-align:center;">
-		        <button type="button" class="btn btn-default btn-lg" style="width:30%;">취소</button>
-		      	<a class="btn btn-success btn-lg" href="/login" style="width:30%; margin-left:7%">로그인</a>
+		        <button type="button" id="loginCancel" class="btn btn-default btn-lg" style="width:30%;">취소</button>
+		      	<a class="btn btn-success btn-lg" href="/greenStore/login" style="width:30%; margin-left:7%">로그인</a>
 		      </div>
 		    </div>
 		</div>

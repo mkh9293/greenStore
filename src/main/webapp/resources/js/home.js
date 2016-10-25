@@ -60,7 +60,7 @@ $(document).ready(function(){
 			//검색어로 검색
 			$("#searchFrm").on("submit",function(e){
 				e.preventDefault();
-				$(location).attr("href","http://localhost:8080/store/search/"+$("#searchText").val());
+				$(location).attr("href","http://localhost:8080/greenStore/store/search/"+$("#searchText").val());
 			});
 			
 			//조건으로 검색 
