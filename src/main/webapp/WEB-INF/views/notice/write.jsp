@@ -31,13 +31,15 @@
 				<div class="contentDiv">
 					<textarea id="ncontent" name="ncontent" rows="30" style="width:100%;"></textarea>
 				</div>
-				<div class="buttonDiv">
+				<br/>
+				<div class="pull-right">
 				 <button type="submit" class="btn btn-primary" onclick="onWrite()">
 		            <i class="icon-ok icon-white"></i> 저장하기
 		        </button>
 						<a href="listAll" class="btn"> <i class="icon-list"></i> 목록으로</a>
 				</div>
 			</form> 
+			<br/>
 		</div>
 	</div>
 </div> 

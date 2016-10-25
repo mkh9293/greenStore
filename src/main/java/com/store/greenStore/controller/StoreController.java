@@ -12,6 +12,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Node;
@@ -27,13 +30,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.store.greenStore.dto.Blog;
-import com.store.greenStore.dto.Notice;
 import com.store.greenStore.dto.Play;
 import com.store.greenStore.dto.Review;
 import com.store.greenStore.dto.Store;
+import com.store.greenStore.mapper.MemberMapper;
 import com.store.greenStore.mapper.RvMapper;
 import com.store.greenStore.mapper.StoreDbMapper;
 import com.store.greenStore.mapper.StoreMapper;
@@ -48,6 +50,9 @@ public class StoreController {
 	@Autowired
 	StoreDbMapper storeDbMapper;
 
+	@Autowired
+	MemberMapper memberMapper;
+	
 	@Autowired
 	StoreMapper storeMapper;
 
@@ -272,7 +277,7 @@ public class StoreController {
 	}
 
 	@RequestMapping(value="/detail", method=RequestMethod.GET)
-	public String detail(int id, Model model) throws IOException, ParseException, DocumentException{
+	public String detail(int id, Model model, HttpSession session) throws IOException, ParseException, DocumentException{
 		Store store = storeDbMapper.detail(id);
 		
 		//지역을 좌표로 변경 
@@ -324,6 +329,12 @@ public class StoreController {
 		model.addAttribute("blogList", blogList);
 		model.addAttribute("daumBlogList", getDaumBlog(store.getSh_name()));
 		model.addAttribute("localList", localList);
+		
+		
+		//sh_id에 해당하는 리뷰 리스트
+		//대표리뷰하나/나머지
+		model.addAttribute("reviewOne", rvMapper.select(id));
+		model.addAttribute("review", rvMapper.oneStore(id));
 		
 		return "store/detail";
 	}
@@ -486,6 +497,29 @@ public class StoreController {
 		
 		return "store/mbPlayDetail";
 	}
+	
+	//리뷰작성
+	@RequestMapping(value="/reviewWrite")
+	 public String reviewWrite(HttpServletRequest request, HttpSession session)
+	 {
+	  int sh_id = Integer.parseInt(request.getParameter("sh_id"));
+	  String rcontent = request.getParameter("rcontent");
+	  String mid = request.getParameter("mid");
+	  
+	  int writer = memberMapper.findMkey(mid);
+	  
+	  Review review = new Review();
+	  
+	  review.setSh_id(sh_id);
+	  review.setMkey(writer);
+	  review.setRelike(99);//디폴트 0으로 줄것
+	  review.setRcontent(rcontent);
+	  rvMapper.insert(review);
+	 
+	  return "redirect:/store/detail?id="+ review.getSh_id();
+	 }
+	
+	
 	
 	
 	

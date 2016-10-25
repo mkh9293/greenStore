@@ -8,6 +8,8 @@ public interface MemberMapper {
 	public Member member(String mid);
 	public Member update(String mid);
 	
+	public int findMkey(String mid);
+	
 	//member 조회
 	public Member selectMember(String mid);
 }

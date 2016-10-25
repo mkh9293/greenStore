@@ -118,7 +118,6 @@ public class HomeController {
 	public String home(Model model) {
 		return "notice/write";
 	}
-	
 	@RequestMapping(value = "/fileUpload", method = RequestMethod.POST)
 	public String fileUpload(Model model, MultipartRequest multipartRequest, HttpServletRequest request) throws IOException{
 		MultipartFile imgfile = multipartRequest.getFile("Filedata");
@@ -128,7 +127,7 @@ public class HomeController {
 		String replaceName = cal.getTimeInMillis() + fileType;  
 		
 		//저장경로 = 프로젝트파일 폴더안에 resources/upload 만들어야됨.
-		String path = request.getSession().getServletContext().getRealPath("")+"resources"+File.separator+"upload";
+		String path = request.getSession().getServletContext().getRealPath("/")+"resources/upload";
 		System.out.println(path);
 		FileUpload.fileUpload(imgfile, path, replaceName);
 		model.addAttribute("path", path);

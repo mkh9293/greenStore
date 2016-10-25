@@ -1,17 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script src="<c:url value="/resources/se2/js/jindo.min.js" />"></script>
-<script src="<c:url value="/resources/se2/js/HuskyEZCreator.js" />"></script> 
-
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <link rel="stylesheet" href="<c:url value="/resources/bootstrap/css/bootstrap.min.css"/>" type="text/css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<script src="<c:url value="/resources/js/rv.js"/>"></script>
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/common.css"/>">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="<c:url value="/resources/dist/css/AdminLTE.min.css"/>" type="text/css">
+<link rel="stylesheet" href="<c:url value="/resources/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"/>" type="text/css">
+<link rel="stylesheet" href="<c:url value="/resources/css/modal.css"/>" type="text/css">
+<link rel="stylesheet" href="<c:url value="/resources/css/normalize.css"/>" type="text/css">
+<link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" type="text/css">
 <link rel="stylesheet" href="<c:url value="/resources/css/home.css"/>" type="text/css">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/common.css"/>">
 <script src="<c:url value="/resources/bootstrap/js/bootstrap.min.js"/>"></script>
+<script src="<c:url value="/resources/plugins/fastclick/fastclick.js"/>"></script>
+<script src="<c:url value="/resources/dist/js/app.min.js"/>"></script>
+<script src="<c:url value="/resources/dist/js/demo.js"/>"></script>
+<link rel="stylesheet" href="<c:url value="/resources/bootstrap/css/bootstrap.min.css"/>" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-
 <link rel="stylesheet" href="<c:url value="/resources/dist/css/skins/_all-skins.min.css"/>" type="text/css">
 
 <!-- sidebar menu css -->  
@@ -25,10 +35,7 @@
 <link rel="stylesheet" href="<c:url value="/resources/daumMap.css"/>" type="text/css">
 
 <!-- DaumMap js import  -->
-<script type="text/javascript"
-	src="//apis.daum.net/maps/maps3.js?apikey=76d0dfe96fd493ccedbee52792d36e32"></script>
-
-
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=76d0dfe96fd493ccedbee52792d36e32"></script>
 
 <script type="text/javascript">
 	var sh_photo = "<c:out value="${store.sh_photo}"/>";
@@ -97,7 +104,6 @@
 			var title = $(this).find(".title").text();
 		
 			window.open("http://localhost:8080/greenStore/store/detail/play/"+contentId+"/"+sh_name+"/"+sh_addr+"/"+title+"/"+addr1,"_blank","toolbar=no,scrollbars=yes,resizable=no,top=200,left=200,width=800,height=600");
-			
 			//$(location).attr("href","http://localhost:8080/greenStore/store/detail/play?contentId="+contentId);
 		});
 		
@@ -173,24 +179,25 @@
 			$(location).attr("href","http://map.daum.net/link/to/"+sh_name+","+pointY+","+pointX);
 		});
 		
+			
 		
-/* 		$(function() {
-			  $('#add-button').on("click", function() {
-			      var rcontent = $('form[name=rcontent]').val();
-			      var mkey = 1;
-			      
-					 $.ajax({
-							url:"http://localhost:8080/greenStore/json/write",
-							type:"post",
-							data:{"meky": mkey ,"sh_id": sh_id, "rcontent": rcontent},
-							success:function(data){
-								alert(data);
-							}
-						 });
-			});
-		 */
 
 	});
+	
+	$(document).ready(function(){
+		$('#reviewMore').hide();
+	    $('#moreBtn').click(function(){ 
+	        $('#reviewMore').toggle(); 
+	    });
+	    
+	});
+	
+/* 	$(document).ready(function(){
+	    $('#write').hide();
+	    $('#writebtn').click(function(){ 
+	        $('#write').toggle(); 
+	    });
+	}); */
 </script>
 
 <style type="text/css">
@@ -202,7 +209,6 @@
 	}
 </style>
 <div class="hidden-xs hidden-sm">		
-		
 	    <div class="container">
 	    <img alt="detailImage" src="${store.sh_photo }" style="width:100%; height:500px;"/><br/>
 	    	<div class="row">
@@ -226,25 +232,81 @@
                         </table>
                      </div><hr/>
                     
-                   <div class="review">
-                   <h4>리뷰</h4>
-                 <!--   <form role="form" method="post" action="review/reviewWrite">
-                   		<input type="hidden" name="sh_id" value="2350">
-                   		<input type="hidden" name="mkey" value="2">
-	                    <textarea style="width:85%;" name="rcontent" id="rontent"></textarea>
-	                    <a href="http://localhost:8080/greenStore/review/reviewWrite" class="btn"> <i class="icon-list"></i>추가</a>
-	                    <button type="submit" class="btn btn-primary" onclick="onWrite()">
-		           		<i class="icon-ok icon-white"></i> 추가
-		       	   		</button>
-                   </form> -->
-                   
-                   
-                   
-                   
-                   <!-- 리뷰작성 -->
-								
-                    </div><hr/>
-                    
+                   	<div class="review">
+	                   	<h4 style="margin-bottom:20px;margin-right:20px;display:inline;">리뷰</h4>
+	                <!--    	<div id="writebtn" style="margin-bottom:20px;display:inline;float:right;">리뷰작성하기</div> -->
+	                   	<p/>
+						<div id="write">
+			                <c:if test="${not empty member }"> 
+				                <form id="review" action="reviewWrite" method="post">
+									<input type="hidden" name="sh_id" value="${store.sh_id}"/>
+									<input type="hidden" name="mid" value="${member.mid}"/>
+									<div class="post clearfix">
+						                <div class="user-block">
+							                <img class="img-circle img-bordered-sm" src="${member.mphoto }" alt="User">
+							                <span class="username">
+							                <a href="#">${ member.mname }</a>
+							                <button class="btn" style="margin-left:10px;">리뷰저장하기</button> 
+							                <a href="#" class="pull-right btn-box-tool"></a>
+							                
+							                </span>
+						                </div>
+						                <div class="box box-success">
+						                <textarea name="rcontent" style="width:100%;height:300px;border: 0; resize: none;"></textarea>
+						                
+						                
+						                </div>
+					                </div>
+									
+									
+								</form>
+							</c:if>
+							<c:if test="${ empty member }"> 
+								로그인 후 이용하실수 있습니다!<p/>
+							</c:if>
+		                </div>
+	                  	<c:forEach items="${ reviewOne }" var="reviewList" >
+			                <div class="post clearfix">
+				                <div class="user-block">
+					                <img class="img-circle img-bordered-sm" src="${reviewList.mphoto }" alt="User">
+					                <span class="username">
+					                <a href="#">${ reviewList.mname }</a>
+					                <a href="#" class="pull-right btn-box-tool"></a>
+					                </span>
+					                <span class="description">
+					                <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${ reviewList.rdate }" /></span>
+				                </div>
+				                ${ reviewList.rcontent }
+				                <ul class="list-inline">
+				                <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a></li>
+				                </ul>
+			                </div>
+		                </c:forEach> 
+		                
+		                <div id="moreBtn" style="margin-bottom:20px;">리뷰더보기</div>
+						<div id="reviewMore">          
+		                  	<c:forEach items="${ review }" var="reviewList" >
+			                <div class="post clearfix">
+				                <div class="user-block">
+					                <img class="img-circle img-bordered-sm" src="${reviewList.mphoto }" alt="User Image">
+					                <span class="username">
+					                <a href="#">${ reviewList.mname }</a>
+					                <a href="#" class="pull-right btn-box-tool"></a>
+					                </span>
+					                <span class="description">
+					                <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${ reviewList.rdate }" /></span>
+				                </div>
+				                ${ reviewList.rcontent }
+				                <ul class="list-inline">
+				                <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+				                </li>
+				                </ul>
+			                </div>
+			                </c:forEach>
+	                    </div>
+					</div>
+					
+                  <!--./리뷰끝  -->
                     <div class="daumBlog">
                     	<h4>블로그</h4>
                     	<c:forEach items="${daumBlogList }" var="daumBlog" varStatus="i">
@@ -257,6 +319,7 @@
 							</c:if>
 						</c:forEach>
                     </div>
+                </div>
                 </div>
                 
                 <div class="col-md-4" id="sideMenu" style="position:relative; margin-top:2px;"> 
@@ -325,7 +388,26 @@
                     </div><hr/>
                     
                     <div class="review">
-                    	<h5 style="font-size:25px;">리뷰 (2) </h5>
+                    	<h5 style="font-size:25px;">리뷰</h5>
+                  	<c:forEach items="${ review }" var="reviewList" >
+	                <div class="post clearfix">
+	                  	<div class="user-block">
+	                    <img class="img-circle img-bordered-sm" src="${reviewList.mphoto }" alt="User Image">
+	                        <span class="username">
+	                          <a href="#">${ reviewList.mname }</a>
+	                          <a href="#" class="pull-right btn-box-tool"></a>
+	                        </span>
+	                    <span class="description">
+	                    <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${ reviewList.rdate }" /></span>
+	                   	</div>
+	                    ${ reviewList.rcontent }
+	                  	<ul class="list-inline">
+	                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+	                    </li>
+	                  	</ul>
+	                	</div>
+	                 </c:forEach>
+                    	
                     </div><hr/>
                     
                    <div class="daumBlog">

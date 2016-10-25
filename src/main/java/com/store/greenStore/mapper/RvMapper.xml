@@ -12,7 +12,7 @@
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="rkey">
         INSERT review(MKEY,SH_ID,RCONTENT,RELIKE,RDATE)
-        VALUES (#{mkey}, #{sh_id}, #{rcontent},0,NOW())
+        VALUES (#{mkey}, #{sh_id}, #{rcontent}, 0, NOW())
     </insert>
     
    	<select id="selectById" resultType="com.store.greenStore.dto.Review">
@@ -46,7 +46,8 @@
 	</select>
 	
 	<select id="oneStore" resultType="com.store.greenStore.dto.Review">
-	SELECT * FROM review r INNER JOIN store s ON r.sh_id = s.sh_id where r.sh_id=#{sh_id};
+	SELECT * FROM review r INNER JOIN store s ON r.sh_id = s.sh_id 
+	join member m on r.mkey= m.mkey where r.sh_id=#{sh_id} order by r.rkey asc;
 	</select>
 	
 	<select id="reLike" >
@@ -57,7 +58,9 @@
  		select * from review join member on review.mkey = member.mkey 
  		join store s on review.sh_id = s.sh_id
 		where member.mid = #{ mid }
+		order by review.rkey desc;
 	</select>
+
 
 	<select id="reUnlike">
 		UPDATE review SET relike=relike-1 where rkey=#{rkey}
@@ -85,4 +88,12 @@
 
 	</select>
 	
+	<select id="findMid" resultType="int">
+		SELECT m.mid
+		FROM review r join member m
+		on r.mkey = m.mkey
+		WHERE r.rkey = #{rkey}
+	</select>
+	
+
 </mapper>

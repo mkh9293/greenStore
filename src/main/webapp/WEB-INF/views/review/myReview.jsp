@@ -28,7 +28,24 @@
 	.row{
 		margin-top: 50px;
 	}
+	.accordion_sub { display: none; }
+	.accordion_banner {
+		margin-bottom:20px;
+	}
+	
 </style>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".accordion_banner .accordion_title").click(function() {
+            if($(this).next("div").is(":visible")){
+            $(this).next("div").slideUp("fast");
+            } else {
+                $(".accordion_banner .accordion_sub").slideUp("fast");
+                $(this).next("div").slideToggle("fast");
+            }
+        });
+    });
+</script>
 
 <div class="container">
 	<div class="row">
@@ -63,6 +80,7 @@
 				<div id="regionContent" class="nav-content">
 					<div class="row">
 						<c:forEach items="${ review }" var="reviewList">
+						
 							<div class="reviewItem" data-id="${reviewList.sh_id }">
 		                		<div class="post clearfix">
 		             				<div class="user-block">
@@ -75,7 +93,50 @@
 		                 			</ul>
 		                		</div>
 							</div>
-							<hr/>
+							<!-- 세션이 비어있지않고, 작성자와 세션이름이 같으면 수정 -->
+							<c:if test="${not empty member }"> 
+	                    	<c:if test="${ member.mname == reviewList.mname }">
+	                    	<div class="accordion_banner">
+	                    		<div class="accordion_title">
+	                    			<div id="updatebtn" style="margin-bottom:20px;">리뷰수정하기</div>
+	                    		</div>
+	                    		<div class="accordion_sub">
+		                    		<div id="updateReview">
+										<form id="review" action="reviewUpdate" method="post">
+											<input type="hidden" name="rkey" value="${reviewList.rkey}"/>
+											<input type="hidden" name="mid" value="${member.mid}"/>
+											<div class="post clearfix">
+								                <div class="user-block">
+									                <img class="img-circle img-bordered-sm" src="${member.mphoto}" alt="User">
+									                <span class="username">
+									                <a href="#">${ member.mname }</a>
+									               <button class="btn" style="margin-left:10px;">리뷰수정완료</button> 
+									                <a href="#" class="pull-right btn-box-tool"></a>
+									                </span>
+								                </div>
+								                <div class="box box-success">
+								                <textarea name="rcontent" style="width:100%;height:100px;border: 0; resize: none;">${reviewList.rcontent}</textarea>
+								                </div>
+							                </div>
+										</form>
+									</div>
+	                    		</div>
+	                    		<div class="accordion_title">
+	                   				<div id="removebtn" style="margin-bottom:20px;">리뷰삭제하기</div>	
+	                   			</div>
+	                   			<div class="accordion_sub">
+		                   			<div id="removeReview">
+										<input type="hidden" name="mid" value="${member.mid}"/>
+										<a href="reviewRemove?rkey=${reviewList.rkey}" class="btn"><i class="icon-remove"></i>누르면 정말 삭제됩니다!</a>
+								 	</div>
+	                   			</div>
+
+								
+								
+							</div>
+						<hr/>
+						</c:if>
+						</c:if> 
 						</c:forEach> 
 					  </div>
 				   </div>
@@ -84,6 +145,34 @@
                 </div>
            </div>
       </div>
+      
+      
+    
+
+
+	<!-- 모달 팝업 -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">닫기</span></button>
+		<h4 class="modal-title" id="myModalLabel">회원정보?</h4>
+	      </div>
+	      <div class="modal-body">
+		
+	      </div>
+	      <div class="modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+		<button type="button" class="btn btn-primary">수정저장</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+      
+      
 </div>
+
+
+
 
 

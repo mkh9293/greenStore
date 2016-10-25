@@ -6,6 +6,11 @@
         insert into member(mphoto, mid, mname)
         values(#{mphoto}, #{mid}, #{mname})
     </insert>
+    
+    <select id="findMkey" resultType="int">
+ 		select mkey from member
+		where mid = #{mid}
+	</select>
 
 	<select id="selectMember" resultType="com.store.greenStore.dto.Member">
 		select *
