@@ -3,25 +3,24 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<script src="<c:url value="/resources/js/home2.js"/>"></script>
-<link rel="stylesheet" href="<c:url value="/resources/bootstrap/css/bootstrap.min.css"/>" type="text/css">
-<link rel="stylesheet" href="<c:url value="/resources/css/normalize.css"/>" type="text/css">
-<link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" type="text/css">
-<link rel="stylesheet" href="<c:url value="/resources/css/home.css"/>" type="text/css">
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/common.css"/>">
+
+<!-- 아이콘 css -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
+<!-- 리뷰 css -->
 <link rel="stylesheet" href="<c:url value="/resources/dist/css/AdminLTE.min.css"/>" type="text/css">
 <link rel="stylesheet" href="<c:url value="/resources/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"/>" type="text/css">
 <link rel="stylesheet" href="<c:url value="/resources/css/modal.css"/>" type="text/css">
+
+<!-- sidebar css -->
 <link rel="stylesheet" href="<c:url value="/resources/css/normalize.css"/>" type="text/css">
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" type="text/css">
-<link rel="stylesheet" href="<c:url value="/resources/css/home.css"/>" type="text/css">
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/common.css"/>">
-<script src="<c:url value="/resources/bootstrap/js/bootstrap.min.js"/>"></script>
+
 <script src="<c:url value="/resources/plugins/fastclick/fastclick.js"/>"></script>
 <script src="<c:url value="/resources/dist/js/app.min.js"/>"></script>
 <script src="<c:url value="/resources/dist/js/demo.js"/>"></script>
+
 <style>
 	.row {
 		margin-top: 50px;
@@ -71,7 +70,7 @@
 			           <div class="box box-widget">
 			           <div class="box-header with-border">
 	 		           <div class="user-block">
-	 		           <h4>${ storeLike.sh_name } 
+	 		           <h4 style="color:#16a085;">${ storeLike.sh_name } 
 	 		           <a href="http://localhost:8080/greenStore/store/detail?id=${storeLike.sh_id}">
 	 		           <button type="button" class="btn btn-default btn-xs" style="margin-left:20px;">
 	 		           <i class="fa fa-share"></i> 이 스토어 더보기</button>

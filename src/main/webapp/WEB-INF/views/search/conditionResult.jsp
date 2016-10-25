@@ -30,7 +30,7 @@
 		var markList = [];
 		
 		$.ajax({
-			url:"http://localhost:8080/json/searchConditionJson",
+			url:"http://localhost:8080/greenStore/json/searchConditionJson",
 			dataType:"json",
 			data:{"area": area, "cate": cate},
 			success:function(data){
@@ -99,7 +99,7 @@
 		//스토어 상세페이지로 이동
 		$(".storeItem").click(function(){
 			var detailId = $(this).attr("data-id");
-			$(location).attr("href","http://localhost:8080/store/detail?id="+detailId);
+			$(location).attr("href","http://localhost:8080/greenStore/store/detail?id="+detailId);
 		});
 	});
 	</script>

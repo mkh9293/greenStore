@@ -8,7 +8,9 @@
 	</insert>
 
 	<select id="detail" resultType="com.store.greenStore.dto.Store">
-		SELECT * FROM STORE WHERE SH_ID = #{sh_id}
+		SELECT sh_id, sh_name, sh_addr, induty_code_se, induty_code_se_name, sh_phone, sh_rcmn, sh_photo, sh_like, (select count(*) from store_like sl where sl.sh_id = #{sh_id} and sl.mkey = #{mk}) as isLike
+		FROM STORE 
+		WHERE SH_ID = #{sh_id}
 	</select>
 
 	<select id="appDetail" resultType="com.store.greenStore.dto.Store">

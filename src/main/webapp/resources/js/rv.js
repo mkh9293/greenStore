@@ -24,26 +24,26 @@ $(document).ready(function(){
 						$("#regionContent .row .reviewItem").remove();
 						
 						$.each(data, function(key, value){
-							var content = 
-							'<div class="reviewItem" data-id='+value.sh_id+'>' + 
-	                		'	<div class="post clearfix">'+
-	                		'		<div class="user-block">'+
-	                    	'			<span style="font-size:25px;">'+
-	                    	'			<a href="http://localhost:8080/greenStore/store/detail?id='+value.sh_id + '>'+ value.sh_name +'</a></span>' +
-	                   		'		</div>'+ value.rcontent +
-	                  		'			<ul class="list-inline">'+
-	                    	'			<li>'+
-	                    	'			<a href="#" class="link-black text-sm">'+
-	                    	'			<i class="fa fa-thumbs-o-up margin-r-5"></i>Like</a></li>'+
-	                 		'		</ul>'+
-	                		'	</div>'+
-	                		'</div>';
-							$("#regionContent .row").append(content);	
+								var content = 
+								'<div class="reviewItem" data-id='+value.sh_id+'>' + 
+		                		'	<div class="post clearfix">'+
+		                		'		<div class="user-block">'+
+		                    	'			<span style="font-size:25px;">'+
+		                    	'			<a href="http://localhost:8080/greenStore/store/detail?id='+value.sh_id + '>'+ value.sh_name +'</a></span>' +
+		                   		'		</div>'+ value.rcontent +
+		                  		'			<ul class="list-inline">'+
+		                    	'			<li>'+
+		                    	'			<a href="#" class="link-black text-sm">'+
+		                    	'			<i class="fa fa-thumbs-o-up margin-r-5"></i>Like</a></li>'+
+		                 		'		</ul>'+
+		                		'	</div>'+
+		                		'</div>';
+								$("#regionContent .row").append(content);	
+						});
+					}
 				});
-			}
-		});
+			});
 	});
-});
 
 //동적 이벤트 연결
 $(document).on("click","#regionContent .reviewItem",function(){

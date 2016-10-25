@@ -101,10 +101,12 @@ public class SNSController {
 		}
 
         member = new Member();
+        member.setMkey(result.getMkey());
         member.setMid(userkakaoVo.getId());
         member.setMname(userkakaoVo.getProperties().get("nickname"));
         member.setMphoto(userkakaoVo.getProperties().get("profile_image"));
         session.setAttribute("member", member);
+        
         System.out.println(member.getMid());
 		session = request.getSession(false);
 			if(session!=null){
@@ -160,5 +162,4 @@ public class SNSController {
         }
         return map;
     }
-
 }

@@ -36,11 +36,7 @@
 	}
 </style>
 <div class="hidden-xs">
-<<<<<<< Updated upstream
-	<div style="width:100%; height:600px; text-align:center;">
-=======
 	<div style="width:100%; height:450; text-align:center;">
->>>>>>> Stashed changes
 		<img src="<c:url value="/resources/img/o-morelist.jpeg"/>" alt="" style="width:100%; height:100%; opacity:0.9;"/>
 		<div id="bestTitle">
 			<h4>서울시 추천 리스트</h4>	
@@ -52,23 +48,23 @@
 			<div class="bestList">
 					<ul style="list-style: none; margin:0;">
 						<li style="height:300px;">
-							<a href="/store/best/1">
+							<a href="/greenStore/store/best/1">
 								<img src="<c:url value="/resources/img/kfood.png"/>" style="width:100%;height:100%;"/>
 							</a>
 						</li>
 						<li style="height:300px;">
-							<a href="/store/best/2">
+							<a href="/greenStore/store/best/2">
 									<img src="<c:url value="/resources/img/cfood.png"/>" style="width:100%;height:100%;"/>
 							</a>
 						</li>
 						<li style="height:300px;">
-							<a href="/store/best/3">
+							<a href="/greenStore/store/best/3">
 								<img src="<c:url value="/resources/img/jfood.png"/>" style="width:100%;height:100%;"/>
 							</a>
 						</li>
 						
 						<li style=" height:300px; background-image: url('http://mulga.seoul.go.kr/photo/20151126102205.jpg'), url('http://mulga.seoul.go.kr/photo/20151126102205.jpg')">
-							<a href="/store/best/5">
+							<a href="/greenStore/store/best/5">
 								<figure style="margin:0;">
 									<figcaption style="margin:0;">
 										<div style="text-align: center; line-height: 9.5;">
@@ -80,7 +76,7 @@
 						</li>
 						
 						<li style=" height:300px; background-image: url('http://mulga.seoul.go.kr/photo/SDC10302.JPG'), url('http://mulga.seoul.go.kr/photo/SDC10302.JPG')">
-							<a href="/store/best/7">
+							<a href="/greenStore/store/best/7">
 								<figure>
 									<figcaption>
 										<div style="text-align: center; line-height: 10;">
@@ -92,7 +88,7 @@
 						</li>
 						
 						<li style="height:300px;  background-size: 100%; background-image: url('http://mulga.seoul.go.kr/photo/20111104140652.jpg'), url('http://mulga.seoul.go.kr/photo/20111104140652.jpg')">
-							<a href="/store/best/8">
+							<a href="/greenStore/store/best/8">
 								<figure>
 									<figcaption>
 										<div style="text-align: center; line-height: 10;">
@@ -118,25 +114,25 @@
 			<div class="bestList">
 					<ul style="list-style: none; margin:0; padding:0;">
 						<li style="display: inline-block; margin: 2%; width: 96%; height: 270px;">
-							<a href="/store/best/1">
+							<a href="/greenStore/store/best/1">
 								<img src="<c:url value="/resources/img/kfood.png"/>" style="width:100%;height:100%;"/>
 							</a>
 						</li>
 						<li
 							style="display: inline-block; margin: 2%; width: 96%; height: 270px;">
-							<a href="/store/best/2">
+							<a href="/greenStore/store/best/2">
 									<img src="<c:url value="/resources/img/cfood.png"/>" style="width:100%;height:100%;"/>
 							</a>
 						</li>
 
 						<li style="display: inline-block; margin: 2%; width: 96%; height: 270px;">
-							<a href="/store/best/3">
+							<a href="/greenStore/store/best/3">
 								<img src="<c:url value="/resources/img/jfood.png"/>" style="width:100%;height:100%;"/>
 							</a>
 						</li>
 						
 						<li style="display: inline-block; margin: 2%; width: 96%; height: 270px; background-image: url('http://mulga.seoul.go.kr/photo/20151126102205.jpg'), url('http://mulga.seoul.go.kr/photo/20151126102205.jpg')">
-							<a href="/store/best/5">
+							<a href="/greenStore/store/best/5">
 								<figure>
 									<figcaption>
 										<div style="text-align: center; line-height:8;">
@@ -148,7 +144,7 @@
 						</li>
 						
 						<li style="display: inline-block; margin: 2%; width: 96%; height: 270px; background-image: url('http://mulga.seoul.go.kr/photo/SDC10302.JPG'), url('http://mulga.seoul.go.kr/photo/SDC10302.JPG')">
-							<a href="/store/best/7">
+							<a href="/greenStore/store/best/7">
 								<figure>
 									<figcaption>
 										<div style="text-align: center; line-height: 8;">
@@ -161,7 +157,7 @@
 						
 						
 						<li style="display: inline-block; margin: 2%; width: 96%; height: 270px; background-size: 100%; background-image: url('http://mulga.seoul.go.kr/photo/20111104140652.jpg'), url('http://mulga.seoul.go.kr/photo/20111104140652.jpg')">
-							<a href="/store/best/8">
+							<a href="/greenStore/store/best/8">
 								<figure>
 									<figcaption>
 										<div style="text-align: center; line-height: 8;">

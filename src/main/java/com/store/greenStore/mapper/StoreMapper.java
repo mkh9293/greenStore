@@ -24,6 +24,4 @@ public interface StoreMapper {
 	
 	StoreLike likePlus(@Param("shid")int shid, @Param("mk")int mk);
 	StoreLike likeMin(@Param("shid")int shid, @Param("mk")int mk);
-	
-;
 }

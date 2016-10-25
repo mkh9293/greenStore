@@ -20,13 +20,13 @@
 		//스토어 상세페이지로 이동
 		$(".storeItem").click(function(){
 			var detailId = $(this).attr("data-id");
-			$(location).attr("href","http://localhost:8080/store/detail?id="+detailId);
+			$(location).attr("href","http://localhost:8080/greenStore/store/detail?id="+detailId);
 		});
 		
 		//모바일 스토어 상세페이지로 이동
 		$(".mb_storeItem").click(function(){
 			var detailId = $(this).attr("data-id");
-			$(location).attr("href","http://localhost:8080/store/detail?id="+detailId);
+			$(location).attr("href","http://localhost:8080/greenStore/store/detail?id="+detailId);
 		});
 		 
 		$("#linkUrl span").on("click", function(){
@@ -53,11 +53,11 @@
 
 		$(".stItem").on("click",function(){
 			var detailId = $(this).attr("data-id");
-			$(location).attr("href","http://localhost:8080/store/detail?id="+detailId);
+			$(location).attr("href","http://localhost:8080/greenStore/store/detail?id="+detailId);
 		});
 		$(".stItem #detailStore").on("click",function(){
 			var detailId = $(this).attr("data-id");
-			$(location).attr("href","http://localhost:8080/store/detail?id="+detailId);
+			$(location).attr("href","http://localhost:8080/greenStore/store/detail?id="+detailId);
 		});
 	});
 	</script>
@@ -74,11 +74,7 @@
 				color:#16a085;
 			}
 			#bestTitle h4{
-<<<<<<< Updated upstream
-				position:absolute;font-size:70px;color:#fff;width:100%;top:250;
-=======
 				position:absolute;font-size:60px;color:#fff;width:100%;top:200;
->>>>>>> Stashed changes
 			}
 	</style>
 <div class="hidden-xs">

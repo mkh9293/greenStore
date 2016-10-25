@@ -9,6 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+<<<<<<< HEAD
+import com.store.greenStore.dto.Member;
+import com.store.greenStore.dto.Notice;
+=======
+>>>>>>> origin/master
 import com.store.greenStore.dto.Review;
 import com.store.greenStore.mapper.MemberMapper;
 import com.store.greenStore.mapper.RvMapper;
@@ -24,8 +29,15 @@ public class ReviewController {
 	
 	//전체 리뷰 조회
 	@RequestMapping(value="/listAll")
-	public String list(Model model) {
-		model.addAttribute("review", rvMapper.listAll());
+	public String list(Model model, HttpSession session) {
+		Member vo = (Member)session.getAttribute("member");
+		int mk = 0;
+		if(vo !=null){
+			mk = vo.getMkey();
+		}
+		model.addAttribute("review", rvMapper.weblistAll(mk));
+		model.addAttribute("member", vo);
+		
 		return "review/listAll";
 	}
 	
