@@ -30,6 +30,28 @@
 		padding: 5px;
 	}
 </style>
+<style>
+	.row{
+		margin-top: 50px;
+	}
+	.accordion_sub { display: none; }
+	.accordion_banner {
+		margin-bottom:20px;
+	}
+	
+</style>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".accordion_banner .accordion_title").click(function() {
+            if($(this).next("div").is(":visible")){
+            $(this).next("div").slideUp("fast");
+            } else {
+                $(".accordion_banner .accordion_sub").slideUp("fast");
+                $(this).next("div").slideToggle("fast");
+            }
+        });
+    });
+</script>
 
 <div class="container">
 	<div class="row">
@@ -38,7 +60,7 @@
           <div class="tab-content" style="padding:50px;">
           <div class="active tab-pane" id="activity">
               
-            <span style="font-size: 25px; font-weight: 600;"><b>리뷰 전체보기</span>
+            <span style="font-size: 25px; font-weight: 600;"><b>리뷰 전체보기</b></span>
 			<div class="region" style="display: inline-block; float: right; margin-right: 5%;">
 				<nav class="nav nav-inline">
 					<div class="regionNav" style="display:inline-block;">
@@ -65,9 +87,10 @@
 					<div class="row">
 					    <c:forEach items="${ review }" var="reviewList" >
 		                <div class="post clearfix">
-		                	<h4><a href="http://localhost:8080/greenStore/store/detail?id=${reviewList.sh_id}">${ reviewList.sh_name }</a></h4>
+		                	<span style="font-size:25px;margin-right:10px;"><a href="http://localhost:8080/greenStore/store/detail?id=${reviewList.sh_id}">${ reviewList.sh_name }</a></span>
+		                	<span><i class="fa fa-thumbs-o-up margin-r-5"></i>  ${reviewList.relike}</span>
 		                  	<div class="user-block">
-		                    <img class="img-circle img-bordered-sm" src="${reviewList.mphoto }" alt="User Image">
+		                    <img class="img-circle img-bordered-sm" src="${reviewList.mphoto }"/>
 		                        <span class="username">
 		                          <a href="#">${ reviewList.mname }</a>
 		                          <a href="#" class="pull-right btn-box-tool"></a>
@@ -75,11 +98,9 @@
 		                    <span class="description">
 		                    <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${ reviewList.rdate }" /></span>
 		                   	</div>
-		                    ${ reviewList.rcontent }
-		                  	<ul class="list-inline">
-		                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-		                    </li>
-		                  	</ul>
+		                    <div style="margin-bottom:15px;">
+                  			${ reviewList.rcontent }
+                  			</div>
 		                	</div>
 		                 </c:forEach>
                 	</div>

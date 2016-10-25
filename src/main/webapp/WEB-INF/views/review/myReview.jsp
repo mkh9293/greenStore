@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -80,25 +79,24 @@
 				<div id="regionContent" class="nav-content">
 					<div class="row">
 						<c:forEach items="${ review }" var="reviewList">
-						
 							<div class="reviewItem" data-id="${reviewList.sh_id }">
 		                		<div class="post clearfix">
 		             				<div class="user-block">
-		                    			<span style="font-size:25px;"><a href="http://localhost:8080/greenStore/store/detail?id=${reviewList.sh_id}">
-		                    			${ reviewList.sh_name }</a></span>
+		                    			<span style="font-size:25px;margin-right:10px;"><a href="http://localhost:8080/greenStore/store/detail?id=${reviewList.sh_id}">
+		                    			${ reviewList.sh_name }</a></span><span><i class="fa fa-thumbs-o-up margin-r-5"></i>  ${reviewList.relike}</span>
 		                   			</div>
+		                   			<div style="margin-bottom:15px;">
 		                  			${ reviewList.rcontent }
-		                  			<ul class="list-inline">
-		                    			<li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a></li>
-		                 			</ul>
+		                  			</div>
+		                  			<br/>
 		                		</div>
 							</div>
 							<!-- 세션이 비어있지않고, 작성자와 세션이름이 같으면 수정 -->
 							<c:if test="${not empty member }"> 
 	                    	<c:if test="${ member.mname == reviewList.mname }">
-	                    	<div class="accordion_banner">
+	                    	<div class="accordion_banner" style="display:inline;">
 	                    		<div class="accordion_title">
-	                    			<div id="updatebtn" style="margin-bottom:20px;">리뷰수정하기</div>
+	                    			<div id="updatebtn" style="margin-bottom:10px;"><i class="fa fa-pencil-square-o"></i> 리뷰수정하기 <i class="fa fa-caret-down"></i></div>
 	                    		</div>
 	                    		<div class="accordion_sub">
 		                    		<div id="updateReview">
@@ -115,14 +113,14 @@
 									                </span>
 								                </div>
 								                <div class="box box-success">
-								                <textarea name="rcontent" style="width:100%;height:100px;border: 0; resize: none;">${reviewList.rcontent}</textarea>
+								                <textarea name="rcontent" style="width:100%;height:200px;border:0;resize:none;padding:20px;">${reviewList.rcontent}</textarea>
 								                </div>
 							                </div>
 										</form>
 									</div>
 	                    		</div>
-	                    		<div class="accordion_title">
-	                   				<div id="removebtn" style="margin-bottom:20px;">리뷰삭제하기</div>	
+	                    		<div class="accordion_title" style="display:inline;">
+	                   				<div id="removebtn" style="margin-bottom:20px;"><i class="fa fa-trash"></i> 리뷰삭제하기 <i class="fa fa-caret-down"></i></div>	
 	                   			</div>
 	                   			<div class="accordion_sub">
 		                   			<div id="removeReview">
@@ -131,12 +129,11 @@
 								 	</div>
 	                   			</div>
 
-								
-								
 							</div>
-						<hr/>
+					
 						</c:if>
 						</c:if> 
+						<hr/>
 						</c:forEach> 
 					  </div>
 				   </div>

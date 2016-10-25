@@ -500,27 +500,22 @@ public class StoreController {
 	
 	//리뷰작성
 	@RequestMapping(value="/reviewWrite")
-	 public String reviewWrite(HttpServletRequest request, HttpSession session)
-	 {
-	  int sh_id = Integer.parseInt(request.getParameter("sh_id"));
-	  String rcontent = request.getParameter("rcontent");
-	  String mid = request.getParameter("mid");
-	  
-	  int writer = memberMapper.findMkey(mid);
-	  
-	  Review review = new Review();
-	  
-	  review.setSh_id(sh_id);
-	  review.setMkey(writer);
-	  review.setRelike(99);//디폴트 0으로 줄것
-	  review.setRcontent(rcontent);
-	  rvMapper.insert(review);
-	 
-	  return "redirect:/store/detail?id="+ review.getSh_id();
+	 public String reviewWrite(HttpServletRequest request, HttpSession session) {
+		int sh_id = Integer.parseInt(request.getParameter("sh_id"));
+		String rcontent = request.getParameter("rcontent");
+		String mid = request.getParameter("mid");
+		  
+		int writer = memberMapper.findMkey(mid);
+		  
+		Review review = new Review();
+			  
+		review.setSh_id(sh_id);
+		review.setMkey(writer);
+		review.setRelike(99);//디폴트 0으로 줄것
+		review.setRcontent(rcontent);
+		rvMapper.insert(review);
+			 
+		return "redirect:/store/detail?id="+ review.getSh_id();
 	 }
-	
-	
-	
-	
 	
 }

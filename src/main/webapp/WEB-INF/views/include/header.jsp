@@ -16,8 +16,7 @@
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 
 <!-- jQuery UI css import -->
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 <!-- jQuery UI js import-->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

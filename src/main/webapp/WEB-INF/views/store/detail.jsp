@@ -1,17 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-<<<<<<< HEAD
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-=======
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<<<<<<< Updated upstream
-<script src="<c:url value="/resources/se2/js/jindo.min.js" />"></script>
-<script src="<c:url value="/resources/se2/js/HuskyEZCreator.js" />"></script> 
 
->>>>>>> 56d04e091dbd51b2fb16012343c891b99e9db569
 <link rel="stylesheet" href="<c:url value="/resources/bootstrap/css/bootstrap.min.css"/>" type="text/css">
 <script src="<c:url value="/resources/js/rv.js"/>"></script>
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/common.css"/>">
@@ -31,13 +22,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-<<<<<<< HEAD
-=======
-=======
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
->>>>>>> Stashed changes
 
->>>>>>> 56d04e091dbd51b2fb16012343c891b99e9db569
+
 <link rel="stylesheet" href="<c:url value="/resources/dist/css/skins/_all-skins.min.css"/>" type="text/css">
 
 <!-- sidebar menu css -->  
@@ -51,25 +37,8 @@
 <link rel="stylesheet" href="<c:url value="/resources/daumMap.css"/>" type="text/css">
 
 <!-- DaumMap js import  -->
-<<<<<<< HEAD
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=76d0dfe96fd493ccedbee52792d36e32"></script>
-=======
-<script type="text/javascript"
-	src="//apis.daum.net/maps/maps3.js?apikey=76d0dfe96fd493ccedbee52792d36e32"></script>
 
-<<<<<<< Updated upstream
-
->>>>>>> 56d04e091dbd51b2fb16012343c891b99e9db569
-
-=======
-<!-- session -->
-<jsp:useBean id="loginBean" class="petBean.LoginInfoBean"/>
-<%
-	request.setCharacterEncoding("UTF-8");
-	loginBean = (petBean.LoginInfoBean)session.getAttribute("LOGININFO");
-%>	
-	
->>>>>>> Stashed changes
 <script type="text/javascript">
 	var sh_photo = "<c:out value="${store.sh_photo}"/>";
 	var sh_name = "<c:out value="${store.sh_name}"/>";
@@ -150,7 +119,6 @@
 		
 		var likeBtn = false;//나중에 디비에서 받아야된다.
 		$("#likeBtn").on("click",function(){
-<<<<<<< Updated upstream
 			
 			if(likeBtn == false){
 	        	$("#likeBtn").removeClass();
@@ -186,8 +154,8 @@
 	            	}
 	            });
 	        }
-=======
-			<%if(loginBean!=null){ %>
+	        
+			<c:if test="${not empty member }"> 
 				if(likeBtn == false){
 		        	$("#likeBtn").removeClass();
 		        	$("#likeBtn").addClass("glyphicon glyphicon-heart");
@@ -195,7 +163,7 @@
 		            likeBtn = true;
 		            
 		            $.ajax({
-		            	url:"http://localhost:8080/json/likePlus",
+		            	url:"http://localhost:8080/greenStore/json/likePlus",
 		            	data:{"sh_id":sh_id},
 		            	method:"post",
 		            	success:function(data){
@@ -212,7 +180,7 @@
 		            likeBtn = false;
 		            
 		            $.ajax({
-		            	url:"http://localhost:8080/json/likeMin",
+		            	url:"http://localhost:8080/greenStore/json/likeMin",
 		            	data:{"sh_id":sh_id},
 		            	method:"post",
 		            	success:function(data){
@@ -222,17 +190,17 @@
 		            	}
 		            });
 		        }
-			<%}else{ %>
+			</c:if>
+			<c:if test="${ empty member }"> 
 				var maskHeight = $(document).height(); 
 				$('#myModal1').css({'height':maskHeight,'display':'block'});  
-			<%}%>
+			</c:if>
 		});
 		$("#myModal1 .close").on("click",function(){
 			$("#myModal1").css("display","none");
 		});
 		$("#myModal1 .modal-footer").on("click",function(){
 			$("#myModal1").css("display","none");
->>>>>>> Stashed changes
 		});
 		
 		$("#mb_likeBtn").on("click",function(){
@@ -273,12 +241,6 @@
 	    
 	});
 	
-/* 	$(document).ready(function(){
-	    $('#write').hide();
-	    $('#writebtn').click(function(){ 
-	        $('#write').toggle(); 
-	    });
-	}); */
 </script>
 
 <style type="text/css">
@@ -290,17 +252,9 @@
 	}
 </style>
 <div class="hidden-xs hidden-sm">		
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-		
->>>>>>> 56d04e091dbd51b2fb16012343c891b99e9db569
-	    <div class="container">
-	    <img alt="detailImage" src="${store.sh_photo }" style="width:100%; height:500px;"/><br/>
-=======
+
 		<div class="container">
 	    	<img alt="detailImage" src="${store.sh_photo }" style="width:100%;height:20em;"/><br/>
->>>>>>> Stashed changes
 	    	<div class="row">
                 <div class="col-md-8" id="mainContent">
                     <div>
@@ -425,11 +379,8 @@
 						<input type=hidden name="sh_phone" value="${store.sh_phone }">
 						<input type=hidden name="sh_info" value="${store.sh_info }">
 				
-<<<<<<< Updated upstream
 						<div id="map" style="width:365px;height:300px;"></div>
-=======
-						<div id="map" style="height:300px;"></div>
->>>>>>> Stashed changes
+
                     </form>
 					
                     <h5 style="font-size:25px;margin-bottom:30px;">주변 놀거리</h5>
@@ -471,9 +422,7 @@
 		    </div>
 		</div>
 	<!-- end Modal -->
-</div>
 <div class="visible-xs visible-sm">
-	
 	    <div class="container">
 	    <img alt="detailImage" src="${store.sh_photo }" style="width:100%;height:200px;"/><br/>
 	    	<div class="row">
