@@ -11,11 +11,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-
-<<<<<<< HEAD
-=======
 import javax.servlet.http.HttpServletRequest;
->>>>>>> origin/master
 import javax.servlet.http.HttpSession;
 
 import org.dom4j.Document;
@@ -35,11 +31,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.store.greenStore.dto.Blog;
-<<<<<<< HEAD
 import com.store.greenStore.dto.Member;
 import com.store.greenStore.dto.Notice;
-=======
->>>>>>> origin/master
+
 import com.store.greenStore.dto.Play;
 import com.store.greenStore.dto.Review;
 import com.store.greenStore.dto.Store;
@@ -287,7 +281,7 @@ public class StoreController {
 
 	@RequestMapping(value="/detail", method=RequestMethod.GET)
 	public String detail(int id, Model model, HttpSession session) throws IOException, ParseException, DocumentException{
-<<<<<<< HEAD
+
 		Member member = (Member)session.getAttribute("member");
 		
 		int mk = 0;
@@ -295,11 +289,8 @@ public class StoreController {
 			mk = member.getMkey();
 		}
 		Store store = storeDbMapper.detail(id, mk);
-		
 		System.out.println("store Detail : "+store.getIsLike());
-=======
-		Store store = storeDbMapper.detail(id);
->>>>>>> origin/master
+
 		
 		//지역을 좌표로 변경 
 		HashMap<String, Double> map = new HashMap<String, Double>();
@@ -519,8 +510,6 @@ public class StoreController {
 		
 		return "store/mbPlayDetail";
 	}
-<<<<<<< HEAD
-=======
 	
 	//리뷰작성
 	@RequestMapping(value="/reviewWrite")
@@ -542,10 +531,5 @@ public class StoreController {
 	 
 	  return "redirect:/store/detail?id="+ review.getSh_id();
 	 }
-	
-	
-	
-	
-	
->>>>>>> origin/master
 }
+
