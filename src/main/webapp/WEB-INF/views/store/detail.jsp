@@ -2,22 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<<<<<<< HEAD
-
-=======
-=======
-    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<script src="<c:url value="/resources/se2/js/jindo.min.js" />"></script>
-<script src="<c:url value="/resources/se2/js/HuskyEZCreator.js" />"></script> 
-
-<<<<<<< HEAD
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-=======
->>>>>>> 56d04e091dbd51b2fb16012343c891b99e9db569
->>>>>>> beb180a9445a25fc6500269b24323231a651ed04
 <link rel="stylesheet" href="<c:url value="/resources/bootstrap/css/bootstrap.min.css"/>" type="text/css">
 <script src="<c:url value="/resources/js/rv.js"/>"></script>
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/common.css"/>">
@@ -37,11 +24,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-=======
+
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 >>>>>>> Stashed changes
 >>>>>>> origin/master
