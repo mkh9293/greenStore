@@ -3,21 +3,20 @@
 <mapper namespace="com.store.greenStore.mapper.MypageMapper">
 
 	<!-- 내가 좋아요를 누른 스토어 -->
-	<select id="selectStoreLike" resultType="com.store.greenStore.dto.StoreLike">
-
-
+	<select id="storeLike" resultType="com.store.greenStore.dto.StoreLike">
+		select * from store_like sl 
+		join store s on sl.sh_id = s.sh_id 
+		join member m on sl.mkey = m.mkey
+		where m.mid = #{ mid }
 	</select>
 	
 	<!-- 내가 좋아요를 누른 리뷰 -->
-	<select id="selectReviewLike" resultType="com.store.greenStore.dto.ReviewLike">
-
-
+	<select id="reviewLike" resultType="com.store.greenStore.dto.ReviewLike">
+		select *  from review r 
+		join review_like rl on r.rkey = rl.rkey
+		join member m on rl.mkey = m.mkey
+		join store s on r.sh_id = s.sh_id
+		where m.mid = #{mid}
 	</select>
-	
-	<!-- 정렬 cate/local -->
-	<select id="sort" resultType="com.store.greenStore.dto.ReviewLike">
-		
-	</select>
-	
 	
 </mapper>

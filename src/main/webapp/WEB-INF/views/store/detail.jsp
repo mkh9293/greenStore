@@ -1,8 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<!-- 리뷰 js import -->
+<script src="<c:url value="/resources/js/rv.js"/>"></script>
+
+<!-- 아이콘 css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
+<!-- 리뷰 css -->
 <link rel="stylesheet" href="<c:url value="/resources/dist/css/AdminLTE.min.css"/>" type="text/css">
+<link rel="stylesheet" href="<c:url value="/resources/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"/>" type="text/css">
+<link rel="stylesheet" href="<c:url value="/resources/css/modal.css"/>" type="text/css">
+
+<script src="<c:url value="/resources/plugins/fastclick/fastclick.js"/>"></script>
+<script src="<c:url value="/resources/dist/js/app.min.js"/>"></script>
+<script src="<c:url value="/resources/dist/js/demo.js"/>"></script>
+
 <link rel="stylesheet" href="<c:url value="/resources/dist/css/skins/_all-skins.min.css"/>" type="text/css">
 
 <!-- sidebar menu css -->  
@@ -16,9 +32,11 @@
 <link rel="stylesheet" href="<c:url value="/resources/daumMap.css"/>" type="text/css">
 
 <!-- DaumMap js import  -->
-<script type="text/javascript"
-	src="//apis.daum.net/maps/maps3.js?apikey=76d0dfe96fd493ccedbee52792d36e32"></script>
-			
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=76d0dfe96fd493ccedbee52792d36e32"></script>
+
+<!-- jQuery js import -->
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	
 <script type="text/javascript">
 	var sh_photo = "<c:out value="${store.sh_photo}"/>";
 	var sh_name = "<c:out value="${store.sh_name}"/>";
@@ -31,6 +49,8 @@
 	
 	var map;
 	var overlay;
+	
+	var session = "<c:out value="${member}"/>";
 	
 	$(document).ready(function(){
 		var mapContainer = document.getElementById('map'), // 지도의 중심좌표
@@ -80,14 +100,59 @@
 			$("#storeInfo").submit();
 		});
 		
+var likeBtn = "<c:out value="${store.isLike}"/>";//나중에 디비에서 받아야된다.
+		
+		$("#likeBtn").on("click",function(){
+			if(session==null || session==''){
+				var maskHeight = $(document).height(); 
+				$('#myModal1').css({'height':maskHeight,'display':'block'});  
+				
+			}else{
+				var mk = "<c:out value="${member.mkey}"/>";
+				
+				if(likeBtn == 0){
+					$("#likeBtn").removeClass();
+		        	$("#likeBtn").addClass("glyphicon glyphicon-heart");
+		            $("#likeBtn").css("color","#1abc9c");
+		            likeBtn = true;
+		            
+		            $.ajax({
+		            	url:"http://localhost:8080/greenStore/json/likePlus",
+		            	data:{"sh_id":sh_id,"mk":mk},
+		            	method:"post",
+		            	success:function(data){
+		            		$.each(data, function(key, value){
+		            			alert("좋아요를 눌렀습니다.");
+		            		});
+		            	}
+		            });
+		        }
+		        else{
+		        	$("#likeBtn").removeClass();
+		        	$("#likeBtn").addClass("glyphicon glyphicon-heart-empty");
+		            $("#likeBtn").css("color","#BDBDBD");
+		            likeBtn = false;
+		            
+		            $.ajax({
+		            	url:"http://localhost:8080/greenStore/json/likeMin",
+		            	data:{"sh_id":sh_id,"mk":mk},
+		            	method:"post",
+		            	success:function(data){
+		            		$.each(data, function(key, value){
+		            			alert("좋아요를 취소했습니다.");
+		    				});
+		            	}
+		            });
+		        }
+			}
+		});
+		
 		$(".playItem").on("click",function(){
 			var contentId = $(this).attr("data-id");
 			var addr1 = $(this).find(".addr1").text();
 			var title = $(this).find(".title").text();
 		
-			window.open("http://localhost:8080/store/detail/play/"+contentId+"/"+sh_name+"/"+sh_addr+"/"+title+"/"+addr1,"_blank","toolbar=no,scrollbars=yes,resizable=no,top=200,left=200,width=800,height=600");
-			
-			//$(location).attr("href","http://localhost:8080/greenStore/store/detail/play?contentId="+contentId);
+			window.open("http://localhost:8080/greenStore/store/detail/play/"+contentId+"/"+sh_name+"/"+sh_addr+"/"+title+"/"+addr1,"_blank","toolbar=no,scrollbars=yes,resizable=no,top=200,left=200,width=800,height=600");
 		});
 		
 		$(".mb_playItem").on("click",function(){
@@ -95,46 +160,15 @@
 			var addr1 = $(this).find(".addr1").text();
 			var title = $(this).find(".title").text();
 			
-			$(location).attr("href","http://localhost:8080/store/mb/detail/play/"+contentId+"/"+title+"/"+addr1);
+			$(location).attr("href","http://localhost:8080/greenStore/store/mb/detail/play/"+contentId+"/"+title+"/"+addr1);
 		});
 		
-		var likeBtn = false;//나중에 디비에서 받아야된다.
-		$("#likeBtn").on("click",function(){
-			
-			if(likeBtn == false){
-	        	$("#likeBtn").removeClass();
-	        	$("#likeBtn").addClass("glyphicon glyphicon-heart");
-	            $("#likeBtn").css("color","#1abc9c");
-	            likeBtn = true;
-	            
-	            $.ajax({
-	            	url:"http://localhost:8080/json/likePlus",
-	            	data:{"sh_id":sh_id},
-	            	method:"post",
-	            	success:function(data){
-	            		$.each(data, function(key, value){
-	            			alert("좋아요를 눌렀습니다.");
-	            		});
-	            	}
-	            });
-	        }
-	        else{
-	        	$("#likeBtn").removeClass();
-	        	$("#likeBtn").addClass("glyphicon glyphicon-heart-empty");
-	            $("#likeBtn").css("color","#BDBDBD");
-	            likeBtn = false;
-	            
-	            $.ajax({
-	            	url:"http://localhost:8080/json/likeMin",
-	            	data:{"sh_id":sh_id},
-	            	method:"post",
-	            	success:function(data){
-	            		$.each(data, function(key, value){
-	            			alert("좋아요를 취소헸습니다.");
-	    				});
-	            	}
-	            });
-	        }
+		$("#loginCancel").on("click",function(){
+			$("#myModal1").css("display","none");
+		});
+		
+		$("#myModal1 .close").on("click",function(){
+			$("#myModal1").css("display","none");
 		});
 		
 		$("#mb_likeBtn").on("click",function(){
@@ -161,6 +195,15 @@
 		$("#findRoad").on("click",function(){
 			$(location).attr("href","http://map.daum.net/link/to/"+sh_name+","+pointY+","+pointX);
 		});
+
+	});
+	
+	$(document).ready(function(){
+		$('#reviewMore').hide();
+	    $('#moreBtn').click(function(){ 
+	        $('#reviewMore').toggle(); 
+	    });
+	    
 	});
 </script>
 
@@ -171,18 +214,45 @@
 	#map, #likeBtn, .playItem:hover{
 		cursor:pointer;
 	}
+	.modal{
+		display: none; /* Hidden by default */
+	    position: fixed; /* Stay in place */
+	    z-index: 1; /* Sit on top */
+	    left: 0;
+	    top: 0;
+	    width: 100%; /* Full width */
+	    height: 100%; /* Full height */
+	    overflow: auto; /* Enable scroll if needed */
+	    background-color: rgb(0,0,0); /* Fallback color */
+	    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	}
+	.modal-content {
+		top:150;
+		left:100;
+	    background-color: #fefefe;
+	    margin: 4%; /* 15% from the top and centered */
+	    padding: 20px;
+	    border: 1px solid #888;
+	    width: 80%; /* Could be more or less, depending on screen size */
+	}
 </style>
 <div class="hidden-xs hidden-sm">		
-		<img alt="detailImage" src="${store.sh_photo }" style="width:100%;height:400px;"/><br/>
-	    <div class="container">
+		<div class="container">
+	    	<img alt="detailImage" src="${store.sh_photo }" style="width:100%;height:20em;"/><br/>
 	    	<div class="row">
                 <div class="col-md-8" id="mainContent">
                     <div>
                         <h3>${store.sh_name }<small style="color:#16a085;">${store.sh_rcmn }</small>
-                        <span id="likeBtn" style="float:right; font-size:30px;color:#BDBDBD;" class="glyphicon glyphicon-heart-empty"></span>
-        			  </h3>
+                        
+                        <c:if test="${store.isLike == 0}">
+                      	  <span id="likeBtn" style="float:right; font-size:30px;color:#BDBDBD;" class="glyphicon glyphicon-heart-empty"></span>
+        			    </c:if>
+                      	<c:if test="${store.isLike == 1}">
+                      	  <span id="likeBtn" style="float:right; font-size:30px;color:#1abc9c;" class="glyphicon glyphicon-heart"></span>
+        			    </c:if>
+                      
+                      </h3>
                     </div>
-                    <!-- <img alt="storeDetailImg" src="${store.sh_photo }" style="width:400px;height:500px"/>  -->
                     <hr/>
                     <div class="intro">
                         <table>
@@ -196,48 +266,83 @@
                         	</tr>
                         </table>
                      </div><hr/>
-                    
-                    <div class="review">
-                    	<h4>리뷰 </h4>
-                    	<!-- Post -->
-		                <div class="post clearfix">
-		                  <div class="user-block">
-		                    <img class="img-circle img-bordered-sm" src="../resources/dist/img/user7-128x128.jpg" alt="User Image">
-		                        <span class="username">
-		                          <a href="#">글쓴이</a>
-		                        </span>
-		                    <span class="description">날짜</span>
-		                  </div>
-		                  <!-- /.user-block -->
-		                  <p>
-		                    	리뷰내용
-		                  </p>
-		                  <ul class="list-inline">
-		                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-		                    </li>
-		                  </ul>
+   
+                   	<div class="review">
+	                   	<h4 style="margin-bottom:20px;margin-right:20px;display:inline;">리뷰</h4>
+	                <!--    	<div id="writebtn" style="margin-bottom:20px;display:inline;float:right;">리뷰작성하기</div> -->
+	                   	<p/>
+						<div id="write">
+			                <c:if test="${not empty member }"> 
+				                <form id="review" action="reviewWrite" method="post">
+									<input type="hidden" name="sh_id" value="${store.sh_id}"/>
+									<input type="hidden" name="mid" value="${member.mid}"/>
+									<div class="post clearfix">
+						                <div class="user-block">
+							                <img class="img-circle img-bordered-sm" src="${member.mphoto }" alt="User">
+							                <span class="username">
+							                <a href="#">${ member.mname }</a>
+							                <button class="btn" style="margin-left:10px;">리뷰저장하기</button> 
+							                <a href="#" class="pull-right btn-box-tool"></a>
+							                
+							                </span>
+						                </div>
+						                <div class="box box-success">
+						                <textarea name="rcontent" style="width:100%;height:300px;border: 0; resize: none;"></textarea>
+						                
+						                
+						                </div>
+					                </div>
+									
+									
+								</form>
+							</c:if>
+							<c:if test="${ empty member }"> 
+								로그인 후 이용하실수 있습니다!<p/>
+							</c:if>
 		                </div>
-		                <!-- /.post -->
-		                <!-- Post -->
-		                <div class="post clearfix">
-		                  <div class="user-block">
-		                    <img class="img-circle img-bordered-sm" src="../resources/dist/img/user7-128x128.jpg" alt="User Image">
-		                        <span class="username">
-		                          <a href="#">글쓴이</a>
-		                        </span>
-		                    <span class="description">날짜</span>
-		                  </div>
-		                  <!-- /.user-block -->
-		                  <p>
-		                    	리뷰내용
-		                  </p>
-		                  <ul class="list-inline">
-		                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-		                    </li>
-		                  </ul>
-		                </div>
-		                <!-- /.post -->
-                    </div><hr/>
+	                  	<c:forEach items="${ reviewOne }" var="reviewList" >
+			                <div class="post clearfix">
+				                <div class="user-block">
+					                <img class="img-circle img-bordered-sm" src="${reviewList.mphoto }" alt="User">
+					                <span class="username">
+					                <a href="#">${ reviewList.mname }</a>
+					                <a href="#" class="pull-right btn-box-tool"></a>
+					                </span>
+					                <span class="description">
+					                <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${ reviewList.rdate }" /></span>
+				                </div>
+				                ${ reviewList.rcontent }
+				                <ul class="list-inline">
+				                <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a></li>
+				                </ul>
+			                </div>
+		                </c:forEach> 
+		                
+		                <div id="moreBtn" style="margin-bottom:20px;">리뷰더보기</div>
+						<div id="reviewMore">          
+		                  	<c:forEach items="${ review }" var="reviewList" >
+			                <div class="post clearfix">
+				                <div class="user-block">
+					                <img class="img-circle img-bordered-sm" src="${reviewList.mphoto }" alt="User Image">
+					                <span class="username">
+					                <a href="#">${ reviewList.mname }</a>
+					                <a href="#" class="pull-right btn-box-tool"></a>
+					                </span>
+					                <span class="description">
+					                <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${ reviewList.rdate }" /></span>
+				                </div>
+				                ${ reviewList.rcontent }
+				                <ul class="list-inline">
+				                <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+				                </li>
+				                </ul>
+			                </div>
+			                </c:forEach>
+	                    </div>
+					</div>
+					
+                  <!--./리뷰끝  -->
+
                     <div class="daumBlog">
                     	<h4>블로그</h4>
                     	<c:forEach items="${daumBlogList }" var="daumBlog" varStatus="i">
@@ -250,7 +355,6 @@
 							</c:if>
 						</c:forEach>
                     </div>
-               
                 </div>
                 
                 <div class="col-md-4" id="sideMenu" style="position:relative; margin-top:2px;"> 
@@ -265,9 +369,9 @@
 						<input type=hidden name="sh_way" value="${store.sh_way }">
 						<input type=hidden name="sh_phone" value="${store.sh_phone }">
 						<input type=hidden name="sh_info" value="${store.sh_info }">
-				
-						<div id="map" style="width:420px;height:300px;"></div>
-                    </form>
+
+						<div id="map" style="height:300px;"></div>
+				    </form>
 					
                     <h5 style="font-size:25px;margin-bottom:30px;">주변 놀거리</h5>
                     <div id="play">
@@ -292,10 +396,25 @@
                 </div>
             </div>
         </div>   
-</div>
+        <!-- Modal -->
+		<div class="modal" id="myModal1">
+		  <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close"><span aria-hidden="true">&times;</span></button>
+		      </div>
+		      <div class="modal-body" style="text-align:center">
+		       	<h2 style="font-size:20px;">로그인 하시면 가고싶은 식당을 편하게 저장해서 내 프로필 페이지에서 볼 수 있어요! :)</h2>
+		      </div>
+		      <div class="modal-footer" style="text-align:center;">
+		        <button type="button" id="loginCancel" class="btn btn-default btn-lg" style="width:30%;">취소</button>
+		      	<a class="btn btn-success btn-lg" href="/greenStore/login" style="width:30%; margin-left:7%">로그인</a>
+		      </div>
+		    </div>
+		</div>
+	<!-- end Modal -->
 <div class="visible-xs visible-sm">
-	<img alt="detailImage" src="${store.sh_photo }" style="width:100%;height:200px;"/><br/>
 	    <div class="container">
+	    <img alt="detailImage" src="${store.sh_photo }" style="width:100%;height:200px;"/><br/>
 	    	<div class="row">
                 <div class="col-md-8" id="mainContent">
                     <div>
@@ -303,7 +422,6 @@
                         	<span id="mb_likeBtn" style="float:right; font-size:30px;color:#BDBDBD;" class="glyphicon glyphicon-heart-empty"></span>
         			  	</h5>
                     </div>
-                    <!-- <img alt="storeDetailImg" src="${store.sh_photo }" style="width:400px;height:500px"/>  -->
                     <hr/>
                     <div class="intro">
                         <table>
@@ -319,48 +437,29 @@
                     </div><hr/>
                     
                     <div class="review">
-                    	<h5 style="font-size:25px;">리뷰 (2) </h5>
-                    	<!-- Post -->
-		                <div class="post clearfix">
-		                  <div class="user-block">
-		                    <img class="img-circle img-bordered-sm" src="../resources/dist/img/user7-128x128.jpg" alt="User Image">
-		                        <span class="username">
-		                          <a href="#">글쓴이</a>
-		                        </span>
-		                    <span class="description">날짜</span>
-		                  </div>
-		                  <!-- /.user-block -->
-		                  <p>
-		                    	리뷰내용
-		                  </p>
-		                  <ul class="list-inline">
-		                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-		                    </li>
-		                  </ul>
-		                </div>
-		                <!-- /.post -->
-		                <!-- Post -->
-		                <div class="post clearfix">
-		                  <div class="user-block">
-		                    <img class="img-circle img-bordered-sm" src="../resources/dist/img/user7-128x128.jpg" alt="User Image">
-		                        <span class="username">
-		                          <a href="#">글쓴이</a>
-		                        </span>
-		                    <span class="description">날짜</span>
-		                  </div>
-		                  <!-- /.user-block -->
-		                  <p>
-		                    	리뷰내용
-		                  </p>
-		                  <ul class="list-inline">
-		                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-		                    </li>
-		                  </ul>
-		                </div>
-		                <!-- /.post -->
+                    	<h5 style="font-size:25px;">리뷰</h5>
+                  	<c:forEach items="${ review }" var="reviewList" >
+	                <div class="post clearfix">
+	                  	<div class="user-block">
+	                    <img class="img-circle img-bordered-sm" src="${reviewList.mphoto }" alt="User Image">
+	                        <span class="username">
+	                          <a href="#">${ reviewList.mname }</a>
+	                          <a href="#" class="pull-right btn-box-tool"></a>
+	                        </span>
+	                    <span class="description">
+	                    <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${ reviewList.rdate }" /></span>
+	                   	</div>
+	                    ${ reviewList.rcontent }
+	                  	<ul class="list-inline">
+	                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+	                    </li>
+	                  	</ul>
+	                	</div>
+	                 </c:forEach>
+                    	
                     </div><hr/>
                     
-                    <div class="daumBlog">
+                   <div class="daumBlog">
                     	<h5 style="font-size:25px;">블로그</h5>
                     	<c:forEach items="${daumBlogList }" var="daumBlog" varStatus="i">
                         	<c:if test="${i.index < 3 }">
@@ -372,7 +471,6 @@
 							</c:if>
 						</c:forEach>
                     </div>
-               
                 </div>
                 
                 <!-- store image, name, addr -->

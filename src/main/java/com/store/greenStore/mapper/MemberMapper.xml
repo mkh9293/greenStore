@@ -6,10 +6,26 @@
         insert into member(mphoto, mid, mname)
         values(#{mphoto}, #{mid}, #{mname})
     </insert>
+    
+    <select id="findMkey" resultType="int">
+ 		select mkey from member
+		where mid = #{mid}
+	</select>
 
 	<select id="selectMember" resultType="com.store.greenStore.dto.Member">
 		select *
 		from member
 		where MID = #{mid}
 	</select>
+	
+	<select id="member" resultType="com.store.greenStore.dto.Member">
+		select count(mid) from member
+		where mid = #{mid}
+	</select>
+	
+	<update id="update" >
+		update member
+		set mname=#{mname}, mphoto=#{mphoto}
+		where mid = #{mid}
+	</update>
 </mapper>

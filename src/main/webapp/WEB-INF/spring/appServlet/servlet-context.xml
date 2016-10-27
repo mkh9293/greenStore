@@ -38,7 +38,7 @@
         <beans:property name="password" value="apmsetup" />
     </beans:bean>
 
-    <beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+     <beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <beans:property name="dataSource" ref="myDataSource" />
     </beans:bean>
 
@@ -46,4 +46,12 @@
         <beans:property name="basePackage" value="com.store.greenStore" />
         <beans:property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
     </beans:bean>
+ 	
+ 	<!-- 파일 업로드 resolver -->
+	 <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	    <beans:property name="defaultEncoding" value="UTF-8" />
+	    <beans:property name="maxUploadSize" value="10485760" />
+	 </beans:bean>
+
 </beans:beans>
+

@@ -5,9 +5,6 @@
 <link rel="stylesheet" href="<c:url value="/resources/dist/css/AdminLTE.min.css"/>" type="text/css">
 <link rel="stylesheet" href="<c:url value="/resources/dist/css/skins/_all-skins.min.css"/>" type="text/css">
 
-<!-- bootstrap js import -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 <!-- sidebar menu css -->  
 <link rel="stylesheet" href="<c:url value="/resources/css/normalize.css"/>" type="text/css">
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" type="text/css">
@@ -23,13 +20,13 @@
 		//스토어 상세페이지로 이동
 		$(".storeItem").click(function(){
 			var detailId = $(this).attr("data-id");
-			$(location).attr("href","http://localhost:8080/store/detail?id="+detailId);
+			$(location).attr("href","http://localhost:8080/greenStore/store/detail?id="+detailId);
 		});
 		
 		//모바일 스토어 상세페이지로 이동
 		$(".mb_storeItem").click(function(){
 			var detailId = $(this).attr("data-id");
-			$(location).attr("href","http://localhost:8080/store/detail?id="+detailId);
+			$(location).attr("href","http://localhost:8080/greenStore/store/detail?id="+detailId);
 		});
 		 
 		$("#linkUrl span").on("click", function(){
@@ -56,11 +53,11 @@
 
 		$(".stItem").on("click",function(){
 			var detailId = $(this).attr("data-id");
-			$(location).attr("href","http://localhost:8080/store/detail?id="+detailId);
+			$(location).attr("href","http://localhost:8080/greenStore/store/detail?id="+detailId);
 		});
 		$(".stItem #detailStore").on("click",function(){
 			var detailId = $(this).attr("data-id");
-			$(location).attr("href","http://localhost:8080/store/detail?id="+detailId);
+			$(location).attr("href","http://localhost:8080/greenStore/store/detail?id="+detailId);
 		});
 	});
 	</script>
@@ -77,11 +74,11 @@
 				color:#16a085;
 			}
 			#bestTitle h4{
-				position:absolute;font-size:50px;color:#fff;width:100%;top:250;
+				position:absolute;font-size:60px;color:#fff;width:100%;top:200;
 			}
 	</style>
 <div class="hidden-xs">
-	<div id="bestTitle" style="width:1300px; height:450; text-align:center;">
+	<div id="bestTitle" style="width:100%; height:70%; text-align:center;">
 		<c:if test="${induty == 1}">
 			<img src="<c:url value="/resources/img/o-kfood.jpeg"/>" style="position:relative;width:100%;height:100%;"/>
 			<h4>한식 베스트 10</h4>
@@ -191,7 +188,7 @@
 									<div class="col-md-3" id="stImg">
 											<img src="${storeList.sh_photo }"
 												onerror="this.src='<c:url value="/resources/img/iseoul.jpg"/>'"
-												alt="storeImage"  style="width:99%;height:20%;"/>
+												alt="storeImage"  style="width:99%;height:30%;"/>
 										</div>
 										<div class="col-md-6" id="stContent" style="margin-left:10;">
 											<h4 style="display:inline-block; font-size:20; margin-bottom:0;">${storeList.sh_name }</h4>

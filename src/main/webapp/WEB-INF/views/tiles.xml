@@ -10,8 +10,8 @@
 	
 	<!-- home -->
 	<definition name="home" extends="commonLayout"> 
-		<put-attribute name="content" value="/WEB-INF/views/home.jsp" /> 
-		<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" /> 
+	 	<put-attribute name="content" value="/WEB-INF/views/home.jsp" /> 
+		<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />
 	</definition> 
 	
 	<definition name="store/daumNavi" extends="commonLayout"> 
@@ -32,42 +32,6 @@
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" /> 
 		<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" /> 
 	</definition>
-	
-	<definition name="notice/listAll" extends="commonLayout"> 
-		<put-attribute name="content" value="/WEB-INF/views/notice/listAll.jsp" /> 
-	</definition>
-	
-	<definition name="notice/write" extends="commonLayout"> 
-		<put-attribute name="content" value="/WEB-INF/views/notice/write.jsp" /> 
-	</definition>
-	
-	<definition name="review/listAll" extends="commonLayout"> 
-		<put-attribute name="content" value="/WEB-INF/views/review/listAll.jsp" /> 
-	</definition>
-	
-	<definition name="member/index" extends="commonLayout"> 
-		<put-attribute name="content" value="/WEB-INF/views/member/index.jsp" /> 
-	</definition>
-	
-<!-- 	
-		<definition name="member/login" > 
-		<put-attribute name="content" value="/WEB-INF/views/member/login.jsp" /> 
-	</definition>
-	<definition name="member/logout" > 
-		<put-attribute name="content" value="/WEB-INF/views/member/logout.jsp" /> 
-	</definition>
-		<definition name="member/index" > 
-		<put-attribute name="content" value="/WEB-INF/views/member/index.jsp" /> 
-	</definition> -->
-<!-- 	
-	<definition name="member/login" extends="commonLayout"> 
-		<put-attribute name="content" value="/WEB-INF/views/member/login.jsp" /> 
-	</definition>
-		<definition name="member/logout" extends="commonLayout"> 
-		<put-attribute name="content" value="/WEB-INF/views/member/logout.jsp" /> 
-	</definition>
-	 -->
-
 
 </tiles-definitions>	
 	

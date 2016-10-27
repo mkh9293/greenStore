@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -16,6 +16,8 @@
 
 <!-- Home js import -->
 <script src="<c:url value="/resources/js/home.js"/>"></script>
+
+
 <script type="text/javascript">
 $(document).ready(function(){
 	//조건으로 검색 
@@ -27,7 +29,7 @@ $(document).ready(function(){
 			cate = "10";
 		}
 		
-		$(location).attr("href","http://localhost:8080/store/search/"+area+"/"+cate);
+		$(location).attr("href","http://localhost:8080/greenStore/store/search/"+area+"/"+cate);
 	});
 });
 </script>
@@ -46,62 +48,76 @@ $(document).ready(function(){
 	}
 </style>
 
+
 <div id="mask"></div>
 <div id="mySidenav" class="sidenav">
-	<a href="javascript:void(0)" class="closebtn" style="color: #fff;">&times;</a>
-	<div id="profile" style="background-color:#1abc9c;">
-		<div style="position: absolute; width: 340px; height: 200px; top: 40px; left: 25px;">
-			<img src="<c:url value="/resources/img/iseoul.jpg"/>" alt="..."
-				class="img-circle"
-				style="display: inline-block; width: 105px; height: 110px;" /> <strong
-				style="margin-left: 10px; line-height: 6em; color: #fff">로그인
-				필요합니다.</strong>
-
+	<a href="javascript:void(0)" class="closebtn" style="color:#fff;">&times;</a>
+	
+	<c:if test="${not empty member }"> 
+	<div id="profile">
+		<div style="position:absolute; width:340px;height:200px; top:40px; left:25px;">
+			<img src="<c:url value="${member.mphoto}"/>" alt="profile" class="img-circle" style="display:inline-block;width:105px;height:110px;"/>
+			<strong style="margin-left:10px;line-height:6em;color:#000">${member.mname }<font color="blue">(${member.mid })</font></strong>			
 		</div>
 	</div>
-	<div style="height: 180px;"></div>
-
-	<nav>
-		<ul
-			style="list-style: none; margin: 0; padding: 0; position: absolute; width: 360px;">
-			<li
-				style="display: inline-block; line-height: 20px; position: relative; width: 100%;">
-				<div
-					style="display: block; position: relative; width: 100%; height: 60px; border: 0.1em solid #F6F6F6; line-height: 3em; padding-left: 10px; background-color: #ffffff;">
-					<a href=""
-						style="color: #f47721; text-decoration: none; margin-left: 2%;">그린스토어
-						홈</a> <span class="css-arrow"></span>
+	</c:if>
+	<c:if test="${ empty member }"> 
+	<div id="profile">
+		<div style="position:absolute; width:340px;height:200px; top:40px; left:25px;">
+			<img src="<c:url value="/resources/img/iseoul.jpg"/>" alt="iseoul" class="img-circle" style="display:inline-block;width:105px;height:110px;"/>
+			<strong style="margin-left:10px;line-height:6em;color:#fff">로그인 필요합니다.</strong>		
+		</div>
+	</div>
+	</c:if>
+	<div style="height:180px;"></div>
+		<nav>
+		<ul style="list-style: none; margin: 0;padding: 0; position: absolute; width: 360px;">
+			<li style="display: inline-block; line-height: 20px; position: relative; width: 100%;">
+				<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+					<a href="http://localhost:8080/greenStore" style="color: #f47721;text-decoration: none; margin-left:2%;">그린스토어 홈</a> 
+					<span class="css-arrow" ></span>
 				</div>
-				<div
-					style="display: block; position: relative; width: 100%; height: 60px; border: 0.1em solid #F6F6F6; line-height: 3em; padding-left: 10px; background-color: #ffffff;">
-					<a href="/login"
-						style="color: #0d2474; text-decoration: none; margin-left: 2%;">로그인/로그아웃</a>
+				<div style="display:block;position: relative; width:100%; height:60px; border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+					<c:if test="${not empty member }"> 
+					<a href="http://localhost:8080/greenStore/logout" style="color: #0d2474;text-decoration: none; margin-left:2%;">로그아웃</a> 
+					<span class="css-arrow"></span>
+					</c:if>	
+					<c:if test="${empty member }"> 
+					<a href="http://localhost:8080/greenStore/oauth/login?snsname=kakao" style="color: #0d2474;text-decoration: none; margin-left:2%;">로그인</a> 
+					<span class="css-arrow"></span>
+					</c:if>
+				</div>
+				<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+					<a href="http://localhost:8080/greenStore/notice/listAll" style="color: #0d2474;text-decoration: none; margin-left:2%; ">공지사항</a> 
 					<span class="css-arrow"></span>
 				</div>
-				<div
-					style="display: block; position: relative; width: 100%; height: 60px; border: 0.1em solid #F6F6F6; line-height: 3em; padding-left: 10px; background-color: #ffffff;">
-					<a href="/notice"
-						style="color: #0d2474; text-decoration: none; margin-left: 2%;">공지사항</a>
+				<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+					<a href="http://localhost:8080/greenStore/notice/service" style="color: #0d2474;text-decoration: none; margin-left:2%;">서비스 소개</a> 
 					<span class="css-arrow"></span>
 				</div>
-				<div
-					style="display: block; position: relative; width: 100%; height: 60px; border: 0.1em solid #F6F6F6; line-height: 3em; padding-left: 10px; background-color: #ffffff;">
-					<a href="/service"
-						style="color: #0d2474; text-decoration: none; margin-left: 2%;">서비스
-						소개</a> <span class="css-arrow"></span>
-				</div>
-				<div
-					style="display: block; position: relative; width: 100%; height: 60px; border: 0.1em solid #F6F6F6; line-height: 3em; padding-left: 10px; background-color: #ffffff;">
-					<a href="/mypage"
-						style="color: #0d2474; text-decoration: none; margin-left: 2%;">마이페이지</a>
-					<span class="css-arrow"></span>
-				</div> <!-- <div style="display:block;position: relative; width:100%; height:100px; line-height:5em; text-align:center;">
-						<span>GreenStore</span>
-					</div> --> <br />
-			<br />
-				<div
-					style="display: block; position: relative; width: 100%; height: 60px; text-align: center; line-height: 3em; padding-left: 10px; background-color: #f47721;">
-					<a href="/" style="color: #fff;"> 그린스토어로 이동 </a>
+					<c:if test="${not empty member }"> 
+					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+						<a href="http://localhost:8080/greenStore/mypage/storeLike?mid=${member.mid }" style="color: #0d2474;text-decoration: none; margin-left:2%;">좋아요스토어</a> 
+						<span class="css-arrow"></span>
+					</div>
+					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+						<a href="http://localhost:8080/greenStore/mypage/reviewLike?mid=${member.mid }" style="color: #0d2474;text-decoration: none; margin-left:2%;">좋아요리뷰</a> 
+						<span class="css-arrow"></span>
+					</div>
+					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+						<a href="http://localhost:8080/greenStore/review/myReview?mid=${member.mid }" style="color: #0d2474;text-decoration: none; margin-left:2%;">나의리뷰보기</a> 
+						<span class="css-arrow"></span>
+					</div>
+					</c:if>
+					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+						<a href="http://localhost:8080/greenStore/review/listAll" style="color: #0d2474;text-decoration: none; margin-left:2%;">리뷰전체보기</a> 
+						<span class="css-arrow"></span>
+					</div>
+				<br/><br/>
+				<div style="display:block;position: relative; width:100%; height:60px; text-align:center; line-height:3em;padding-left:10px; background-color:#f47721;">
+					<a href="http://localhost:8080/greenStore" style="color:#fff;">
+						그린스토어로 이동
+					</a>
 				</div>
 			</li>
 		</ul>
@@ -111,7 +127,7 @@ $(document).ready(function(){
 	<header id="header">
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#" style="color: #ffffff;">GreenStore</a>
+				<a class="navbar-brand" href="/" style="color: #ffffff;">GreenStore</a>
 				<span class="openbtn">&#9776;</span>
 			</div>
 		</nav>
@@ -177,23 +193,23 @@ $(document).ready(function(){
 			<div class="bestList">
 				<ul style="list-style: none;">
 					<li>
-						<a href="/store/best/1">
+						<a href="/greenStore/store/best/1">
 							<img src="<c:url value="/resources/img/kfood.png"/>" style="width:100%;height:100%;"/>
 						</a>
 					</li>
 					<li>
-						<a href="/store/best/2">
+						<a href="/greenStore/store/best/2">
 								<img src="<c:url value="/resources/img/cfood.png"/>" style="width:100%;height:100%;"/>
 						</a>
 					</li>
 
 					<li>
-					<a href="/store/best/3">
+					<a href="/greenStore/store/best/3">
 								<img src="<c:url value="/resources/img/jfood.png"/>" style="width:100%;height:100%;"/>
 						</a>
 					</li>
 					<li>
-						<a href="/store/moreBest">
+						<a href="/greenStore/store/moreBest">
 							<img src="<c:url value="/resources/img/morelist.png"/>" style="width:100%;height:100%;"/>
 						</a>
 					</li>
@@ -259,7 +275,7 @@ $(document).ready(function(){
 					</div>
 				</c:forEach>
 			</div>
-		</div>
+		</Sdiv>
 	</div>
 	<br />
 </div>
@@ -271,7 +287,7 @@ $(document).ready(function(){
 			<div class="navbar-header">
 				<a class="navbar-brand" href="/" style="color: #ffffff;">GS</a>
 				<form id="mb_searchFrm" class="navbar-form navbar-left" action=""
-					style="display: inline-block; width: 65%;">
+					style="display: inline-block; width: 60%;">
 					<div class="form-group" style="width: 110%">
 						<input type="text" id="mb_searchTxt" name="searchText"
 							class="form-control" placeholder="Search">
@@ -291,25 +307,25 @@ $(document).ready(function(){
 		<div class="bestList">
 			<ul style="list-style: none; padding: 0;">
 				<li
-					style="display: inline-block; margin: 2%; width: 96%; height: 250px; background-size: 100%; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/keyword_search/meta/pictures/eexfpmvgj6iq-m2m.jpg'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg');">
+					style="display: inline-block; margin: 2%; width: 96%; height: 250px;">
 					<a href="/store/best/1">
 						<img src="<c:url value="/resources/img/kfood.png"/>" style="width:100%;height:100%;"/>
 					</a>
 				</li>
 				<li
-					style="display: inline-block; margin: 2%; width: 96%; height: 250px; background-size: 100%; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/184699_1425200192391'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg')">
+					style="display: inline-block; margin: 2%; width: 96%; height: 250px;">
 					<a href="/store/best/2">
 						<img src="<c:url value="/resources/img/cfood.png"/>" style="width:100%;height:100%;"/>
 					</a>
 				</li>
 
 				<li
-					style="display: inline-block; margin: 2%; width: 96%; height: 250px; background-size: 100%; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/keyword_search/meta/pictures/ayrwtxnvv7ckdczu.jpg'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg')">
+					style="display: inline-block; margin: 2%; width: 96%; height: 250px;">
 					<a href="/store/best/3">
 						<img src="<c:url value="/resources/img/jfood.png"/>" style="width:100%;height:100%;"/>
 					</a>
 				</li>
-				<li style="display: inline-block; margin: 2%; width: 96%; height: 250px; background-size: 100%; background-image: url('https://mp-seoul-image-production-s3.mangoplate.com/keyword_search/meta/pictures/-x08y8zjwpcdu5d-.jpg'), url('https://d1jrqqyoo3n46w.cloudfront.net/web/resources/e9gxebutnk5mil1k.jpg')">
+				<li style="display: inline-block; margin: 2%; width: 96%; height: 250px;">
 					<a href="/store/moreBest">
 						<img src="<c:url value="/resources/img/morelist.png"/>" style="width:100%;height:100%;"/>
 					</a>
@@ -382,4 +398,4 @@ $(document).ready(function(){
 		</div>
 		<div style="height: 910px;"></div>
 	</div>
-</div>
+</div>  

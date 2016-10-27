@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<jsp:useBean id="loginBean" class="petBean.LoginInfoBean"/>
 
 <link rel="stylesheet" href="<c:url value="/resources/bootstrap/css/bootstrap.min.css"/>" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -24,32 +23,9 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/common.css"/>">
 <script src="<c:url value="/resources/js/home.js"/>"></script>
 
-<%
-	request.setCharacterEncoding("UTF-8");
-	String idNum = request.getParameter("idNum");
-	String nick="";
-	String img="#";
-	if(idNum!=null){
-		loginBean.setId(request.getParameter("idNum"));
-		loginBean.setNick(request.getParameter("nickName"));
-		loginBean.setImgUrl(request.getParameter("profile_img"));
-		session.setAttribute("LOGININFO", loginBean);
-	}
-	loginBean = (petBean.LoginInfoBean)session.getAttribute("LOGININFO");
-%>
+<script>
+       location.href="/greenStore";
+</script>
 
-<div id="header">
-   	<div id="warp">
-		<div id="top">
-			<%if(loginBean!=null){ %>
-			<Strong><%=loginBean.getNick() %>
-			<font color="blue">(<%=loginBean.getId() %>)</font>
-			</Strong>님 환영합니다/<a href="/greenStore">메인페이지로 이동</a>
-			<%}else{ %>
-			<jsp:include page="login.jsp"/>
-			<%} %>	
-		</div>
-	</div>
-</div>
 
 

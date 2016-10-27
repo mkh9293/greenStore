@@ -48,6 +48,12 @@
 		ORDER BY sh_rcmn DESC LIMIT 6
 	</select>
 	
+	<select id="appSelectAll" resultType="com.store.greenStore.dto.Store">
+		SELECT *
+		FROM store
+		ORDER BY sh_rcmn DESC LIMIT #{start},#{end}
+	</select>
+	
 	<!-- <select id="appSelectAll" resultType="com.store.greenStore.dto.Store">
 		SELECT *
 		FROM store
@@ -108,4 +114,6 @@
     <select id="likeMin" statementType="CALLABLE" parameterType="com.store.greenStore.dto.StoreLike" resultType="com.store.greenStore.dto.StoreLike">
         {  call likemin(#{shid, mode=IN}, #{mk, mode=IN}, #{flag, mode=OUT, jdbcType=VARCHAR} ) }
     </select>
+
+    
 </mapper>
