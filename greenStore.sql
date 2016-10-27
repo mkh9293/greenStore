@@ -66,7 +66,7 @@ insert store_like (mkey,sh_id) values (3,9016);
 insert review_like (rkey,MKEY) values (2,3);
 select *
 from review_like;
-insert review (MKEY,SH_ID,RCONTENT,RELIKE) values (3,9015,"맛있다.",0);
+insert notice (ntitle,ncontent,ndate) values ("함께 그린 스토어 오픈 기념 공지","함께 그린 스토어 오픈! ",sysdate());
 
 SELECT * FROM review r INNER JOIN store s ON r.sh_id = s.sh_id order by rdate desc;
 
@@ -82,12 +82,23 @@ SELECT *
 		WHERE sh_id = 9015 
 		order by relike limit 1;
 		
-update review set rdate=now() where sh_id = 9015;
+update store set sh_like = 0;
 UPDATE review SET rcontent='안녕', rdate=now() where rkey=1;
 
 SELECT *
 		FROM store
-		ORDER BY sh_rcmn DESC LIMIT 5,6
+		ORDER BY sh_like DESC LIMIT 0,6
 
+		SELECT *
+		FROM store
+		ORDER BY sh_like DESC LIMIT 0,20
+		
 SELECT * FROM review r INNER JOIN store s ON r.sh_id = s.sh_id where r.sh_id=9018;
 
+select * from store s join store_like sl on s.sh_id = sl.sh_id where sl.mkey = 3;
+
+select * from review r join review_like rl on r.rkey = rl.rkey join store s  on s.sh_id = r.sh_id where rl.mkey = 3;
+
+select * from notice;
+
+insert into

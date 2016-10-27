@@ -110,14 +110,14 @@ public class TestMain {
 	// }
 	// }
 	//
-
-	 @Test
-	 public void appSelectAll(){
-	 for(Store s : storeMapper.selectAll(20,40)){
-	 System.out.println(s.getSh_name() +" / "+s.getSh_rcmn());
-	
-	 }
-	 }
+//
+//	 @Test
+//	 public void appSelectAll(){
+//	 for(Store s : storeMapper.selectAll(20,40)){
+//	 System.out.println(s.getSh_name() +" / "+s.getSh_rcmn());
+//	
+//	 }
+//	 }
 
 	// 카테고리 지역 검색했을 때
 //	@Test
