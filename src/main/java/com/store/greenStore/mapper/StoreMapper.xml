@@ -114,4 +114,6 @@
     <select id="likeMin" statementType="CALLABLE" parameterType="com.store.greenStore.dto.StoreLike" resultType="com.store.greenStore.dto.StoreLike">
         {  call likemin(#{shid, mode=IN}, #{mk, mode=IN}, #{flag, mode=OUT, jdbcType=VARCHAR} ) }
     </select>
+
+    
 </mapper>

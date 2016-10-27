@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.store.greenStore.mapper.RvMapper">
+	    
+	<select id="region" resultType="com.store.greenStore.dto.Review">
+			select  s.SH_ID, SH_NAME, SH_ADDR, MENU, induty_code_se_name, SH_RCMN, SH_LIKE, SH_PHOTO, MIN(PRICE) AS PRICE 
+			from store s join review r on s.sh_id = r.sh_id  
+			where s.sh_addr like concat('%',#{searchText},'%')
+			group by sh_id
+			order by sh_rcmn desc;
+	</select>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="rkey">
         INSERT review(MKEY,SH_ID,RCONTENT,RELIKE,RDATE)
-        VALUES (#{mkey}, #{sh_id}, #{rcontent},0,NOW())
+        VALUES (#{mkey}, #{sh_id}, #{rcontent}, 0, NOW())
     </insert>
+    
+   	<select id="selectById" resultType="com.store.greenStore.dto.Review">
+		SELECT *
+		FROM review
+		WHERE rkey = #{rkey}
+	</select>
 	
     <update id="update">
   		UPDATE review SET rcontent=#{rcontent}, rdate=now() where rkey=#{rkey}
@@ -14,10 +28,6 @@
 	<delete id="delete">
 		DELETE FROM review where rkey=#{rkey}
 	</delete>
-	
-	<!-- <select id="select" resultType="com.store.greenStore.dto.Review">
-		SELECT * FROM review WHERE sh_id=#{sh_id} and relike = (SELECT max(relike) FROM review);
-	</select> -->
 	
 	<select id="select" resultType="com.store.greenStore.dto.Review">
 		SELECT * 
@@ -31,8 +41,14 @@
 		join member m on r.mkey= m.mkey order by rkey asc;
 	</select>
 	
+	<select id="weblistAll" resultType="com.store.greenStore.dto.Review"> 
+		SELECT *,(select count(*) from REVIEW_LIKE where mkey = #{mk}) as isLike FROM review r INNER JOIN store s ON r.sh_id = s.sh_id 
+		join member m on r.mkey= m.mkey order by rkey asc;
+	</select>
+	
 	<select id="oneStore" resultType="com.store.greenStore.dto.Review">
-	SELECT * FROM review r INNER JOIN store s ON r.sh_id = s.sh_id where r.sh_id=#{sh_id};
+	SELECT * FROM review r INNER JOIN store s ON r.sh_id = s.sh_id 
+	join member m on r.mkey= m.mkey where r.sh_id=#{sh_id} order by r.rkey asc;
 	</select>
 	
 	<select id="reLike" >
@@ -43,14 +59,22 @@
  		select * from review join member on review.mkey = member.mkey 
  		join store s on review.sh_id = s.sh_id
 		where member.mid = #{ mid }
+		order by review.rkey desc;
 	</select>
+
 
 	<select id="reUnlike">
 		UPDATE review SET relike=relike-1 where rkey=#{rkey}
 	</select>
 	
+	<select id="rvlikePlus" statementType="CALLABLE" resultType="com.store.greenStore.dto.ReviewLike">
+        {  call rvlikeplus(#{rk, mode=IN}, #{mk, mode=IN} ) }
+    </select>
+    <select id="rvlikeMin" statementType="CALLABLE" resultType="com.store.greenStore.dto.ReviewLike">
+        {  call rvlikemin(#{rk, mode=IN}, #{mk, mode=IN} ) }
+    </select>
 	
-		<select id="appReviewCateSearch" resultType="com.store.greenStore.dto.Review">
+	<select id="appReviewCateSearch" resultType="com.store.greenStore.dto.Review">
 		select  s.SH_ID, SH_NAME, SH_ADDR, induty_code_se_name, SH_RCMN, SH_LIKE, 
 		SH_PHOTO, RKEY, MKEY, RCONTENT, RELIKE, RDATE 
 		from store s join review r on s.sh_id = r.sh_id  
@@ -70,5 +94,16 @@
 		</where>
 
 	</select>
+	
+	<select id="findMid" resultType="int">
+		SELECT m.mid
+		FROM review r join member m
+		on r.mkey = m.mkey
+		WHERE r.rkey = #{rkey}
+	</select>
+	
+	<!-- <select id="select" resultType="com.store.greenStore.dto.Review">
+	SELECT * FROM review WHERE sh_id=#{sh_id} and relike = (SELECT max(relike) FROM review);
+	</select> -->
 	
 </mapper>

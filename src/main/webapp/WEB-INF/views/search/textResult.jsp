@@ -34,7 +34,7 @@
 		var markList = [];
 		
 		$.ajax({
-			url:"http://localhost:8080/json/searchTextJson",
+			url:"http://localhost:8080/greenStore/json/searchTextJson",
 			dataType:"json",
 			data : {"searchText":searchText},
 			success:function(data){
@@ -117,12 +117,12 @@
 		//스토어 상세페이지로 이동
 		$(".storeItem").click(function(){
 			var detailId = $(this).attr("data-id");
-			$(location).attr("href","http://localhost:8080/store/detail?id="+detailId);
+			$(location).attr("href","http://localhost:8080/greenStore/store/detail?id="+detailId);
 		});
 		//모바일 스토어 상세페이지로 이동
 		$(".mb_storeItem").click(function(){
 			var detailId = $(this).attr("data-id");
-			$(location).attr("href","http://localhost:8080/store/detail?id="+detailId);
+			$(location).attr("href","http://localhost:8080/greenStore/store/detail?id="+detailId);
 		});
 		
 	});

@@ -2,7 +2,7 @@ package com.store.greenStore.dto;
 
 import java.util.Date;
 
-public class Notice extends Pagination {
+public class Notice {
 	
 	private int nkey;
 	private String ntitle;

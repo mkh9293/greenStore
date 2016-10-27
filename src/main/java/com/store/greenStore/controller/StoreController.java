@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
-
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
@@ -13,16 +12,17 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.catalina.filters.SetCharacterEncodingFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
+import org.dom4j.Node;
 import org.dom4j.io.SAXReader;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.dom4j.Element;
-import org.dom4j.Node;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,11 +30,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.store.greenStore.dto.Blog;
+import com.store.greenStore.dto.Member;
+import com.store.greenStore.dto.Notice;
+
 import com.store.greenStore.dto.Play;
+import com.store.greenStore.dto.Review;
 import com.store.greenStore.dto.Store;
+import com.store.greenStore.mapper.MemberMapper;
+import com.store.greenStore.mapper.RvMapper;
 import com.store.greenStore.mapper.StoreDbMapper;
 import com.store.greenStore.mapper.StoreMapper;
 
@@ -43,14 +48,19 @@ import com.store.greenStore.mapper.StoreMapper;
 public class StoreController {
 
 	@Autowired
+	RvMapper rvMapper;
+	
+	@Autowired
 	StoreDbMapper storeDbMapper;
 
+	@Autowired
+	MemberMapper memberMapper;
+	
 	@Autowired
 	StoreMapper storeMapper;
 
 	//data.go.kr appkey
 	private final String serviceKey = "Hg3hdDoudw4mO5fh6hxBa3XnJBF2Zdr3o9s1EZu04FYctqRNkH2g5eEAWqF1xyivTDrUtwE5gWb0U9PTI7VP5A%3D%3D";
-
 
 	//daum appkey
 	private final String appkey = "01b35d68e4ea90f252393375e98e3958";
@@ -173,7 +183,8 @@ public class StoreController {
 		while ((inputLine = in.readLine()) != null) {
 			ins += inputLine;
 		}
-
+		System.out.println("ins: "+ins);
+		
 		JSONParser jsonParser = new JSONParser();
 
 		JSONObject jsonObject2 = (JSONObject) jsonParser.parse(ins);
@@ -270,9 +281,16 @@ public class StoreController {
 	}
 
 	@RequestMapping(value="/detail", method=RequestMethod.GET)
-	public String detail(int id, Model model) throws IOException, ParseException, DocumentException{
-		Store store = storeDbMapper.detail(id);
+	public String detail(int id, Model model, HttpSession session) throws IOException, ParseException, DocumentException{
+		Member member = (Member)session.getAttribute("member");
 		
+		int mk = 0;
+		if(member !=null){
+			mk = member.getMkey();
+		}
+		Store store = storeDbMapper.detail(id, mk);
+		System.out.println("store Detail : "+store.getIsLike());
+
 		//지역을 좌표로 변경 
 		HashMap<String, Double> map = new HashMap<String, Double>();
 		map = getGps(store.getSh_addr());
@@ -313,7 +331,7 @@ public class StoreController {
 
 			blogList.add(blog);
 		}
-
+		
 		model.addAttribute("store", store);
 		model.addAttribute("playList", playList);
 		model.addAttribute("overviewList", overviewList);
@@ -322,6 +340,13 @@ public class StoreController {
 		model.addAttribute("blogList", blogList);
 		model.addAttribute("daumBlogList", getDaumBlog(store.getSh_name()));
 		model.addAttribute("localList", localList);
+		model.addAttribute("member", (Member)session.getAttribute("member"));
+		
+		
+		//sh_id에 해당하는 리뷰 리스트
+		//대표리뷰하나/나머지
+		model.addAttribute("reviewOne", rvMapper.select(id));
+		model.addAttribute("review", rvMapper.oneStore(id));
 		
 		return "store/detail";
 	}
@@ -485,6 +510,24 @@ public class StoreController {
 		return "store/mbPlayDetail";
 	}
 	
-	
-	
+	//리뷰작성
+	@RequestMapping(value="/reviewWrite")
+	 public String reviewWrite(HttpServletRequest request, HttpSession session) {
+		int sh_id = Integer.parseInt(request.getParameter("sh_id"));
+		String rcontent = request.getParameter("rcontent");
+		String mid = request.getParameter("mid");
+		  
+		int writer = memberMapper.findMkey(mid);
+		  
+		Review review = new Review();
+			  
+		review.setSh_id(sh_id);
+		review.setMkey(writer);
+		review.setRelike(99);//디폴트 0으로 줄것
+		review.setRcontent(rcontent);
+		rvMapper.insert(review);
+			 
+		return "redirect:/store/detail?id="+ review.getSh_id();
+	 }
+
 }

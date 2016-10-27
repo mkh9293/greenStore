@@ -6,30 +6,41 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.store.greenStore.dto.Play;
+import com.store.greenStore.dto.Member;
+import com.store.greenStore.dto.Review;
+import com.store.greenStore.dto.ReviewLike;
 import com.store.greenStore.dto.Store;
 import com.store.greenStore.dto.StoreLike;
+import com.store.greenStore.mapper.RvMapper;
 import com.store.greenStore.mapper.StoreMapper;
 
 @Controller
 @RequestMapping(value="/json/*")
 public class JsonController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(SNSController.class);
 	@Autowired
 	StoreMapper storeMapper;
+	
+	@Autowired
+	RvMapper rvMapper;
 	
 	private final String appkey = "01b35d68e4ea90f252393375e98e3958";
 	
@@ -199,18 +210,67 @@ public class JsonController {
 	}
 	
 	@RequestMapping(value="/likePlus",method = RequestMethod.POST)
-	public @ResponseBody HashMap<Integer, StoreLike> likePlus(int sh_id) throws IOException, ParseException{
+	public @ResponseBody HashMap<Integer, StoreLike> likePlus(int sh_id, int mk) throws IOException, ParseException{
 		HashMap<Integer, StoreLike> map = new HashMap<Integer, StoreLike>();
-		map.put(1, storeMapper.likePlus(sh_id, 1));
+		map.put(1, storeMapper.likePlus(sh_id, mk));
 		
 		return map;
 	}
 	
 	@RequestMapping(value="/likeMin",method = RequestMethod.POST)
-	public @ResponseBody HashMap<Integer, StoreLike> likeMin(int sh_id) throws IOException, ParseException{
+	public @ResponseBody HashMap<Integer, StoreLike> likeMin(int sh_id, int mk) throws IOException, ParseException{
 		HashMap<Integer, StoreLike> map = new HashMap<Integer, StoreLike>();
-		map.put(1, storeMapper.likeMin(sh_id, 1));
+		map.put(1, storeMapper.likeMin(sh_id, mk));
 		
 		return map;
 	}
+	
+	@RequestMapping(value="/rvlikePlus",method = RequestMethod.POST)
+	public @ResponseBody HashMap<Integer, ReviewLike> rvlikePlus(int rk, int mk) throws IOException, ParseException{
+		System.out.println("rk: "+rk+" mk:"+mk);
+		HashMap<Integer, ReviewLike> map = new HashMap<Integer, ReviewLike>();
+		map.put(1, rvMapper.rvlikePlus(rk, mk));
+		
+		return map;
+	}
+	
+	@RequestMapping(value="/rvlikeMin",method = RequestMethod.POST)
+	public @ResponseBody HashMap<Integer, ReviewLike> rvlikeMin(int rk, int mk) throws IOException, ParseException{
+		System.out.println("rk: "+rk);
+		HashMap<Integer, ReviewLike> map = new HashMap<Integer, ReviewLike>();
+		map.put(1, rvMapper.rvlikeMin(rk, mk));
+		
+		return map;
+	}
+	@RequestMapping(value="/regionReviewList",method = RequestMethod.POST)
+	public @ResponseBody HashMap<Integer, Review> regionReviewListJson(String region, HttpSession session) throws IOException, ParseException{
+		Member vo = (Member)session.getAttribute("member");
+		int mk = 0;
+		if(vo !=null){
+			mk = vo.getMkey();
+		}
+		System.out.println("??"+mk);
+		List<Review> review = null;
+		
+		if("전체".equals(region)){
+			review = rvMapper.weblistAll(mk);
+		}else{
+			review = rvMapper.region(region);
+		}
+		
+		HashMap<Integer, Review> regionList = new HashMap<Integer, Review>();
+		Review reviewOb = null;
+		
+		for(int i=0;i<review.size();i++){
+			reviewOb = new Review();
+			reviewOb = review.get(i);
+			
+			regionList.put(i, reviewOb);
+		}
+		
+		return regionList;
+	}
+	
+	
+	
 }

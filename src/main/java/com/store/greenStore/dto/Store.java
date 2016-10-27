@@ -17,6 +17,7 @@ public class Store {
 	private String sh_photo;
 	private int sh_like;
 	private Date base_ym;
+	private int isLike;
 	
 	// menu 데이터
 	private int sm_id;
@@ -33,6 +34,12 @@ public class Store {
 	private String title;
 	
 
+	public int getIsLike() {
+		return isLike;
+	}
+	public void setIsLike(int isLike) {
+		this.isLike = isLike;
+	}
 	public Object getPointX() {
 		return pointX;
 	}

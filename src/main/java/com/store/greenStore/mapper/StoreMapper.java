@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.store.greenStore.dto.Review;
 import com.store.greenStore.dto.Store;
 import com.store.greenStore.dto.StoreLike;
 
