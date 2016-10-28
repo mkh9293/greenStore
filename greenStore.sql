@@ -101,4 +101,8 @@ select * from review r join review_like rl on r.rkey = rl.rkey join store s  on 
 
 select * from notice;
 
-insert into
+select s.SH_ID, SH_NAME, SH_ADDR, MENU, induty_code_se_name, SH_RCMN, SH_LIKE, SH_PHOTO, MIN(PRICE) AS PRICE 
+			from store s join store_menu m on s.sh_id = m.sh_id  
+			where match(s.sh_name,s.sh_addr,s.sh_way,s.sh_pride,m.menu) against('+"고기"' IN BOOLEAN MODE)
+			group by sh_id
+			order by sh_rcmn desc;
