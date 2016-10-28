@@ -8,6 +8,14 @@
 		where sl.mkey = #{mkey};
 	</select>
 	
+	<select id="searchLikeStoreByMkey" resultType="com.store.greenStore.dto.Store">
+		select * from store s join store_like sl on s.sh_id = sl.sh_id where sl.mkey = #{mkey};
+	</select>
+	
+	<select id="searchLikeReviewByMkey" resultType="com.store.greenStore.dto.Review">
+		select * from review r join review_like rl on r.rkey = rl.rkey join store s  on s.sh_id = r.sh_id where rl.mkey = #{mkey};
+	</select>
+	
 	<insert id="storeLike">
 		insert store_like(MKEY,SH_ID)
 		values (#{mkey},#{sh_id}) 

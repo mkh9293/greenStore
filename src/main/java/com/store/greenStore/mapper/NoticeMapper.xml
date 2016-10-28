@@ -27,7 +27,7 @@
 	<select id="listAll" resultType="com.store.greenStore.dto.Notice">
 		select nkey, ntitle, ncontent, ndate
 		from notice
-		order by nkey desc
+		order by ndate desc
 	</select>
 
 
