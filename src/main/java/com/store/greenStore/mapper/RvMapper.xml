@@ -42,7 +42,7 @@
 	</select>
 	
 	<select id="weblistAll" resultType="com.store.greenStore.dto.Review"> 
-		SELECT *,(select count(*) from REVIEW_LIKE where mkey = #{mk}) as isLike FROM review r INNER JOIN store s ON r.sh_id = s.sh_id 
+		SELECT *,(select count(*) from REVIEW_LIKE rv join review re on rv.rkey = re.rkey where rv.mkey = #{mk} and rv.rkey = r.rkey group by rv.rkey) as isLike FROM review r INNER JOIN store s ON r.sh_id = s.sh_id 
 		join member m on r.mkey= m.mkey order by rkey asc;
 	</select>
 	

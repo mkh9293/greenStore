@@ -13,43 +13,38 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
-
 <style type="text/css">
 	.row {
 		margin-top:50px;
 	}
 	
 </style>
+
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-		<div class="nav-tabs-custom">
-        <div class="tab-content" style="padding:50px;">
-        <div class="active tab-pane" id="activity">
-		
- 			<form role="form" method="post" id="boardWriteForm" >
+			<form role="form" method="post">
+			<input type="hidden" name="nkey" value="${notice.nkey}">
 				<div>
 					<label style="font-size: 18px;"></label>
-					<input type="text" name="ntitle" style="width: 100%;" />
+					<input type="text" name="ntitle" id="ntitle" style="width: 100%;" value="${board.ntitle}"/>
 				</div>
 				<div class="contentDiv">
-					<textarea id="ncontent" name="ncontent" rows="30" style="width:100%;"></textarea>
+				<textarea id="ncontent"  name="ncontent" rows="30" style="width:100%;" >${board.ncontent}</textarea>
 				</div>
-				<br/>
-				<div class="pull-right">
-				 <button type="submit" class="btn btn-primary" onclick="onWrite()">
+				<div class="buttonDiv">
+				 <button type="submit" class="btn btn-primary"  onclick="onModify()">
 		            <i class="icon-ok icon-white"></i> 저장하기
 		        </button>
 						<a href="listAll" class="btn"> <i class="icon-list"></i> 목록으로</a>
 				</div>
-			</form> 
-			<br/>
-			</div>
-			</div>
-			</div>
+
+			</form>
+
 		</div>
 	</div>
-</div> 
+	
+</div>
 <script type="text/javascript">
 var oEditors = [];
 	nhn.husky.EZCreator.createInIFrame({
@@ -57,29 +52,41 @@ var oEditors = [];
 	elPlaceHolder: document.getElementById('ncontent'), 
 	sSkinURI: "../resources/se/SmartEditor2Skin.html",  
 	fOnAppLoad: function () { 
-        
-         var ntitle = localStorage.getItem("ntitle");            
-         var ncontent = localStorage.getItem("ncontent");       
-         document.getElementById("ntitle").value = ntitle;     
-         oEditors.getById["ncontent"].exec("PASTE_HTML", [ncontent]); 
-     },
+        var title = '${board.ntitle}';               
+        var contents = '${board.ncontent}';     
+        document.getElementById("ntitle").value = title;     
+        oEditors.getById["ncontent"].exec("PASTE_HTML", [ncontent]); 
+    },
      fCreator: "createSEditor2"
  });
 
-var onWrite = function(){
-	oEditors.getById["ncontent"].exec("UPDATE_CONTENTS_FIELD", []); 
-	
-	 var ncontent = document.getElementById("ncontent").value;
-	 var title = document.getElementById("ntitle").value;
-	 localStorage.setItem("ncontent", ncontent);
-	 localStorage.setItem("ntitle", ntitle);             
-	 
+var onModify = function(){
+	oEditors.getById["ncontent"].exec("UPDATE_CONTENTS_FIELD", [ ]); 
 	var boardWriteForm = document.getElementById("boardWriteForm");  
+	boardWriteForm.action ="notice/update";              
 	boardWriteForm.submit();  
 };
 
 var pasteHTML = function(filename){
-	var sHTML = '<img src="${pageContext.request.contextPath}/resources/upload/'+filename+'">';
+	var sHTML = '<img src="/resources/upload/'+filename+'">';
     oEditors.getById["ncontent"].exec("PASTE_HTML", [sHTML]);
 };
 </script>
+
+<%-- var onWrite = function(){
+	oEditors.getById["txtContent"].exec("UPDATE_CONTENTS_FIELD", []); // 에디터의 내용이 textarea에 적용됨
+	var boardWriteForm = document.getElementById("boardWriteForm");  
+	boardWriteForm.action ="writeSubmit";              
+	boardWriteForm.submit();  
+};
+
+var onModify = function(){
+	oEditors.getById["txtContent"].exec("UPDATE_CONTENTS_FIELD", []); // 에디터의 내용이 textarea에 적용됨
+	var boardWriteForm = document.getElementById("boardWriteForm");  
+	boardWriteForm.action ="modifySubmit";              
+	boardWriteForm.submit();  
+};
+
+var pasteHTML = function(filename){
+    var sHTML = '<img src="${pageContext.request.contextPath}/resources/upload/'+filename+'">';
+    oEditors.getById["txtContent"].exec("PASTE_HTML", [sHTML]); --%>

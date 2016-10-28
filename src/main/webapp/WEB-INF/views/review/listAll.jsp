@@ -6,6 +6,7 @@
 <!-- 리뷰 js import -->
 <script src="<c:url value="/resources/js/rv.js"/>"></script>
 
+
 <!-- 아이콘 css -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
@@ -26,7 +27,7 @@
 	var session = "<c:out value="${member}"/>";
 	
 	$(document).ready(function(){
-		$("#rvLike").on("click",function(){
+		$(".link-black").on("click",function(){
 			var likeBtn = $(this).parent().find("#isLike");//나중에 디비에서 받아야된다.
 			var rk = $(this).parent().attr("data-id");
 			var mk = "<c:out value="${member.mkey}"/>";
@@ -75,8 +76,20 @@
 		$("#myModal1 .close").on("click",function(){
 			$("#myModal1").css("display","none");
 		});
-	});
+		
+		
 
+	});
+    $(document).ready(function() {
+        $(".accordion_banner .accordion_title").click(function() {
+            if($(this).next("div").is(":visible")){
+            $(this).next("div").slideUp("fast");
+            } else {
+                $(".accordion_banner .accordion_sub").slideUp("fast");
+                $(this).next("div").slideToggle("fast");
+            }
+        });
+    });
 </script>
 <style>
 	.row{
@@ -166,7 +179,6 @@
 				<div id="regionContent" class="nav-content">
 					<div class="row">
 					    <c:forEach items="${ review }" var="reviewList" >
-<<<<<<< HEAD
 		                <div class="post clearfix">
 		                	<span style="font-size:25px;margin-right:10px;"><a href="http://localhost:8080/greenStore/store/detail?id=${reviewList.sh_id}">${ reviewList.sh_name }</a></span>
 		                	<span><i class="fa fa-thumbs-o-up margin-r-5"></i>  ${reviewList.relike}</span>
@@ -182,18 +194,7 @@
 		                    <div style="margin-bottom:15px;">
                   			${ reviewList.rcontent }
                   			</div>
-=======
-			                <div class="post clearfix">
-			                	<h4><a href="/greenStore/store/detail?id=${reviewList.sh_id}">${ reviewList.sh_name }</a></h4>
-			                  	<div class="user-block">
-				                    <img class="img-circle img-bordered-sm" src="${reviewList.mphoto }" alt="User Image">
-				                        <span class="username">
-				                          <a href="#">${ reviewList.mname }</a>
-				                        </span>
-				                    <span class="description">
-				                    <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${ reviewList.rdate }" /></span>
-			                   	</div>
-			                    ${ reviewList.rcontent }
+
 			                  	<ul class="list-inline">
 				                    <li data-id="${reviewList.rkey }">
 				                    <input id="isLike" type="hidden" value="${reviewList.isLike}"/> 
@@ -206,6 +207,9 @@
 						            </li>
 			                  	</ul>
 		                	</div>
+		                	
+
+		                	
 		                 </c:forEach>
                 	</div>
                </div>
@@ -226,7 +230,7 @@
 		      </div>
 		      <div class="modal-footer" style="text-align:center;">
 		        <button type="button" id="loginCancel" class="btn btn-default btn-lg" style="width:30%;">취소</button>
-		      	<a class="btn btn-success btn-lg" href="/greenStore/login" style="width:30%; margin-left:7%">로그인</a>
+		      	<a class="btn btn-success btn-lg" href="http://localhost:8080/greenStore/oauth/login?snsname=kakao" style="width:30%; margin-left:7%">로그인</a>
 		      </div>
 		    </div>
 		</div>

@@ -2,10 +2,22 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<link rel="stylesheet"
-	href="<c:url value="/resources/css/normalize.css"/>" type="text/css">
-<link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"
-	type="text/css">
+<!-- 아이콘 css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
+<!-- 리뷰 css -->
+<link rel="stylesheet" href="<c:url value="/resources/dist/css/AdminLTE.min.css"/>" type="text/css">
+<link rel="stylesheet" href="<c:url value="/resources/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"/>" type="text/css">
+<link rel="stylesheet" href="<c:url value="/resources/css/modal.css"/>" type="text/css">
+
+<!-- sidebar css -->
+<link rel="stylesheet" href="<c:url value="/resources/css/normalize.css"/>" type="text/css">
+<link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" type="text/css">
+
+<script src="<c:url value="/resources/plugins/fastclick/fastclick.js"/>"></script>
+<script src="<c:url value="/resources/dist/js/app.min.js"/>"></script>
+<script src="<c:url value="/resources/dist/js/demo.js"/>"></script>
 
 <!-- Common css import -->
 <link rel="stylesheet" type="text/css"
@@ -30,7 +42,50 @@ $(document).ready(function(){
 		}
 		
 		$(location).attr("href","http://localhost:8080/greenStore/store/search/"+area+"/"+cate);
+
 	});
+	
+	
+	$('.btn-example').click(function(){
+        var $href = $(this).attr('href');
+        layer_popup($href);
+    });
+    function layer_popup(el){
+
+        var $el = $(el);        //레이어의 id를 $el 변수에 저장
+        var isDim = $el.prev().hasClass('dimBg');   //dimmed 레이어를 감지하기 위한 boolean 변수
+
+        isDim ? $('.dim-layer').fadeIn() : $el.fadeIn();
+
+        var $elWidth = ~~($el.outerWidth()),
+            $elHeight = ~~($el.outerHeight()),
+            docWidth = $(document).width(),
+            docHeight = $(document).height();
+
+        // 화면의 중앙에 레이어를 띄운다.
+        if ($elHeight < docHeight || $elWidth < docWidth) {
+            $el.css({
+                marginTop: -$elHeight /2,
+                marginLeft: -$elWidth/2
+            })
+        } else {
+            $el.css({top: 0, left: 0});
+        }
+
+        $el.find('a#btn-layerClose').click(function(){
+            isDim ? $('.dim-layer').fadeOut() : $el.fadeOut(); // 닫기 버튼을 클릭하면 레이어가 닫힌다.
+            return false;
+        });
+
+        $('.layer .dimBg').click(function(){
+            $('.dim-layer').fadeOut();
+            return false;
+        });
+
+    }
+	
+	
+	
 });
 </script>
 <style type="text/css">
@@ -46,6 +101,84 @@ $(document).ready(function(){
 	.bestList ul li{
 		display: inline-block; margin: 15; width: 45%; height: 300px;
 	}
+	
+	
+	* {
+	  margin: 0;
+	  padding: 0;
+	}
+	
+	.pop-layer .pop-container {
+	  padding: 20px 25px;
+	}
+	
+	.pop-layer p.ctxt {
+	  color: #666;
+	  line-height: 25px;
+	}
+	
+	.pop-layer .btn-r {
+	  width: 100%;
+	  margin: 10px 0 20px;
+	  padding-top: 10px;
+	  border-top: 1px solid #DDD;
+	  text-align: right;
+	}
+	
+	.pop-layer {
+	  display: none;
+	  position: absolute;
+	  top: 50%;
+	  left: 50%;
+	  width: 600px;
+	  height: 500px;
+	  background-color: #fff;
+	  border: 2px solid #000;
+	  z-index: 10;
+	}
+	
+	.dim-layer {
+	  display: none;
+	  position: fixed;
+	  _position: absolute;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;
+	  z-index: 100;
+	}
+	
+	.dim-layer .dimBg {
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;
+	  background: #000;
+	  opacity: .5;
+	  filter: alpha(opacity=50);
+	}
+	
+	.dim-layer .pop-layer {
+	  display: block;
+	}
+	
+	a.btn-layerClose {
+	  display: inline-block;
+	  height: 25px;
+	  padding: 0 14px 0;
+	  border: 1px solid #304a8a;
+	  background-color: #3f5a9d;
+	  font-size: 13px;
+	  color: #fff;
+	  line-height: 25px;
+	}
+	
+	a.btn-layerClose:hover {
+	  border: 1px solid #091940;
+	  background-color: #1f326a;
+	  color: #fff;
+	}
 </style>
 
 
@@ -57,7 +190,7 @@ $(document).ready(function(){
 	<div id="profile">
 		<div style="position:absolute; width:340px;height:200px; top:40px; left:25px;">
 			<img src="<c:url value="${member.mphoto}"/>" alt="profile" class="img-circle" style="display:inline-block;width:105px;height:110px;"/>
-			<strong style="margin-left:10px;line-height:6em;color:#000">${member.mname }<font color="blue">(${member.mid })</font></strong>			
+			<strong style="margin-left:10px;line-height:6em;color:#000">${member.mname }</strong>			
 		</div>
 	</div>
 	</c:if>
@@ -109,6 +242,38 @@ $(document).ready(function(){
 						<span class="css-arrow"></span>
 					</div>
 					</c:if>
+<!-- 					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+						<a href="http://localhost:8080/greenStore/member/loginForm" class="btn-example" style="color: #0d2474;text-decoration: none; margin-left:2%;">창넘기기</a>
+					</div>
+					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
+						<a href="#layer2" class="btn-example" data-toggle="modal" data-target=".bs-example-modal-lg" style="color: #0d2474;text-decoration: none; margin-left:2%;">TEST</a>
+					</div>
+					<div class="dim-layer">
+					    <div class="dimBg"></div>
+					    <div id="layer2" class="pop-layer">
+					        <div class="pop-container">
+					            <div class="pop-conts">
+							      <div class="modal-body" style="text-align:center">
+							       	<a href="#" class="btn btn-primary"  style="width:60%;margin-bottom:20px;padding:10px;">카카오톡으로 회원가입</a>
+							       	<a href="#"  class="btn btn-primary"  style="width:60%;margin-bottom:20px;padding:10px;">페이스북으로 회원가입</a>
+
+											    
+											     
+									<img src="../resources/img/ex.JPG" style="width:100%;height:70%;"/>		     
+											        	
+							      </div>
+							      <div class="modal-footer" style="text-align:center;">
+							      	<a href="/greenStore" id="btn-layerClose" class="btn btn-primary"  style="width:50%;">닫기</a>
+							      </div>
+
+					            </div>
+					        </div>
+					    </div>
+					</div>
+					 -->
+					
+					
+						<span class="css-arrow"></span>
 					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
 						<a href="http://localhost:8080/greenStore/review/listAll" style="color: #0d2474;text-decoration: none; margin-left:2%;">리뷰전체보기</a> 
 						<span class="css-arrow"></span>
@@ -275,7 +440,7 @@ $(document).ready(function(){
 					</div>
 				</c:forEach>
 			</div>
-		</Sdiv>
+		</div>
 	</div>
 	<br />
 </div>
@@ -399,3 +564,4 @@ $(document).ready(function(){
 		<div style="height: 910px;"></div>
 	</div>
 </div>  
+
