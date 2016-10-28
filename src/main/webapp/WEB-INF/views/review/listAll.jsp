@@ -195,6 +195,7 @@
                   			${ reviewList.rcontent }
                   			</div>
 
+							<c:if test="${not empty member}">
 			                  	<ul class="list-inline">
 				                    <li data-id="${reviewList.rkey }">
 				                    <input id="isLike" type="hidden" value="${reviewList.isLike}"/> 
@@ -206,8 +207,9 @@
 						              	</c:if>
 						            </li>
 			                  	</ul>
-		                	</div>
-		                	
+		                
+		                	</c:if>
+		                		</div>
 
 		                	
 		                 </c:forEach>

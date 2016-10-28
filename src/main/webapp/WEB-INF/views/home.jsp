@@ -242,36 +242,6 @@ $(document).ready(function(){
 						<span class="css-arrow"></span>
 					</div>
 					</c:if>
-<!-- 					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
-						<a href="http://localhost:8080/greenStore/member/loginForm" class="btn-example" style="color: #0d2474;text-decoration: none; margin-left:2%;">창넘기기</a>
-					</div>
-					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
-						<a href="#layer2" class="btn-example" data-toggle="modal" data-target=".bs-example-modal-lg" style="color: #0d2474;text-decoration: none; margin-left:2%;">TEST</a>
-					</div>
-					<div class="dim-layer">
-					    <div class="dimBg"></div>
-					    <div id="layer2" class="pop-layer">
-					        <div class="pop-container">
-					            <div class="pop-conts">
-							      <div class="modal-body" style="text-align:center">
-							       	<a href="#" class="btn btn-primary"  style="width:60%;margin-bottom:20px;padding:10px;">카카오톡으로 회원가입</a>
-							       	<a href="#"  class="btn btn-primary"  style="width:60%;margin-bottom:20px;padding:10px;">페이스북으로 회원가입</a>
-
-											    
-											     
-									<img src="../resources/img/ex.JPG" style="width:100%;height:70%;"/>		     
-											        	
-							      </div>
-							      <div class="modal-footer" style="text-align:center;">
-							      	<a href="/greenStore" id="btn-layerClose" class="btn btn-primary"  style="width:50%;">닫기</a>
-							      </div>
-
-					            </div>
-					        </div>
-					    </div>
-					</div>
-					 -->
-					
 					
 						<span class="css-arrow"></span>
 					<div style="display:block;position: relative; width:100%; height:60px;border: 0.1em solid #F6F6F6;line-height:3em;padding-left:10px; background-color:#ffffff;">
@@ -292,7 +262,7 @@ $(document).ready(function(){
 	<header id="header">
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="/" style="color: #ffffff;">GreenStore</a>
+				<a class="navbar-brand" href="http://localhost:8080/greenStore" style="color: #ffffff;">GreenStore</a>
 				<span class="openbtn">&#9776;</span>
 			</div>
 		</nav>
