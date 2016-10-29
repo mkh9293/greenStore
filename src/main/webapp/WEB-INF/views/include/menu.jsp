@@ -47,6 +47,8 @@
 			$(location).attr("href","http://localhost:8080/greenStore/store/search/"+$("#mb_searchTxt").val());
 		});
 		
+		
+		
 	});
 </script> 
 <style type="text/css">
@@ -128,7 +130,7 @@
 	<div id="profile">
 		<div style="position:absolute; width:340px;height:200px; top:40px; left:25px;">
 			<img src="<c:url value="${member.mphoto}"/>" alt="profile" class="img-circle" style="display:inline-block;width:105px;height:110px;"/>
-			<strong style="margin-left:10px;line-height:6em;color:#000">${member.mname }<font color="blue">(${member.mid })</font></strong>			
+			<strong style="margin-left:10px;line-height:6em;color:#000">${member.mname }</strong>			
 		</div>
 	</div>
 	</c:if>
@@ -196,3 +198,4 @@
 	</nav>
 </div>
 <div style="height:54spx;"></div>
+

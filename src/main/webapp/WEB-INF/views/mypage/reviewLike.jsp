@@ -76,11 +76,10 @@
 	                    <span style="margin-left:5px;">좋아요!</span>
 	                    <a href="#" class="pull-right btn-box-tool"></a>
 	                    </div>
-	                    ${ reviewLike.rcontent }
-		                <ul class="list-inline">
-		                	<li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-		                	</li>
-		                </ul>
+	                    <div style="margin-bottom:15px;">
+		                ${ reviewLike.rcontent }
+		                </div>
+		               
 	                	</div>
                 	</c:forEach>
                 	<hr/>

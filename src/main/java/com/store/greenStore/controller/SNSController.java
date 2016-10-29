@@ -25,6 +25,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.store.greenStore.dto.Member;
+import com.store.greenStore.dto.UserfbVo;
 import com.store.greenStore.dto.UserkakaoVo;
 import com.store.greenStore.mapper.MemberMapper;
 import com.store.greenStore.service.Utils;
@@ -35,37 +36,112 @@ public class SNSController {
 	private static final Logger logger = LoggerFactory.getLogger(SNSController.class);
 	
 	@Autowired MemberMapper memberMapper;
-	
+
 	//카카오 REST API 키값
-	private static final String restapi="55c4125dae1ff298482707a80f0bde7f"; 
+	private static final String Krestapi="55c4125dae1ff298482707a80f0bde7f"; 
 	private static final String mydomainkakao ="http%3A%2F%2Flocalhost%3A8080%2FgreenStore%2Foauth%2Fcallback%2Fkakao";
-	private static final String karequestUrl = "https://kauth.kakao.com/oauth/authorize?client_id="+restapi+"&redirect_uri="+mydomainkakao+"&response_type=code&state=";
+	private static final String KrequestUrl = "https://kauth.kakao.com/oauth/authorize?client_id="+Krestapi+"&redirect_uri="+mydomainkakao+"&response_type=code&state=";
+	
+	//페이스북
+	private static final String FappId="1192802990783359";
+	private static final String mydomainfb="http%3A%2F%2Flocalhost%3A8080%2FgreenStore%2Foauth%2Fcallback%2Ffb";
+	private static final String FsecretCode = "f1fe1377ca7a59da8db79e994ae21ea7";
+	private static final String FrequestUrl = "https://www.facebook.com/dialog/oauth?client_id="+FappId+"&response_type=code&scope=user_friends,public_profile,email&redirect_uri="+mydomainfb+"&response_type=code&state=";
+	
 	
 	@RequestMapping(value = "/oauth/login")
-	public String kakao(HttpSession session ,@RequestParam(required = false,value = "snsname") String snsname) {
+	public String kakao(HttpSession session ,@RequestParam(required = false,value="snsname") String snsname) {
 	    if(snsname.equals("kakao")){
 	        String state = Utils.generateState();
 	        session.setAttribute("state", state);
-	        logger.info("login 코드 요청 보낸 uri : "+karequestUrl+state);
+	        logger.info("login uri : " + KrequestUrl + state);
 	        //인증요청
-	        return "redirect:" + karequestUrl+state;   
+	        return "redirect:" + KrequestUrl + state;   
 	    }
-	    else if(snsname.equals("facebook")) {
-	    	//
+	    else if(snsname.equals("fb")) {
+	    	String state = Utils.generateState();
+	    	session.setAttribute("state", state);
+	    	logger.info("login uri : "+ FrequestUrl + state);
+	    	return "redirect:" + FrequestUrl + state;
 	    }
 	    return null;
 	}
 	
-	@RequestMapping(value = "oauth/callback/kakao")
-    public String callbackkakao(Member member, @RequestParam(required = false,value ="state") String state, @RequestParam(required = false,value = "code") String code, HttpServletRequest request, Model model, HttpSession session){
-        String grant_type="authorization_code";
-        String tokenReqUrl="https://kauth.kakao.com/oauth/token?grant_type="+grant_type+"&client_id="+restapi+"&redirect_uri="+mydomainkakao+"&code="+code;
+	@RequestMapping(value = "oauth/callback/fb")
+    public String callbackfb(Member member, @RequestParam(required=false,value="state") String state, @RequestParam(required=false, value="code") String code, HttpServletRequest request, Model model, HttpSession session){
+		logger.info("성공!");
+        String tokenReqUrl="https://graph.facebook.com/oauth/access_token?client_id="+FappId+"&redirect_uri="+mydomainkakao+"$client_secret="+FsecretCode+"&code="+code;
+        logger.info(code);
+        logger.info(tokenReqUrl); //여기까지잘됨
+
+                 
+
+        
         String data = getHtml(tokenReqUrl, code);      
         Map<String,String> map = JSONStringToMap(data); 
         String accessToken = map.get("access_token");
         String tokenType = map.get("token_type");
-        String refresh_Token = map.get("refresh_token");
-        String scope = map.get("scope");
+        
+        logger.info("accessToken : " + accessToken);
+        String userUrl="https://graph.facebook.com/me?access_token="+code;
+        logger.info("userUrl : " + userUrl);
+        String userData = getHtml(userUrl, " " + code);
+        UserfbVo userfbVo = new Gson().fromJson(userData, UserfbVo.class );
+        
+	    logger.info("mid : " +userfbVo.getId());
+        logger.info("mname : " +userfbVo.getName());
+        
+        int mkey = 0;
+		Member result = memberMapper.selectMember(userfbVo.getId());
+		
+		if(result == null) {
+			result = new Member(); 
+			result.setMkey(mkey);
+		}
+		
+		if(result.getMkey() != mkey) {
+			logger.info("디비에 저장되어있음.");
+		} else {
+			logger.info("디비에 없음.");
+			Member user = new Member();
+			user.setMid(userfbVo.getId());
+			user.setMname(userfbVo.getName());
+	        user.setMphoto("NULL");
+	        memberMapper.insertUser(user);
+	        
+	        logger.info("저장완료");
+		}
+
+        member = new Member();
+        member.setMkey(result.getMkey());
+        member.setMid(userfbVo.getId());
+        member.setMname(userfbVo.getName());
+        member.setMphoto("NULL");
+        session.setAttribute("member", member);
+        
+        System.out.println(member.getMid());
+		session = request.getSession(false);
+			if(session!=null){
+				Member vo = (Member)session.getAttribute("member");
+				if(vo!=null){
+					System.out.println(vo.getMphoto()+ " / "+vo.getMid()+ " / "+vo.getMkey());
+					model.addAttribute("member", vo);
+				}
+			}
+		
+        return "redirect:/";
+    } 
+	
+	
+	
+	@RequestMapping(value = "oauth/callback/kakao")
+    public String callbackkakao(Member member, @RequestParam(required = false,value ="state") String state, @RequestParam(required = false,value = "code") String code, HttpServletRequest request, Model model, HttpSession session){
+        String grant_type="authorization_code";
+        String tokenReqUrl="https://kauth.kakao.com/oauth/token?grant_type="+grant_type+"&client_id="+Krestapi+"&redirect_uri="+mydomainkakao+"&code="+code;
+        String data = getHtml(tokenReqUrl, code);      
+        Map<String,String> map = JSONStringToMap(data); 
+        String accessToken = map.get("access_token");
+        String tokenType = map.get("token_type");
         
         session = request.getSession();
         System.out.println(session.getAttribute("accessToken")+ " session Check");
@@ -119,7 +195,7 @@ public class SNSController {
 		
         return "redirect:/";
     } 
-
+	
       public static String getHtml(String url, String authorization) {
         HttpURLConnection httpRequest = null;
         String resultValue = null;
@@ -148,6 +224,7 @@ public class SNSController {
         return resultValue;
     }
       
+      
      public static Map<String, String> JSONStringToMap(String str){
         Map<String,String> map = new HashMap<String,String>();
         ObjectMapper mapper = new ObjectMapper();
@@ -162,4 +239,6 @@ public class SNSController {
         }
         return map;
     }
+     
+     
 }
