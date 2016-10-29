@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.store.greenStore.dto.Play;
 import com.store.greenStore.dto.Review;
+import com.store.greenStore.dto.ReviewLike;
 import com.store.greenStore.dto.Store;
 import com.store.greenStore.dto.StoreLike;
 import com.store.greenStore.mapper.LikeMapper;
@@ -34,34 +35,34 @@ public class AppDetailController {
 	AppDetailService appDetailService;
 	@Autowired
 	RvMapper rvMapper;
-	
+
 	@RequestMapping("/detail/{sh_id}")
-	public @ResponseBody Map<String,List> appDetail(@PathVariable("sh_id") int sh_id) throws IOException, ParseException {
-		Map<String,List> detailList = new HashMap<>();
-		
+	public @ResponseBody Map<String, List> appDetail(@PathVariable("sh_id") int sh_id)
+			throws IOException, ParseException {
+		Map<String, List> detailList = new HashMap<>();
+
 		List<Store> storeList = storeDbMapper.appDetail(sh_id);
 		Map<String, Double> map = appDetailService.getGps(storeList.get(0).getSh_addr());
-		if(map.get("pointX")==null){
+		if (map.get("pointX") == null) {
 			storeList.get(0).setPointX(0);
 			storeList.get(0).setPointY(0);
-		}else{ 
+		} else {
 			storeList.get(0).setPointX(map.get("pointX"));
 			storeList.get(0).setPointY(map.get("pointY"));
 		}
 		List<Review> reviewList = rvMapper.select(sh_id);
-		
+
 		detailList.put("storeList", storeList);
 		detailList.put("reviewList", reviewList);
-		System.out.println(map.get("pointX")+" / "+map.get("pointY"));
-		
-		
-		if(map.get("pointX")!=null){
+		System.out.println(map.get("pointX") + " / " + map.get("pointY"));
+
+		if (map.get("pointX") != null) {
 			List<Play> playList = appDetailService.getPlayInfo(map.get("pointX"), map.get("pointY"));
 			System.out.println(playList.size() + " / playList");
 			Collections.shuffle(playList);
-			detailList.put("playList",playList);
+			detailList.put("playList", playList);
 		}
-		
+
 		return detailList;
 	}
 
@@ -71,6 +72,14 @@ public class AppDetailController {
 		System.out.println(storeLike.getMkey() + " / " + storeLike.getSh_id());
 		likeMapper.storeLikeUp(storeLike.getSh_id());
 		likeMapper.storeLike(storeLike);
+	}
+
+	// 스토어 좋아요 메소드
+	@RequestMapping("/reviewLike")
+	public @ResponseBody void reviewLike(ReviewLike reviewLike) {
+		System.out.println(reviewLike.getMkey() + " / " + reviewLike.getRkey());
+		likeMapper.reviewLikeUp(reviewLike.getRkey());
+		likeMapper.reviewLike(reviewLike);
 	}
 
 }

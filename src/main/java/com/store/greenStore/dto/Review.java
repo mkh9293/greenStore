@@ -14,7 +14,7 @@ public class Review {
 	private String INDUTY_CODE_SE_NAME;
 	
 	//member data
-	private int mid;
+	private String mid;
 	private String mphoto;
 	private String mname;
 	
@@ -115,11 +115,11 @@ public class Review {
 		this.rdate = rdate;
 	}
 
-	public int getMid() {
+	public String getMid() {
 		return mid;
 	}
 
-	public void setMid(int mid) {
+	public void setMid(String mid) {
 		this.mid = mid;
 	}
 	

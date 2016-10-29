@@ -37,8 +37,8 @@
 	</select>
 	
 	<select id="listAll" resultType="com.store.greenStore.dto.Review"> 
-		SELECT * FROM review r INNER JOIN store s ON r.sh_id = s.sh_id 
-		join member m on r.mkey= m.mkey order by rkey asc;
+		SELECT * FROM review r JOIN store s ON r.sh_id = s.sh_id 
+		left outer join member m on r.mkey = m.mkey order by r.rkey
 	</select>
 	
 	<select id="weblistAll" resultType="com.store.greenStore.dto.Review"> 

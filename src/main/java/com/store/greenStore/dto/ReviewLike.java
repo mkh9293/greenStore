@@ -13,7 +13,7 @@ public class ReviewLike {
 	private Date rdate;
 	private String sh_name;
 	private String mname;
-	private int mid;
+	private String mid;
 	
 	
 	public int getSh_id() {
@@ -52,10 +52,10 @@ public class ReviewLike {
 	public void setMname(String mname) {
 		this.mname = mname;
 	}
-	public int getMid() {
+	public String getMid() {
 		return mid;
 	}
-	public void setMid(int mid) {
+	public void setMid(String mid) {
 		this.mid = mid;
 	}
 	public int getRkey() {
