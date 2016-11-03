@@ -23,10 +23,6 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-		<div class="nav-tabs-custom">
-        <div class="tab-content" style="padding:50px;">
-        <div class="active tab-pane" id="activity">
-		
  			<form role="form" method="post" id="boardWriteForm" >
 				<div>
 					<label style="font-size: 18px;"></label>
@@ -44,9 +40,6 @@
 				</div>
 			</form> 
 			<br/>
-			</div>
-			</div>
-			</div>
 		</div>
 	</div>
 </div> 

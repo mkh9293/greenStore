@@ -1,4 +1,4 @@
-/*package test;
+package test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -170,6 +170,13 @@ public class TestMain {
 	// System.out.println("---------------------------");
 	// }
 	// }
+	
+	@Test
+	public void reviewAll(){
+		for(Review item : rvmapper.listAll()){
+			System.out.println(item.getRcontent()+" / "+item.getMname());
+		}
+	}
 }
 
 // List<LikeDto> items = likeMapper.searchLikeByMkey(3);
@@ -184,4 +191,3 @@ public class TestMain {
 // System.out.println(items.get(0));
 // }
 // }
-*/

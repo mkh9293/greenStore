@@ -13,7 +13,7 @@
 	</select>
 	
 	<select id="searchLikeReviewByMkey" resultType="com.store.greenStore.dto.Review">
-		select * from review r join review_like rl on r.rkey = rl.rkey join store s  on s.sh_id = r.sh_id where rl.mkey = #{mkey};
+		select * from review r join review_like rl on r.rkey = rl.rkey join store s on s.sh_id = r.sh_id where rl.mkey = #{mkey};
 	</select>
 	
 	<insert id="storeLike">
@@ -21,7 +21,16 @@
 		values (#{mkey},#{sh_id}) 
 	</insert>
 	
+	<insert id="reviewLike">
+		insert review_like(MKEY,RKEY)
+		values (#{mkey},#{rkey}) 
+	</insert>
+	
 	<insert id="storeLikeUp">
 		UPDATE store SET sh_like=sh_like+1 where sh_id=#{sh_id}
+	</insert>
+	
+	<insert id="reviewLikeUp">
+		UPDATE review SET relike=relike+1 where rkey=#{rkey}
 	</insert>
 </mapper>

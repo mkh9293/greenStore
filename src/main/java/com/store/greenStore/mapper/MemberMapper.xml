@@ -18,6 +18,12 @@
 		where MID = #{mid}
 	</select>
 	
+	<select id="appSelectMember" resultType="com.store.greenStore.dto.Member">
+		select *
+		from member
+		where MID = #{mid} or MNAME = #{mname}
+	</select>
+	
 	<select id="member" resultType="com.store.greenStore.dto.Member">
 		select count(mid) from member
 		where mid = #{mid}

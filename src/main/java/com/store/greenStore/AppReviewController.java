@@ -43,7 +43,7 @@ public class AppReviewController {
 	
 	@RequestMapping(value="/listAll", method=RequestMethod.GET)
 	public @ResponseBody List<Review> reviewAll(){
-//		rvmapper.select(sh_id);
+//		rvmapper.listAll();
 		return rvmapper.listAll();
 	}
 	

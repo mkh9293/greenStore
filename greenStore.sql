@@ -101,4 +101,21 @@ select * from review r join review_like rl on r.rkey = rl.rkey join store s  on 
 
 select * from notice;
 
-insert into
+select s.SH_ID, SH_NAME, SH_ADDR, MENU, induty_code_se_name, SH_RCMN, SH_LIKE, SH_PHOTO, MIN(PRICE) AS PRICE 
+			from store s join store_menu m on s.sh_id = m.sh_id  
+			where match(s.sh_name,s.sh_addr,s.sh_way,s.sh_pride,m.menu) against('+"고기"' IN BOOLEAN MODE)
+			group by sh_id
+			order by sh_rcmn desc;
+			
+			SELECT * FROM review r JOIN store s ON r.sh_id = s.sh_id 
+		 left outer join member m on r.mkey = m.mkey order by r.rkey;
+		
+		 select * from review r join member m on r.mkey = m.mkey
+		 delete from review;
+		select * from review;
+		select * from store;
+		select * from member;
+		delete from member;
+		select *
+		from member
+		where MID = 234 or MNAME = "문광훈";

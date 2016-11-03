@@ -12,4 +12,5 @@ public interface MemberMapper {
 	
 	//member 조회
 	public Member selectMember(String mid);
+	public Member appSelectMember(Member member);
 }

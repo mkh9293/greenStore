@@ -278,7 +278,7 @@ var likeBtn = "<c:out value="${store.isLike}"/>";//나중에 디비에서 받아
 									<input type="hidden" name="mid" value="${member.mid}"/>
 									<div class="post clearfix">
 						                <div class="user-block">
-							                <img class="img-circle img-bordered-sm" src="${member.mphoto }" alt="User">
+							                <img class="img-circle img-bordered-sm" src="${member.mphoto }" >
 							                <span class="username">
 							                <a href="#">${ member.mname }</a>
 							                <button class="btn" style="margin-left:10px;">리뷰저장하기</button> 
@@ -303,7 +303,7 @@ var likeBtn = "<c:out value="${store.isLike}"/>";//나중에 디비에서 받아
 	                  	<c:forEach items="${ reviewOne }" var="reviewList" >
 			                <div class="post clearfix">
 				                <div class="user-block">
-					                <img class="img-circle img-bordered-sm" src="${reviewList.mphoto }" alt="User">
+					                <img class="img-circle img-bordered-sm" src="${reviewList.mphoto }">
 					                <span class="username">
 					                <a href="#">${ reviewList.mname }</a>
 					                <a href="#" class="pull-right btn-box-tool"></a>
@@ -311,10 +311,9 @@ var likeBtn = "<c:out value="${store.isLike}"/>";//나중에 디비에서 받아
 					                <span class="description">
 					                <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${ reviewList.rdate }" /></span>
 				                </div>
+				                <div style="margin-bottom:15px;">
 				                ${ reviewList.rcontent }
-				                <ul class="list-inline">
-				                <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a></li>
-				                </ul>
+								</div>
 			                </div>
 		                </c:forEach> 
 		                
@@ -323,7 +322,7 @@ var likeBtn = "<c:out value="${store.isLike}"/>";//나중에 디비에서 받아
 		                  	<c:forEach items="${ review }" var="reviewList" >
 			                <div class="post clearfix">
 				                <div class="user-block">
-					                <img class="img-circle img-bordered-sm" src="${reviewList.mphoto }" alt="User Image">
+					                <img class="img-circle img-bordered-sm" src="${reviewList.mphoto }">
 					                <span class="username">
 					                <a href="#">${ reviewList.mname }</a>
 					                <a href="#" class="pull-right btn-box-tool"></a>
@@ -332,10 +331,7 @@ var likeBtn = "<c:out value="${store.isLike}"/>";//나중에 디비에서 받아
 					                <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${ reviewList.rdate }" /></span>
 				                </div>
 				                ${ reviewList.rcontent }
-				                <ul class="list-inline">
-				                <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-				                </li>
-				                </ul>
+
 			                </div>
 			                </c:forEach>
 	                    </div>

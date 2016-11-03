@@ -41,11 +41,11 @@ public class AppHomeController {
 	//멤버를 조회하는 액션 메소드
 	@RequestMapping(value = "/memberLookup", method = RequestMethod.POST)
 	public @ResponseBody List<LikeDto> memberLookup(Member member) {
-		System.out.println("test123123s");
+		System.out.println("test123123s " +member.getMname());
 		int mkey = 0;
 		
 		//멤버를 조회한다.
-		Member result = memberMapper.selectMember(member.getMid());
+		Member result = memberMapper.appSelectMember(member);
 		
 		//만약 멤버가 null이면 result값에 mkey의 값에 0 삽입
 		if(result == null) {
